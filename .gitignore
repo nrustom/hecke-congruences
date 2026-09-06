@@ -1,0 +1,8 @@
+source_data/.p7_mod49_nim_work/
+lean/.lake/
+lean/.lean/
+nim/.strong-signatures-build/
+__pycache__/
+*.pyc
+strong_signatures/**/*.lock
+strong_signatures/*/logs/

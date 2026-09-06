@@ -1,0 +1,8 @@
+*.npz filter=lfs diff=lfs merge=lfs -text
+strong_signatures/exact/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/exact_p5_t2_t19/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/p2_m9/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/p3_m4/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/p3_m5/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/p5_m3/weight_*.json filter=lfs diff=lfs merge=lfs -text
+strong_signatures/p7_m2/weight_*.json filter=lfs diff=lfs merge=lfs -text

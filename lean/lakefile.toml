@@ -1,0 +1,15 @@
+name = "hecke_congruences_formalization"
+version = "0.1.0"
+defaultTargets = ["HeckeCongruences"]
+
+[leanOptions]
+autoImplicit = false
+pp.unicode.fun = true
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.33.0-rc2"
+
+[[lean_lib]]
+name = "HeckeCongruences"

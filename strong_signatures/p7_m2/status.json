@@ -1,0 +1,17 @@
+{
+  "schema": "hecke.strong-signature-status.v1",
+  "state": "completed",
+  "pid": 2069646,
+  "heartbeat_at": "2026-09-05T14:59:26Z",
+  "elapsed_seconds": 8989.319766521454,
+  "workers": 4,
+  "maximum_weight": 380,
+  "prime": 7,
+  "exponent": 2,
+  "completed_count": 190,
+  "reused_count": 0,
+  "active_weights": [],
+  "active_pids": [],
+  "failed": [],
+  "bounded_scan_complete": true
+}

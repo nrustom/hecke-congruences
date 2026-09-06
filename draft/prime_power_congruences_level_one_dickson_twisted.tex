@@ -1,0 +1,1359 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[a4paper,margin=29mm]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,mathrsfs}
+\usepackage{booktabs,tabularx,longtable,array}
+\usepackage{subcaption}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{url}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+\pdfmapfile{+euler.map}
+
+\definecolor{statusblue}{HTML}{17365D}
+\definecolor{statusgreen}{HTML}{1D6F42}
+\definecolor{statusamber}{HTML}{8A5B00}
+\definecolor{statusred}{HTML}{982B2B}
+\definecolor{boxblue}{HTML}{EDF3F8}
+\definecolor{boxred}{HTML}{F9EEEE}
+
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\Q}{\mathbf Q}
+\newcommand{\F}{\mathbf F}
+\newcommand{\C}{\mathbf C}
+\newcommand{\G}{\mathbf G}
+\newcommand{\cO}{\mathcal O}
+\newcommand{\cA}{\mathcal A}
+\newcommand{\cB}{\mathcal B}
+\newcommand{\cD}{\mathcal D}
+\newcommand{\cE}{\mathcal E}
+\newcommand{\cG}{\mathcal G}
+\newcommand{\cH}{\mathcal H}
+\newcommand{\cI}{\mathcal I}
+\newcommand{\cL}{\mathcal L}
+\newcommand{\cN}{\mathcal N}
+\newcommand{\cP}{\mathcal P}
+\newcommand{\cR}{\mathcal R}
+\newcommand{\cS}{\mathcal S}
+\newcommand{\cT}{\mathcal T}
+\newcommand{\St}{\operatorname{St}}
+\newcommand{\Spec}{\operatorname{Spec}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\coker}{\operatorname{coker}}
+\newcommand{\ord}{\operatorname{ord}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Frob}{\operatorname{Frob}}
+\newcommand{\Ind}{\operatorname{Ind}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Cyc}{\operatorname{Cyc}}
+\newcommand{\thetaop}{\theta}
+\newcommand{\an}{\mathrm{an}}
+\newcommand{\ctrl}{\mathrm{ctrl}}
+\newcommand{\rel}{\mathrm{rel}}
+\newcommand{\parab}{\mathrm{par}}
+\newcommand{\sat}{\mathrm{sat}}
+\newcommand{\dir}{\mathrm{dir}}
+\newcommand{\tf}{\mathrm{tf}}
+\newcommand{\diag}[2]{\begin{pmatrix}#1 & 0 \\ 0 & #2\end{pmatrix}}
+
+\newcommand{\status}[2]{\textcolor{#1}{\textsc{#2}}}
+\newcommand{\StatusFormal}{\status{statusblue}{FORMAL}}
+\newcommand{\StatusCertified}{\status{statusgreen}{CERTIFIED}}
+\newcommand{\StatusOpen}{\status{statusred}{OPEN}}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{problem}[theorem]{Open problem}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Warning}
+\numberwithin{equation}{section}
+
+\newenvironment{mainbox}
+  {\begin{center}\begin{minipage}{0.92\linewidth}
+   \color{statusblue}\hrule\medskip\color{black}}
+  {\par\medskip\color{statusblue}\hrule
+   \end{minipage}\end{center}}
+\newenvironment{openresultbox}
+  {\begin{center}\begin{minipage}{0.92\linewidth}
+   \color{statusred}\hrule\medskip\color{black}}
+  {\par\medskip\color{statusred}\hrule
+   \end{minipage}\end{center}}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt plus 1pt minus 1pt}
+\setlist[itemize]{leftmargin=6mm}
+\setlist[enumerate]{leftmargin=7mm}
+\allowdisplaybreaks
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\small Prime-power congruences for level-one eigenforms}
+\cfoot{\small\thepage\ /\ \pageref{LastPage}}
+\setlength{\headheight}{14pt}
+
+\title{\bfseries Prime-power congruences for level-one eigenforms}
+\author{Nadim Rustom}
+
+\begin{document}
+\maketitle
+
+\begin{abstract} We study prime-power congruences for the prime-to-\(p\) Hecke eigensystems of normalized cuspidal level-one eigenforms as the weight varies, and we address the problem of classifying such systems for small prime powers. We construct Hecke-equivariant transfer maps between level-one modular-symbol modules via multiplication by suitable lifts of Dickson invariants; these maps reduce the problem to finite computation and propagate Hecke operator relations through all weights. For \(p=2,3,5,7\), we obtain all-weight classifications modulo \(2^8\), \(3^3\), \(5^2\), and \(7^2\), respectively.\end{abstract}
+
+\tableofcontents
+
+\part{General theory}
+
+\section{Introduction and main results}
+
+\subsection{The problem}
+
+In this work, we study congruences modulo prime powers between systems of Hecke eigenvalues arising from normalized cuspidal eigenforms of level \(1\). We will use the adjective \emph{strong}, following \cite{CKW2013,KRW2016}, to refer to either eigenforms in characteristic $0$, or Hecke eigensystems arising from such eigenforms. More precisely, for a fixed prime power \(p^m\), we ask which strong prime-to-\(p\) Hecke eigensystems can occur in level $1$ as the weight varies, and we seek an explicit classification of these systems.
+
+Questions of this kind belong to the general study of modular forms and Galois representations modulo prime powers. For fixed level \(N\), prime \(p\nmid N\), and integer \(m\geq1\), the author, in joint work with Kiming and Wiese, formulated the following finiteness conjecture \cite[Conjecture~1]{KRW2016}.
+
+\begin{conjecture} \label{conj:krw-finiteness} There are only finitely many modulo \(p^m\) congruence classes of strong Hecke eigenforms on \(\Gamma_1(N)\). \end{conjecture}
+
+Equivalently, there should exist a constant \(B(N,p,m) \), called a \emph{strong weight
+bound}, such that every normalized characteristic-zero eigenform \(f\) on \(\Gamma_1(N)\) is congruent modulo \(p^m\) to a normalized eigenform \(g\) on \(\Gamma_1(N)\) of weight at most \(B(N,p,m)\). A corresponding finiteness statement in characteristic \(p\) is known: for fixed level, only finitely many systems of Hecke eigenvalues with values in \(\overline{\mathbf F}_p\) occur as the weight varies \cite{Jochnowitz1982}. 
+
+The case of level \(1\) already exhibits much of the subtlety of the general problem. Classical results of Hatada \cite{Hatada1977a,Hatada1977b,Hatada1979,Hatada1981} established a series of striking congruences for Hecke eigenvalues. However, these results generally concern individual Hecke eigenvalues and do not determine whole eigensystems. We record a few representative examples. For every normalized level-one eigenform \(f\), Hatada proved, among other congruences, \[ a_\ell(f)\equiv 1+\ell \pmod{2^4\overline{\mathbf Z}_2} \qquad \bigl(\ell\equiv\pm1\pmod{2^3}\bigr), \] and \[ a_\ell(f)\equiv 1+\ell \pmod{2^5\overline{\mathbf Z}_2} \qquad \bigl(\ell\equiv\pm1\pmod{2^4}\bigr) \] \cite{Hatada1979,Hatada1981}. 
+
+Coleman and Stein \cite[Conjecture~3.4]{ColemanStein2004} conjectured that exactly five systems of Hecke eigenvalues modulo \(3^2\) occur in levels \(1\), \(3\), and \(9\), all first occurring at level \(1\), and gave computational evidence for this conjecture. 
+
+Calegari and Emerton subsequently introduced a cohomological approach which allowed them to reprove and extend several of Hatada's congruences \cite[Theorem~2.2 and Lemmas~3.1--3.3]{CalegariEmerton2004}. 
+
+For \(p=7\), Hatada had recorded a conjecture of Serre predicting \begin{equation}\label{conj:serre-conjecture} a_\ell(f)\equiv1+\ell \pmod{7\overline{\mathbf Z}_7} \qquad \bigl(\ell\equiv\pm1\pmod7\bigr). \end{equation} Calegari and Emerton proved the weaker congruence \[ a_\ell(f)\equiv1+\ell \pmod{7^{1/2}\overline{\mathbf Z}_7} \qquad \bigl(\ell\equiv\pm1\pmod7\bigr) \] \cite[Lemma~3.2]{CalegariEmerton2004}. They also proved, for \(p=3\), \[ a_\ell(f)\equiv1+\ell \pmod{3^2\overline{\mathbf Z}_3} \qquad \bigl(\ell\equiv\pm1\pmod{3^2}\bigr), \] for every normalized level-one eigenform \(f\) \cite[Lemma~3.3]{CalegariEmerton2004}. 
+
+In \cite{Rustom2019}, the author obtained a stronger result at level \(1\). For \(p=2\), all systems of Hecke eigenvalues modulo \(2^7\) were determined; in particular, for every normalized level-one eigenform \(f\) of weight \(k\) and every odd prime \(\ell\), \[ a_\ell(f)\equiv 1+\ell^{k-1} \pmod{2^7\overline{\mathbf Z}_2}. \] This gave further evidence for Conjecture~\ref{conj:krw-finiteness}. 
+
+There is also a methodological continuity between these works. Calegari and Emerton point out that modular symbols are particularly well adapted to proving congruences that are independent of the weight, and interpret Hatada's calculations in this framework \cite{CalegariEmerton2004}. Their approach gives a cohomological formulation of the same general idea. The method of \cite{Rustom2019} was also in this spirit, using Merel's explicit theory of modular symbols to obtain finite computations from which congruences could be deduced. 
+
+The present work continues this approach and develops it further. In particular, we are able to prove the level \(1\) cases of Serre's conjecture (\ref{conj:serre-conjecture}) and Coleman-Stein's conjecture \cite[Conjecture~3.4]{ColemanStein2004}. The main new ingredient is a family of Hecke-equivariant transfer maps entirely within level \(1\), obtained by multiplication by suitable lifts of Dickson invariants. These maps propagate relations between level-one modular-symbol modules of different degrees and thereby reduce all-weight congruence questions to finite computation. In this way, we first obtain congruences for selected Hecke eigenvalues. Then we show that the Hecke operators to which these eigenvalues correspond generate the completed $p$-adic Hecke algebra, so that these congruences are enough to control every other Hecke eigenvalue. We do this by lifting Medvedovsky's \cite{Medvedovsky2015} explicitly determined generators of the corresponding mod $p$ Hecke algebras.
+
+In this sense, the methods used here may be viewed as a more systematic development of the ideas introduced in \cite{Rustom2019}. We do not claim that the results obtained here are the limits of what one could prove using this method: the necessary computations were run on the author's modest laptop, and we believe that more can be achieved on a more powerful machine. 
+
+In the GitHub repository \cite{RustomHeckeCongruences}, we provide Python/SageMath code, interfacing with PARI/GP, which can be used to run and verify the computational work needed for the results of this paper. We also provide an alternative backend, written in Nim and interfacing with FLINT, which computes the needed spaces of modular symbols and the actions of the Hecke operators. The two routes are theoretically identical, but the Nim code is much faster, and can be used to verify the computationally heavy case of mod \(7^2\) classification. For each of our main theorems, we present the verification through Jupyter notebooks which can be run on a Sage server.
+
+In the next few introductory subsections, we fix notation and state the main results of the paper.
+
+\paragraph{Acknowledgements and AI use disclosure.} The core of this work was developed by the author while employed as Assistant Professor at Ko\c{c} University, Istanbul, during 2018--2020. In particular, the level $1$ Coleman-Stein conjecture, and the level $1$ Serre conjecture modulo $7^{3/4}\bar \Z_7$, were obtained at that time.
+
+AI tools, in particular Codex/GPT-5.6 Sol, were used to extend these initial results. AI contributions consisted mainly in orchestrating the identification of the conjectural classifications and weight bounds in each case. AI also contributed significantly to the search for the modular-symbol Hecke operator identities used in Part~II to obtain congruences for selected Hecke eigenvalues. As the working modulus increases, these identities become increasingly complicated, and AI was useful for rapidly testing, rejecting, and identifying plausible identities. 
+
+All computational results obtained using AI-generated code were subsequently verified independently with code written by the author. AI was also used for proofreading the manuscript, correcting typographical errors, and identifying notational inconsistencies. All mathematical statements, proofs, computations, and references in the final manuscript were independently checked by the author, who takes full responsibility for the contents of the paper.
+
+\subsection{Congruence conventions}
+
+Let \(p\) be a prime number, and fix once and for all algebraic closures \(\overline{\mathbf Q}\), with ring of integers \(\overline{\mathbf Z}\), and \(\overline{\mathbf Q}_p\), with ring of integers \(\overline{\mathbf Z}_p\), together with an embedding \[ \overline{\mathbf Q}\hookrightarrow\overline{\mathbf Q}_p. \] Let \(v_p\) denote the normalized valuation on \(\overline{\mathbf Q}_p\), so that \(v_p(p)=1\). 
+
+We first clarify what we mean by congruence modulo \(p^m\), since two different notions arise when the coefficient field is ramified. 
+
+\begin{definition} \label{def:conventions} Let \(\cO\) be the ring of integers of a finite extension of \(\Q_p\), let \(\pi\) be a uniformizer, and let \(e_{\cO}\) be the ramification index, so that \( p\cO=\pi^{e_{\cO}}\cO. \) For \(m\geq1\) and \(x,y\in\cO\), define \[ \begin{aligned} x\equiv_{\mathrm{val}} y\pmod{p^m} &\quad\Longleftrightarrow\quad v_p(x-y)>m-1,\\ x\equiv_{\mathrm{lit}} y\pmod{p^m} &\quad\Longleftrightarrow\quad x-y\in p^m\cO. \end{aligned} \] We call the first a \emph{valuative congruence modulo \(p^m\)} and the second a \emph{literal congruence modulo \(p^m\)}. The valuative convention is the one used in \cite[\S1.1, pp.~479--480]{KRW2016}. 
+\end{definition} 
+
+Equivalently, valuative congruence modulo \(p^m\) is equality in \(\cO/\pi^{e_{\cO}(m-1)+1}\cO, \) whereas literal congruence modulo \(p^m\) is equality in \( \cO/p^m\cO = \cO/\pi^{me_{\cO}}\cO. \) If the coefficient field is unramified, the two notions agree. If \(e_{\cO}>1\), literal congruence is stronger. More generally, literal congruence modulo \(p^m\) implies valuative congruence modulo \(p^m\), while valuative congruence modulo \(p^{m+1}\) implies literal congruence modulo \(p^m\). Indeed, \[ \pi^{e_{\cO}m+1}\cO \subseteq \pi^{me_{\cO}}\cO \subseteq \pi^{e_{\cO}(m-1)+1}\cO. \]
+
+For modular forms, congruence is understood coefficientwise. Thus, if \[ f=\sum_{n\geq0}a_n(f)q^n, \qquad g=\sum_{n\geq0}a_n(g)q^n \] have coefficients in \(\cO\), we write \[ f\equiv g\pmod{p^m} \] valuatively, respectively literally, if \[ a_n(f)\equiv a_n(g)\pmod{p^m} \qquad(n\geq0) \] in the valuative, respectively literal, sense. The Fourier coefficients of a normalized Hecke eigenform \(f\) (normalized meaning that \(a_1(f)=1\)) are algebraic integers; hence, under our fixed embedding \[ \overline{\mathbf Q}\hookrightarrow\overline{\mathbf Q}_p, \] they belong to \(\overline{\mathbf Z}_p\). If \(f\) and \(g\) are normalized Hecke eigenforms, we say that their \emph{prime-to-\(p\) Hecke eigensystems} are congruent modulo \(p^m\), valuatively or literally, if \[ a_n(f)\equiv a_n(g)\pmod{p^m} \qquad((n,p)=1) \] in the corresponding sense. Such congruences may be checked in the ring of integers of any finite extension of \(\mathbf Q_p\) containing the coefficients of both forms.
+
+\subsection{Cyclotomic packets and twisted Eisenstein congruences}
+
+Let \(\varphi\) denote the Euler totient function.
+
+\begin{definition}[Cyclotomic packet] \label{def:packet} Let \[ a,b\in\Z/\varphi(p^m)\Z. \] Define \[ \Cyc_{a,b}: \{n\in\mathbf Z_{\geq1}:(n,p)=1\} \longrightarrow \mathbf Z/p^m\mathbf Z \] as follows. For \(n\) prime to \(p\), choose nonnegative integer representatives of \(a\) and \(b\), and put \[ \Cyc_{a,b}(n) := \prod_{\ell^s\Vert n} \sum_{j=0}^{s} \ell^{a(s-j)+bj} \pmod{p^m}. \] This residue class is independent of the chosen representatives of \(a\) and \(b\). We call \(\Cyc_{a,b}\) the
+\emph{cyclotomic packet} with exponents \((a,b)\). At primes
+\(\ell\neq p\),
+\[
+\Cyc_{a,b}(\ell)=\ell^a+\ell^b.
+\]
+Moreover,
+\[
+\Cyc_{a,b}=\Cyc_{b,a},
+\]
+so the packet depends only on the unordered pair \(\{a,b\}\).
+\end{definition} 
+
+Let \(\theta:=q\frac{d}{dq}\) denote the usual operator on \(q\)-expansions. Thus 
+\[
+\theta^r\!\left(\sum_{n\geq0}a_nq^n\right)
+=
+\sum_{n\geq1}n^ra_nq^n
+\qquad(r\geq1).
+\] For even \(\kappa\geq4\), let \[ G_\kappa := -\frac{B_\kappa}{2\kappa} + \sum_{n=1}^{\infty}\sigma_{\kappa-1}(n)q^n, \qquad \sigma_{\kappa-1}(n):=\sum_{d\mid n}d^{\kappa-1}, \] with \(B_\kappa\) the \(\kappa\)-th Bernoulli number, be the level $1$ Eisenstein series of weight $\kappa$. For \(i\geq1\), the constant term of \(G_\kappa\) is killed by \(\theta^i\), and all remaining coefficients are integral. Thus \[\theta^iG_\kappa\pmod{p^m}\] is well defined as a \(q\)-expansion.
+
+\begin{definition}[Cyclotomic Hecke eigensystem] \label{def:theta-eis} Let \(f\) be a modular form with coefficients in $\bar \Z_p$, let \(e\in\mathbf Z_{\geq0}\), and let
+\(i\in\mathbf Z_{\geq1}\). If \[ \theta^e f\equiv\theta^iG_\kappa\pmod{p^m}, \] we will refer to the Hecke eigensystem arising from $f$ as \emph{cyclotomic}. As in Definition~\ref{def:conventions}, the congruence may be understood valuatively or literally. 
+\end{definition} 
+
+To explain this terminology, note that for \((n,p)=1\), one has \[ n^i\sigma_{\kappa-1}(n) = \Cyc_{i,i+\kappa-1}(n)\qquad\text{in }\mathbf Z/p^m\mathbf Z. \] Consequently, if \(e\) is a positive multiple of \(\varphi(p^m)\) and \(e,i\geq m\), then, in either the valuative or literal sense, \[ \theta^e f\equiv\theta^iG_\kappa\pmod{p^m} \] is equivalent to \[ a_n(f)\equiv \Cyc_{i,i+\kappa-1}(n) \pmod{p^m} \qquad ((n,p)=1). \] In particular, at a prime $\ell \not = p$, 
+\[a_\ell(f) \equiv \ell^i + \ell^{i+\kappa-1} \pmod{p^m}. \]
+
+\subsection{Main results}
+
+We now state the main results of the paper. Throughout this subsection, let \(f\) be a normalized cuspidal level-one eigenform of even weight \(k\), and let \(\mathcal O_f\) be the ring of integers of a finite extension of \(\mathbf Q_p\) containing the coefficients of \(f\). 
+
+\begin{theorem}[Prime-to-\(2\) classification modulo \(2^8\)] \label{thm:intro-p2} If \[ k-2\equiv2,4,10,12\pmod{16}, \] then \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{0,k-1}(n)\pmod{2^8} \qquad ((n,2)=1). \] If \[ k-2\equiv0,6,8,14\pmod{16}, \] then exactly one of \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{0,k-1}(n)\pmod{2^8} \qquad ((n,2)=1) \] and \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{16,k-17}(n)\pmod{2^8} \qquad ((n,2)=1) \] holds. 
+  
+Equivalently, in the first case, \[\theta^{64}f\equiv_{\mathrm{val}}\theta^{64}G_k\pmod{2^8}, \] whereas in the second case exactly one of \[ \theta^{64}f\equiv_{\mathrm{val}}\theta^{64}G_k\pmod{2^8} \] and \[ \theta^{64}f\equiv_{\mathrm{val}}\theta^{16}G_{k+32}\pmod{2^8} \] holds.
+
+Conversely, every cyclotomic packet permitted above is realized as a strong prime-to-\(2\) Hecke eigensystem modulo \(2^8\) in level \(1\). More precisely, for every even residue class \(k_0\bmod64\), each permitted packet is realized by a normalized cuspidal level-one strong eigenform of some weight \[ K\equiv k_0\pmod{64}. \]
+\end{theorem}
+
+\begin{theorem}[Prime-to-\(3\) classification modulo \(3^3\)] \label{thm:intro-p3} There exists a unique unordered pair \[ \{a,b\}\subset\mathbf Z/18\mathbf Z, \qquad a+b\equiv k-1\pmod{18}, \] such that \[ a_n(f) \equiv_{\mathrm{val}} \Cyc_{a,b}(n) \pmod{3^3} \qquad ((n,3)=1). \] The pair belongs to the following list:
+\[
+\begin{array}{c|l}
+k\bmod18 & \{a,b\}\\ \hline
+0  & \{0,17\},\ \{8,9\}\\
+2  & \{0,1\},\ \{9,10\}\\
+4  & \{0,3\},\ \{6,15\},\ \{9,12\}\\
+6  & \{0,5\},\ \{9,14\}\\
+8  & \{0,7\},\ \{9,16\}\\
+10 & \{0,9\},\ \{3,6\},\ \{12,15\}\\
+12 & \{0,11\},\ \{2,9\}\\
+14 & \{0,13\},\ \{4,9\}\\
+16 & \{0,15\},\ \{3,12\},\ \{6,9\}.
+\end{array}
+\]
+Equivalently, the pair \(\{a,b\}\) can be written \[ \{a,b\} = \{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/18\mathbf Z \] for some \(i\geq3\) and some even integer \(\kappa\geq4\), and \[ \theta^{18}f \equiv_{\mathrm{val}} \theta^iG_\kappa \pmod{3^3}. \] Conversely, every possible such cyclotomic packet is realized as a strong prime-to-\(3\) Hecke eigensystem modulo \(3^3\) in level $1$. If \[ k\equiv0,2\pmod6, \] then these congruences are in fact literal. \end{theorem} 
+
+Theorem~\ref{thm:intro-p3} implies the Coleman-Stein conjecture at level $1$. 
+
+\begin{theorem}[Prime-to-\(5\) classification modulo \(5^2\)] \label{thm:intro-p5} There exists a unique unordered pair \[ \{a,b\}\subset\mathbf Z/20\mathbf Z, \qquad a+b\equiv k-1\pmod{20}, \] such that \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(n)\pmod{5^2} \qquad ((n,5)=1). \] The pair belongs to the following list:
+\[
+\begin{array}{c|l}
+k\bmod20 & \{a,b\}\\ \hline
+0  & \{0,19\},\ \{3,16\},\ \{4,15\},\
+     \{5,14\},\ \{6,13\},\ \{9,10\}\\
+2  & \{0,1\},\ \{4,17\},\ \{5,16\},\
+     \{6,15\},\ \{7,14\},\ \{10,11\}\\
+4  & \{0,3\},\ \{4,19\},\ \{5,18\},\
+     \{8,15\},\ \{9,14\},\ \{10,13\}\\
+6  & \{0,5\},\ \{2,3\},\ \{6,19\},\
+     \{9,16\},\ \{10,15\},\ \{12,13\}\\
+8  & \{0,7\},\ \{1,6\},\ \{2,5\},\
+     \{10,17\},\ \{11,16\},\ \{12,15\}\\
+10 & \{0,9\},\ \{1,8\},\ \{4,5\},\
+     \{10,19\},\ \{11,18\},\ \{14,15\}\\
+12 & \{0,11\},\ \{1,10\},\ \{2,9\},\
+     \{5,6\},\ \{12,19\},\ \{15,16\}\\
+14 & \{0,13\},\ \{3,10\},\ \{4,9\},\
+     \{5,8\},\ \{14,19\},\ \{15,18\}\\
+16 & \{0,15\},\ \{1,14\},\ \{4,11\},\
+     \{5,10\},\ \{7,8\},\ \{17,18\}\\
+18 & \{0,17\},\ \{1,16\},\ \{2,15\},\
+     \{5,12\},\ \{6,11\},\ \{7,10\}.
+\end{array}
+\]
+Equivalently, writing the selected pair as \[\{a,b\}=\{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/20\mathbf Z \] with \(i\geq2\) and an even integer \(\kappa\geq4\), one has \[ \theta^{20}f\equiv_{\mathrm{val}}\theta^iG_\kappa \pmod{5^2}. \] Conversely, every packet in the table is realized as a strong
+prime-to-\(5\) Hecke eigensystem modulo \(5^2\) in level \(1\).
+\end{theorem}
+
+\begin{theorem}[Prime-to-\(7\) classification modulo \(49\)] \label{thm:intro-p7} There exists a unique triple \[ (c,x,y)\in\{0,\ldots,6\}^3 \] listed for the weight residue \(k\bmod42\) in Table~\ref{tab:p7-signatures} of Appendix~\ref{app:p7-signatures}, such that \[ a_3(f)\equiv_{\mathrm{val}}c+7x\pmod{49}, \qquad a_{29}(f)\equiv_{\mathrm{val}}2+7y\pmod{49}. \]
+
+Two normalized cuspidal level-one eigenforms have congruent prime-to-\(7\) Hecke eigensystems modulo \(49\), in the valuative sense, if and only if their weights are congruent modulo \(42\) and their corresponding triples \((c,x,y)\) agree. 
+
+Conversely, every signature in Table~\ref{tab:p7-signatures} is realized by a normalized cuspidal level-one eigenform of weight at most \(380\) in the corresponding residue class modulo \(42\). Thus there are exactly \(315\) prime-to-\(7\) Hecke eigensystems modulo \(49\), in the valuative sense. 
+
+Modulo \(7\), in the literal sense, these eigensystems are cyclotomic. More precisely, there exists a unique unordered pair \[ \{a,b\}\subset\mathbf Z/6\mathbf Z, \qquad a+b\equiv k-1\pmod6, \] such that \[ a_n(f)\equiv_{\mathrm{lit}}\Cyc_{a,b}(n)\pmod7 \qquad ((n,7)=1). \] 
+The pair belongs to the following list:
+\[
+\begin{array}{c|l}
+k\bmod6 & \{a,b\}\\ \hline
+0 & \{0,5\},\ \{1,4\},\ \{2,3\}\\
+2 & \{0,1\},\ \{2,5\},\ \{3,4\}\\
+4 & \{0,3\},\ \{1,2\},\ \{4,5\}.
+\end{array}
+\]
+Equivalently, the pair may be written \[ \{a,b\}=\{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/6\mathbf Z \] for some \[ i\in\{1,\ldots,6\}, \qquad \kappa\in\{4,8\}, \qquad \kappa+2i\equiv k\pmod6, \] and \[ \theta^6f\equiv_{\mathrm{lit}}\theta^iG_\kappa\pmod7.\]
+\end{theorem}
+
+Theorem~\ref{thm:intro-p7} implies Serre's conjecture at level $1$. 
+
+\section{Modular forms and Hecke algebras}
+
+\subsection{Hecke eigensystems, coefficient quotients, and completed Hecke algebras}
+\label{sec:basic}
+
+Denote by \(S_k(\Z) \subset \Z[[q]]\) the lattice generated by the $q$-expansions of level $1$ cuspforms of weight $k$ with coefficients in $\Z$.  Let $K$ be a finite extension of $\Q_p$ with ring of integers $\cO$. We will denote by $S_k(\cO)$ the $\cO$-submodule of $\cO[[q]]$ spanned by the image of $S_k(\Z)$. 
+
+For \(h\geq0\), put \[ S_{\leq h}(\cO):=\sum_{0\leq k\leq h}S_k(\cO),  \qquad  D_{\leq h}(\cO):= \bigl( S_{\leq h}(\cO)\otimes_{\cO} K\bigr)    \cap\cO[[q]]. \] Equivalently, \(D_{\leq h}(\cO)\) is the \(p\)-power saturation of \(S_{\leq h}(\cO)\) inside \(\mathbf \cO[[q]]\). For $B$ a $p$-adically complete and separated local $\cO$-algebra \(B\), put \[ D_{\leq h}(B):=D_{\leq h}(\cO)\otimes_{\mathbf \cO}B \] and denote by $S_k(B)$ the image of $S_k(\cO)$ in $D_{\leq h}(B)$. These spaces inherit the action of the Hecke operators from the spaces of modular forms. 
+
+We recall the definition of strong, weak, and dc-weak eigenform, first introduced in \cite{CKW2013}.
+
+\begin{definition}[Strong, weak, and dc-weak eigenforms]\label{def:strong-weak} Let \(B\) be a finite local \(\mathbf Z_p\)-algebra and let \(f = q + \sum_{n\geq 2}a_n(f)q^n\in B[[q]]\) be a normalized \(q\)-expansion with coefficients in \(B\).
+\begin{enumerate}
+\item The form \(f\) is \emph{strong} if it is obtained by reducing a
+normalized characteristic-zero eigenform through a coefficient-ring map
+to \(B\).
+\item The form \(f\) is \emph{weak} if \(f\in S_k(B)\) for some \(k\)
+and is a simultaneous Hecke eigenform there.
+\item The form \(f\) is \emph{dc-weak} if \(f\in D_{\leq h}(B)\) for
+some \(h\) and is a simultaneous Hecke eigenform there.
+\end{enumerate}
+\end{definition}
+
+\begin{definition} \label{def:anemic} 
+For each \(h\), define
+\begin{equation}
+\begin{aligned}
+ \mathbb T_{\leq h}^{(p)}(R)
+  &:=\operatorname{im}\!\left(
+       R[\mathsf T_n:(n,p)=1]\to
+      \operatorname{End}_{R}(D_{\leq h}(R))\right).
+\end{aligned}
+ \label{eq:bounded-anemic}
+\end{equation}
+If \(h\leq h'\), restriction from \(D_{\leq h'}(R)\) to \(D_{\leq h}(R)\) allows us to define the completed algebra \begin{equation}  \mathbb T_{\mathrm{dc}}^{(p)}(R)    :=\varprojlim_h\mathbb T_{\leq h}^{(p)}(R).  \label{eq:complete-anemic} \end{equation}
+\end{definition}
+
+We will usually write $\mathbb T_{\mathrm{dc}}^{(p)}:=\mathbb T_{\mathrm{dc}}^{(p)}(\Z_p)$.
+
+For \(u\in\mathbf Z_p^\times\), Katz's weight action \([u]\) on divided congruences acts on weight \(k\) by \(u^k\); see \cite[(2.4)]{Katz1975a} and \cite[\S X]{Katz1975b}.  The extension to the low-level cases \(N<3\) used here is explained in \cite[Theorem~2.2 and the following paragraph]{Rustom2019}. For odd \(p\), put \(t_\Lambda:=[1+p]\), and for \(p=2\), put \(t_\Lambda:=[5]\).  It can be shown that $t_\Lambda \in \mathbb T_{\mathrm{dc}}^{(p)}(R)$ \cite[Lemma 9]{BellaicheKhare2015}.
+
+Hecke eigensystems away-from-$p$ arising from strong, weak, or dc-weak eigenforms with coefficients in $R$ correspond to continuous $\Z_p$-algebra homomorphisms $\mathbb T_{\mathrm{dc}}^{(p)} \rightarrow R$.
+
+\begin{definition}[Shallow Hecke algebra]
+\label{def:shallow}
+Let \(M_{\leq h}(\F_p)\) be the space of classical level-one modular
+forms modulo \(p\) of weights at most \(h\).  Following the terminology
+of \cite[\S1.2]{BellaicheKhare2015}, define the \emph{shallow Hecke
+algebra} by
+\[
+\mathbb T^{sh,(p)}
+:=\varprojlim_h\operatorname{im}\!\left(
+\F_p[\mathsf T_n:(n,p)=1]
+\longrightarrow\End_{\F_p}(M_{\leq h}(\F_p))\right).
+\]
+For a
+residual prime-to-\(p\) eigensystem \(\tau\), its completed local factor is denoted \(\mathbb T^{sh,(p)}_\tau\).
+\end{definition}
+
+\subsection{Lifting shallow Hecke generators}
+
+Let \(\mathbf F/\mathbf F_p\) be a finite extension, and put \[\mathbb T_{\mathbf F}^{\mathrm{sh},(p)}:=\mathbb T^{\mathrm{sh},(p)}\otimes_{\mathbf F_p}\mathbf F.\] For an \(\mathbf F\)-valued residual eigensystem
+\[\tau:\mathbb T_{\mathbf F}^{\mathrm{sh},(p)}\longrightarrow\mathbf F,\] let \[\mathfrak m_\tau^{\mathrm{sh}}:=\ker(\tau),\] and denote by \(\mathbb T_\tau^{\mathrm{sh},(p)}\) the corresponding completed local factor.
+
+Let \(\mathcal O\) be the ring of integers of a finite extension of \(\mathbf Q_p\) with residue field \(\mathbf F\), and assume that all residual prime-to-\(p\) eigensystems are \(\mathbf F\)-valued. The Hecke algebra \(\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)\) is a complete Noetherian semilocal ring, with decomposition \[\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)=\prod_\tau\mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O),\] where \(\tau\) runs over the residual prime-to-\(p\) eigensystems. 
+
+\begin{lemma}[Lifting shallow generators]
+\label{lem:shallow-lifting}
+Assume that \(p\geq5\). Let \[\mathcal H=\{h_1,\ldots,h_s\}\subseteq\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O),\] and write \(\bar h_i\) for the image of \(h_i\) in \(\mathbb T_{\mathbf F}^{\mathrm{sh},(p)}\). Suppose that:
+\begin{enumerate}
+\item for every residual eigensystem \(\tau\), the classes of \[
+\bar h_i-\tau(\bar h_i),\qquad 1\leq i\leq s,\] span \[\mathfrak m_\tau^{\mathrm{sh}}/(\mathfrak m_\tau^{\mathrm{sh}})^2;\]
+\item the map \[\tau\longmapsto\bigl(\tau(\bar h_1),\ldots,\tau(\bar h_s)\bigr)\in\mathbf F^s\] is injective.
+\end{enumerate}
+
+Then \[\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)=\overline{\mathcal O[t_\Lambda,h_1,\ldots,h_s]}.\]
+\end{lemma}
+
+\begin{proof}
+The passage from generators of \[\mathfrak m_\tau^{\mathrm{sh}}/(\mathfrak m_\tau^{\mathrm{sh}})^2\] to topological generators of the completed local factor \(\mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O)\), using Nakayama's lemma, is the argument used in \cite[\S7]{Rustom2019}. We recall it briefly. By \cite[Lemma~9]{BellaicheKhare2015}, \(t_\Lambda=[1+p]\) belongs to \(\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)\), and the argument in the proof of \cite[Proposition~16]{BellaicheKhare2015} gives, after extension of scalars and passage to the \(\tau\)-local factor, \[\mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O)/(\pi,t_\Lambda-1)\mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O)\simeq\mathbb T_\tau^{\mathrm{sh},(p)}.\] Hypothesis~(1), together with Nakayama's lemma, therefore shows that \(t_\Lambda,h_1,\ldots,h_s\) topologically generate every completed local factor as an \(\mathcal O\)-algebra.
+
+Put \(A=\overline{\mathcal O[t_\Lambda,h_1,\ldots,h_s]}\subset \mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)\), and let \(\mathfrak m_\tau\) be the maximal ideal of \(\mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O)\). The preceding paragraph shows that \(A\) surjects onto each \[ \mathbb T_{\mathrm{dc},\tau}^{(p)}(\mathcal O)/ \mathfrak m_\tau^n. \] The maximal ideals \(\mathfrak n_\tau:=\ker(\tau|_A)\) are distinct by hypothesis~(2). The kernels of these maps are therefore pairwise comaximal, so the Chinese remainder theorem shows that \(A\) surjects onto their product for every \(n\). Thus \(A\) is dense in \(\mathbb T_{\mathrm{dc}}^{(p)}(\mathcal O)\). Since \(A\) is closed by definition, the two algebras are equal. 
+\end{proof}
+
+\subsubsection{\texorpdfstring{$p = 2,3$}{p=2,3}}\label{sec:big-hecke-p2p3}
+
+By \cite[Theorem~7.2(i)--(ii) and Proposition~3.8(i)]{Rustom2019}, the completed prime-to-\(2\) Hecke algebra is \begin{equation}\mathbb T_{\mathrm{dc}}^{(2)}=\overline{\mathbf Z_2[T_3,T_5,t_\Lambda]},\qquad t_\Lambda=[5], \label{eq:p2-big-generation} \end{equation} and the completed prime-to-\(3\) Hecke algebra is \begin{equation} \mathbb T_{\mathrm{dc}}^{(3)} = \overline{\mathbf Z_3[T_2,T_7,t_\Lambda]}, \qquad t_\Lambda=[4]. \label{eq:p3-big-generation} \end{equation} Consequently, two continuous characters of \(\mathbb T_{\mathrm{dc}}^{(2)}\) with values in a finite \(\mathbf Z_2\)-algebra are equal if they agree on \(T_3\), \(T_5\), and \(t_\Lambda\), while two continuous characters of \(\mathbb T_{\mathrm{dc}}^{(3)}\) with values in a finite \(\mathbf Z_3\)-algebra are equal if they agree on \(T_2\), \(T_7\), and \(t_\Lambda\). \subsubsection{\texorpdfstring{$p = 5$}{p=5}}
+\label{sec:p5-big-hecke}
+
+Medvedovsky shows that the shallow Hecke algebra at \(p=5\) has four
+twist-equivalent residual local factors. One of them is \[\tau_0:=\omega^{-1}+1\] where $\omega$ is the mod-$5$ cyclotomic character. Then \[\mathbb T_{\tau_0}^{\mathrm{sh},(5)}\simeq\mathbf F_5[[x,y]],\qquad x:=T_{11}-2,\qquad y:=T_{19};\] see \cite[Theorem~8.1 and \S8.5]{Medvedovsky2015}. We would like to lift this result to obtain generators of \(\mathbb T_{\mathrm{dc}}^{(5)}\). The difficulty is that the residual
+values of \(T_{11}\) do not separate the four local factors. We will show that \(T_{11}\) may be replaced by \(T_2\).
+
+Let \(\Delta\) denote the modular discriminant of weight $12$, and let \(E_4\) denote the normalized Eisenstein series of weight \(4\). Consider the following forms modulo \(5\):
+\[
+\begin{aligned}
+f_0&=2\Delta+\Delta^2,\\
+f_1&=3\Delta+4\Delta^3+\Delta^4,\\
+f_2&=3\Delta+\Delta^3+\Delta^5+3\Delta^6+2\Delta^7
+      +4\Delta^8+\Delta^9\\
+   &\qquad
+      +2\Delta^{11}+2\Delta^{12}
+      +4\Delta^{13}+\Delta^{14}.
+\end{aligned}
+\]
+These are in fact mod $5$ reductions of classical modular forms, as can be seen using the identity \(E_4 \equiv 1 \pmod{5}\). 
+
+The residual \(T_2\)-values on the four local factors are
+\[
+4,\qquad3,\qquad1,\qquad2,
+\]
+with value \(4\) on \(\tau_0\). Put \(s:=T_2-4.\) Then \(s\) belongs to \(\mathfrak m_{\tau_0}^{\mathrm{sh}}\) and is a unit on each of the other three local factors. A direct \(q\)-expansion calculation gives
+\begin{equation}
+\begin{array}{c|ccc}
+ &s&x&y\\ \hline
+f_0&0&0&0\\
+f_1&3f_0&0&f_0\\
+f_2&3f_0&4f_0&4f_0
+\end{array}
+\label{eq:p5-cotangent-table}
+\end{equation}
+In particular, \(s^2f_i=0\). Since \(s\) is a unit on every residual local factor other than \(\tau_0\), it follows that \(f_0,f_1,f_2\) belong to the \(\tau_0\)-primary summand.
+
+We also get from \eqref{eq:p5-cotangent-table} that \[(\mathfrak m_{\tau_0}^{\mathrm{sh}})^2f_i=0 \qquad (i=0,1,2).\]
+
+Since \(\mathbb T_{\tau_0}^{\mathrm{sh},(5)}\simeq\mathbf F_5[[x,y]],\) we have \[\dim_{\F_5}\mathfrak m_{\tau_0}^{\mathrm{sh}}/(\mathfrak m_{\tau_0}^{\mathrm{sh}})^2 = 2.\]
+
+Suppose \[\beta s+\gamma y=0,\qquad\beta,\gamma\in\mathbf F_5,\] is a relation in \(\mathfrak m_{\tau_0}^{\mathrm{sh}}/(\mathfrak m_{\tau_0}^{\mathrm{sh}})^2.\) Then \(\beta s+\gamma y\) annihilates \(f_1\) and \(f_2\). By \eqref{eq:p5-cotangent-table}, this forces \(\beta=\gamma=0.\) Thus the classes of \(s\) and \(y\) are linearly independent, and therefore form a basis of \(\mathfrak m_{\tau_0}^{\mathrm{sh}}/(\mathfrak m_{\tau_0}^{\mathrm{sh}})^2.\) Equivalently, the classes of \(T_2-4\) and \(T_{19}\) form a basis of this cotangent space.
+
+By \cite[Proposition~2.41]{Medvedovsky2015}, twisting by the \(\theta\) operator permutes the four residual local factors and their cotangent spaces. Under these permutations, the two classes above are carried, up to nonzero scalars, to the classes of
+\[
+T_2-c_\tau,\qquad T_{19},
+\]
+where \(c_\tau=\tau(T_2)\). Hence these classes span \(\mathfrak m_\tau^{\mathrm{sh}}/(\mathfrak m_\tau^{\mathrm{sh}})^2\) for every residual eigensystem \(\tau\). Moreover, the residual values of \(T_2\) distinguish the four residual eigensystems. Lemma \ref{lem:shallow-lifting} therefore gives \begin{equation}\mathbb T_{\mathrm{dc}}^{(5)}=\overline{\mathbf Z_5[T_2,T_{19},t_\Lambda]},\qquad t_\Lambda=[6].\label{eq:p5-big-generation}\end{equation}
+
+\subsubsection{\texorpdfstring{$p=7$}{p=7}}
+\label{sec:big-hecke-p7}
+Let \(\omega\) be the mod-\(7\) cyclotomic character. Medvedovsky shows that the shallow Hecke algebra has nine residual eigensystems \[\tau_{a,b}=\omega^a+\omega^b,\qquad a\in\{0,2,4\},\quad b\in\{1,3,5\};\] see \cite[Theorem~8.1 and \S8.7]{Medvedovsky2015}.
+
+\begin{lemma}
+\label{lem:p7-shallow-parameters}
+For \(\tau=\tau_{a,b}\), put \[c_\tau:=\tau(T_3)=3^a+3^b\in\mathbf F_7.\] Then the classes of \[T_3-c_\tau,\qquad T_{29}-2\] form a basis of \(\mathfrak m_\tau^{\mathrm{sh}}/(\mathfrak m_\tau^{\mathrm{sh}})^2.\)
+\end{lemma}
+
+\begin{proof} Put \(d:=b-a\in\{1,3,5\}\pmod6.\) By \cite[Corollary~7.2]{Medvedovsky2015}, we need a prime $\ell$ such that \[\ell^d\not\equiv1\pmod7,\qquad\ell^6\not\equiv1\pmod{49}.\] These conditions are satisfied for \(\ell=3\). Thus \(T_3-c_\tau\) will be one of our generators.
+
+For the other generator, we use Medvedovsky's criterion \cite[Corollary~7.8]{Medvedovsky2015}. Put \[ E:=\mathcal O_{\mathbf Q(\zeta_7)}[1/7]^\times, \] the group of \(7\)-units of \(\mathbf Q(\zeta_7)\). We need classes \(\alpha,\beta\in E/E^7\) lying in the \(\omega^{1-d}\)- and \(\omega^{1+d}\)-eigenspaces, respectively. Furthermore, we need a prime $\ell \equiv 1 \pmod{7}$ such that neither $\alpha$ nor $\beta$ are $7$th powers in $\F_\ell$. 
+
+For \(j\in\{0,2,4\}\), put \[u_j:=\prod_{r=1}^{6}(1-\zeta_7^r)^{r^{-j}}\in E/E^7.\] If \(\sigma_c(\zeta_7)=\zeta_7^c\), then \[\sigma_c(u_j)=u_j^{c^j},\] so \(u_j\) lies in the \(\omega^j\)-eigenspace of \(E/E^7\). For \(d=1,3,5\), the required pairs of eigenspace exponents are \[(1-d,1+d)=(0,2),\ (4,4),\ (2,0)\pmod6.\]
+
+For any prime \(\mathfrak l\) of \(\mathbf Q(\zeta_7)\) above \(29\),
+the reductions of \(u_0,u_2,u_4\) in \[\mathcal O_{\mathbf Q(\zeta_7)}/\mathfrak l\simeq \mathbf F_{29}\] are not seventh powers. Thus we can take $T_{29}$ as our second generator.
+\end{proof}
+
+The level-one Hecke recursion gives \begin{equation}[3]=3(T_3^2-T_9),\label{eq:p7-weight-in-away}\end{equation} so \[[3]\in\mathbb T_{\mathrm{dc}}^{(7)}.\] We apply Lemma~\ref{lem:shallow-lifting} with \[\mathcal H=\{T_3,T_{29},[3]\}.\] Lemma~\ref{lem:p7-shallow-parameters} verifies hypothesis~(1) of Lemma~\ref{lem:shallow-lifting}. 
+
+It remains to verify that the residual values of the elements of \(\mathcal H\) distinguish the nine residual eigensystems. For \(\tau=\tau_{a,b}\), we have \[\tau(T_3)=3^a+3^b,\qquad\tau([3])=3^{a+b+1}.\] The corresponding pairs are
+\[
+\begin{array}{c|ccc}
+ & b=1 & b=3 & b=5\\ \hline
+a=0 & (4,2) & (0,4) & (6,1)\\
+a=2 & (5,4) & (1,1) & (0,2)\\
+a=4 & (0,1) & (3,2) & (2,4).
+\end{array}
+\]
+These nine pairs are distinct. Hence \(T_3\) and \([3]\) jointly distinguish the nine residual eigensystems, so hypothesis~(2) of Lemma~\ref{lem:shallow-lifting} is satisfied.
+
+Lemma~\ref{lem:shallow-lifting} therefore gives
+\[
+\mathbb T_{\mathrm{dc}}^{(7)}
+=
+\overline{\mathbf Z_7[t_\Lambda,T_3,T_{29},[3]]},
+\qquad
+t_\Lambda=[8].
+\]
+
+Finally, \(t_\Lambda\) is redundant. The element \(3\) is a topological generator of \(\mathbf Z_7^\times\). By continuity of the weight action, \([8]\) belongs to the closed
+\(\mathbf Z_7\)-algebra generated by \([3]\). Thus \[\mathbb T_{\mathrm{dc}}^{(7)}=\overline{\mathbf Z_7[T_3,T_{29},[3]]}.\]
+
+
+\subsection{Weak realization of cyclotomic packets}
+
+To compare a strong eigensystem with a cyclotomic packet through the completed Hecke algebra, we need to know that the packet itself is realized by a genuine weak Hecke eigensystem modulo \(p^m\).
+
+\begin{lemma}[Weak realization of cyclotomic packets]
+\label{lem:weak-cyclotomic}
+Let \(p\) be a prime, let \(m\geq1\), let \(\kappa\geq4\) be even, and let \(i\geq1\). There exist an even integer \(K\) and a normalized weak cuspidal eigenform \[g_{\kappa,i}\in S_K(\mathbf Z/p^m\mathbf Z)\] such that \[K\equiv\kappa+2i\pmod{\varphi(p^m)}\] and \[a_n(g_{\kappa,i})=\Cyc_{i,i+\kappa-1}(n)\qquad((n,p)=1).\] Equivalently, the cyclotomic packet \(\Cyc_{i,i+\kappa-1}\) defines a continuous character \[\lambda_{\kappa,i}:\mathbb T_{\mathrm{dc}}^{(p)}\longrightarrow\mathbf Z/p^m\mathbf Z.\] \end{lemma}
+
+\begin{proof} Put \[G_\kappa^*:=G_\kappa-p^{\kappa-1}G_\kappa\mid V_p.\] For \(n \geq 1\), its Fourier coefficients are \[a_n(G_\kappa^*)=\sum_{\substack{d\mid n\\p\nmid d}}d^{\kappa-1}.\] Serre shows that \(G_\kappa^*\) is a level-one \(p\)-adic modular form of \(p\)-adic weight \(\kappa\) \cite[\S1.6]{Serre1973}. By \cite[Théorème~5 and the following remark]{Serre1973}, \(\theta^iG_\kappa^*\) is a \(p\)-adic modular form of weight \(\kappa+2i\). The constant term of \(G_\kappa^*\) need not be integral, but it is killed by \(\theta^i\), while all other coefficients of \(\theta^iG_\kappa^*\) are integral. Hence \(\theta^iG_\kappa^*\) is integral. As a Serre $p$-adic modular form, $\theta^i G_\kappa^*$ can be approximated by classical modular forms, so there exist an even integer \(K\) and \[F\in M_K(\mathbf Z_p)\] such that \[F\equiv\theta^iG_\kappa^*\pmod{p^m},\qquad K\equiv\kappa+2i\pmod{\varphi(p^m)}.\] The reduction of \(F\) has zero constant term and coefficient \(1\) at \(q\), and defines a normalized form \[g_{\kappa,i}\in S_K(\mathbf Z/p^m\mathbf Z).\]
+
+For every prime \(\ell\neq p\), \[T_\ell\theta^iG_\kappa^*=\ell^i\theta^iT_\ell G_\kappa^*=\ell^i(1+\ell^{\kappa-1})\theta^iG_\kappa^*.\] Consequently, \[T_\ell g_{\kappa,i}=\ell^i(1+\ell^{\kappa-1})g_{\kappa,i}.\] Thus \[a_\ell(g_{\kappa,i})=\ell^i+\ell^{i+\kappa-1}=\Cyc_{i,i+\kappa-1}(\ell).\]
+
+The Hecke recursion at prime powers and multiplicativity then give \[a_n(g_{\kappa,i})=\Cyc_{i,i+\kappa-1}(n)\qquad ((n,p)=1).\] Hence \(g_{\kappa,i}\) realizes the stated cyclotomic packet as a weak prime-to-\(p\) Hecke eigensystem, and therefore as a character of \(\mathbb T_{\mathrm{dc}}^{(p)}\).
+\end{proof}
+
+
+
+\section{Modular symbols of level \texorpdfstring{\(1\)}{1}}
+
+\subsection{Modular symbols with coefficients in \texorpdfstring{\(R\)}{R}} Let \(d\geq0\) be even, and put \[ \Gamma:=\operatorname{SL}_2(\Z). \] For now, let \(R\) be a commutative ring. Let \[ V_d(R):=\operatorname{Sym}^d(R^2) \] be the \(R\)-module of homogeneous polynomials of degree \(d\) in \(X\) and \(Y\). We regard \(V_d(R)\) as a right \(\Z[M_2(\Z)]\)-module via \[ (P\mid\gamma)(X,Y) := P(aX+bY,cX+\delta Y), \qquad \gamma= \begin{pmatrix} a&b\\ c&\delta \end{pmatrix} \in M_2(\Z). \] Let \[ \operatorname{St}_R := \operatorname{Div}^0\!\left(\mathbf P^1(\Q)\right)\otimes_{\Z}R \] be the Steinberg module over \(R\). Equivalently, \(\operatorname{St}_R\) is generated by symbols \[ \{\alpha,\beta\}, \qquad \alpha,\beta\in\mathbf P^1(\Q), \] subject to the relations \[ \{\alpha,\alpha\}=0, \qquad \{\alpha,\beta\}+\{\beta,\eta\}+\{\eta,\alpha\}=0. \] We equip \(\operatorname{St}_R\) with the right \(\Gamma\)-action induced by fractional linear transformations, and \[ \operatorname{St}_R\otimes_RV_d(R) \] with the diagonal right action. Following \cite[Notation~2.1 and Definition~3.1]{WieseModularSymbols}, define the \emph{modular symbols of level \(1\) with coefficients in \(R\)} to be the coinvariants \[ \mathbb M_d(R) := H_0\!\left( \Gamma, \operatorname{St}_R\otimes_RV_d(R) \right). \] Let \[ S:= \begin{pmatrix} 0&-1\\ 1&0 \end{pmatrix}, \qquad U:= \begin{pmatrix} 1&-1\\ 1&0 \end{pmatrix}. \] By \cite[Theorem~3.5(1)]{WieseModularSymbols}, there is an isomorphism \[ \mathbb M_d(R) \simeq \frac{V_d(R)} {V_d(R)(1+S)+V_d(R)(1+U+U^2)}. \] We refer to the right-hand side as the \emph{Manin presentation} of \(\mathbb M_d(R)\). Finally, let \[ \iota:= \begin{pmatrix} -1&0\\ 0&1 \end{pmatrix}. \] Since \(\iota\) normalizes \(\Gamma\), its action on \(\operatorname{St}_R\otimes_RV_d(R)\) induces an involution on \(\mathbb M_d(R)\). For $\epsilon \in \{+1, -1\}$, define \[ \mathbb M_d^\epsilon(R) := \mathbb M_d(R)^{\iota=\epsilon} = \ker( \iota - \epsilon). \]
+
+\subsection{Hecke operators} For \(n\geq1\) with \((n,p)=1\), let \[ \mathcal H_n := \left\{ \begin{pmatrix} a&b\\ c&\delta \end{pmatrix} \in M_2(\Z) : a>b\geq0,\quad \delta>c\geq0,\quad a\delta-bc=n \right\}. \] By \cite[\S3.3, Proposition~20, pp.~29--30]{Merel1994}, the element \[ \sum_{M\in\mathcal H_n}M \in\Z[M_2(\Z)] \] satisfies Merel's condition \((C_n)\). Hence \cite[\S2.1, Theorem~4, pp.~16--17]{Merel1994} gives an operator \[ T_n:\mathbb M_d(R)\longrightarrow\mathbb M_d(R) \] which, in the Manin presentation of the preceding subsection, is given by \[ T_n[P] = \sum_{M\in\mathcal H_n}[P\mid M]. \] Here it is the sum over the Heilbronn--Merel family that descends to the Manin quotient; the individual maps \(P\mapsto P\mid M\) need not do so. Although Merel formulates the Hecke theory over \(\C\), the construction is integral: the modular-symbol construction may be carried out over an arbitrary coefficient ring, and these Hecke operators preserve the integral structure \cite[\S1.1, p.~4 and \S2.1, Remark~1, p.~18]{Merel1994}. Thus the preceding formula defines \(T_n\) on \(\mathbb M_d(R)\) for every commutative ring \(R\). The operators \(T_n\) commute with the involution \(\iota\), and hence preserve \(\mathbb M_d^{\pm}(R)\); see \cite[\S2.1, Remark~2, p.~18]{Merel1994}.
+
+\subsection{Comparison with modular forms} \label{sec:target-lattice} Let \[ \mathbb M_d^{\mathrm{tf}}(\Z) := \mathbb M_d(\Z)/\mathbb M_d(\Z)_{\mathrm{tors}} \] be the torsion-free quotient of the integral level-one modular-symbol module. Put \[ t:= \begin{pmatrix} 1&1\\ 0&1 \end{pmatrix}, \] and let \(B_d^{\mathrm{tf}}(\Z)\) be the torsion-free quotient of \[ \frac{V_d(\Z)}{V_d(\Z)(t-1)}. \] By \cite[Theorem~3.5(2)--(3)]{WieseModularSymbols}, the boundary map is defined integrally and induces a homomorphism \[ \partial_d^{\mathrm{tf}}: \mathbb M_d^{\mathrm{tf}}(\Z) \longrightarrow B_d^{\mathrm{tf}}(\Z). \] For \(\epsilon \in \{+1,-1\}\), define \[ P_d^\epsilon(\Z) := \left(\mathbb M_d^{\mathrm{tf}}(\Z)\right)^{\iota=\epsilon} \] and \[ L_d^\epsilon(\Z) := \ker\!\left( \left. \partial_d^{\mathrm{tf}} \right|_{P_d^\epsilon(\Z)} \right). \] 
+
+The lattice \(P_d^\epsilon(\Z)\) is saturated in \(\mathbb M_d^{\mathrm{tf}}(\Z)\). Indeed, \[\mathbb M_d^{\mathrm{tf}}(\Z)/P_d^\epsilon(\Z)\simeq\operatorname{im}(\iota-\epsilon),\] and the latter is a subgroup of the torsion-free group \(\mathbb M_d^{\mathrm{tf}}(\Z)\). The lattice \(L_d^\epsilon(\Z)\) is saturated in \(P_d^\epsilon(\Z)\), as can be seen from \[ P_d^\epsilon(\Z)/L_d^\epsilon(\Z) \cong \operatorname{im}\!\left( \left. \partial_d^{\mathrm{tf}} \right|_{P_d^\epsilon(\Z)} \right) \subset B_d^{\mathrm{tf}}(\Z). \] In particular, \(L_d^\epsilon(\Z)\) is saturated in \(\mathbb M_d^{\mathrm{tf}}(\Z)\).
+
+The Hecke operators preserve \(P_d^\epsilon(\Z)\) and \(L_d^\epsilon(\Z)\): they preserve the integral modular-symbol structure, commute with the involution \(\iota\), and are compatible with the boundary map; see \cite[\S2.1, Proposition~11 and the following Remark, p.~18]{Merel1994}. After extension of scalars to \(\C\), the Eichler-Shimura period pairing, in the modular-symbol formulation of Merel, restricts to a nondegenerate pairing \[ S_{d+2}(\C) \times \left(L_d^+(\Z)\otimes_{\Z}\C\right) \longrightarrow \C; \] see \cite[\S1.5, Theorem~3, pp.~10--11, and \S1.6, Proposition~8, p.~12]{Merel1994}. Moreover, the Hecke operators on modular forms and modular symbols are adjoint with respect to this pairing \cite[\S2.1, Proposition~10, pp.~17--18]{Merel1994}. Consequently, \(S_{d+2}(\C)\) and \(L_d^+(\Z)\otimes_{\Z}\C\) carry the same systems of Hecke eigenvalues. 
+
+We now pass to local coefficients. For \(m \geq 0\), let \[R_m := \begin{cases} \Z_p, \qquad m = 0, \\ \Z_p / p^m \Z_p, \qquad m \geq 1.\end{cases}.\] Write \[ \mathbb M_d^{\mathrm{tf}}(R_m) := \mathbb M_d^{\mathrm{tf}}(\Z)\otimes_{\Z}R_m, \qquad P_d^\epsilon(R_m) := P_d^\epsilon(\Z)\otimes_{\Z}R_m, \qquad L_d^\epsilon(R_m) := L_d^\epsilon(\Z)\otimes_{\Z}R_m. \] When $R_m = \Z_p$, we will simply write \(\mathbb M_d^{\mathrm{tf}}, P_d^\epsilon\), and \(L_d^\epsilon\). The lattices \(P_d^\epsilon\) and \(L_d^\epsilon\) are saturated in \(\mathbb M_d^{\mathrm{tf}}\) and \(P_d^\epsilon\), respectively. In particular \[P_d^\epsilon/p^mP_d^\epsilon\hookrightarrow\mathbb M_d^{\mathrm{tf}}/p^m\mathbb M_d^{\mathrm{tf}}.\] 
+
+
+
+\subsection{Dickson multipliers} Fix \(m\geq1\). Define \[ \alpha_p := \frac{X^{p^2}Y-XY^{p^2}}{X^pY-XY^p} = \sum_{j=0}^p X^{(p-j)(p-1)}Y^{j(p-1)} \] and \[ \beta_p:=X^pY-XY^p. \] 
+
+\begin{remark} \label{rem:dickson-motivation} The choice of \(\alpha_p\) and \(\beta_p\) is motivated by Dickson's theorem on invariants. In dimension \(2\), this theorem states that \[ \F_p[X,Y]^{\operatorname{GL}_2(\F_p)} = \F_p[\bar \alpha_p,\bar \beta_p^{\,p-1}], \] where bars denote reduction modulo \(p\). See \cite[Theorem~A, p.~699]{Steinberg1987}. \end{remark} 
+
+Define \[ A_m:=\alpha_p^{p^{m-1}} \qquad\text{and}\qquad B_m:=\beta_p^{p^{m-1}}. \] Their degrees are \[ a_m:=\deg A_m=p^m(p-1), \qquad b_m:=\deg B_m=p^{m-1}(p+1). \] 
+
+\begin{lemma} \label{lem:coprime-invariants} The reductions \[ \bar A_m,\bar B_m\in\F_p[X,Y] \] are coprime. \end{lemma} 
+
+\begin{proof} Since \[ \bar A_m=\bar \alpha_p^{\,p^{m-1}} \qquad\text{and}\qquad \bar B_m=\bar \beta_p^{p^{m-1}}, \] it is enough to prove that \(\bar \alpha_p\) and \(\bar \beta_p\) are coprime. Now \[ \bar \beta_p = XY(X^{p-1}-Y^{p-1}). \] The polynomial \(\bar \alpha_p\) is divisible by neither \(X\) nor \(Y\). Moreover, we have \[ \bar \alpha_p \equiv (p+1)Y^{p(p-1)} = Y^{p(p-1)} \pmod{X^{p-1} - Y^{p-1}}. \] Hence any common divisor of \(\bar \alpha_p\) and \(X^{p-1}-Y^{p-1}\) must divide \(Y^{p(p-1)}\). Since \[ \gcd(X^{p-1}-Y^{p-1},Y)=1, \] this common divisor is a unit. Thus \[ \gcd(\bar \alpha_p,\bar \beta_p)=1, \] and the result follows. \end{proof} 
+
+Define the coefficient multiplication map \[ \Psi_d: V_{d-a_m}(\Z_p)\oplus V_{d-b_m}(\Z_p) \longrightarrow V_d(\Z_p) \] by \begin{equation} \Psi_d(F,G):=A_mF+B_mG.  \label{eq:mult-map} \end{equation} 
+
+\begin{proposition}[Surjective coefficient transfer]\label{prop:surjective-coefficient-transfer} If \[d\geq a_m+b_m=p^{m-1}(p^2 + 1),\] then $\Psi_d$ is surjective. 
+\end{proposition}
+
+\begin{proof} By Lemma~\ref{lem:coprime-invariants}, the reductions \(\bar A_m\) and \(\bar B_m\) are coprime in \(\F_p[X,Y]\). Reducing \(\Psi_d\) modulo \(p\), we obtain
+\[\bar\Psi_d:V_{d-a_m}(\F_p)\oplus V_{d-b_m}(\F_p)\longrightarrow V_d(\F_p),\qquad (F,G)\longmapsto \bar A_mF+\bar B_mG.\]
+
+Suppose \[\bar A_mF+\bar B_mG=0. \] Since \(\bar A_m\) and \(\bar B_m\) are coprime, we have \[\bar A_m\mid G,\qquad\bar B_m\mid F.\] Thus there is a unique \[H\in V_{d-a_m-b_m}(\F_p) \] such that \[(F,G)=(-\bar B_mH,\bar A_mH). \] Hence \[ \dim_{\F_p}\ker\bar\Psi_d = d-a_m-b_m+1.\]
+
+Since \(d\geq a_m+b_m\), it follows that \[\begin{aligned}\dim_{\F_p}\operatorname{im}\bar\Psi_d &= (d-a_m+1)+(d-b_m+1)-(d-a_m-b_m+1)\\ &= d+1\\ &= \dim_{\F_p}V_d(\F_p).\end{aligned}\] Therefore \(\bar\Psi_d\) is surjective.
+
+The cokernel of \(\Psi_d\) is a finitely generated \(\Z_p\)-module, and its reduction modulo the maximal ideal \((p)\) is the cokernel of \(\bar\Psi_d\), which is zero. Nakayama's lemma therefore gives \[\operatorname{coker}\Psi_d=0.\] Thus \(\Psi_d\) is surjective.
+\end{proof}
+
+\subsection{Transfer map for modular symbols}
+We will now descend the multiplication map \eqref{eq:mult-map} to a transfer map on modular symbols modulo \(p^m\).
+
+Define the group homomorphism \[\chi_m : R_m^\times \rightarrow R_m^\times, \qquad u \mapsto u^{p^{m-1}}.\]
+
+\begin{lemma} \label{lem:dickson-transform} Let \[\gamma\in M_2(\Z),\qquad p\nmid\det\gamma.\] Then \[A_m\mid\gamma=A_m, \qquad B_m\mid\gamma = \chi_m(\det\gamma)B_m \qquad\text{in }R_m[X,Y]. \]
+\end{lemma}
+
+\begin{proof} Modulo \(p\), one has \[\bar \alpha_p\mid\gamma=\bar \alpha_p, \qquad \bar \beta_p\mid\gamma=\det(\gamma)\bar \beta_p. \] These identities follow by a direct calculation. Raising them to the power \(p^{m-1}\) gives the stated congruences modulo \(p^m\), by the binomial theorem.
+\end{proof}
+
+\begin{proposition}
+\label{prop:transfer-map-surjective}
+The coefficient multiplication map of \eqref{eq:mult-map} induces a homomorphism \[\Psi_d: \mathbb M_{d-a_m}(R_m)\oplus
+\mathbb M_{d-b_m}(R_m) \longrightarrow \mathbb M_d(R_m).\] Moreover, if \(p\nmid n\), then \begin{equation} T_n\circ\Psi_d =\Psi_d\bigl(T_n\oplus\chi_m(n)T_n\bigr).\label{eq:twisted-hecke-equivariance}\end{equation} If \[d\geq a_m+b_m=p^{m-1}(p^2+1), \] then \(\Psi_d\) is surjective.\end{proposition}
+
+\begin{proof} For \[F\in V_{d-a_m}(R_m), \qquad G\in V_{d-b_m}(R_m), \] Lemma~\ref{lem:dickson-transform} gives \begin{equation}\begin{aligned} \Psi_d(F,G)\mid\gamma &= (A_mF+B_mG)\mid\gamma\\ &= (A_m\mid\gamma)(F\mid\gamma) + (B_m\mid\gamma)(G\mid\gamma)\\ &= A_m(F\mid\gamma) +\chi_m(\det\gamma)B_m(G\mid\gamma)\\ &= \Psi_d\bigl(F\mid\gamma, \chi_m(\det\gamma)(G\mid\gamma) \bigr).\end{aligned}\label{eq:coefficient-equivariance}\end{equation}
+
+Since \[\det S=\det U=1, \] it follows that \[\Psi_d(F,G)\mid S = \Psi_d(F\mid S,G\mid S) \] and \[ \Psi_d(F,G)\mid U = \Psi_d(F\mid U,G\mid U). \] Hence \(\Psi_d\) preserves the Manin relations, and therefore descends to \[ \Psi_d: \mathbb M_{d-a_m}(R_m)\oplus \mathbb M_{d-b_m}(R_m) \longrightarrow \mathbb M_d(R_m). \]
+
+Now let \(p\nmid n\). Every matrix \(M\in\mathcal H_n\) has determinant \(n\), so \eqref{eq:coefficient-equivariance} gives \[ \begin{aligned} T_n\Psi_d(F,G) &= \sum_{M\in\mathcal H_n} \Psi_d(F,G)\mid M\\ &= \sum_{M\in\mathcal H_n} \Psi_d(F\mid M,\chi_m(n)(G\mid M))\\ &= \Psi_d\bigl(T_nF,\chi_m(n)T_nG\bigr). \end{aligned} \] This proves \eqref{eq:twisted-hecke-equivariance}.
+
+Finally, if \[d\geq p^{m-1}(p^2+1),\] then the coefficient multiplication map is surjective by Proposition~\ref{prop:surjective-coefficient-transfer}. Hence the
+induced map on the Manin quotients is also surjective.
+\end{proof}
+
+\subsection{For odd \texorpdfstring{\(p\)}{p}}
+
+In this subsection, suppose that \(p\) is odd. For \(\epsilon\in\{+1,-1\}\), the idempotents \[e^\epsilon:=\frac{1+\epsilon\iota}{2}\] are defined over \(\Z_p\) and \(R_m\). We have \begin{equation}\begin{aligned} \mathbb M_d^\epsilon(R_m) &=e^\epsilon\mathbb M_d(R_m),\\ P_d^\epsilon &=\left(\mathbb M_d^{\mathrm{tf}}\right)^\epsilon =e^\epsilon\mathbb M_d^{\mathrm{tf}},\\ \left( \mathbb M_d^{\mathrm{tf}}/p^m\mathbb M_d^{\mathrm{tf}} \right)^\epsilon &= e^\epsilon\left(
+\mathbb M_d^{\mathrm{tf}}/p^m\mathbb M_d^{\mathrm{tf}} \right) = P_d^\epsilon/p^mP_d^\epsilon. \end{aligned} \end{equation} Moreover, \begin{equation} \mathbb M_d(R_m) = \mathbb M_d^+(R_m)\oplus\mathbb M_d^-(R_m), \label{eq:pm-decomp} \end{equation} with \(e^\epsilon\) acting as the identity on \(\mathbb M_d^\epsilon(R_m)\).
+
+Since \(p^{m-1}\) is odd, Lemma~\ref{lem:dickson-transform} gives \begin{equation}A_m\mid\iota=A_m, \qquad B_m\mid\iota=-B_m\label{eq:am-bm-iota}\end{equation} in \(R_m[X,Y].\) Thus multiplication by \(A_m\) preserves the \(\iota\)-sign, whereas multiplication by \(B_m\) reverses it.
+
+\begin{proposition}\label{prop:plus-transfer} Suppose that \(p\) is odd. For each \[ \epsilon\in\{+1,-1\},\] there is a map \[ \Psi_d^\epsilon: \mathbb M_{d-a_m}^ {\epsilon}(R_m) \oplus \mathbb M_{d-b_m}^{-\epsilon}(R_m) \rightarrow \mathbb M_d^{\epsilon}(R_m), \] satisfying \begin{equation} T_n\circ\Psi_d^\epsilon =  \Psi_d^\epsilon \bigl(T_n\oplus\chi_m(n)T_n\bigr) \qquad ((n,p)=1).  \label{eq:signed-manin-transfer} \end{equation} Moreover, if \[ d\geq p^{m-1}(p^2+1),\] then $\Psi^\epsilon_d$ is surjective. In particular, for \(\epsilon=+1\), composing with the quotient map to \(P^+_d/p^mP^+_d\) gives a surjection \begin{equation} \Phi_d: \mathbb M_{d-a_m}^{+}(R_m) \oplus \mathbb M_{d-b_m}^{-}(R_m) \twoheadrightarrow P_d^+/p^mP_d^+.  \label{eq:plus-target-transfer} \end{equation}
+\end{proposition}
+
+\begin{proof} For \(F \in \mathbb M_{d-a_m}(R_m)\) and \(G \in \mathbb M_{d-b_m}(R_m)\), we have, by \eqref{eq:am-bm-iota}, \[ e^\epsilon\Psi_d(F,G) = \Psi_d(e^\epsilon F,e^{-\epsilon}G). \] Thus, defining $\Psi^\epsilon_d$ as the restriction of $\Psi_d$ to $\mathbb M^\epsilon_{d-a_m}(R_m) \oplus \mathbb M^{-\epsilon}_{d-b_m}(R_m)$, we see that the image of $\Psi_d^\epsilon$ lands in $\mathbb M^\epsilon_d(R_m)$. By Proposition~\ref{prop:transfer-map-surjective}, it is twisted Hecke-equivariant, and surjective if $d \geq p^{m-1}(p^2 + 1).$
+
+Composing with the natural surjection
+\[ \mathbb M_d(R_m) \twoheadrightarrow \mathbb M_d^{\mathrm{tf}}/p^m\mathbb M_d^{\mathrm{tf}} \] and applying $e^+$ gives \eqref{eq:plus-target-transfer}. 
+\end{proof}
+
+\subsection{Propagation of Hecke operator relations}
+
+The transfer maps above allow relations on Hecke operators in lower coefficient degrees to be propagated to higher degrees.
+
+By abuse of notation, we extend the character \(\chi_m\) to an endomorphism of the polynomial algebra in the prime-to-\(p\) Hecke operators by \[\chi_m(T_n):=\chi_m(n)T_n=n^{p^{m-1}}T_n \qquad ((n,p)=1). \]
+
+Let \(F\) be a polynomial, with coefficients in \(R_m\), in finitely many prime-to-\(p\) Hecke operators. For \[\epsilon\in\{+1,-1\},\] the twisted Hecke equivariance of Proposition~\ref{prop:plus-transfer} gives \begin{equation} F\circ\Psi_d^\epsilon = \Psi_d^\epsilon \bigl(F\oplus\chi_m(F)\bigr).  \label{eq:two-branch-relation-equivariance} \end{equation}
+
+\begin{corollary}[One-step propagation] \label{cor:one-step-propagation} Suppose that \(p\) is odd and \[ d\geq p^{m-1}(p^2+1). \] Let \(\epsilon\in\{+1,-1\}\). If \[F\mathbb M_{d-a_m}^{\epsilon}(R_m) = 0 \qquad \mbox{ and } \qquad \chi_m(F)\mathbb M_{d-b_m}^{-\epsilon}(R_m)= 0, \] then \[F\mathbb M_d^\epsilon(R_m)=0. \]
+
+In particular, for \(\epsilon=+1\), \[F \left(P_d^+/p^mP_d^+\right)=0 \qquad \mbox { and } \qquad F\left(L_d^+(R_m)\right)=0. \]
+\end{corollary}
+
+\begin{proof}
+The first assertion follows from \eqref{eq:two-branch-relation-equivariance} and the surjectivity of \(\Psi_d^\epsilon\) granted by Proposition~\ref{prop:transfer-map-surjective}. The final assertion follows by passing to the quotient \[ \mathbb M_d^+(R_m) \twoheadrightarrow P_d^+/p^mP_d^+ \] and then restricting to \( L_d^+(R_m). \)
+\end{proof}
+
+\begin{theorem}[Weight propagation]\label{thm:weight-propagation} Suppose that \(p\) is odd, and let \(r\) be an even integer with \(0\leq r<2p^{m-1}. \) Let \(F\) be a polynomial, with coefficients in \(R_m\), in finitely many prime-to-\(p\) Hecke operators. For \( q \geq 0 \) put \[ \epsilon_q:=(-1)^q. \] 
+
+Suppose that, for every \(q\), \[\chi_m^q(F)\mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) = 0 \qquad \left( \frac{p+1}{2}\leq j<\frac{p^2+1}{2} \right). \] Then, for every \(j\geq \frac{p + 1}{2}\) and every \(q\), \[ \chi_m^q(F) \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) = 0. \]
+
+Consequently, for every even \(d\geq p^{m-1}(p + 1)\) satisfying \( d\equiv r\pmod{2p^{m-1}}, \) \[F \left(P_d^+/p^m P_d^+\right) = 0 \qquad\text{and}\qquad F \left( L_d^+ / p^m L_d^+\right) = 0. \]
+\end{theorem}
+
+\begin{proof} For ease of reading, let us introduce \[u := \frac{p(p-1)}{2}, \qquad v := \frac{p+1}{2}, \qquad J := u + v = \frac{p^2 + 1}{2}.\] Then \[a_m = 2p^{m-1}u, \qquad b_m = 2p^{m-1}v.\] Write \[d_j := r + 2p^{m-1}j.\] Then the transfer map can be written as \[\Psi^\epsilon_{d_j}: \mathbb M_{d_{j-u}}^\epsilon(R_m) \oplus \mathbb M_{d_{j-v}}^{-\epsilon}(R_m) \rightarrow \mathbb M_{d_j}^\epsilon(R_m). \] In this notation, the surjectivity condition of Proposition~\ref{prop:plus-transfer} can be written as \(j \geq J.\)
+
+We argue by strong induction on \(j\). There is nothing to prove for \(v\leq j< J. \) Suppose that \( j\geq J. \) We quickly check that \[j - u \geq J - u=v, \qquad j- v\geq J-v=u\geq v.\] By Proposition~\ref{prop:plus-transfer}, \[\Psi_{d_j}^{\epsilon_q}:\mathbb M_{d_{j-u}}^{\epsilon_q}(R_m) \oplus \mathbb M_{d_{j-v}}^{-\epsilon_q}(R_m)
+\twoheadrightarrow \mathbb M_{d_j}^{\epsilon_q}(R_m) \] is surjective. Recall that the second summand in the domain carries the twist \(\chi_m\).
+
+By the induction hypothesis,
+\[ \chi_m^q(F) \mathbb M_{d_{j-u}}^{\epsilon_q}(R_m)=0 \] and \[ \chi_m^{q+1}(F) \mathbb M_{d_{j-v}}^{\epsilon_{q+1}}(R_m)=0. \] By Corollary~\ref{cor:one-step-propagation}, \[ \chi_m^q(F)\mathbb M_{d_j}^{\epsilon_q}(R_m)=0, \] finishing the induction.
+
+Taking \(q=0\) gives the assertion on \(\mathbb M_d^+(R_m)\), and hence on \(P_d^+/p^mP_d^+\) and \(L_d^+ / p^m L_d^+\). 
+\end{proof}
+
+\begin{remark}\label{rem:periodic-weight-propagation} More generally, the Hecke relation may depend periodically on the coefficient degree. The same induction applies to a finite family \(F_d\), provided that the family is closed under the two transitions \[ (d,F_d,\epsilon) \longmapsto (d-a_m,F_d,\epsilon) \] and \[ (d,F_d,\epsilon) \longmapsto (d-b_m,\chi_m(F_d),-\epsilon). \] 
+\end{remark}
+
+For \(p=2\), the determinant twist is trivial. We state the simpler propagation statement.
+
+\begin{theorem}[Weight propagation for \(p=2\)] \label{thm:weight-propagation-p2} Suppose that \(p=2\) and \(m\geq2\). Let \(r\) be an even integer with \[0\leq r<2^{m-1}, \] and let \(F\) be a polynomial, with coefficients in \(R_m\), in finitely many odd Hecke operators. Suppose that \[F\mathbb M_{r+j2^{m-1}}(R_m) = 0 \qquad (2\leq j\leq4). \] Then \[F\mathbb M_{r+j2^{m-1}}(R_m) = 0 \] for every \(j\geq 2\).
+
+Consequently, for every even \(d\geq 2^{m}\) satisfying \(d\equiv r\pmod{2^{m-1}},\) \[F \left(P_d^+ / 2^m P_d^+\right) = 0 \qquad\text{and}\qquad F\left( L_d^+ / 2^m L_d^+\right) = 0. \]
+\end{theorem}
+
+\begin{proof} By strong induction on \(j\), using the degree shifts \[ a_m=2^m, \qquad b_m=3\cdot2^{m-1}. \]
+\end{proof}
+
+\subsection{Staged \texorpdfstring{\(p\)}{p}-division}
+\label{sec:staged-division}
+
+We now record a variant of the preceding propagation argument for divided Hecke operators. To motivate this discussion, suppose, as an example, that for some Hecke operator $T$, we show that \[TP_d^+ \subset p^\alpha P_d^+.\] Then the divided operator \[Z := \frac{T}{p^\alpha}\] is an endomorphism of $P_d^+$. To obtain higher congruences, we would like to find and propagate relations in $Z$. The difficulty is that \(Z\) need not be defined integrally on the source modules \(\mathbb M_{d'}^{\epsilon}(R_m)\) of the transfer maps \(\Psi_d\), so their \(Z\)-equivariance cannot be used directly. We can, however, simulate the division using \emph{witnesses}, and then perform the division after passing to the free target $P_d^+$. We now make this idea precise.
+
+Fix \[m>\alpha\geq1,\qquad R_m:=\Z/p^m\Z. \] Let \(T\) be a prime-to-\(p\) Hecke operator, \[ F(X)=c_0+c_1X+\cdots+c_\nu X^\nu\in\Z_p[X], \qquad \nu\geq1, \] and \(b\geq0\).
+
+Suppose first that \(p\) is odd. 
+
+\begin{definition} \label{def:staged-p-division-witness} Let \( x_0\in\mathbb M_d^\epsilon(R_m). \) A \emph{staged \(p^\alpha\)-division witness of depth \(b\) for the pair \((T,F)\) at \(x_0\), in orientation \(q\)}, consists of elements \[x_1,\ldots,x_\nu,\rho \in \mathbb M_d^\epsilon(R_m) \] such that \begin{equation} \begin{cases}\chi_m^q(T)x_{j-1}=p^\alpha x_j \qquad (1\leq j\leq\nu)  \\  c_0x_0+c_1x_1+\cdots+c_\nu x_\nu = p^b\rho.  \end{cases} \end{equation}
+We say that \(\mathbb M_d^\epsilon(R_m)\) admits a \emph{staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\)} if every \[ x_0\in\mathbb M_d^\epsilon(R_m) \] admits such a witness.
+
+When \(p=2\), the same terminology, with no orientation, is used with \[ x_0,x_1,\ldots,x_\nu,\rho\in\mathbb M_d(R_m) \] and with \(T\) in place of \(\chi_m^q(T)\). 
+\end{definition}
+
+For odd \(p\), let \[W_d^{\epsilon}(T,F, \alpha, b, q) \subseteq \mathbb M_d^\epsilon(R_m) \] be the set of elements \(x_0\) at which \(T,F\) admits such a witness. For \(p=2\), let \[W_d(T,F,\alpha, b)\subseteq\mathbb M_d(R_m)\] denote the corresponding set. Clearly, these sets are $R_m$-modules. 
+
+\begin{lemma}[Transfer of staged division] \label{lem:staged-witness-transfer} Suppose that \[ d\geq a_m+b_m. \] Suppose first that \(p\) is odd. If \[ \mathbb M_{d-a_m}^{\epsilon}(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q\), and \[ \mathbb M_{d-b_m}^{-\epsilon}(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q+1\), then \[ \mathbb M_d^\epsilon(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q\).  For \(p=2\), if both \[ \mathbb M_{d-a_m}(R_m) \qquad\text{and}\qquad \mathbb M_{d-b_m}(R_m) \] admit a staged \(2^\alpha\)-division relation of depth \(b\) for \((T,F)\), then so does \[ \mathbb M_d(R_m). \]
+\end{lemma}
+
+\begin{proof} Suppose first that \(p\) is odd. Let \[ z_0\in\mathbb M_d^\epsilon(R_m). \] Since \(d\geq a_m+b_m\), Proposition~\ref{prop:plus-transfer} gives elements \[ x_0\in\mathbb M_{d-a_m}^{\epsilon}(R_m), \qquad y_0\in\mathbb M_{d-b_m}^{-\epsilon}(R_m) \] such that \[ z_0=\Psi_d^\epsilon(x_0,y_0). \] Choose corresponding witnesses \[ x_1,\ldots,x_\nu,\rho_x \in\mathbb M_{d-a_m}^{\epsilon}(R_m)\] at \(x_0\) in orientation \(q\), and \[y_1,\ldots,y_\nu,\rho_y \in\mathbb M_{d-b_m}^{-\epsilon}(R_m)\] at \(y_0\) in orientation \(q+1\). Put \[ z_j:=\Psi_d^\epsilon(x_j,y_j), \qquad \rho:=\Psi_d^\epsilon(\rho_x,\rho_y). \] By twisted Hecke equivariance, \[\begin{aligned}\chi_m^q(T)z_{j-1}&=\chi_m^q(T)\Psi_d^\epsilon(x_{j-1},y_{j-1})\\ &=\Psi_d^\epsilon \bigl(\chi_m^q(T)x_{j-1},\chi_m^{q+1}(T) y_{j-1}\bigr)\\ &= p^\alpha z_j.\end{aligned}\] Also, by linearity, \[\begin{aligned}\sum_{i=0}^{\nu}c_i z_i &= \sum_{i=0}^\nu c_i \Psi_d^\epsilon(x_i, y_i) \\ &= \Psi_d^\epsilon\left(\sum_{i=0}^\nu c_i x_i, \sum_{i=0}^\nu c_i y_i \right) \\ &= \Psi_d^\epsilon(p^b \rho_x, p^b \rho_y) \\ &= p^b \Psi_d^\epsilon(\rho_x, \rho_y) = p^b \rho. \end{aligned}\] Thus \(z_0\) admits a staged $p^\alpha$-division witness of depth $b$ for $(T,F)$.
+
+The proof for \(p=2\) is the same, with \(\Psi_d\) in place of \(\Psi_d^\epsilon\) and without signs, orientations, or twists.
+\end{proof}
+
+\begin{corollary}[Propagation of staged witnesses] \label{cor:staged-witness-propagation} Suppose that \(p\) is odd. Let \(r\) be  an even integer with \[ 0\leq r<2p^{m-1}. \] For \(q\geq0\), put \[ \epsilon_q:=(-1)^q. \]  Suppose that, for every \(q\geq0\) and every integer \(j\) satisfying \[ \frac{p+1}{2} \leq j < \frac{p^2+1}{2}, \] the module \[ \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) \] admits staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\). Then, for every \[ j\geq\frac{p+1}{2} \] and every \(q\geq0\), the module \[ \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) \] admits staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\).
+\end{corollary}
+
+\begin{proof} The proof is the same strong-induction argument as in
+Theorem~\ref{thm:weight-propagation}. At each inductive step, Lemma~\ref{lem:staged-witness-transfer}, together with the surjectivity of the transfer map, replaces Corollary~\ref{cor:one-step-propagation}.
+\end{proof}
+
+\begin{corollary}[Propagation of staged witnesses for \(p=2\)] \label{cor:staged-witness-propagation-p2} Suppose that \(p=2\) and \(m\geq2\). Let \(r\) be an even integer with \[ 0\leq r<2^{m-1}. \] Suppose that, for every integer \(j\) satisfying \[ 2\leq j\leq4, \] the module \[ \mathbb M_{r+j2^{m-1}}(R_m) \] admits staged \(2^\alpha\)-division of depth \(b\) for the pair \((T,F)\). Then, for every \(j\geq2\), the module \[ \mathbb M_{r+j2^{m-1}}(R_m) \] admits staged \(2^\alpha\)-division of depth \(b\) for the pair \((T,F)\). 
+\end{corollary}
+
+\begin{proof} By strong induction on \(j\), using \[ a_m=2\cdot2^{m-1}, \qquad b_m=3\cdot2^{m-1}. \]
+\end{proof}
+
+Put \[ \mathcal M_d := \begin{cases}\mathbb M_d^+(R_m),&p\text{ odd},\\ \mathbb M_d(R_m),&p=2,\end{cases}\] and \[ \mathcal P_d :=\begin{cases}P_d^+,&p\text{ odd},\\ \mathbb M_d^{\mathrm{tf}},&p=2.\end{cases} \] Let \[ q_{d,m}: \mathcal M_d \twoheadrightarrow \mathcal P_d/p^m\mathcal P_d \] be the natural quotient map. 
+
+\begin{proposition}[Staged \(p\)-division] \label{prop:staged-p-division} Assume \[ b\leq m-\alpha. \] Suppose that every element of \(\mathcal M_d\) admits an untwisted staged
+\(p^\alpha\)-division witness of depth \(b\) for \((T,F)\); for odd \(p\), this means orientation \(q=0\).
+
+Then \[ T\mathcal P_d\subseteq p^\alpha\mathcal P_d. \] Hence \[ Z:=\frac{T}{p^\alpha} \in \End_{\Z_p}(\mathcal P_d) \] is well defined, and \[ F(Z)\mathcal P_d\subseteq p^b\mathcal P_d. \]
+
+Moreover, \[ ZL_d^+\subseteq L_d^+ \] and \[ F(Z)L_d^+\subseteq p^bL_d^+. \]
+\end{proposition}
+
+\begin{proof} Let \(y\in\mathcal P_d\). Choose \[ x_0\in\mathcal M_d \] whose image under \(q_{d,m}\) is the class of \(y\) modulo \(p^m\), and choose a staged witness \[ x_0,x_1,\ldots,x_\nu,\rho. \]
+
+The first equation in Definition~\ref{def:staged-p-division-witness} gives \[ Ty\in p^\alpha\mathcal P_d+p^m\mathcal P_d = p^\alpha\mathcal P_d. \] Thus \(Z=T/p^\alpha\) is integral on \(\mathcal P_d\).
+
+Furthermore, applying \(q_{d,m}\) to the first equation in Definition \ref{def:staged-p-division-witness} and cancelling \(p^\alpha\) on the free lattice \(\mathcal P_d\) gives \begin{equation} Z^j y \equiv q_{d,m}(x_j) \pmod{p^{m-\alpha}\mathcal P_d} \qquad (0\leq j\leq\nu).  \label{eq:staged-retained-precision} \end{equation}  
+
+Using the second equation in Definition~\ref{def:staged-p-division-witness}, we obtain \[ F(Z)y \equiv p^bq_{d,m}(\rho) \pmod{p^{m-\alpha}\mathcal P_d}. \] Since \(b\leq m-\alpha\), it follows that \[ F(Z)\mathcal P_d\subseteq p^b\mathcal P_d. \]
+
+If \(p\) is odd, then \(\mathcal P_d=P_d^+\). For \(y\in L_d^+\), \[ p^\alpha Zy=Ty\in L_d^+. \] Since \(L_d^+\) is saturated in \(P_d^+\), we obtain \[ Zy\in L_d^+. \]
+
+Suppose that \(p=2\). Since \(T\) commutes with \(\iota\), we have \[ p^\alpha(Z\iota-\iota Z)=0 \] on the torsion-free module \(\mathbb M_d^{\mathrm{tf}}\). Hence \(Z\) commutes with \(\iota\) and preserves \(P_d^+\). For \(y\in L_d^+\), \[ p^\alpha Zy=Ty\in L_d^+, \] and saturation again gives \[ Zy\in L_d^+. \]
+
+Thus \(F(Z)\) preserves \(L_d^+\). In either case, \(L_d^+\) is saturated in \(\mathcal P_d\), and therefore \[F(Z)L_d^+ \subseteq L_d^+\cap p^b\mathcal P_d = p^bL_d^+.\]
+\end{proof}
+
+\begin{theorem} \label{thm:staged-division-propagation} Assume \[ b\leq m-\alpha. \] Under the hypotheses of Corollary~\ref{cor:staged-witness-propagation}, for every even $d \geq p^{m-1}(p+1)$ satisfying \[
+d\equiv r\pmod{2p^{m-1}}, \] the operator \[ Z=\frac{T}{p^\alpha} \] belongs to \(\End_{\Z_p}(P_d^+)\), preserves \(L_d^+\),  and satisfies \[ F(Z)P_d^+\subseteq p^bP_d^+, \qquad F(Z)L_d^+\subseteq p^bL_d^+. \]
+\end{theorem}
+
+\begin{proof} Apply Corollary~\ref{cor:staged-witness-propagation} in orientation \(q=0\), for which \[ \epsilon_0=+1, \] and then apply Proposition~\ref{prop:staged-p-division}.
+\end{proof}
+
+\begin{theorem} \label{thm:staged-division-propagation-p2} Assume \[ b\leq m-\alpha. \] Under the hypotheses of Corollary~\ref{cor:staged-witness-propagation-p2}, the operator \[Z=\frac{T}{2^\alpha}\]
+belongs to \[ \End_{\Z_2}(\mathbb M_d^{\mathrm{tf}}),\] preserves \(L_d^+\), and satisfies \[ F(Z)\mathbb M_d^{\mathrm{tf}}\subseteq2^b\mathbb M_d^{\mathrm{tf}}, \qquad F(Z)L_d^+\subseteq2^bL_d^+ \] for every even $d \geq 2^{m}$ satisfying \[ d\equiv r\pmod{2^{m-1}}. \]
+\end{theorem}
+
+\begin{proof}
+Apply Corollary~\ref{cor:staged-witness-propagation-p2} and then Proposition~\ref{prop:staged-p-division}.
+\end{proof}
+
+\begin{remark}\label{rem:joint-staged-division} The same formalism applies to joint polynomial relations in finitely many divided Hecke operators \[Z_i:=\frac{T_i}{p^{\alpha_i}}. \] One introduces compatible staged witnesses for the monomials in \[F(Z_1,\ldots,Z_s),\] using the staged division relation for \(T_i\) whenever the exponent of \(Z_i\) is increased by one. The transfer argument then proceeds exactly as above. The retained precision is \[p^{m-\max_i\alpha_i},\] and forming mixed products of the integral operators \(Z_i\) causes no further loss of precision.
+
+Instead of requiring witnesses at every \(x_0\) in the source module, one may require them at every \(x_0=Su\), where \(u\) ranges over that module and \(S\) is an integral Hecke polynomial. In orientation \(q\), the starting vectors are \(x_0=\chi_m^q(S)u\). The same transfer argument applies, since \[ \chi_m^q(S)\Psi_d^\epsilon(u,v) = \Psi_d^\epsilon\bigl( \chi_m^q(S)u,\chi_m^{q+1}(S)v \bigr). \] If the divided operators \(Z_i\) preserve \(\mathcal P_d\), then, in orientation \(q=0\), we obtain \[ S F(Z_1,\ldots,Z_s)\mathcal P_d \subseteq p^b\mathcal P_d, \qquad b\leq m-\max_i\alpha_i. \] For \(p=2\), the same statement holds without twists.
+\end{remark}
+
+
+\part{Computations and classifications}
+
+Throughout this part, let \(f\) be a normalized cuspidal level-one eigenform of weight \(k\), and let \(\cO_f\) be the ring of integers of a finite extension of $\Q_p$ containing the coefficients of \(f\). We put
+\[d:=k-2, \qquad r\equiv d\pmod{p^{m-1}(p-1)}, \qquad 0 \leq r < p^{m-1}(p-1).\]
+
+\section{The prime \texorpdfstring{\(2\)}{2}: classification modulo \texorpdfstring{\(256\)}{256}}
+\label{sec:p2}
+
+For every even residue \(r\bmod128\), put \[ c_{3,r}:=1+3^{r+1}\pmod{256}, \qquad c_{5,r}:=1+5^{r+1}\pmod{256}, \] and define \[ X_r:=T_3-c_{3,r}. \] Also put \[ \varepsilon_r:= \begin{cases} 1,&r\equiv0,6,8,14\pmod{16},\\ 0,&r\equiv2,4,10,12\pmod{16}. \end{cases} \] Although \(r\) is taken modulo \(128\), these quantities depend only on \(r\bmod64\).
+
+\subsection{Certified Hecke operator identities}
+
+Put \[ F_r(Z):=Z^2-\varepsilon_rZ. \] The computation is performed at precision \(256\).  For \(m=8\), the Dickson multipliers have degrees \[ a_8=256, \qquad b_8=384, \qquad \mbox{ with } a_8 + b_8 = 640. \] Hence the exact induction base in Corollary~\ref{cor:staged-witness-propagation-p2} consists, for every even \(0\leq r<128\), of the three degrees \[ d=r+j\,128, \qquad 2\leq j\leq4. \] Equivalently, these are the \(192\) even degrees \[ 256\leq d\leq638. \] 
+
+For every such degree \(d\), the computation \cite[\nolinkurl{classification_mod_256.ipynb}]{RustomHeckeCongruences} verifies on \[ \mathbb M_d(\mathbf Z/256\mathbf Z) \] staged \(2^7\)-division witnesses of depth \(1\) for the pair \[ \bigl(X_r,F_r\bigr), \] and also verifies the ordinary relation \[ \bigl(T_5-c_{5,r}\bigr) \mathbb M_d(\mathbf Z/256\mathbf Z)=0. \] Since both \(a_8\) and \(b_8\) are divisible by \(128\), the quantities \(c_{3,r}\), \(c_{5,r}\), and \(\varepsilon_r\) are unchanged under the two transitions of Remark~\ref{rem:periodic-weight-propagation}.  Thus these families satisfy the compatibility required for propagation.
+
+Corollary~\ref{cor:staged-witness-propagation-p2} and Theorem~\ref{thm:staged-division-propagation-p2} propagate the relations to every even degree \[ d\geq256. \] The remaining even degrees \[ 0\leq d<256 \] are verified directly. Therefore, for \[ r\equiv d\pmod{128}, \] the operator \[ Z_r:=\frac{T_3-c_{3,r}}{2^7} \] belongs to \[ \End_{\mathbf Z_2}\bigl(\mathbb M_d^{\mathrm{tf}}\bigr), \] preserves \(P_d^+\) and \(L_d^+\), and satisfies \begin{equation} \bigl(Z_r^2-\varepsilon_rZ_r\bigr) \mathbb M_d^{\mathrm{tf}} \subseteq2\mathbb M_d^{\mathrm{tf}}, \qquad \bigl(Z_r^2-\varepsilon_rZ_r\bigr)L_d^+ \subseteq2L_d^+. \label{eq:p2-divided-relation}\end{equation}
+
+Likewise, Theorem~\ref{thm:weight-propagation-p2}, together with the direct verification in the lower degrees, gives \begin{equation} \bigl(T_5-c_{5,r}\bigr)L_d^+ \subseteq256L_d^+. \label{eq:p2-T5-relation} \end{equation} Thus both relations hold in every even coefficient degree \(d\).
+
+\subsection{Congruences for \texorpdfstring{\(a_3\)}{a3} and
+\texorpdfstring{\(a_5\)}{a5}}
+
+By the Eichler--Shimura comparison recalled in Section~\ref{sec:target-lattice}, choose a primitive simultaneous eigenvector \[ v_f\in L_d^+\otimes_{\mathbf Z_2}\mathcal O_f \] for the prime-to-\(2\) Hecke eigensystem of \(f\). 
+
+Since \(Z_r\) preserves \(L_d^+\), its eigenvalue on \(v_f\) is integral.  Thus \[ z_3:=\frac{a_3(f)-c_{3,r}}{2^7}\in\mathcal O_f. \] Evaluating \eqref{eq:p2-divided-relation} on \(v_f\) gives \[ z_3^2-\varepsilon_rz_3\in2\mathcal O_f. \]
+
+If \(\varepsilon_r=0\), then \[ z_3^2\in2\mathcal O_f, \] so \(v_2(z_3)>0\).  Hence \[ v_2\bigl(a_3(f)-c_{3,r}\bigr)>7, \] which is precisely \[ a_3(f)\equiv_{\mathrm{val}}c_{3,r}\pmod{256}. \]
+
+If \(\varepsilon_r=1\), then \[ z_3(z_3-1)\in2\mathcal O_f. \] The two factors differ by a unit, so exactly one of them belongs to the maximal ideal of \(\mathcal O_f\).  Therefore \[z_3\equiv0\quad\text{or}\quad1 \pmod{\mathfrak m_{\mathcal O_f}}, \] and consequently \[ a_3(f)\equiv_{\mathrm{val}} c_{3,r}\quad\text{or}\quad c_{3,r}+2^7 \pmod{256}. \]
+
+Finally, evaluating \eqref{eq:p2-T5-relation} on \(v_f\) gives the literal, and hence valuative, congruence \[ a_5(f)\equiv_{\mathrm{lit}}c_{5,r}\pmod{256}. \] Thus \begin{equation} a_3(f)\equiv_{\mathrm{val}} \begin{cases} c_{3,r}\pmod{256},&\varepsilon_r=0,\\ c_{3,r}\ \text{or}\ c_{3,r}+128\pmod{256},  &\varepsilon_r=1, \end{cases} \qquad a_5(f)\equiv_{\mathrm{lit}}c_{5,r}\pmod{256}. \label{eq:p2-coordinate-classification} \end{equation}
+
+\subsection{Packet selection}
+\label{sec:p2-packet-selection}
+
+Consider the two cyclotomic systems \(\Cyc_{0,k-1}\) and \(\Cyc_{16,k-17}\). At an odd prime \(\ell\), their values are \[ \Cyc_{0,k-1}(\ell)=1+\ell^{k-1} \] and \[ \Cyc_{16,k-17}(\ell)=\ell^{16}+\ell^{k-17}, \] where the exponents are understood modulo \(64\). In both cases, the two exponents have sum \(k-1\). Since every odd unit modulo \(256\) has exponent dividing \(64\), these systems depend only on the coefficient-degree residue \(d=k-2\pmod{64}\).
+
+For \(r\equiv d\pmod{128}\), a direct calculation gives \[ \begin{aligned} \Cyc_{0,k-1}(3)&\equiv c_{3,r}, & \Cyc_{0,k-1}(5)&\equiv c_{5,r}, \\ \Cyc_{16,k-17}(3)&\equiv c_{3,r}+128, & \Cyc_{16,k-17}(5)&\equiv c_{5,r} \end{aligned} \pmod{256}. \] Thus the roots \[ \bar z_3=0 \qquad\text{and}\qquad \bar z_3=1 \] correspond respectively to the cyclotomic systems \[ \Cyc_{0,k-1} \qquad\text{and}\qquad \Cyc_{16,k-17}. \] The relation \[ \bar z_3(\bar z_3-\varepsilon_r)=0 \] always permits \(\Cyc_{0,k-1}\), and permits \(\Cyc_{16,k-17}\) precisely when \(\varepsilon_r=1\). Consequently, the possibilities in \eqref{eq:p2-coordinate-classification} select exactly \[ \Cyc_{0,k-1} \] when \(\varepsilon_r=0\), and exactly \[ \Cyc_{0,k-1}, \qquad \Cyc_{16,k-17} \] when \(\varepsilon_r=1\).
+
+\subsection{Final classification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:intro-p2}] Let \(\Cyc_f\) be the cyclotomic packet selected in Section~\ref{sec:p2-packet-selection}. Thus \[ a_3(f)\equiv_{\mathrm{val}}\Cyc_f(3)\pmod{256}, \qquad a_5(f)\equiv_{\mathrm{val}}\Cyc_f(5)\pmod{256}. \]
+
+Lemma~\ref{lem:weak-cyclotomic} shows that \(\Cyc_f\) defines a continuous weak character \[
+\lambda_{\Cyc_f}: \mathbb T_{\mathrm{dc}}^{(2)} \longrightarrow \mathbf Z/256\mathbf Z \] whose weight is congruent to \(k\) modulo \(64\). Consequently, \(\lambda_{\Cyc_f}\) and the eigensystem of \(f\) have congruent values at \(T_3\), \(T_5\), and the weight operator \([5]\). Since \[ \mathbb T_{\mathrm{dc}}^{(2)} = \overline{\mathbf Z_2[T_3,T_5,[5]]} \] by Section~\ref{sec:big-hecke-p2p3}, it follows that \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_f(n)\pmod{256} \qquad ((n,2)=1). \] Since \(r\equiv k-2\pmod{16}\), the second packet is permitted
+precisely when \(k-2\equiv0,6,8,14\pmod{16}\), and is selected by the root \(\bar z_3=1\). The two packets are distinct modulo \(256\), since their values at \(T_3\) differ by \(128\).
+
+Conversely, for each of the \(48\) permitted packets \(\Cyc_f\), the computation supplies a normalized cuspidal level-one strong eigenform \(g_{\Cyc_f}\) of a weight \[ K_{\Cyc_f}\equiv k\pmod{64} \] whose \(T_3\)- and \(T_5\)-eigenvalues agree with \(\Cyc_f(3)\) and \(\Cyc_f(5)\) modulo \(256\). The weight congruence also gives agreement at \([5]\). The same big-Hecke generation argument therefore shows that the entire prime-to-\(2\) eigensystem of \(g_{\Cyc_f}\) is congruent to \(\Cyc_f\) modulo \(256\). Consequently, every permitted packet occurs and the classification is exact.
+\end{proof}
+
+\section{The prime \texorpdfstring{\(3\)}{3}: classification modulo \texorpdfstring{\(27\)}{27}}
+\label{sec:p3}
+
+We will call \[r\equiv2\pmod6\qquad\text{equivalently}\qquad k\equiv4\pmod6\] the \emph{zero branch}, and \[r\equiv0,4\pmod6 \qquad\text{equivalently}\qquad k\equiv0,2\pmod6\] the \emph{nonzero branch}. As a consequence of the calculations below, these branches are also characterized by \[ \begin{aligned} \text{zero branch} &\Longleftrightarrow a_2(f)\in9\mathcal O_f,\\ \text{nonzero branch} &\Longleftrightarrow a_2(f)\notin9\mathcal O_f. \end{aligned}
+\]
+
+For every degree residue \(r\), put \[t_r:=1+7^{r+1}\pmod{27}.\] Thus \begin{equation}\begin{array}{c|rrrrrrrrr} r&0&2&4&6&8&10&12&14&16\\ \hline t_r&8&20&14&17&2&23&26&11&5. \end{array} \label{eq:p3-t7-values} \end{equation} For \(r\in\{0,4,6,10,12,16\},\) put \(F_r(X):=X^2-c_r,\) where \begin{equation}\begin{array}{c|rrrrrr} r&0&4&6&10&12&16\\ \hline c_r&1&4&4&1&7&7. \end{array} \label{eq:p3-nonzero-constants} \end{equation}
+
+\subsection{Certified Hecke operator identities}
+
+\subsubsection{The nonzero branch}
+
+Let \[ r\in\{0,4,6,10,12,16\}. \] We work at precision \(27\). The Dickson multipliers have degrees \[ a_3=54, \qquad b_3=36, \qquad \mbox{ with }  a_3+b_3=90. \] Moreover, \[ \chi_3(T_2)=2^9T_2\equiv-T_2\pmod{27}, \qquad \chi_3(T_7)=7^9T_7\equiv T_7\pmod{27}. \] 
+
+For every degree \[ 0\leq d\leq88, \qquad d\equiv r \pmod {18}, \] and both orientations \(q\in\{0,1\}\), the computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} certifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z) \] staged \(3\)-division witnesses of depth \(2\) for the pair \[ \bigl(T_2,F_r\bigr) \] in orientation \(q\), in the sense of Definition~\ref{def:staged-p-division-witness}. It also certifies \begin{equation} (T_7-t_{d\bmod18}) \mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)=0. \label{eq:p3-nonzero-source-relations} \end{equation}
+
+By Theorem~\ref{thm:staged-division-propagation} and Theorem~\ref{thm:weight-propagation}, these relations propagate to every even coefficient degree \[ d \geq36, \qquad d \equiv r \pmod{18}. \] The remaining degrees \[ 0\leq d<36, \qquad d\equiv r \pmod{18}, \] are verified directly. Consequently, the relations hold in every even coefficient degree \[ d\equiv r \pmod{ 18}. \] For such a degree, we find that \[ Z_2:=\frac{T_2}{3}\in\End_{\Z_3}(P_d^+), \qquad Z_2L_d^+\subseteq L_d^+, \] and \[ \bigl(Z_2^2-c_r\bigr)P_d^+\subseteq9P_d^+. \] Similarly, \[ (T_7-t_r)P_d^+\subseteq27P_d^+. \] Consequently, \begin{equation} \bigl(Z_2^2-c_r\bigr)L_d^+ \subseteq9L_d^+, \qquad (T_7-t_r)L_d^+ \subseteq27L_d^+.  \label{eq:p3-nonzero-relations} \end{equation}
+
+\subsubsection{The zero branch}
+Let \[ r\in\{2,8,14\}. \] Put \[G_2:=T_2(T_2-63),\qquad Q(X):=\bigl(X(X+1)\bigr)^2. \] We work at precision \(243\). The Dickson multipliers have degrees \[ a_5=486, \qquad b_5=324, \qquad a_5+b_5=810,\] and \[ \chi_5(T_2)=2^{81}T_2\equiv-T_2\pmod{243}. \] 
+
+For every degree \[ 326\leq d\leq806, \qquad d\equiv2\pmod6, \] and both orientations \(q\in\{0,1\}\), the computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} verifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z) \] staged \(3^4\)-division witnesses of depth \(1\) for the pair \[ (G_2,Q) \] in orientation \(q\), in the sense of Definition~\ref{def:staged-p-division-witness}. Here \[ \chi_5^0(G_2)=T_2(T_2-63), \qquad \chi_5^1(G_2)=T_2(T_2+63) \pmod{243}. \] 
+
+Corollary~\ref{cor:staged-witness-propagation} and Theorem~\ref{thm:staged-division-propagation} therefore give, for every even degree \[ d\geq324, \qquad d\equiv2\pmod6, \] an integral operator \begin{equation} H_2:=\frac{G_2}{81} =\frac{T_2(T_2-63)}{81} \in\End_{\mathbf Z_3}(P_d^+), \qquad H_2L_d^+\subseteq L_d^+. \label{eq:p3-zero-H2-integrality} \end{equation} It satisfies \begin{equation} Q(H_2)P_d^+\subseteq3P_d^+, \qquad Q(H_2)L_d^+\subseteq3L_d^+. \label{eq:p3-zero-H2-relation} \end{equation} The computation verifies \eqref{eq:p3-zero-H2-integrality} and \eqref{eq:p3-zero-H2-relation} directly in the remaining \(54\) degrees \[ 0\leq d<324, \qquad d\equiv2\pmod6. \] Consequently, both relations hold in every zero-branch degree.
+
+Separately, for every degree \[ 0\leq d\leq88,\qquad d\equiv r\pmod{18}, \] and both orientations \(q\in\{0,1\}\), the precision-\(27\) computation verifies \begin{equation} (T_7-t_r)\mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)=0. \label{eq:p3-zero-source-T7} \end{equation} Theorem~\ref{thm:weight-propagation} gives \[ (T_7-t_r)P_d^+\subseteq27P_d^+, \qquad (T_7-t_r)L_d^+\subseteq27L_d^+ \] for every zero-branch degree \[ d\geq36, \qquad d\equiv r\pmod{18}. \] The remaining zero-branch degrees \[ 0\leq d<36, \qquad d\equiv r\pmod{18}, \] are verified directly. Consequently, these two relations hold in every zero-branch degree \[ d\equiv r\pmod{18}. \]  Combining this with \eqref{eq:p3-zero-H2-relation}, we obtain \begin{equation} \bigl(H_2(H_2+1)\bigr)^2L_d^+ \subseteq3L_d^+, \qquad (T_7-t_r)L_d^+ \subseteq27L_d^+. \label{eq:p3-zero-relations} \end{equation}
+
+\subsection{Congruences for \texorpdfstring{\(a_2\)}{a2} and \texorpdfstring{\(a_7\)}{a7}}
+
+By the Eichler--Shimura comparison recalled in Section~\ref{sec:target-lattice}, we can choose a primitive simultaneous eigenvector \[v_f\in L_d^+\otimes_{\mathbf Z_3}\mathcal O_f\] for the prime-to-\(3\) Hecke eigensystem of \(f\).
+
+\subsubsection{The nonzero branch}
+
+Suppose \[r\in\{0,4,6,10,12,16\}.\] By \eqref{eq:p3-nonzero-relations}, \begin{equation}a_7(f)\equiv_{\mathrm{lit}}t_r\equiv_{\mathrm{lit}}1 + 7^{r+1}\pmod{27}.\label{eq:p3-nonzero-T7-selector}\end{equation}
+
+Since \[Z_2=\frac{T_2}{3}\] preserves \(L_d^+\), its eigenvalue \(z_2\) on \(v_f\) is integral. Thus \[z_2:=\frac{a_2(f)}{3}\in\mathcal O_f.\] Again by \eqref{eq:p3-nonzero-relations}, \begin{equation}z_2^2\equiv_{\mathrm{lit}}c_r\pmod9.\label{eq:p3-nonzero-selector}\end{equation}
+
+For each given \(c_r\), we can find $\alpha \in \Z$ such that $\alpha^2 \equiv c_r \pmod{9}$ and \(\alpha \not \equiv 0 \pmod{3}\). Since \[(z_2 - \alpha)(z_2 + \alpha) \equiv_{\mathrm{lit}} z_2^2 - c_r \equiv_{\mathrm{lit}} 0 \pmod{9}, \] this means that either $z_2 - \alpha$ or $z_2 + \alpha$ is a unit in $\cO_f$. Hence, \[z_2 \in \pm \alpha + 9\cO_f. \]
+
+The roots modulo \(9\), together with the resulting values of \(a_2(f)\) modulo \(27\), are \begin{equation}\begin{array}{c|c|c}
+c_r&z_2\bmod9&a_2(f)\bmod27\\ \hline
+1&1,8&3,24\\
+4&2,7&6,21\\
+7&4,5&12,15.
+\end{array}
+\label{eq:p3-nonzero-roots}
+\end{equation}
+
+\subsubsection{The zero branch} 
+
+Suppose \[ r\in\{2,8,14\}. \] By \eqref{eq:p3-zero-relations}, \begin{equation} a_7(f)\equiv_{\mathrm{lit}}t_r \equiv_{\mathrm{lit}}1+7^{r+1}\pmod{27}. \label{eq:p3-zero-T7-selector} \end{equation}  By \eqref{eq:p3-zero-H2-integrality}, the operator \[ H_2=\frac{T_2(T_2-63)}{81} \] preserves \(L_d^+\). Its eigenvalue on \(v_f\) is therefore integral: \begin{equation} h_2:= \frac{a_2(f)(a_2(f)-63)}{81} \in\mathcal O_f. \label{eq:p3-zero-H2-eigenvalue} \end{equation} Equivalently, \[ a_2(f)(a_2(f)-63)\in81\mathcal O_f. \]  
+
+We claim that \[ a_2(f)\in9\mathcal O_f. \] Indeed, if \(v_3(a_2(f))<2\), then, since \(v_3(63)=2\), \[ v_3(a_2(f)-63)=v_3(a_2(f)). \] Consequently, \[ v_3\bigl(a_2(f)(a_2(f)-63)\bigr)=2v_3(a_2(f))<4, \] contradicting \[ a_2(f)(a_2(f)-63)\in81\mathcal O_f. \] Thus \(v_3(a_2(f))\geq2\), as claimed.  
+
+Write \[ a_2(f)=9x_2, \qquad x_2\in\mathcal O_f. \] Then \eqref{eq:p3-zero-H2-eigenvalue} becomes \[ h_2=x_2(x_2-7). \] Evaluating \eqref{eq:p3-zero-H2-relation} on \(v_f\) gives \[ \bigl(h_2(h_2+1)\bigr)^2\in3\mathcal O_f. \] After reduction modulo \(\mathfrak m_{\mathcal O_f}\), this gives \[ \left( \bar x_2(\bar x_2-1) \bigl(\bar x_2(\bar x_2-1)+1\bigr) \right)^2=0. \] We obtain \[ \bar x_2\in\{0,1,-1\}\subseteq\mathbf F_3. \] Hence \begin{equation} x_2\equiv_{\mathrm{val}}0,\ 1,\ \text{or }-1\pmod3. \label{eq:p3-zero-roots} \end{equation} Consequently, \begin{equation} a_2(f)\equiv_{\mathrm{val}}0,\ 9,\ \text{or }-9\pmod{27}. \label{eq:p3-zero-T2-selector} \end{equation}
+
+\subsection{Packet selection}
+
+Recall that \(r\equiv k-2\pmod{18}.\) Hence \(r+1\equiv k-1\pmod{18}.\) For each residue \(r\), the possible values of \(a_2(f)\) and \(a_7(f)\) obtained above determine a unique unordered pair \(\{a,b\}\subset\mathbf Z/18\mathbf Z\) satisfying \[a+b\equiv r+1\equiv k-1\pmod{18}\] such that \[a_2(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(2)=2^a+2^b\pmod{27},\] and \[a_7(f)\equiv_{\mathrm{lit}}\Cyc_{a,b}(7)=7^a+7^b\pmod{27}.\]
+
+On the nonzero branch, the congruence at \(T_2\) is also literal modulo
+\(27\).
+
+\subsection{Final classification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:intro-p3}] Let \(\{a,b\}\subset\mathbf Z/18\mathbf Z\) be the unique pair selected above. Choose integers \(i\geq3\) and even \(\kappa\geq4\) such that \[(a,b)\equiv(i,i+\kappa-1)\pmod{18}.\]
+By Lemma~\ref{lem:weak-cyclotomic}, we get a corresponding weak Hecke character \[\lambda_{\kappa,i}:\mathbb T_{\mathrm{dc}}^{(3)}\longrightarrow\mathbf Z/27\mathbf Z\] of some weight \(K\) satisfying \[K\equiv\kappa+2i\pmod{18}.\] Since \[a+b\equiv k-1\pmod{18},\] we have \[K\equiv\kappa+2i\equiv a+b+1 \equiv k \pmod{18}. \]
+Hence
+\[
+4^K\equiv4^k\pmod{27},
+\]
+so the weak character and the character of \(f\) have the same
+\(t_\Lambda=[4]\)-value.
+
+By the packet selection above, their reductions modulo \(27\) (in the \(\equiv_\mathrm{val}\) sense) agree on \(T_2\) and \(T_7\), and by the preceding weight congruence they agree on \(t_\Lambda\). Therefore \eqref{eq:p3-big-generation} gives \[a_n(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(n)\pmod{27}\qquad((n,3)=1).\]
+
+Conversely, the finite computation verifies that every cyclotomic packet appearing in the classification is realized by a strong level-one eigenform. Hence the classification is exact.
+
+If \(k\equiv0,2\pmod6,\) then \(f\) lies on the nonzero branch, where the agreement at \(T_2\) and \(T_7\) is literal. Repeating the same comparison in \(\mathcal O_f/27\mathcal O_f\) gives the corresponding literal congruence.
+\end{proof}
+
+\section{The prime \texorpdfstring{\(5\)}{5}: classification modulo
+\texorpdfstring{\(25\)}{25}}
+\label{sec:p5}
+
+For every even residue \(r\pmod{20}\), define \(\beta_r\) by
+\begin{equation}
+\begin{array}{c|rrrrrrrrrr}
+r \pmod{20} &0&2&4&6&8&10&12&14&16&18\\ \hline
+\beta_r&4&0&2&0&4&1&0&3&0&1.
+\end{array}
+\label{eq:p5-beta-table}
+\end{equation}
+Put \begin{equation} Q_r(X):=(X-\beta_r)^3+(X-\beta_r). \label{eq:p5-shifted-cubic} \end{equation} For \(\eta\in\{0,1\}\), define \begin{equation} F_{r,\eta}(X,Y) := X-\delta_{r,\eta}(c_rY+3-\eta) - 5\gamma_{r,\eta}, \end{equation} and put \[ G_r(X,Y):=F_{r,0}(X,Y)F_{r,1}(X,Y), \] where \[c_r := \begin{cases}1, & r \equiv 0 \pmod{4},\\ 2, & r \equiv 2 \pmod{4}\end{cases} \] and the constants $\delta$ and $\gamma$ are given by 
+\[
+\begin{array}{c|cc}
+r&(\delta_{r,0},\gamma_{r,0})
+ &(\delta_{r,1},\gamma_{r,1})\\ \hline
+0 &(1,4)&(4,0)\\
+2 &(4,4)&(1,3)\\
+4 &(1,1)&(4,2)\\
+6 &(4,2)&(1,1)\\
+8 &(1,3)&(4,4)\\
+10&(4,0)&(1,4)\\
+12&(1,0)&(4,1)\\
+14&(4,3)&(1,2)\\
+16&(1,2)&(4,3)\\
+18&(4,1)&(1,0).
+\end{array}
+\]
+
+\subsection{Certified Hecke operator identities}
+
+We work at precision \(25\). The Dickson multipliers have degrees \[a_2 = 100, \qquad b_2 = 30, \qquad \mbox{ with } a_2 + b_2 = 130.\] We also have \[\chi_2(T_2) = 2^{5}T_2 \equiv 7 T_2, \qquad \chi_2(T_{19}) = 19^5T_{19} \equiv -T_{19} \pmod{25}.\]
+
+Define the family \[\mathcal G_{r,+} := \{G_r, \chi_2^2(G_r)\}, \qquad \mathcal G_{r, -} := \{\chi_2(G_{r+10}), \chi_2^3(G_{r+10})\}\] where the indices are understood modulo \(20\). The two transitions of Remark~\ref{rem:periodic-weight-propagation} are \[(r,H,\epsilon)\longmapsto(r,H,\epsilon)\] and \[ (r,H,\epsilon)\longmapsto (r+10,\chi_2(H),-\epsilon). \] The first plainly preserves the family. For the second, \[\chi_2(\mathcal G_{r,+})=\mathcal G_{r+10,-}, \qquad \chi_2(\mathcal G_{r,-}) = \mathcal G_{r+10,+}, \] since \(\chi_2^4=\mathrm{id}\). Thus the family \(\mathcal G_{r,\epsilon}\) is closed under both transitions.
+
+The exact induction base for Theorem~\ref{thm:weight-propagation} consists of the even degrees \[30\leq d\leq128.\] For each such \(d\), put \(r\equiv d\pmod{20}\).  The computation \cite[\nolinkurl{classification_mod_25.ipynb}]{RustomHeckeCongruences} verifies \[H\mathbb M_d^+(\mathbf Z/25\mathbf Z)=0\qquad \bigl(H\in\mathcal G_{r,+}\bigr)\] and \[H\mathbb M_d^-(\mathbf Z/25\mathbf Z)=0\qquad \bigl(H\in\mathcal G_{r,-}\bigr).\] Theorem~\ref{thm:weight-propagation}, together with Remark~\ref{rem:periodic-weight-propagation}, therefore propagates the relations to every even degree \(d\geq30\). The remaining even degrees \(0\leq d<30\) are verified directly. In particular, for \(r\equiv d\pmod{20}\), \begin{equation} G_r(T_{19},T_2)L_d^+\subseteq25L_d^+. \label{eq:p5-target-affine-product}
+\end{equation}
+
+For each even degree \(30\leq d\leq128\), the computation also verifies staged \(5\)-division witnesses of depth \(1\) for \[ \left(T_{19}-5\beta_d,(X^3+X)^2\right) \] on \(\mathbb M_d^+(\mathbf Z/25\mathbf Z)\) in orientations \(q=0,2\), and for \[ \left(T_{19}-5\beta_{d+10},(X^3+X)^2\right) \] on \(\mathbb M_d^-(\mathbf Z/25\mathbf Z)\) in orientations \(q=1,3\), where the subscripts of \(\beta\) are understood modulo \(20\). These four conditions are closed under the two transitions of Remark~\ref{rem:periodic-weight-propagation}. Indeed, the \(A_2\)-transition preserves the residue, the sign, and the orientation, while the \(B_2\)-transition sends \[ (d,q)\longmapsto(d-30,q+1) \] and reverses the sign. Since \[ d-30\equiv d+10\pmod{20}, \] the corresponding \(T_{19}-5\beta_r\) operator is unchanged. Hence the same strong-induction argument as in Corollary~\ref{cor:staged-witness-propagation} propagates these witnesses to every even degree \(d\geq30\). By Proposition~\ref{prop:staged-p-division}, we obtain, for \(r\equiv d\pmod{20}\), \[ \frac{T_{19}-5\beta_r}{5} \in\End_{\mathbf Z_5}(P_d^+). \] Consequently, \[ Z_{19}:=\frac{T_{19}}5\in\End_{\mathbf Z_5}(P_d^+), \qquad Z_{19}L_d^+\subseteq L_d^+, \] and \[ Q_r(Z_{19})^2P_d^+\subseteq5P_d^+. \] By saturation, \[ Q_r(Z_{19})^2L_d^+\subseteq5L_d^+. \] The remaining even degrees \(0\leq d<30\) are verified directly. Thus, in every even degree, \begin{equation} Q_r(Z_{19})^2P_d^+\subseteq5P_d^+, \qquad Q_r(Z_{19})^2L_d^+\subseteq5L_d^+. \label{eq:p5-divided-relation}
+\end{equation}
+
+\subsection{Congruences for \texorpdfstring{\(a_2\)}{a2} and \texorpdfstring{\(a_{19}\)}{a19}}
+
+By the Eichler--Shimura comparison recalled in Section~\ref{sec:target-lattice}, choose a primitive simultaneous eigenvector \[v_f\in L_d^+\otimes_{\mathbf Z_5}\mathcal O_f\] for the prime-to-\(5\) Hecke eigensystem of \(f\).
+
+Since \(Z_{19}=T_{19}/5\) preserves \(L_d^+\), its eigenvalue $z_{19}$ on \(v_f\) is integral. Thus \[z_{19}:=\frac{a_{19}(f)}5\in\mathcal O_f.\] Equation~\eqref{eq:p5-divided-relation} gives \[Q_r(z_{19})^2\in5\mathcal O_f.\] After reduction to the residue field, \[Q_r(\bar z_{19})=0.\] Since \[Q_r(X)\equiv(X-\beta_r)(X-\beta_r-2)(X-\beta_r-3)\pmod{5},\] there is a unique \[\lambda\in\{\beta_r,\beta_r+2,\beta_r+3\}\] such that \[\bar z_{19}= \bar \lambda.\] Equivalently,\begin{equation}a_{19}(f)\equiv_{\mathrm{val}}5\lambda\pmod{25}.\label{eq:p5-T19-selector}\end{equation}
+
+Put \[x_f:=c_r a_2(f)+3.\] Evaluating \eqref{eq:p5-target-affine-product} on the primitive eigenvector \(v_f\) gives \begin{equation} \bigl(a_{19}(f)-\delta_{r,0}x_f-5\gamma_{r,0}\bigr) \bigl(a_{19}(f)-\delta_{r,1}(x_f-1)-5\gamma_{r,1}\bigr) \in25\mathcal O_f. \label{eq:p5-eigenvalue-product} \end{equation} Reducing modulo the maximal ideal of \(\mathcal O_f\), and using \(a_{19}(f)\in5\mathcal O_f\), we obtain \[ (-\delta_{r,0}\bar x_f) \bigl(-\delta_{r,1}(\bar x_f-1)\bigr)=0. \] Since \[ \delta_{r,0},\delta_{r,1}\in\mathbf F_5^\times, \] there is a unique \(\epsilon\in\{0,1\}\) such that \begin{equation}\bar x_f=\epsilon. \label{eq:p5-epsilon-selector} \end{equation} For this \(\epsilon\), the factor corresponding to \(1-\epsilon\) in \eqref{eq:p5-eigenvalue-product} is a unit. Hence \begin{equation} a_{19}(f) -\delta_{r,\epsilon}(x_f-\epsilon) -5\gamma_{r,\epsilon} \in25\mathcal O_f. \label{eq:p5-selected-affine} \end{equation} Together with \eqref{eq:p5-T19-selector}, this gives \begin{equation} x_f \equiv_{\mathrm{val}} \epsilon+ 5\delta_{r,\epsilon}^{-1} (\lambda-\gamma_{r,\epsilon}) \pmod{25}. \label{eq:p5-x-selector} \end{equation} Since \(x_f=c_r a_2(f)+3\) and \(c_r\in\{1,2\}\), we therefore obtain \begin{equation} a_2(f) \equiv_{\mathrm{val}} c_r^{-1} \left( \epsilon-3+ 5\delta_{r,\epsilon}^{-1} (\lambda-\gamma_{r,\epsilon}) \right) \pmod{25}. \label{eq:p5-T2-selector} \end{equation}
+
+\subsection{Packet selection}
+\label{sec:p5-packet-selection}
+
+Recall that \[d\equiv r\equiv k-2\pmod{20}.\] For each of the six pairs \((\epsilon,\lambda)\) selected by \eqref{eq:p5-T19-selector} and \eqref{eq:p5-epsilon-selector}, a direct calculation of the cyclotomic packets gives a unique unordered pair \[ \{a,b\}\subset\mathbf Z/20\mathbf Z, \qquad a+b\equiv k-1\pmod{20}, \] such that \[ a_2(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(2)\pmod{25}, \qquad a_{19}(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(19)\pmod{25}. \]
+
+Moreover, the pair can be written \[\{a,b\}=\{i,i+\kappa-1\}\qquad\text{in }\mathbf Z/20\mathbf Z,\] where \[2i+\kappa\equiv k\pmod{20}\] and \begin{equation}\kappa\in\begin{cases}\{10,14,22\},&k\equiv0,2\pmod{10},\\  \{6,14,18\},&k\equiv4,8\pmod{10},\\ \{6,14,22\},&k\equiv6\pmod{10}. \end{cases} \label{eq:p5-kappa-classification} \end{equation}
+
+Thus there are exactly six possible cyclotomic packets for each residue class of \(k\) modulo \(20\), and hence \(60\) packets over all weights. 
+
+\subsection{Final classification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:intro-p5}]
+
+Let \[\{a,b\}\subset\mathbf Z/20\mathbf Z\] be the unique pair selected in
+Section~\ref{sec:p5-packet-selection}. Thus, in every weight, we have a unique pair satisfying\[a+b\equiv k-1\pmod{20},\] which can be written \[\{a,b\}=\{i,i+\kappa-1\}\qquad\text{in }\mathbf Z/20\mathbf Z,\] with
+\[
+\kappa\in
+\begin{cases}
+\{10,14,22\},&k\equiv0,2\pmod{10},\\
+\{6,14,18\},&k\equiv4,8\pmod{10},\\
+\{6,14,22\},&k\equiv6\pmod{10},
+\end{cases}
+\]
+and \[2i+\kappa\equiv k\pmod{20}.\] Choosing the representative of \(i\) sufficiently large, we may assume \(i\geq2\). Moreover, \[a_2(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(2)\pmod{25}, \qquad a_{19}(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(19)\pmod{25}.\]
+
+By Lemma~\ref{lem:weak-cyclotomic}, this packet is realized by a continuous weak character \[\lambda_{\kappa,i}:\mathbb T_{\mathrm{dc}}^{(5)}\longrightarrow\mathbf Z/25\mathbf Z\] of some weight \(K\) satisfying \[K\equiv\kappa+2i\equiv k\pmod{20}.\] Hence \[6^K\equiv6^k\pmod{25},\] so \(\lambda_{\kappa,i}\) and the Hecke character of \(f\) have the same \(t_\Lambda=[6]\)-value in the valuative coefficient quotient.
+
+By the packet selection, the two characters also agree there on \(T_2\) and \(T_{19}\). By \eqref{eq:p5-big-generation}, they agree on the whole completed prime-to-\(5\) Hecke algebra.
+Therefore \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(n)\pmod{25} \qquad((n,5)=1). \]
+
+Finally, since \(20=\varphi(25)\) and \(i\geq2\), the equivalence following Definition~\ref{def:theta-eis} gives \[\theta^{20}f\equiv_{\mathrm{val}}\theta^iG_\kappa\pmod{25}.\]
+
+Conversely, the finite computation verifies that each of the \(60\) cyclotomic packets appearing above is realized by a strong level-one eigenform. Hence the classification is exact.
+\end{proof}
+
+\section{The prime \texorpdfstring{\(7\)}{7}: classification modulo
+\texorpdfstring{\(49\)}{49}}
+\label{sec:p7}
+
+\subsection{Certified Hecke operator identities}
+
+Define \begin{equation}\begin{aligned}F_0(X)&:=X^6+7X^5+45X^4+7X^3+4X^2+7X,\\F_2(X)&:=X^6+42X^5+6X^4+9X^2+14X,\\F_4(X)&:=X^6+7X^5+47X^4+14X^3+X^2+28X.\end{aligned}\label{eq:p7-tangent-polynomials}\end{equation} Modulo \(7\), these factor as \begin{equation} \begin{aligned} F_0(X)&\equiv\bigl(X(X-3)(X-4)\bigr)^2,\\F_2(X)&\equiv\bigl(X(X-2)(X-5)\bigr)^2,\\F_4(X)&\equiv\bigl(X(X-1)(X-6)\bigr)^2 \end{aligned}\pmod7.\label{eq:p7-tangent-factorizations}\end{equation}
+
+Also put \[\{\alpha_j,\beta_j\}=\begin{cases}\{3,4\},&j=0,\\ \{2,5\},&j=2,\\ \{1,6\},&j=4, \end{cases}\qquad \mathcal C_j:=\{0,\alpha_j,\beta_j\}. \]
+
+Define \begin{equation} Q_j(X):=\frac{F_j(X)}{49}, \qquad G_j(X,Y):= \frac{Y-2-X(X-\alpha_j)(X-\beta_j)}{7}, \qquad j\in\{0,2,4\}.\label{eq:Q-G-definition} \end{equation} Finally, \[H(X) := (X^7 - X)^3.\]
+
+We first treat \(Q_{r\bmod6}(T_3)\). The computation is performed at precision \(343=7^3\). The Dickson multipliers have degrees \[ a_3=2058,\qquad b_3=392, \qquad\mbox{with}\qquad a_3+b_3=2450,\] so the exact induction base consists of the even degrees \[ 392\leq d<2450. \] For every such \(d\) and every \(0\leq q<6\), the computation \cite[\nolinkurl{classification_mod_49.ipynb}]{RustomHeckeCongruences} verifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z), \qquad \epsilon_q=(-1)^q, \] staged \(49\)-division witnesses of depth \(1\), in orientation \(q\), for \[ \bigl(F_{(d+2q)\bmod6}(T_3),H\bigr). \] These six conditions are closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}: the \(A_3\)-transition preserves \(d+2q\pmod6\), while the \(B_3\)-transition sends \[ (d,q)\longmapsto(d-392,q+1) \] and again preserves \(d+2q\pmod6\).
+
+Now fix an even residue \(r\bmod42\). The preceding transition compatibility and the same strong-induction argument as in Corollary~\ref{cor:staged-witness-propagation} propagate these witnesses to every degree \[ d\geq392, \qquad d\equiv r\pmod{42}. \] Applying Proposition~\ref{prop:staged-p-division} gives \[ Q_{r\bmod6}(T_3)\in\End_{\mathbf Z_7}(P_d^+), \qquad Q_{r\bmod6}(T_3)L_d^+\subseteq L_d^+. \] Moreover, \begin{equation} H\bigl(Q_{r\bmod6}(T_3)\bigr)P_d^+ \subseteq7P_d^+, \qquad H\bigl(Q_{r\bmod6}(T_3)\bigr)L_d^+ \subseteq7L_d^+. \label{eq:p7-Q-relations} \end{equation} The remaining degrees \[ 0\leq d<392, \qquad d\equiv r\pmod{42}, \] are verified directly. Consequently, these conclusions hold in every even degree \[ d\equiv r\pmod{42}. \]
+
+We next treat \(G_{r\bmod6}(T_3,T_{29})\).  This computation is performed at precision \(49\).  The Dickson multipliers have degrees \[ a_2=294,\qquad b_2=56, \qquad\mbox{with}\qquad a_2+b_2=350, \] so the exact induction base consists of the even degrees \[ 56\leq d<350. \] For every such \(d\) and every \(0\leq q<6\), the computation verifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/49\mathbf Z), \qquad \epsilon_q=(-1)^q, \] staged \(7\)-division witnesses of depth \(1\), in orientation \(q\), for the pair \[ \bigl( 7G_{(d+2q)\bmod6}(T_3,T_{29}),H \bigr). \] These six conditions are closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}. Hence the same strong-induction argument as in Corollary~\ref{cor:staged-witness-propagation} propagates these witnesses to every degree \[ d\geq56, \qquad d\equiv r\pmod{42}. \] Applying Proposition~\ref{prop:staged-p-division} in the untwisted orientation gives \[ G_{r\bmod6}(T_3,T_{29}) \in\End_{\mathbf Z_7}(P_d^+), \qquad G_{r\bmod6}(T_3,T_{29})L_d^+\subseteq L_d^+. \] Moreover, \begin{equation} H\bigl(G_{r\bmod6}(T_3,T_{29})\bigr)P_d^+ \subseteq7P_d^+, \qquad H\bigl(G_{r\bmod6}(T_3,T_{29})\bigr)L_d^+ \subseteq7L_d^+. \label{eq:p7-G-relations} \end{equation} The remaining degrees \[ 0\leq d<56, \qquad d\equiv r\pmod{42}, \] are verified directly. Consequently, these conclusions hold in every even degree \[ d\equiv r\pmod{42}. \]
+
+
+\subsection{Congruences for \texorpdfstring{\(a_3\)}{a3} and
+\texorpdfstring{\(a_{29}\)}{a29}}
+
+By the Eichler--Shimura comparison recalled in Section~\ref{sec:target-lattice}, choose a primitive simultaneous eigenvector \[v_f\in L_d^+\otimes_{\mathbf Z_7}\mathcal O_f\] for the prime-to-\(7\) Hecke eigensystem of \(f\).
+
+We first determine \(a_3(f)\) modulo \(7\).  Since \[Q_{r\bmod6}(T_3)=\frac{F_{r\bmod6}(T_3)}{49}\] is integral on \(L_d^+\), evaluation on \(v_f\) gives \[ F_{r\bmod6}(a_3(f))\in49\mathcal O_f. \] Reducing modulo the maximal ideal and using \eqref{eq:p7-tangent-factorizations}, there is a unique \[ c\in\mathcal C_{r\bmod6} \] such that \[ a_3(f)\equiv c\pmod{\mathfrak m_{\mathcal O_f}}. \]
+
+Write \(a_3(f)=c+y\). Direct calculation gives \[F_{r\bmod6}(c)\in49\mathbf Z_7,\qquad F'_{r\bmod6}(c)\in7\mathbf Z_7, \qquad \frac{F''_{r\bmod6}(c)}2\in\mathbf Z_7^\times. \] If \(0<v_7(y)<1\), then in the Taylor expansion of \(F_{r\bmod6}(c+y)\) the quadratic term has strictly smaller valuation than every other term, contradicting \[ F_{r\bmod6}(a_3(f))\in49\mathcal O_f. \] It follows that \begin{equation} a_3(f)-c\in7\mathcal O_f. \label{eq:p7-T3-residual} \end{equation} Since \(G_{r\bmod6}(T_3,T_{29})\) is also integral on \(L_d^+\), evaluation on \(v_f\) gives \[ a_{29}(f)-2 - a_3(f) \bigl(a_3(f)-\alpha_{r\bmod6}\bigr) \bigl(a_3(f)-\beta_{r\bmod6}\bigr) \in7\mathcal O_f. \] By \eqref{eq:p7-T3-residual}, one of the three factors in the cubic product lies in \(7\mathcal O_f\).  Hence \begin{equation} a_{29}(f)-2\in7\mathcal O_f. \label{eq:p7-T29-residual} \end{equation} 
+
+We may therefore write \begin{equation} a_3(f)=c+7x_f, \qquad a_{29}(f)=2+7y_f, \qquad x_f, y_f\in\mathcal O_f. \label{eq:p7-raw-digits} \end{equation}
+
+Put \[q_f:=Q_{r\bmod6}(a_3(f)), \qquad g_f:=G_{r\bmod6}(a_3(f),a_{29}(f)). \] By the preceding subsection, \[ q_f,g_f\in\mathcal O_f \] and \[ H(q_f),H(g_f)\in7\mathcal O_f. \] Reducing modulo the maximal ideal gives \[ \bar q_f^7=\bar q_f, \qquad \bar g_f^7=\bar g_f, \] so \[ \bar q_f,\bar g_f\in\mathbf F_7. \] 
+
+Plugging \[ a_3 = c + 7 x_f, \qquad a_{29} = 2 + 7y_f, \qquad x_f,y_f \in \cO_f, \] into \eqref{eq:Q-G-definition} and expanding, we find that
+\begin{equation}
+\begin{array}{c|c|c|c}
+r\bmod6 & c & \bar q_f & \bar g_f \\ \hline
+0 & 0
+  & 4\bar x_f^{\,2}+\bar x_f
+  & \bar y_f-5\bar x_f \\[1mm]
+0 & 3
+  & 2\bar x_f^{\,2}+2\bar x_f+3
+  & \bar y_f-4\bar x_f \\[1mm]
+0 & 4
+  & 2\bar x_f^{\,2}
+  & \bar y_f-4\bar x_f \\ \hline
+2 & 0
+  & 2\bar x_f^{\,2}+2\bar x_f
+  & \bar y_f-3\bar x_f \\[1mm]
+2 & 2
+  & \bar x_f^{\,2}+3\bar x_f+4
+  & \bar y_f-\bar x_f \\[1mm]
+2 & 5
+  & \bar x_f^{\,2}+4\bar x_f
+  & \bar y_f-\bar x_f \\ \hline
+4 & 0
+  & \bar x_f^{\,2}+4\bar x_f
+  & \bar y_f-6\bar x_f \\[1mm]
+4 & 1
+  & 4\bar x_f^{\,2}+\bar x_f+2
+  & \bar y_f-2\bar x_f \\[1mm]
+4 & 6
+  & 4\bar x_f^{\,2}+2\bar x_f+5
+  & \bar y_f-2\bar x_f.
+\end{array}\label{eq:qf-gf-xf-yf}
+\end{equation}
+
+Since $\bar q_f, \bar g_f\in \F_7$, we see that $\bar x_f, \bar y_f \in \F_{49}$. Thus these relations are already enough to prove the finiteness of the number of away-from-$7$ Hecke eigensystems in level $1$. 
+
+In order to obtain classification, we have to correlate $\bar q_f$ and $\bar g_f$. For \(c\in\mathcal C_j\), let \(E_{j,c}(X)\in\mathbf Z[X]\) be the coefficientwise lift, with coefficients in \(\{0,\ldots,6\}\), of the Lagrange polynomial \[ \prod_{c'\in\mathcal C_j\setminus\{c\}} \frac{X-c'}{c-c'}\in\mathbf F_7[X]. \] The denominators are nonzero in \(\mathbf F_7\), since
+the elements of \(\mathcal C_j\) are distinct modulo \(7\). Thus \[ E_{j,c}(a_3(f)) \equiv \begin{cases} 1\pmod{\mathfrak m_{\mathcal O_f}}, & a_3 (f)\equiv c\pmod{\mathfrak m_{\mathcal O_f}},\\ 0\pmod{\mathfrak m_{\mathcal O_f}}, & a_3(f) \equiv c'\pmod{\mathfrak m_{\mathcal O_f}} \text{ for some }c'\in\mathcal C_j\setminus\{c\}. \end{cases} \] 
+
+The classification computation is performed at precision \(343\). For every even degree \[ 392\leq d<2450 \] and every orientation \(0\leq q<6\), put \[ r\equiv d+14q\pmod{42}. \] On \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z), \qquad \epsilon_q=(-1)^q, \] the computation supplies polynomials \[ R_{r,c}^{(1)},R_{r,c}^{(2)}\in\mathbf Z_7[X,Y] \] for every \(c\in\mathcal C_{r\bmod6}\). We use the same notation for their reductions in \(\mathbf F_7[X,Y]\). For \(\nu\in\{1,2\}\), the computation verifies the staged division relation in orientation \(q\) corresponding to \[ E_{r\bmod6,c}(T_3)^6 \left[ R_{r,c}^{(\nu)}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3. \]
+
+These conditions form a periodic family closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}.  Indeed, the \(A_3\)-transition preserves \(r\), while the \(B_3\)-transition sends \[ (d,q)\longmapsto(d-392,q+1) \] and preserves \(r\) modulo \(42\), since \[ -392+14=-378\equiv0\pmod{42}. \] Consequently, the propagation results of Section~3 give, for every even degree \(d\equiv r\pmod{42}\), \[ E_{r\bmod6,c}(T_3)^6 \left[ R_{r,c}^{(\nu)}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3L_d^+ \subseteq7L_d^+. \] The remaining even degrees \(0\leq d<392\) are verified directly.
+
+We illustrate the argument on the zero branch \(c = 0\) in coefficient-degree residue \(r=0\). Since \(E_{0,0}(a_3(f))\) is a unit, it may be cancelled after evaluating the certified operator relations on \(v_f\).  After reduction modulo \(\mathfrak m_{\mathcal O_f}\), the resulting joint relations give \[ \bar q_f (\bar q_f-3)(\bar q_f-4)(\bar q_f-5)=0, \qquad \bar g_f=2\bar q_f. \] Now using the expressions for \(\bar q_f\) and \(\bar g_f\) in terms of \(\bar x_f\) and \(\bar y_f\) given in
+\eqref{eq:qf-gf-xf-yf}, we obtain \[ (\bar x_f,\bar y_f) \in \{ (0,0),(1,1),(2,4),(3,2), (4,2),(5,4),(6,1) \}. \] In particular, all possible values of \(\bar x_f\) and \(\bar y_f\) belong to \(\mathbf F_7\), even when the residue field of \(\mathcal O_f\) is larger.  Therefore, on this branch, \[ \bigl(a_3(f),a_{29}(f)\bigr) \equiv_{\mathrm{val}} \bigl(7x,\,2+7y\bigr)\pmod{49} \] for exactly the seven pairs \((x,y)\) listed above.
+
+The computation verifies the analogous calculation for every even residue \(r\bmod42\) with \(c=0\).  In each case, the common zero set of the two coordinate relations pulls back under \eqref{eq:qf-gf-xf-yf} to exactly seven pairs \[ (\bar x_f,\bar y_f)\in\mathbf F_7^2. \] These pairs are enough for exact classification on the zero branch.
+
+For the nonzero branches (i.e. \(a_3 \equiv_{\mathrm{lit}}c \pmod{7}\), \(c \neq 0\)), the relations \[ E_{r\bmod6,c}(T_3)^6 \left[ R_{r,c}^{(\nu)}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3L_d^+ \subseteq7L_d^+ \] still determine the possible pairs \((\bar q_f,\bar g_f)\), but they do not by themselves determine the correct \((\bar x_f,\bar y_f)\) corresponding to strong eigenforms. They define a set \[\mathcal T_{r,c}:= \left\{ (q,g)\in\mathbf F_7^2: R_{r,c}^{(1)}(q,g)=R_{r,c}^{(2)}(q,g)=0 \right\}. \]
+
+For every nonzero \(c\in\mathcal C_{r\bmod6}\), put formally \[ U_c:=\frac{T_3-c}{7}, \qquad V:=\frac{T_{29}-2}{7}. \] Here these expressions are used inside the staged division relations stated below; we do not require \(U_c\) or \(V\) separately to preserve \(L_d^+\). 
+
+On the same exact induction base and in the same six orientations as above, the computation verifies compatible staged division relations which propagate to every even degree \[ d\geq392, \qquad d\equiv r\pmod{42}, \] and give \[ E_{r\bmod6,c}(T_3)^6 \left[E_{r\bmod6,c}(T_3)^6 U_c -\phi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+ \] and \[E_{r\bmod6,c}(T_3)^6 \left[ E_{r\bmod6,c}(T_3)^6 V -\psi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+,\] for some affine polynomials \[ \phi_{r,c},\psi_{r,c}\in\mathbf Z_7[X,Y]. \] We use the same notation for their reductions in \(\mathbf F_7[X,Y]\). The remaining even degrees \(0\leq d<392\) are verified directly.
+
+To justify these lattice inclusions, put
+\(S_c:=E_{r\bmod6,c}(T_3)^6\).
+For \(N=T_3-c\) or \(T_{29}-2\), the first witness equation
+for the monomial \((S_cN/7)^3\), starting at \(S_cu\), gives
+\[
+S_c^2N P_d^+\subseteq7P_d^+.
+\]
+By the integrality of \(Q_{r\bmod6}(T_3)\) and
+\eqref{eq:p7-tangent-factorizations}, \(S_c\) acts on
+\(P_d^+/7P_d^+\) invertibly on the generalized
+\(c\)-eigenspace and as zero on the other generalized
+eigenspaces. Hence \(\ker S_c^2=\ker S_c\), so
+\(S_cN P_d^+\subseteq7P_d^+\).
+Thus \(S_cU_c\) and \(S_cV\) preserve \(P_d^+\), and also
+\(L_d^+\) by saturation.
+Remark~\ref{rem:joint-staged-division}, applied with starting
+vectors \(S_cu\) and division exponents \(2,1,1\), now gives
+the stated inclusions with retained precision \(7^{3-2}=7\).
+
+After evaluation on \(v_f\), put \(e_f:=E_{r\bmod6,c}(a_3(f))\). Since \(e_f\equiv1\pmod{\mathfrak m_{\mathcal O_f}}\), we may cancel the outer unit factor \(e_f^6\). Reducing modulo \(\mathfrak m_{\mathcal O_f}\), the inner factors \(e_f^6\) also reduce to \(1\), giving \[ \bar x_f=\phi_{r,c}(\bar q_f,\bar g_f), \qquad \bar y_f=\psi_{r,c}(\bar q_f,\bar g_f). \] Thus every point of \(\mathcal T_{r,c}\) determines exactly one permitted pair \((\bar x_f,\bar y_f)\). 
+
+For example, take \(r=40\) and \(c=1\). The coordinate relations give \[ \mathcal T_{40,1} = \{(0,1),(2,0),(2,3),(6,6)\}. \] The corresponding graph relations reduce to \[ \bar x_f=3\bar g_f+5, \qquad \bar y_f=3. \] Evaluating these formulas on the four points of \(\mathcal T_{40,1}\) gives \[(\bar x_f,\bar y_f) \in \{(0,3),(1,3),(2,3),(5,3)\}. \] Consequently, on this branch, \[ \bigl(a_3(f),a_{29}(f)\bigr) \equiv_{\mathrm{val}} \bigl(1+7x,\,2+7y\bigr) \pmod{49} \] for precisely these four pairs \((x,y)\).
+
+The other nonzero branch is treated in the same way. In every coefficient-degree residue, the centre-zero branch contributes seven signatures and each of the two nonzero branches contributes four, giving fifteen signatures in total. All of these signatures have coordinates in \(\mathbf Z/49\mathbf Z\).
+
+\subsection{Packet selection}
+\label{sec:p7-packet-selection}
+
+By the preceding subsection, \[ a_3(f)\equiv c\pmod{7\mathcal O_f}, \qquad a_{29}(f)\equiv2\pmod{7\mathcal O_f} \] for a unique \[ c\in\mathcal C_{r\bmod6}. \] There is a unique unordered pair \[ \{a,b\}\subset\mathbf Z/6\mathbf Z, \qquad a+b\equiv k-1\pmod6, \] such that \[ c=3^a+3^b \qquad\text{and}\qquad 2=29^a+29^b \qquad\text{in }\mathbf F_7. \]
+
+Explicitly,
+\[
+\begin{array}{c|c|c}
+r\bmod6 & c & \{a,b\}\\ \hline
+0&0&\{2,5\}\\
+0&3&\{3,4\}\\
+0&4&\{0,1\}\\ \hline
+2&0&\{0,3\}\\
+2&2&\{4,5\}\\
+2&5&\{1,2\}\\ \hline
+4&0&\{1,4\}\\
+4&1&\{2,3\}\\
+4&6&\{0,5\}.
+\end{array}
+\]
+
+Thus the residue class \(r\bmod6\), together with the value \(c\equiv a_3(f)\pmod7\), determines the residual cyclotomic packet of \(f\).  Equivalently, the pair may be written \[ \{a,b\}=\{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/6\mathbf Z, \] for suitable \[ i\in\{1,\ldots,6\}, \qquad \kappa\in\{4,8\}, \qquad \kappa+2i\equiv k\pmod6. \]
+
+\subsection{Final classification}
+
+\begin{proof}[Proof of Theorem~\ref{thm:intro-p7}]
+
+By the preceding subsections, every normalized cuspidal level-one eigenform \(f\) determines a unique signature \[ \sigma=(r,c,x,y), \qquad r\equiv k-2\pmod{42}, \qquad c\in\mathcal C_{r\bmod6}, \qquad x,y\in\mathbf Z/7\mathbf Z, \] such that \[ a_3(f)\equiv_{\mathrm{val}}c+7x\pmod{49}, \qquad a_{29}(f)\equiv_{\mathrm{val}}2+7y\pmod{49}. \] For each residue \(r\bmod42\), there are exactly \(15\) such signatures, and hence \(315\) signatures altogether.
+
+The finite computation verifies that every one of these \(315\) signatures is realized by a normalized cuspidal level-one eigenform \(g_\sigma\) of weight \(k_\sigma\leq380\), with \[ k_\sigma-2\equiv r\pmod{42}. \]
+
+If \(f\) has signature \(\sigma\), then \[ a_3(f)\equiv_{\mathrm{val}}a_3(g_\sigma)\pmod{49}, \qquad a_{29}(f)\equiv_{\mathrm{val}}a_{29}(g_\sigma)\pmod{49}, \] and \[ k_\sigma\equiv k\pmod{42}. \] Since \(3\) has order \(42\) modulo \(49\), the latter congruence gives \[ 3^{k_\sigma}\equiv3^k\pmod{49}, \] so \(f\) and \(g_\sigma\) also have the same value of the weight operator \([3]\) modulo \(49\).
+
+By Section~\ref{sec:big-hecke-p7}, \[\mathbb T_{\mathrm{dc}}^{(7)} = \overline{\mathbf Z_7[T_3,T_{29},[3]]}. \] Hence the prime-to-\(7\) Hecke eigensystems of \(f\) and \(g_\sigma\) are congruent modulo \(49\) in the valuative sense. Therefore \[ a_n(f)\equiv_{\mathrm{val}}a_n(g_\sigma)\pmod{49} \qquad ((n,7)=1). \] Consequently, only finitely many prime-to-\(7\) Hecke eigensystems occur modulo \(49\), and every such eigensystem is realized in weight at most \(380\).  In fact, the argument gives exactly \(315\) eigensystems.
+
+It remains to record their reduction modulo \(7\).  By Section~\ref{sec:p7-packet-selection}, there is a unique unordered pair \[ \{a,b\}\subset\mathbf Z/6\mathbf Z, \qquad a+b\equiv k-1\pmod6, \] such that \[ a_3(f)\equiv_{\mathrm{lit}}\Cyc_{a,b}(3)\pmod7, \qquad a_{29}(f)\equiv_{\mathrm{lit}}\Cyc_{a,b}(29)\pmod7. \] Choose \[ i\in\{1,\ldots,6\}, \qquad \kappa\in\{4,8\}, \] such that \[ \{a,b\}=\{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/6\mathbf Z. \] Then \[ \kappa+2i\equiv k\pmod6. \] 
+
+By Lemma~\ref{lem:weak-cyclotomic}, this cyclotomic packet is realized by a continuous weak character of \(\mathbb T_{\mathrm{dc}}^{(7)}\) whose weight is congruent to \(k\) modulo \(6\).  It therefore has the same \([3]\)-value as \(f\) modulo \(7\), and by packet selection it also has the same \(T_3\)- and \(T_{29}\)-values. The completed-Hecke generation above then gives \[ a_n(f)\equiv_{\mathrm{lit}}\Cyc_{a,b}(n)\pmod7 \qquad ((n,7)=1). \] Equivalently, \[ \theta^6f \equiv_{\mathrm{lit}} \theta^iG_\kappa \pmod7. \] This proves Theorem~\ref{thm:intro-p7}.
+\end{proof}
+
+\part{Applications}
+
+\section{Strong prime-to-\texorpdfstring{\(p\)}{p} weight bounds}
+\label{sec:strong-weight-bounds}
+
+In \cite[\S1.5]{KRW2016}, the finiteness conjecture for strong eigenforms modulo \(p^m\) is reformulated in terms of a strong weight bound: for fixed \(N,p,m\), one asks for a constant \(B(N,p,m)\) such that every strong eigenform of level \(N\) is congruent modulo \(p^m\) to a strong eigenform of the same level and of weight at most
+\(B(N,p,m)\).
+
+The classifications proved above concern only the prime-to-\(p\) Hecke eigensystem. We therefore introduce the corresponding prime-to-\(p\) notion. A number \(B\) is called a \emph{strong prime-to-\(p\) weight bound} for \((N,p,m)\) if every normalized characteristic-zero cuspidal eigenform \(f\) of level \(N\) is congruent modulo \(p^m\), at all Hecke operators prime to \(p\), to a normalized characteristic-zero cuspidal eigenform \(g\) of level \(N\) and weight at most \(B\). We denote the least such bound, when it exists, by \[ B^{(p)}(N,p,m). \] 
+
+It is also natural to allow cyclotomic twists. A number \(B\) is called a \emph{strong weight bound up to \(\theta\)-twist} for \((N,p,m)\) if, for every normalized characteristic-zero cuspidal eigenform \(f\) of level \(N\), there exist an integer \(i\geq0\) and a normalized characteristic-zero cuspidal eigenform \(g\) of level \(N\) and weight at most \(B\) such that \[ a_n(f)\equiv n^i a_n(g)\pmod{p^m} \qquad ((n,p)=1). \] We denote the least such bound, when it exists, by \[ B_\theta(N,p,m). \] Equivalently, the prime-to-\(p\) eigensystem of \(f\) is congruent modulo \(p^m\) to the \(\theta^i\)-twist of that of \(g\).
+
+The proved classifications above and the fixed-weight computations give the following bounds. The unmarked entries are proved and optimal; the entries marked \(\dagger\) are conjectural.
+
+%\clearpage
+\begin{table}[ht]
+\centering
+\begin{tabular}{c|r|r}
+\hline
+modulus
+&
+strong weight bound \(B\)
+&
+bound up to \(\theta\)-twist \(B_\theta\)
+\\
+\hline
+\(2\)       & \(12\)  & \(12\) \\
+\(2^2\)     & \(12\)  & \(12\) \\
+\(2^3\)     & \(12\)  & \(12\) \\
+\(2^4\)     & \(18\)  & \(12\) \\
+\(2^5\)     & \(22\)  & \(16\) \\
+\(2^6\)     & \(30\)  & \(24\) \\
+\(2^7\)     & \(46\)  & \(32\) \\
+\(2^8\)     & \(90\)  & \(62\) \\
+\(2^9\)     & \(158^{\dagger}\) & \(128^{\dagger}\) \\
+\hline
+\(3\)       & \(12\)  & \(12\) \\
+\(3^2\)     & \(32\)  & \(16\) \\
+\(3^3\)     & \(70\)  & \(24\) \\
+\(3^4\)     & \(214^{\dagger}\) & \(58^{\dagger}\) \\
+\(3^5\)     & \(646^{\dagger}\) & \(166^{\dagger}\) \\
+\hline
+\(5\)       & \(30\)  & \(12\) \\
+\(5^2\)     & \(142\) & \(24\) \\
+\(5^3\)     & \(598^{\dagger}\) & \(106^{\dagger}\) \\
+\hline
+\(7\)       & \(56\)  & \(16\) \\
+\(7^2\)     & \(380\) & \(78\) \\
+\hline
+\end{tabular}
+\caption{Strong level-one weight bounds for prime-power away-from-\(p\) congruences. The bound \(B_\theta\) means that every strong eigensystem is congruent away from \(p\) to \(\theta^i g\) for some \(i\geq0\) and some strong level-one eigenform \(g\) of weight at most \(B_\theta\). The entries marked \(\dagger\) are conjectural.}\label{tab:strong-weight-bounds}
+\end{table}
+
+The proved and conjectural values in Table~\ref{tab:strong-weight-bounds} display some suggestive patterns. For \(p=5\) and \(p=7\), the proved values at \(m=1,2\) satisfy \[ B^{(p)}(1,p,m)=(p+2)\varphi(p^m)+2. \] At the higher displayed precisions, a different uniform pattern appears: the values for \[ (p,m)=(3,3),(3,4),(3,5),(5,3) \] satisfy \[ B^{(p)}(1,p,m)=(p+1)\varphi(p^m)-2. \] Among these four values, the case \((p,m)=(3,3)\) is proved, while the other three are conjectural. The data for \(p=2\) appear less regular, although the bounds remain of the same order of magnitude as \(\varphi(2^m)\). The bounds up to \(\theta\)-twist likewise do not yet suggest a uniform formula valid for all primes and exponents. It seems premature to conjecture an exact general formula from these data, though it seems more reasonble to ask the following.
+
+\paragraph{Question.} Does there exist, for every prime \(p\), a constant \(C_p>0\) such that \[B^{(p)}(1,p,m)\leq C_p\varphi(p^m) \] for every \(m\geq1\)?
+
+\clearpage
+\appendix
+\section{Signatures modulo \texorpdfstring{\(49\)}{49}}
+\label{app:p7-signatures}
+
+For each even weight residue \(k\bmod42\), the permitted signatures are listed below. The entries \(c,x,y\) are taken in \(\{0,\ldots,6\}\), and represent the congruences \[ a_3(f)\equiv_{\mathrm{val}}c+7x\pmod{49}, \qquad a_{29}(f)\equiv_{\mathrm{val}}2+7y\pmod{49}. \]
+
+\begingroup
+\small
+\renewcommand{\arraystretch}{1.1}
+\begin{longtable}{@{}ccl@{}}
+\caption{The \(315\) permitted signatures modulo \(49\).}
+\label{tab:p7-signatures}\\
+\toprule
+\(k\bmod42\) & \(c\) & Permitted pairs \((x,y)\)\\
+\midrule
+\endfirsthead
+\multicolumn{3}{c}{\tablename\ \thetable\ (continued)}\\
+\toprule
+\(k\bmod42\) & \(c\) & Permitted pairs \((x,y)\)\\
+\midrule
+\endhead
+\midrule
+\multicolumn{3}{r}{Continued on the next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+0 & 0 & $\{(0,6), (1,1), (2,0), (3,3), (4,3), (5,0), (6,1)\}$ \\*
+ & 1 & $\{(0,3), (1,3), (2,3), (5,3)\}$ \\*
+ & 6 & $\{(1,3), (4,3), (5,3), (6,3)\}$ \\
+\addlinespace
+2 & 0 & $\{(0,0), (1,1), (2,4), (3,2), (4,2), (5,4), (6,1)\}$ \\*
+ & 3 & $\{(0,4), (1,4), (3,4), (6,4)\}$ \\*
+ & 4 & $\{(0,4), (3,4), (5,4), (6,4)\}$ \\
+\addlinespace
+4 & 0 & $\{(0,4), (1,1), (2,6), (3,5), (4,5), (5,6), (6,1)\}$ \\*
+ & 2 & $\{(0,5), (3,5), (5,5), (6,5)\}$ \\*
+ & 5 & $\{(0,5), (1,5), (3,5), (6,5)\}$ \\
+\addlinespace
+6 & 0 & $\{(0,4), (1,6), (2,5), (3,1), (4,1), (5,5), (6,6)\}$ \\*
+ & 1 & $\{(0,6), (1,6), (4,6), (6,6)\}$ \\*
+ & 6 & $\{(0,6), (2,6), (5,6), (6,6)\}$ \\
+\addlinespace
+8 & 0 & $\{(0,0), (1,1), (2,4), (3,2), (4,2), (5,4), (6,1)\}$ \\*
+ & 3 & $\{(0,0), (2,0), (5,0), (6,0)\}$ \\*
+ & 4 & $\{(0,0), (1,0), (4,0), (6,0)\}$ \\
+\addlinespace
+10 & 0 & $\{(0,6), (1,3), (2,1), (3,0), (4,0), (5,1), (6,3)\}$ \\*
+ & 2 & $\{(1,1), (2,1), (3,1), (6,1)\}$ \\*
+ & 5 & $\{(0,1), (3,1), (4,1), (5,1)\}$ \\
+\addlinespace
+12 & 0 & $\{(0,1), (1,3), (2,2), (3,5), (4,5), (5,2), (6,3)\}$ \\*
+ & 1 & $\{(0,2), (1,2), (2,2), (5,2)\}$ \\*
+ & 6 & $\{(1,2), (4,2), (5,2), (6,2)\}$ \\
+\addlinespace
+14 & 0 & $\{(0,6), (1,0), (2,3), (3,1), (4,1), (5,3), (6,0)\}$ \\*
+ & 3 & $\{(0,3), (3,3), (4,3), (5,3)\}$ \\*
+ & 4 & $\{(1,3), (2,3), (3,3), (6,3)\}$ \\
+\addlinespace
+16 & 0 & $\{(0,0), (1,4), (2,2), (3,1), (4,1), (5,2), (6,4)\}$ \\*
+ & 2 & $\{(1,4), (2,4), (3,4), (6,4)\}$ \\*
+ & 5 & $\{(0,4), (3,4), (4,4), (5,4)\}$ \\
+\addlinespace
+18 & 0 & $\{(0,4), (1,6), (2,5), (3,1), (4,1), (5,5), (6,6)\}$ \\*
+ & 1 & $\{(1,5), (3,5), (4,5), (5,5)\}$ \\*
+ & 6 & $\{(1,5), (2,5), (3,5), (5,5)\}$ \\
+\addlinespace
+20 & 0 & $\{(0,4), (1,5), (2,1), (3,6), (4,6), (5,1), (6,5)\}$ \\*
+ & 3 & $\{(0,6), (1,6), (2,6), (4,6)\}$ \\*
+ & 4 & $\{(2,6), (4,6), (5,6), (6,6)\}$ \\
+\addlinespace
+22 & 0 & $\{(0,0), (1,4), (2,2), (3,1), (4,1), (5,2), (6,4)\}$ \\*
+ & 2 & $\{(0,0), (3,0), (5,0), (6,0)\}$ \\*
+ & 5 & $\{(0,0), (1,0), (3,0), (6,0)\}$ \\
+\addlinespace
+24 & 0 & $\{(0,6), (1,1), (2,0), (3,3), (4,3), (5,0), (6,1)\}$ \\*
+ & 1 & $\{(1,1), (2,1), (3,1), (6,1)\}$ \\*
+ & 6 & $\{(0,1), (3,1), (4,1), (5,1)\}$ \\
+\addlinespace
+26 & 0 & $\{(0,1), (1,2), (2,5), (3,3), (4,3), (5,5), (6,2)\}$ \\*
+ & 3 & $\{(0,2), (3,2), (4,2), (5,2)\}$ \\*
+ & 4 & $\{(1,2), (2,2), (3,2), (6,2)\}$ \\
+\addlinespace
+28 & 0 & $\{(0,6), (1,3), (2,1), (3,0), (4,0), (5,1), (6,3)\}$ \\*
+ & 2 & $\{(0,3), (1,3), (4,3), (6,3)\}$ \\*
+ & 5 & $\{(0,3), (2,3), (5,3), (6,3)\}$ \\
+\addlinespace
+30 & 0 & $\{(0,0), (1,2), (2,1), (3,4), (4,4), (5,1), (6,2)\}$ \\*
+ & 1 & $\{(1,4), (2,4), (3,4), (6,4)\}$ \\*
+ & 6 & $\{(0,4), (3,4), (4,4), (5,4)\}$ \\
+\addlinespace
+32 & 0 & $\{(0,4), (1,5), (2,1), (3,6), (4,6), (5,1), (6,5)\}$ \\*
+ & 3 & $\{(0,5), (2,5), (5,5), (6,5)\}$ \\*
+ & 4 & $\{(0,5), (1,5), (4,5), (6,5)\}$ \\
+\addlinespace
+34 & 0 & $\{(0,4), (1,1), (2,6), (3,5), (4,5), (5,6), (6,1)\}$ \\*
+ & 2 & $\{(2,6), (4,6), (5,6), (6,6)\}$ \\*
+ & 5 & $\{(0,6), (1,6), (2,6), (4,6)\}$ \\
+\addlinespace
+36 & 0 & $\{(0,0), (1,2), (2,1), (3,4), (4,4), (5,1), (6,2)\}$ \\*
+ & 1 & $\{(1,0), (3,0), (4,0), (5,0)\}$ \\*
+ & 6 & $\{(1,0), (2,0), (3,0), (5,0)\}$ \\
+\addlinespace
+38 & 0 & $\{(0,6), (1,0), (2,3), (3,1), (4,1), (5,3), (6,0)\}$ \\*
+ & 3 & $\{(0,1), (1,1), (3,1), (6,1)\}$ \\*
+ & 4 & $\{(0,1), (3,1), (5,1), (6,1)\}$ \\
+\addlinespace
+40 & 0 & $\{(0,1), (1,5), (2,3), (3,2), (4,2), (5,3), (6,5)\}$ \\*
+ & 2 & $\{(0,2), (1,2), (4,2), (6,2)\}$ \\*
+ & 5 & $\{(0,2), (2,2), (5,2), (6,2)\}$ \\
+\end{longtable}
+\endgroup
+
+\clearpage
+\begin{thebibliography}{99}
+
+\bibitem[BK15]{BellaicheKhare2015}
+J.~Bella\"iche and C.~Khare,
+\emph{Level \(1\) Hecke algebras of modular forms modulo \(p\)},
+Compos. Math. \textbf{151} (2015), no.~3, 397--415,
+\url{https://doi.org/10.1112/S0010437X1400774X}.
+
+\bibitem[CE04]{CalegariEmerton2004}
+F.~Calegari and M.~Emerton,
+\emph{The Hecke algebra \(T_k\) has large index},
+Math. Res. Lett. \textbf{11} (2004), no.~1, 125--137,
+\url{https://doi.org/10.4310/MRL.2004.v11.n1.a12}.
+
+\bibitem[CKW13]{CKW2013}
+I.~Chen, I.~Kiming, and G.~Wiese,
+\emph{On modular Galois representations modulo prime powers},
+International Journal of Number Theory \textbf{9} (2013), no.~1,
+91--113,
+\url{https://arxiv.org/abs/1105.1918}.
+
+\bibitem[CS04]{ColemanStein2004}
+R.~F. Coleman and W.~A. Stein,
+\emph{Approximation of eigenforms of infinite slope by eigenforms of
+finite slope},
+in \emph{Geometric Aspects of Dwork Theory}, vol.~I,
+de Gruyter, 2004, 437--449, especially \S3.2,
+Conjecture~3.4, pp.~443--444,
+\url{https://wstein.org/papers/padictwist/padictwist_v15.pdf}.
+
+\bibitem[Hat79]{Hatada1979}
+K.~Hatada,
+\emph{Eigenvalues of Hecke operators on \(\mathrm{SL}(2,\Z)\)},
+Math. Ann. \textbf{239} (1979), no.~1, 75--96,
+especially the Theorem, congruence~(5), p.~75,
+\url{https://doi.org/10.1007/BF01420494}.
+
+\bibitem[Hat81]{Hatada1981}
+K.~Hatada,
+\emph{Congruences for eigenvalues of Hecke operators on
+\(\mathrm{SL}_2(\Z)\)},
+Manuscripta Math. \textbf{34} (1981), 305--326.
+
+\bibitem[Kat75a]{Katz1975a}
+N.~M. Katz,
+\emph{Higher congruences between modular forms},
+Ann. of Math. (2) \textbf{101} (1975), no.~2, 332--367.
+
+\bibitem[Kat75b]{Katz1975b}
+N.~M. Katz,
+\emph{p-adic L-functions via moduli of elliptic curves},
+in \emph{Algebraic Geometry (Arcata, 1974)},
+Proc. Sympos. Pure Math. \textbf{29}, Amer. Math. Soc., 1975, 479--506.
+
+\bibitem[KRW16]{KRW2016}
+I.~Kiming, N.~Rustom, and G.~Wiese,
+\emph{On certain finiteness questions in the arithmetic of modular forms},
+J. Lond. Math. Soc. (2) \textbf{94} (2016), no.~2, 479--502,
+\url{https://doi.org/10.1112/jlms/jdw045}.
+
+\bibitem[Mer94]{Merel1994}
+L.~Merel,
+\emph{Universal Fourier expansions of modular forms},
+in \emph{On Artin's Conjecture for Odd \(2\)-Dimensional
+Representations}, Lecture Notes in Math. 1585, Springer, 1994, 59--94,
+especially Theorems~2, 3, and~4 and Propositions~5, 6, 10, 11, and~20,
+\url{https://doi.org/10.1007/BFb0074110}.
+
+\bibitem[Med15]{Medvedovsky2015}
+A.~Medvedovsky,
+\emph{Lower bounds on dimensions of mod-\(p\) Hecke algebras:
+the nilpotence method},
+Ph.D. thesis, Brandeis University, 2015; updated manuscript dated
+May~6, 2016,
+\url{https://people.mpim-bonn.mpg.de/medved/Mathwriting/MedvedovskyDissertation.pdf}.
+
+\bibitem[Rus19]{Rustom2019}
+N.~Rustom,
+\emph{Congruences modulo prime powers of Hecke eigenvalues in level \(1\)},
+Res. Number Theory \textbf{5} (2019), article 10, 27 pp.,
+\url{https://doi.org/10.1007/s40993-018-0147-5}.
+
+\bibitem[Rus26]{RustomHeckeCongruences}
+N.~Rustom,
+\emph{Hecke congruences: computational software and data},
+GitHub repository, 2026,
+\url{https://github.com/nrustom/hecke-congruences}.
+
+\bibitem[Ser73]{Serre1973}
+J.-P.~Serre,
+\emph{Formes modulaires et fonctions z\^eta \(p\)-adiques},
+in \emph{Modular Functions of One Variable III},
+Lecture Notes in Math. 350, Springer, 1973, 191--268.
+
+\bibitem[Wie09]{WieseModularSymbols}
+G.~Wiese,
+\emph{On modular symbols and the cohomology of Hecke triangle surfaces},
+Int. J. Number Theory \textbf{5} (2009), no.~1, 89--108,
+\url{https://doi.org/10.1142/S1793042109001967}.
+
+\bibitem[Joc82]{Jochnowitz1982}
+N.~Jochnowitz,
+\emph{Congruences between systems of eigenvalues of modular forms},
+Trans. Amer. Math. Soc. \textbf{270} (1982), no.~1, 269--285,
+\url{https://doi.org/10.1090/S0002-9947-1982-0642341-2}.
+
+\bibitem[Hat77a]{Hatada1977a} K.~Hatada, \emph{On the divisibility by \(2\) of the eigenvalues of Hecke operators}, Proc. Japan Acad. Ser. A Math. Sci. \textbf{53} (1977), no.~1, 37--40. 
+
+\bibitem[Hat77b]{Hatada1977b} K.~Hatada, \emph{Congruences of the eigenvalues of Hecke operators}, Proc. Japan Acad. Ser. A Math. Sci. \textbf{53} (1977), no.~4, 125--128.
+
+\bibitem[Ste87]{Steinberg1987}
+R.~Steinberg,
+\emph{On Dickson's theorem on invariants},
+J. Fac. Sci. Univ. Tokyo Sect. IA Math. \textbf{34} (1987), no.~3,
+699--707.
+
+\end{thebibliography}
+
+\end{document}

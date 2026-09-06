@@ -1,0 +1,3044 @@
+{
+  "schema": "hecke.strong-signature-summary.v1",
+  "prime": 2,
+  "exponent": 9,
+  "hecke_indices": [
+    3,
+    5
+  ],
+  "maximum_weight": 414,
+  "completed_weights": [
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    16,
+    18,
+    20,
+    22,
+    24,
+    26,
+    28,
+    30,
+    32,
+    34,
+    36,
+    38,
+    40,
+    42,
+    44,
+    46,
+    48,
+    50,
+    52,
+    54,
+    56,
+    58,
+    60,
+    62,
+    64,
+    66,
+    68,
+    70,
+    72,
+    74,
+    76,
+    78,
+    80,
+    82,
+    84,
+    86,
+    88,
+    90,
+    92,
+    94,
+    96,
+    98,
+    100,
+    102,
+    104,
+    106,
+    108,
+    110,
+    112,
+    114,
+    116,
+    118,
+    120,
+    122,
+    124,
+    126,
+    128,
+    130,
+    132,
+    134,
+    136,
+    138,
+    140,
+    142,
+    144,
+    146,
+    148,
+    150,
+    152,
+    154,
+    156,
+    158,
+    160,
+    162,
+    164,
+    166,
+    168,
+    170,
+    172,
+    174,
+    176,
+    178,
+    180,
+    182,
+    184,
+    186,
+    188,
+    190,
+    192,
+    194,
+    196,
+    198,
+    200,
+    202,
+    204,
+    206,
+    208,
+    210,
+    212,
+    214,
+    216,
+    218,
+    220,
+    222,
+    224,
+    226,
+    228,
+    230,
+    232,
+    234,
+    236,
+    238,
+    240,
+    242,
+    244,
+    246,
+    248,
+    250,
+    252,
+    254,
+    256,
+    258,
+    260,
+    262,
+    264,
+    266,
+    268,
+    270,
+    272,
+    274,
+    276,
+    278,
+    280,
+    282,
+    284,
+    286,
+    288,
+    290,
+    292,
+    294,
+    296,
+    298,
+    300,
+    302,
+    304,
+    306,
+    308,
+    310,
+    312,
+    314,
+    316,
+    318,
+    320,
+    322,
+    324,
+    326,
+    328,
+    330,
+    332,
+    334,
+    336,
+    338,
+    340,
+    342,
+    344,
+    346,
+    348,
+    350,
+    352,
+    354,
+    356,
+    358,
+    360,
+    362,
+    364,
+    366,
+    368,
+    370,
+    372,
+    374,
+    376,
+    378,
+    380,
+    382,
+    384,
+    386,
+    388,
+    390,
+    392,
+    394,
+    396,
+    398,
+    400,
+    402,
+    404,
+    406,
+    408,
+    410,
+    412,
+    414
+  ],
+  "bounded_scan_complete": true,
+  "rational_signatures": [
+    {
+      "weight": 12,
+      "weight_residue": 12,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_12.json",
+      "eigenvalue_residues": [
+        "252",
+        "222"
+      ]
+    },
+    {
+      "weight": 16,
+      "weight_residue": 16,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_16.json",
+      "eigenvalue_residues": [
+        "236",
+        "398"
+      ]
+    },
+    {
+      "weight": 18,
+      "weight_residue": 18,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_18.json",
+      "eigenvalue_residues": [
+        "324",
+        "198"
+      ]
+    },
+    {
+      "weight": 20,
+      "weight_residue": 20,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_20.json",
+      "eigenvalue_residues": [
+        "476",
+        "318"
+      ]
+    },
+    {
+      "weight": 22,
+      "weight_residue": 22,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_22.json",
+      "eigenvalue_residues": [
+        "180",
+        "246"
+      ]
+    },
+    {
+      "weight": 24,
+      "weight_residue": 24,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_24.json",
+      "eigenvalue_residues": [
+        "76",
+        "494"
+      ]
+    },
+    {
+      "weight": 24,
+      "weight_residue": 24,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_24.json",
+      "eigenvalue_residues": [
+        "460",
+        "494"
+      ]
+    },
+    {
+      "weight": 26,
+      "weight_residue": 26,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_26.json",
+      "eigenvalue_residues": [
+        "292",
+        "38"
+      ]
+    },
+    {
+      "weight": 28,
+      "weight_residue": 28,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_28.json",
+      "eigenvalue_residues": [
+        "188",
+        "414"
+      ]
+    },
+    {
+      "weight": 30,
+      "weight_residue": 30,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_30.json",
+      "eigenvalue_residues": [
+        "148",
+        "86"
+      ]
+    },
+    {
+      "weight": 32,
+      "weight_residue": 32,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_32.json",
+      "eigenvalue_residues": [
+        "172",
+        "78"
+      ]
+    },
+    {
+      "weight": 32,
+      "weight_residue": 32,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_32.json",
+      "eigenvalue_residues": [
+        "44",
+        "78"
+      ]
+    },
+    {
+      "weight": 34,
+      "weight_residue": 34,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_34.json",
+      "eigenvalue_residues": [
+        "260",
+        "390"
+      ]
+    },
+    {
+      "weight": 34,
+      "weight_residue": 34,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_34.json",
+      "eigenvalue_residues": [
+        "388",
+        "390"
+      ]
+    },
+    {
+      "weight": 36,
+      "weight_residue": 36,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_36.json",
+      "eigenvalue_residues": [
+        "412",
+        "510"
+      ]
+    },
+    {
+      "weight": 36,
+      "weight_residue": 36,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_36.json",
+      "eigenvalue_residues": [
+        "156",
+        "510"
+      ]
+    },
+    {
+      "weight": 38,
+      "weight_residue": 38,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_38.json",
+      "eigenvalue_residues": [
+        "116",
+        "438"
+      ]
+    },
+    {
+      "weight": 38,
+      "weight_residue": 38,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_38.json",
+      "eigenvalue_residues": [
+        "372",
+        "438"
+      ]
+    },
+    {
+      "weight": 40,
+      "weight_residue": 40,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_40.json",
+      "eigenvalue_residues": [
+        "396",
+        "174"
+      ]
+    },
+    {
+      "weight": 40,
+      "weight_residue": 40,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_40.json",
+      "eigenvalue_residues": [
+        "12",
+        "174"
+      ]
+    },
+    {
+      "weight": 42,
+      "weight_residue": 42,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_42.json",
+      "eigenvalue_residues": [
+        "228",
+        "230"
+      ]
+    },
+    {
+      "weight": 42,
+      "weight_residue": 42,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_42.json",
+      "eigenvalue_residues": [
+        "100",
+        "230"
+      ]
+    },
+    {
+      "weight": 44,
+      "weight_residue": 44,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_44.json",
+      "eigenvalue_residues": [
+        "124",
+        "94"
+      ]
+    },
+    {
+      "weight": 44,
+      "weight_residue": 44,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_44.json",
+      "eigenvalue_residues": [
+        "380",
+        "94"
+      ]
+    },
+    {
+      "weight": 46,
+      "weight_residue": 46,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_46.json",
+      "eigenvalue_residues": [
+        "84",
+        "278"
+      ]
+    },
+    {
+      "weight": 46,
+      "weight_residue": 46,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_46.json",
+      "eigenvalue_residues": [
+        "340",
+        "278"
+      ]
+    },
+    {
+      "weight": 48,
+      "weight_residue": 48,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_48.json",
+      "eigenvalue_residues": [
+        "492",
+        "270"
+      ]
+    },
+    {
+      "weight": 48,
+      "weight_residue": 48,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_48.json",
+      "eigenvalue_residues": [
+        "108",
+        "270"
+      ]
+    },
+    {
+      "weight": 50,
+      "weight_residue": 50,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_50.json",
+      "eigenvalue_residues": [
+        "196",
+        "70"
+      ]
+    },
+    {
+      "weight": 50,
+      "weight_residue": 50,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_50.json",
+      "eigenvalue_residues": [
+        "324",
+        "70"
+      ]
+    },
+    {
+      "weight": 52,
+      "weight_residue": 52,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_52.json",
+      "eigenvalue_residues": [
+        "348",
+        "190"
+      ]
+    },
+    {
+      "weight": 52,
+      "weight_residue": 52,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_52.json",
+      "eigenvalue_residues": [
+        "92",
+        "190"
+      ]
+    },
+    {
+      "weight": 54,
+      "weight_residue": 54,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_54.json",
+      "eigenvalue_residues": [
+        "308",
+        "118"
+      ]
+    },
+    {
+      "weight": 54,
+      "weight_residue": 54,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_54.json",
+      "eigenvalue_residues": [
+        "52",
+        "118"
+      ]
+    },
+    {
+      "weight": 56,
+      "weight_residue": 56,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_56.json",
+      "eigenvalue_residues": [
+        "460",
+        "366"
+      ]
+    },
+    {
+      "weight": 56,
+      "weight_residue": 56,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_56.json",
+      "eigenvalue_residues": [
+        "332",
+        "366"
+      ]
+    },
+    {
+      "weight": 58,
+      "weight_residue": 58,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_58.json",
+      "eigenvalue_residues": [
+        "164",
+        "422"
+      ]
+    },
+    {
+      "weight": 58,
+      "weight_residue": 58,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_58.json",
+      "eigenvalue_residues": [
+        "36",
+        "422"
+      ]
+    },
+    {
+      "weight": 60,
+      "weight_residue": 60,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_60.json",
+      "eigenvalue_residues": [
+        "60",
+        "286"
+      ]
+    },
+    {
+      "weight": 60,
+      "weight_residue": 60,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_60.json",
+      "eigenvalue_residues": [
+        "316",
+        "286"
+      ]
+    },
+    {
+      "weight": 62,
+      "weight_residue": 62,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_62.json",
+      "eigenvalue_residues": [
+        "20",
+        "470"
+      ]
+    },
+    {
+      "weight": 62,
+      "weight_residue": 62,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_62.json",
+      "eigenvalue_residues": [
+        "276",
+        "470"
+      ]
+    },
+    {
+      "weight": 64,
+      "weight_residue": 64,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_64.json",
+      "eigenvalue_residues": [
+        "44",
+        "462"
+      ]
+    },
+    {
+      "weight": 64,
+      "weight_residue": 64,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_64.json",
+      "eigenvalue_residues": [
+        "428",
+        "462"
+      ]
+    },
+    {
+      "weight": 66,
+      "weight_residue": 66,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_66.json",
+      "eigenvalue_residues": [
+        "260",
+        "262"
+      ]
+    },
+    {
+      "weight": 66,
+      "weight_residue": 66,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_66.json",
+      "eigenvalue_residues": [
+        "132",
+        "262"
+      ]
+    },
+    {
+      "weight": 68,
+      "weight_residue": 68,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_68.json",
+      "eigenvalue_residues": [
+        "284",
+        "382"
+      ]
+    },
+    {
+      "weight": 68,
+      "weight_residue": 68,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_68.json",
+      "eigenvalue_residues": [
+        "28",
+        "382"
+      ]
+    },
+    {
+      "weight": 70,
+      "weight_residue": 70,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_70.json",
+      "eigenvalue_residues": [
+        "244",
+        "310"
+      ]
+    },
+    {
+      "weight": 70,
+      "weight_residue": 70,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_70.json",
+      "eigenvalue_residues": [
+        "500",
+        "310"
+      ]
+    },
+    {
+      "weight": 72,
+      "weight_residue": 72,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_72.json",
+      "eigenvalue_residues": [
+        "268",
+        "46"
+      ]
+    },
+    {
+      "weight": 72,
+      "weight_residue": 72,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_72.json",
+      "eigenvalue_residues": [
+        "396",
+        "46"
+      ]
+    },
+    {
+      "weight": 74,
+      "weight_residue": 74,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_74.json",
+      "eigenvalue_residues": [
+        "484",
+        "102"
+      ]
+    },
+    {
+      "weight": 74,
+      "weight_residue": 74,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_74.json",
+      "eigenvalue_residues": [
+        "100",
+        "102"
+      ]
+    },
+    {
+      "weight": 76,
+      "weight_residue": 76,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_76.json",
+      "eigenvalue_residues": [
+        "252",
+        "478"
+      ]
+    },
+    {
+      "weight": 76,
+      "weight_residue": 76,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_76.json",
+      "eigenvalue_residues": [
+        "508",
+        "478"
+      ]
+    },
+    {
+      "weight": 78,
+      "weight_residue": 78,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_78.json",
+      "eigenvalue_residues": [
+        "468",
+        "150"
+      ]
+    },
+    {
+      "weight": 78,
+      "weight_residue": 78,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_78.json",
+      "eigenvalue_residues": [
+        "212",
+        "150"
+      ]
+    },
+    {
+      "weight": 80,
+      "weight_residue": 80,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_80.json",
+      "eigenvalue_residues": [
+        "364",
+        "142"
+      ]
+    },
+    {
+      "weight": 80,
+      "weight_residue": 80,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_80.json",
+      "eigenvalue_residues": [
+        "492",
+        "142"
+      ]
+    },
+    {
+      "weight": 82,
+      "weight_residue": 82,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_82.json",
+      "eigenvalue_residues": [
+        "68",
+        "454"
+      ]
+    },
+    {
+      "weight": 82,
+      "weight_residue": 82,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_82.json",
+      "eigenvalue_residues": [
+        "196",
+        "454"
+      ]
+    },
+    {
+      "weight": 84,
+      "weight_residue": 84,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_84.json",
+      "eigenvalue_residues": [
+        "220",
+        "62"
+      ]
+    },
+    {
+      "weight": 84,
+      "weight_residue": 84,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_84.json",
+      "eigenvalue_residues": [
+        "476",
+        "62"
+      ]
+    },
+    {
+      "weight": 86,
+      "weight_residue": 86,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_86.json",
+      "eigenvalue_residues": [
+        "180",
+        "502"
+      ]
+    },
+    {
+      "weight": 86,
+      "weight_residue": 86,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_86.json",
+      "eigenvalue_residues": [
+        "436",
+        "502"
+      ]
+    },
+    {
+      "weight": 88,
+      "weight_residue": 88,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_88.json",
+      "eigenvalue_residues": [
+        "332",
+        "238"
+      ]
+    },
+    {
+      "weight": 88,
+      "weight_residue": 88,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_88.json",
+      "eigenvalue_residues": [
+        "204",
+        "238"
+      ]
+    },
+    {
+      "weight": 90,
+      "weight_residue": 90,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_90.json",
+      "eigenvalue_residues": [
+        "36",
+        "294"
+      ]
+    },
+    {
+      "weight": 90,
+      "weight_residue": 90,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_90.json",
+      "eigenvalue_residues": [
+        "420",
+        "294"
+      ]
+    },
+    {
+      "weight": 92,
+      "weight_residue": 92,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_92.json",
+      "eigenvalue_residues": [
+        "444",
+        "158"
+      ]
+    },
+    {
+      "weight": 92,
+      "weight_residue": 92,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_92.json",
+      "eigenvalue_residues": [
+        "188",
+        "158"
+      ]
+    },
+    {
+      "weight": 94,
+      "weight_residue": 94,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_94.json",
+      "eigenvalue_residues": [
+        "148",
+        "342"
+      ]
+    },
+    {
+      "weight": 94,
+      "weight_residue": 94,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_94.json",
+      "eigenvalue_residues": [
+        "404",
+        "342"
+      ]
+    },
+    {
+      "weight": 96,
+      "weight_residue": 96,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_96.json",
+      "eigenvalue_residues": [
+        "428",
+        "334"
+      ]
+    },
+    {
+      "weight": 96,
+      "weight_residue": 96,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_96.json",
+      "eigenvalue_residues": [
+        "300",
+        "334"
+      ]
+    },
+    {
+      "weight": 98,
+      "weight_residue": 98,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_98.json",
+      "eigenvalue_residues": [
+        "4",
+        "134"
+      ]
+    },
+    {
+      "weight": 98,
+      "weight_residue": 98,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_98.json",
+      "eigenvalue_residues": [
+        "132",
+        "134"
+      ]
+    },
+    {
+      "weight": 100,
+      "weight_residue": 100,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_100.json",
+      "eigenvalue_residues": [
+        "156",
+        "254"
+      ]
+    },
+    {
+      "weight": 100,
+      "weight_residue": 100,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_100.json",
+      "eigenvalue_residues": [
+        "412",
+        "254"
+      ]
+    },
+    {
+      "weight": 102,
+      "weight_residue": 102,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_102.json",
+      "eigenvalue_residues": [
+        "372",
+        "182"
+      ]
+    },
+    {
+      "weight": 102,
+      "weight_residue": 102,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_102.json",
+      "eigenvalue_residues": [
+        "116",
+        "182"
+      ]
+    },
+    {
+      "weight": 104,
+      "weight_residue": 104,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_104.json",
+      "eigenvalue_residues": [
+        "140",
+        "430"
+      ]
+    },
+    {
+      "weight": 104,
+      "weight_residue": 104,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_104.json",
+      "eigenvalue_residues": [
+        "268",
+        "430"
+      ]
+    },
+    {
+      "weight": 106,
+      "weight_residue": 106,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_106.json",
+      "eigenvalue_residues": [
+        "356",
+        "486"
+      ]
+    },
+    {
+      "weight": 106,
+      "weight_residue": 106,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_106.json",
+      "eigenvalue_residues": [
+        "484",
+        "486"
+      ]
+    },
+    {
+      "weight": 108,
+      "weight_residue": 108,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_108.json",
+      "eigenvalue_residues": [
+        "124",
+        "350"
+      ]
+    },
+    {
+      "weight": 108,
+      "weight_residue": 108,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_108.json",
+      "eigenvalue_residues": [
+        "380",
+        "350"
+      ]
+    },
+    {
+      "weight": 110,
+      "weight_residue": 110,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_110.json",
+      "eigenvalue_residues": [
+        "84",
+        "22"
+      ]
+    },
+    {
+      "weight": 110,
+      "weight_residue": 110,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_110.json",
+      "eigenvalue_residues": [
+        "340",
+        "22"
+      ]
+    },
+    {
+      "weight": 112,
+      "weight_residue": 112,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_112.json",
+      "eigenvalue_residues": [
+        "364",
+        "14"
+      ]
+    },
+    {
+      "weight": 112,
+      "weight_residue": 112,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_112.json",
+      "eigenvalue_residues": [
+        "236",
+        "14"
+      ]
+    },
+    {
+      "weight": 114,
+      "weight_residue": 114,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_114.json",
+      "eigenvalue_residues": [
+        "452",
+        "326"
+      ]
+    },
+    {
+      "weight": 114,
+      "weight_residue": 114,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_114.json",
+      "eigenvalue_residues": [
+        "68",
+        "326"
+      ]
+    },
+    {
+      "weight": 116,
+      "weight_residue": 116,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_116.json",
+      "eigenvalue_residues": [
+        "92",
+        "446"
+      ]
+    },
+    {
+      "weight": 116,
+      "weight_residue": 116,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_116.json",
+      "eigenvalue_residues": [
+        "348",
+        "446"
+      ]
+    },
+    {
+      "weight": 118,
+      "weight_residue": 118,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_118.json",
+      "eigenvalue_residues": [
+        "308",
+        "374"
+      ]
+    },
+    {
+      "weight": 118,
+      "weight_residue": 118,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_118.json",
+      "eigenvalue_residues": [
+        "52",
+        "374"
+      ]
+    },
+    {
+      "weight": 120,
+      "weight_residue": 120,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_120.json",
+      "eigenvalue_residues": [
+        "76",
+        "110"
+      ]
+    },
+    {
+      "weight": 120,
+      "weight_residue": 120,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_120.json",
+      "eigenvalue_residues": [
+        "204",
+        "110"
+      ]
+    },
+    {
+      "weight": 122,
+      "weight_residue": 122,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_122.json",
+      "eigenvalue_residues": [
+        "420",
+        "166"
+      ]
+    },
+    {
+      "weight": 122,
+      "weight_residue": 122,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_122.json",
+      "eigenvalue_residues": [
+        "292",
+        "166"
+      ]
+    },
+    {
+      "weight": 124,
+      "weight_residue": 124,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_124.json",
+      "eigenvalue_residues": [
+        "316",
+        "30"
+      ]
+    },
+    {
+      "weight": 124,
+      "weight_residue": 124,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_124.json",
+      "eigenvalue_residues": [
+        "60",
+        "30"
+      ]
+    },
+    {
+      "weight": 126,
+      "weight_residue": 126,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_126.json",
+      "eigenvalue_residues": [
+        "20",
+        "214"
+      ]
+    },
+    {
+      "weight": 126,
+      "weight_residue": 126,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_126.json",
+      "eigenvalue_residues": [
+        "276",
+        "214"
+      ]
+    },
+    {
+      "weight": 128,
+      "weight_residue": 128,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_128.json",
+      "eigenvalue_residues": [
+        "300",
+        "206"
+      ]
+    },
+    {
+      "weight": 128,
+      "weight_residue": 128,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_128.json",
+      "eigenvalue_residues": [
+        "172",
+        "206"
+      ]
+    },
+    {
+      "weight": 130,
+      "weight_residue": 130,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_130.json",
+      "eigenvalue_residues": [
+        "388",
+        "6"
+      ]
+    },
+    {
+      "weight": 130,
+      "weight_residue": 130,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_130.json",
+      "eigenvalue_residues": [
+        "4",
+        "6"
+      ]
+    },
+    {
+      "weight": 132,
+      "weight_residue": 132,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_132.json",
+      "eigenvalue_residues": [
+        "28",
+        "126"
+      ]
+    },
+    {
+      "weight": 132,
+      "weight_residue": 132,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_132.json",
+      "eigenvalue_residues": [
+        "284",
+        "126"
+      ]
+    },
+    {
+      "weight": 134,
+      "weight_residue": 134,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_134.json",
+      "eigenvalue_residues": [
+        "244",
+        "54"
+      ]
+    },
+    {
+      "weight": 134,
+      "weight_residue": 134,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_134.json",
+      "eigenvalue_residues": [
+        "500",
+        "54"
+      ]
+    },
+    {
+      "weight": 136,
+      "weight_residue": 136,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_136.json",
+      "eigenvalue_residues": [
+        "140",
+        "302"
+      ]
+    },
+    {
+      "weight": 136,
+      "weight_residue": 136,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_136.json",
+      "eigenvalue_residues": [
+        "12",
+        "302"
+      ]
+    },
+    {
+      "weight": 138,
+      "weight_residue": 138,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_138.json",
+      "eigenvalue_residues": [
+        "356",
+        "358"
+      ]
+    },
+    {
+      "weight": 138,
+      "weight_residue": 138,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_138.json",
+      "eigenvalue_residues": [
+        "228",
+        "358"
+      ]
+    },
+    {
+      "weight": 140,
+      "weight_residue": 140,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_140.json",
+      "eigenvalue_residues": [
+        "252",
+        "222"
+      ]
+    },
+    {
+      "weight": 140,
+      "weight_residue": 140,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_140.json",
+      "eigenvalue_residues": [
+        "508",
+        "222"
+      ]
+    },
+    {
+      "weight": 142,
+      "weight_residue": 142,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_142.json",
+      "eigenvalue_residues": [
+        "212",
+        "406"
+      ]
+    },
+    {
+      "weight": 142,
+      "weight_residue": 142,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_142.json",
+      "eigenvalue_residues": [
+        "468",
+        "406"
+      ]
+    },
+    {
+      "weight": 144,
+      "weight_residue": 144,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_144.json",
+      "eigenvalue_residues": [
+        "236",
+        "398"
+      ]
+    },
+    {
+      "weight": 144,
+      "weight_residue": 144,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_144.json",
+      "eigenvalue_residues": [
+        "108",
+        "398"
+      ]
+    },
+    {
+      "weight": 146,
+      "weight_residue": 146,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_146.json",
+      "eigenvalue_residues": [
+        "452",
+        "198"
+      ]
+    },
+    {
+      "weight": 146,
+      "weight_residue": 146,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_146.json",
+      "eigenvalue_residues": [
+        "324",
+        "198"
+      ]
+    },
+    {
+      "weight": 148,
+      "weight_residue": 148,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_148.json",
+      "eigenvalue_residues": [
+        "220",
+        "318"
+      ]
+    },
+    {
+      "weight": 148,
+      "weight_residue": 148,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_148.json",
+      "eigenvalue_residues": [
+        "476",
+        "318"
+      ]
+    },
+    {
+      "weight": 150,
+      "weight_residue": 150,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_150.json",
+      "eigenvalue_residues": [
+        "180",
+        "246"
+      ]
+    },
+    {
+      "weight": 150,
+      "weight_residue": 150,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_150.json",
+      "eigenvalue_residues": [
+        "436",
+        "246"
+      ]
+    },
+    {
+      "weight": 152,
+      "weight_residue": 152,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_152.json",
+      "eigenvalue_residues": [
+        "76",
+        "494"
+      ]
+    },
+    {
+      "weight": 152,
+      "weight_residue": 152,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_152.json",
+      "eigenvalue_residues": [
+        "460",
+        "494"
+      ]
+    },
+    {
+      "weight": 154,
+      "weight_residue": 154,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_154.json",
+      "eigenvalue_residues": [
+        "164",
+        "38"
+      ]
+    },
+    {
+      "weight": 154,
+      "weight_residue": 154,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_154.json",
+      "eigenvalue_residues": [
+        "292",
+        "38"
+      ]
+    },
+    {
+      "weight": 156,
+      "weight_residue": 156,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_156.json",
+      "eigenvalue_residues": [
+        "188",
+        "414"
+      ]
+    },
+    {
+      "weight": 156,
+      "weight_residue": 156,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_156.json",
+      "eigenvalue_residues": [
+        "444",
+        "414"
+      ]
+    },
+    {
+      "weight": 158,
+      "weight_residue": 158,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_158.json",
+      "eigenvalue_residues": [
+        "404",
+        "86"
+      ]
+    },
+    {
+      "weight": 158,
+      "weight_residue": 158,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_158.json",
+      "eigenvalue_residues": [
+        "148",
+        "86"
+      ]
+    },
+    {
+      "weight": 160,
+      "weight_residue": 160,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_160.json",
+      "eigenvalue_residues": [
+        "172",
+        "78"
+      ]
+    },
+    {
+      "weight": 160,
+      "weight_residue": 160,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_160.json",
+      "eigenvalue_residues": [
+        "44",
+        "78"
+      ]
+    },
+    {
+      "weight": 162,
+      "weight_residue": 162,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_162.json",
+      "eigenvalue_residues": [
+        "388",
+        "390"
+      ]
+    },
+    {
+      "weight": 162,
+      "weight_residue": 162,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_162.json",
+      "eigenvalue_residues": [
+        "260",
+        "390"
+      ]
+    },
+    {
+      "weight": 164,
+      "weight_residue": 164,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_164.json",
+      "eigenvalue_residues": [
+        "412",
+        "510"
+      ]
+    },
+    {
+      "weight": 164,
+      "weight_residue": 164,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_164.json",
+      "eigenvalue_residues": [
+        "156",
+        "510"
+      ]
+    },
+    {
+      "weight": 166,
+      "weight_residue": 166,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_166.json",
+      "eigenvalue_residues": [
+        "372",
+        "438"
+      ]
+    },
+    {
+      "weight": 166,
+      "weight_residue": 166,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_166.json",
+      "eigenvalue_residues": [
+        "116",
+        "438"
+      ]
+    },
+    {
+      "weight": 168,
+      "weight_residue": 168,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_168.json",
+      "eigenvalue_residues": [
+        "396",
+        "174"
+      ]
+    },
+    {
+      "weight": 168,
+      "weight_residue": 168,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_168.json",
+      "eigenvalue_residues": [
+        "12",
+        "174"
+      ]
+    },
+    {
+      "weight": 170,
+      "weight_residue": 170,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_170.json",
+      "eigenvalue_residues": [
+        "100",
+        "230"
+      ]
+    },
+    {
+      "weight": 170,
+      "weight_residue": 170,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_170.json",
+      "eigenvalue_residues": [
+        "228",
+        "230"
+      ]
+    },
+    {
+      "weight": 172,
+      "weight_residue": 172,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_172.json",
+      "eigenvalue_residues": [
+        "124",
+        "94"
+      ]
+    },
+    {
+      "weight": 172,
+      "weight_residue": 172,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_172.json",
+      "eigenvalue_residues": [
+        "380",
+        "94"
+      ]
+    },
+    {
+      "weight": 174,
+      "weight_residue": 174,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_174.json",
+      "eigenvalue_residues": [
+        "84",
+        "278"
+      ]
+    },
+    {
+      "weight": 174,
+      "weight_residue": 174,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_174.json",
+      "eigenvalue_residues": [
+        "340",
+        "278"
+      ]
+    },
+    {
+      "weight": 176,
+      "weight_residue": 176,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_176.json",
+      "eigenvalue_residues": [
+        "492",
+        "270"
+      ]
+    },
+    {
+      "weight": 176,
+      "weight_residue": 176,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_176.json",
+      "eigenvalue_residues": [
+        "108",
+        "270"
+      ]
+    },
+    {
+      "weight": 178,
+      "weight_residue": 178,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_178.json",
+      "eigenvalue_residues": [
+        "196",
+        "70"
+      ]
+    },
+    {
+      "weight": 178,
+      "weight_residue": 178,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_178.json",
+      "eigenvalue_residues": [
+        "324",
+        "70"
+      ]
+    },
+    {
+      "weight": 180,
+      "weight_residue": 180,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_180.json",
+      "eigenvalue_residues": [
+        "348",
+        "190"
+      ]
+    },
+    {
+      "weight": 180,
+      "weight_residue": 180,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_180.json",
+      "eigenvalue_residues": [
+        "92",
+        "190"
+      ]
+    },
+    {
+      "weight": 182,
+      "weight_residue": 182,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_182.json",
+      "eigenvalue_residues": [
+        "308",
+        "118"
+      ]
+    },
+    {
+      "weight": 182,
+      "weight_residue": 182,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_182.json",
+      "eigenvalue_residues": [
+        "52",
+        "118"
+      ]
+    },
+    {
+      "weight": 184,
+      "weight_residue": 184,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_184.json",
+      "eigenvalue_residues": [
+        "332",
+        "366"
+      ]
+    },
+    {
+      "weight": 184,
+      "weight_residue": 184,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_184.json",
+      "eigenvalue_residues": [
+        "460",
+        "366"
+      ]
+    },
+    {
+      "weight": 186,
+      "weight_residue": 186,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_186.json",
+      "eigenvalue_residues": [
+        "36",
+        "422"
+      ]
+    },
+    {
+      "weight": 186,
+      "weight_residue": 186,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_186.json",
+      "eigenvalue_residues": [
+        "164",
+        "422"
+      ]
+    },
+    {
+      "weight": 188,
+      "weight_residue": 188,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_188.json",
+      "eigenvalue_residues": [
+        "316",
+        "286"
+      ]
+    },
+    {
+      "weight": 188,
+      "weight_residue": 188,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_188.json",
+      "eigenvalue_residues": [
+        "60",
+        "286"
+      ]
+    },
+    {
+      "weight": 190,
+      "weight_residue": 190,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_190.json",
+      "eigenvalue_residues": [
+        "276",
+        "470"
+      ]
+    },
+    {
+      "weight": 190,
+      "weight_residue": 190,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_190.json",
+      "eigenvalue_residues": [
+        "20",
+        "470"
+      ]
+    },
+    {
+      "weight": 192,
+      "weight_residue": 192,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_192.json",
+      "eigenvalue_residues": [
+        "44",
+        "462"
+      ]
+    },
+    {
+      "weight": 192,
+      "weight_residue": 192,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_192.json",
+      "eigenvalue_residues": [
+        "428",
+        "462"
+      ]
+    },
+    {
+      "weight": 194,
+      "weight_residue": 194,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_194.json",
+      "eigenvalue_residues": [
+        "132",
+        "262"
+      ]
+    },
+    {
+      "weight": 194,
+      "weight_residue": 194,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_194.json",
+      "eigenvalue_residues": [
+        "260",
+        "262"
+      ]
+    },
+    {
+      "weight": 196,
+      "weight_residue": 196,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_196.json",
+      "eigenvalue_residues": [
+        "284",
+        "382"
+      ]
+    },
+    {
+      "weight": 196,
+      "weight_residue": 196,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_196.json",
+      "eigenvalue_residues": [
+        "28",
+        "382"
+      ]
+    },
+    {
+      "weight": 198,
+      "weight_residue": 198,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_198.json",
+      "eigenvalue_residues": [
+        "244",
+        "310"
+      ]
+    },
+    {
+      "weight": 198,
+      "weight_residue": 198,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_198.json",
+      "eigenvalue_residues": [
+        "500",
+        "310"
+      ]
+    },
+    {
+      "weight": 200,
+      "weight_residue": 200,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_200.json",
+      "eigenvalue_residues": [
+        "396",
+        "46"
+      ]
+    },
+    {
+      "weight": 200,
+      "weight_residue": 200,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_200.json",
+      "eigenvalue_residues": [
+        "268",
+        "46"
+      ]
+    },
+    {
+      "weight": 202,
+      "weight_residue": 202,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_202.json",
+      "eigenvalue_residues": [
+        "484",
+        "102"
+      ]
+    },
+    {
+      "weight": 202,
+      "weight_residue": 202,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_202.json",
+      "eigenvalue_residues": [
+        "100",
+        "102"
+      ]
+    },
+    {
+      "weight": 204,
+      "weight_residue": 204,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_204.json",
+      "eigenvalue_residues": [
+        "508",
+        "478"
+      ]
+    },
+    {
+      "weight": 204,
+      "weight_residue": 204,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_204.json",
+      "eigenvalue_residues": [
+        "252",
+        "478"
+      ]
+    },
+    {
+      "weight": 206,
+      "weight_residue": 206,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_206.json",
+      "eigenvalue_residues": [
+        "468",
+        "150"
+      ]
+    },
+    {
+      "weight": 206,
+      "weight_residue": 206,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_206.json",
+      "eigenvalue_residues": [
+        "212",
+        "150"
+      ]
+    },
+    {
+      "weight": 208,
+      "weight_residue": 208,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_208.json",
+      "eigenvalue_residues": [
+        "492",
+        "142"
+      ]
+    },
+    {
+      "weight": 208,
+      "weight_residue": 208,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_208.json",
+      "eigenvalue_residues": [
+        "364",
+        "142"
+      ]
+    },
+    {
+      "weight": 210,
+      "weight_residue": 210,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_210.json",
+      "eigenvalue_residues": [
+        "196",
+        "454"
+      ]
+    },
+    {
+      "weight": 210,
+      "weight_residue": 210,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_210.json",
+      "eigenvalue_residues": [
+        "68",
+        "454"
+      ]
+    },
+    {
+      "weight": 212,
+      "weight_residue": 212,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_212.json",
+      "eigenvalue_residues": [
+        "220",
+        "62"
+      ]
+    },
+    {
+      "weight": 212,
+      "weight_residue": 212,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_212.json",
+      "eigenvalue_residues": [
+        "476",
+        "62"
+      ]
+    },
+    {
+      "weight": 214,
+      "weight_residue": 214,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_214.json",
+      "eigenvalue_residues": [
+        "436",
+        "502"
+      ]
+    },
+    {
+      "weight": 214,
+      "weight_residue": 214,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_214.json",
+      "eigenvalue_residues": [
+        "180",
+        "502"
+      ]
+    },
+    {
+      "weight": 216,
+      "weight_residue": 216,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_216.json",
+      "eigenvalue_residues": [
+        "332",
+        "238"
+      ]
+    },
+    {
+      "weight": 216,
+      "weight_residue": 216,
+      "orbit": 1,
+      "place": 5,
+      "weight_file": "weight_216.json",
+      "eigenvalue_residues": [
+        "204",
+        "238"
+      ]
+    },
+    {
+      "weight": 218,
+      "weight_residue": 218,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_218.json",
+      "eigenvalue_residues": [
+        "36",
+        "294"
+      ]
+    },
+    {
+      "weight": 218,
+      "weight_residue": 218,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_218.json",
+      "eigenvalue_residues": [
+        "420",
+        "294"
+      ]
+    },
+    {
+      "weight": 220,
+      "weight_residue": 220,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_220.json",
+      "eigenvalue_residues": [
+        "444",
+        "158"
+      ]
+    },
+    {
+      "weight": 220,
+      "weight_residue": 220,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_220.json",
+      "eigenvalue_residues": [
+        "188",
+        "158"
+      ]
+    },
+    {
+      "weight": 222,
+      "weight_residue": 222,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_222.json",
+      "eigenvalue_residues": [
+        "148",
+        "342"
+      ]
+    },
+    {
+      "weight": 222,
+      "weight_residue": 222,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_222.json",
+      "eigenvalue_residues": [
+        "404",
+        "342"
+      ]
+    },
+    {
+      "weight": 224,
+      "weight_residue": 224,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_224.json",
+      "eigenvalue_residues": [
+        "428",
+        "334"
+      ]
+    },
+    {
+      "weight": 224,
+      "weight_residue": 224,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_224.json",
+      "eigenvalue_residues": [
+        "300",
+        "334"
+      ]
+    },
+    {
+      "weight": 226,
+      "weight_residue": 226,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_226.json",
+      "eigenvalue_residues": [
+        "132",
+        "134"
+      ]
+    },
+    {
+      "weight": 226,
+      "weight_residue": 226,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_226.json",
+      "eigenvalue_residues": [
+        "4",
+        "134"
+      ]
+    },
+    {
+      "weight": 228,
+      "weight_residue": 228,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_228.json",
+      "eigenvalue_residues": [
+        "156",
+        "254"
+      ]
+    },
+    {
+      "weight": 228,
+      "weight_residue": 228,
+      "orbit": 1,
+      "place": 8,
+      "weight_file": "weight_228.json",
+      "eigenvalue_residues": [
+        "412",
+        "254"
+      ]
+    },
+    {
+      "weight": 230,
+      "weight_residue": 230,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_230.json",
+      "eigenvalue_residues": [
+        "116",
+        "182"
+      ]
+    },
+    {
+      "weight": 230,
+      "weight_residue": 230,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_230.json",
+      "eigenvalue_residues": [
+        "372",
+        "182"
+      ]
+    },
+    {
+      "weight": 232,
+      "weight_residue": 232,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_232.json",
+      "eigenvalue_residues": [
+        "140",
+        "430"
+      ]
+    },
+    {
+      "weight": 232,
+      "weight_residue": 232,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_232.json",
+      "eigenvalue_residues": [
+        "268",
+        "430"
+      ]
+    },
+    {
+      "weight": 234,
+      "weight_residue": 234,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_234.json",
+      "eigenvalue_residues": [
+        "484",
+        "486"
+      ]
+    },
+    {
+      "weight": 234,
+      "weight_residue": 234,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_234.json",
+      "eigenvalue_residues": [
+        "356",
+        "486"
+      ]
+    },
+    {
+      "weight": 236,
+      "weight_residue": 236,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_236.json",
+      "eigenvalue_residues": [
+        "380",
+        "350"
+      ]
+    },
+    {
+      "weight": 236,
+      "weight_residue": 236,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_236.json",
+      "eigenvalue_residues": [
+        "124",
+        "350"
+      ]
+    },
+    {
+      "weight": 238,
+      "weight_residue": 238,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_238.json",
+      "eigenvalue_residues": [
+        "84",
+        "22"
+      ]
+    },
+    {
+      "weight": 238,
+      "weight_residue": 238,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_238.json",
+      "eigenvalue_residues": [
+        "340",
+        "22"
+      ]
+    },
+    {
+      "weight": 240,
+      "weight_residue": 240,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_240.json",
+      "eigenvalue_residues": [
+        "236",
+        "14"
+      ]
+    },
+    {
+      "weight": 240,
+      "weight_residue": 240,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_240.json",
+      "eigenvalue_residues": [
+        "364",
+        "14"
+      ]
+    },
+    {
+      "weight": 242,
+      "weight_residue": 242,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_242.json",
+      "eigenvalue_residues": [
+        "68",
+        "326"
+      ]
+    },
+    {
+      "weight": 242,
+      "weight_residue": 242,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_242.json",
+      "eigenvalue_residues": [
+        "452",
+        "326"
+      ]
+    },
+    {
+      "weight": 244,
+      "weight_residue": 244,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_244.json",
+      "eigenvalue_residues": [
+        "92",
+        "446"
+      ]
+    },
+    {
+      "weight": 244,
+      "weight_residue": 244,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_244.json",
+      "eigenvalue_residues": [
+        "348",
+        "446"
+      ]
+    },
+    {
+      "weight": 246,
+      "weight_residue": 246,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_246.json",
+      "eigenvalue_residues": [
+        "52",
+        "374"
+      ]
+    },
+    {
+      "weight": 246,
+      "weight_residue": 246,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_246.json",
+      "eigenvalue_residues": [
+        "308",
+        "374"
+      ]
+    },
+    {
+      "weight": 248,
+      "weight_residue": 248,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_248.json",
+      "eigenvalue_residues": [
+        "76",
+        "110"
+      ]
+    },
+    {
+      "weight": 248,
+      "weight_residue": 248,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_248.json",
+      "eigenvalue_residues": [
+        "204",
+        "110"
+      ]
+    },
+    {
+      "weight": 250,
+      "weight_residue": 250,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_250.json",
+      "eigenvalue_residues": [
+        "292",
+        "166"
+      ]
+    },
+    {
+      "weight": 250,
+      "weight_residue": 250,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_250.json",
+      "eigenvalue_residues": [
+        "420",
+        "166"
+      ]
+    },
+    {
+      "weight": 252,
+      "weight_residue": 252,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_252.json",
+      "eigenvalue_residues": [
+        "60",
+        "30"
+      ]
+    },
+    {
+      "weight": 252,
+      "weight_residue": 252,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_252.json",
+      "eigenvalue_residues": [
+        "316",
+        "30"
+      ]
+    },
+    {
+      "weight": 254,
+      "weight_residue": 254,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_254.json",
+      "eigenvalue_residues": [
+        "20",
+        "214"
+      ]
+    },
+    {
+      "weight": 254,
+      "weight_residue": 254,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_254.json",
+      "eigenvalue_residues": [
+        "276",
+        "214"
+      ]
+    },
+    {
+      "weight": 256,
+      "weight_residue": 0,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_256.json",
+      "eigenvalue_residues": [
+        "172",
+        "206"
+      ]
+    },
+    {
+      "weight": 256,
+      "weight_residue": 0,
+      "orbit": 1,
+      "place": 6,
+      "weight_file": "weight_256.json",
+      "eigenvalue_residues": [
+        "300",
+        "206"
+      ]
+    },
+    {
+      "weight": 258,
+      "weight_residue": 2,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_258.json",
+      "eigenvalue_residues": [
+        "4",
+        "6"
+      ]
+    },
+    {
+      "weight": 258,
+      "weight_residue": 2,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_258.json",
+      "eigenvalue_residues": [
+        "388",
+        "6"
+      ]
+    },
+    {
+      "weight": 260,
+      "weight_residue": 4,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_260.json",
+      "eigenvalue_residues": [
+        "28",
+        "126"
+      ]
+    },
+    {
+      "weight": 260,
+      "weight_residue": 4,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_260.json",
+      "eigenvalue_residues": [
+        "284",
+        "126"
+      ]
+    },
+    {
+      "weight": 262,
+      "weight_residue": 6,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_262.json",
+      "eigenvalue_residues": [
+        "500",
+        "54"
+      ]
+    },
+    {
+      "weight": 262,
+      "weight_residue": 6,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_262.json",
+      "eigenvalue_residues": [
+        "244",
+        "54"
+      ]
+    },
+    {
+      "weight": 264,
+      "weight_residue": 8,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_264.json",
+      "eigenvalue_residues": [
+        "140",
+        "302"
+      ]
+    },
+    {
+      "weight": 264,
+      "weight_residue": 8,
+      "orbit": 1,
+      "place": 3,
+      "weight_file": "weight_264.json",
+      "eigenvalue_residues": [
+        "12",
+        "302"
+      ]
+    },
+    {
+      "weight": 266,
+      "weight_residue": 10,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_266.json",
+      "eigenvalue_residues": [
+        "228",
+        "358"
+      ]
+    },
+    {
+      "weight": 266,
+      "weight_residue": 10,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_266.json",
+      "eigenvalue_residues": [
+        "356",
+        "358"
+      ]
+    },
+    {
+      "weight": 268,
+      "weight_residue": 12,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_268.json",
+      "eigenvalue_residues": [
+        "508",
+        "222"
+      ]
+    },
+    {
+      "weight": 270,
+      "weight_residue": 14,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_270.json",
+      "eigenvalue_residues": [
+        "212",
+        "406"
+      ]
+    },
+    {
+      "weight": 270,
+      "weight_residue": 14,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_270.json",
+      "eigenvalue_residues": [
+        "468",
+        "406"
+      ]
+    },
+    {
+      "weight": 272,
+      "weight_residue": 16,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_272.json",
+      "eigenvalue_residues": [
+        "108",
+        "398"
+      ]
+    },
+    {
+      "weight": 274,
+      "weight_residue": 18,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_274.json",
+      "eigenvalue_residues": [
+        "452",
+        "198"
+      ]
+    },
+    {
+      "weight": 276,
+      "weight_residue": 20,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_276.json",
+      "eigenvalue_residues": [
+        "220",
+        "318"
+      ]
+    },
+    {
+      "weight": 278,
+      "weight_residue": 22,
+      "orbit": 1,
+      "place": 2,
+      "weight_file": "weight_278.json",
+      "eigenvalue_residues": [
+        "436",
+        "246"
+      ]
+    },
+    {
+      "weight": 282,
+      "weight_residue": 26,
+      "orbit": 1,
+      "place": 4,
+      "weight_file": "weight_282.json",
+      "eigenvalue_residues": [
+        "164",
+        "38"
+      ]
+    },
+    {
+      "weight": 284,
+      "weight_residue": 28,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_284.json",
+      "eigenvalue_residues": [
+        "444",
+        "414"
+      ]
+    },
+    {
+      "weight": 286,
+      "weight_residue": 30,
+      "orbit": 1,
+      "place": 1,
+      "weight_file": "weight_286.json",
+      "eigenvalue_residues": [
+        "404",
+        "86"
+      ]
+    }
+  ],
+  "rational_signature_count": 256,
+  "nonrational_local_packets": [],
+  "nonrational_packet_count": 0,
+  "nonrational_packets_deduplicated": false,
+  "all_weight_classification_proved": false,
+  "note": "Least weights are within the scanned range; a converse needs comparison with the theorem's complete signature list."
+}
