@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1788874088.1965 "/home/nrustom/Documents/math/hecke-congruences/draft/prime_power_congruences_level_one_dickson_twisted.tex" "prime_power_congruences_level_one_dickson_twisted.pdf" "prime_power_congruences_level_one_dickson_twisted" 1788874093.98926 0
-  "/home/nrustom/Documents/math/hecke-congruences/draft/prime_power_congruences_level_one_dickson_twisted.tex" 1788874085.30509 145049 c4770472b06aaf474bb936acdd90bae9 ""
+["pdflatex"] 1788878370.38864 "/home/nrustom/Documents/math/hecke-congruences/draft/prime_power_congruences_level_one_dickson_twisted.tex" "prime_power_congruences_level_one_dickson_twisted.pdf" "prime_power_congruences_level_one_dickson_twisted" 1788878376.63966 0
+  "/home/nrustom/Documents/math/hecke-congruences/draft/prime_power_congruences_level_one_dickson_twisted.tex" 1788878368.4307 145779 278b7640401d14c87450e0e09b0d05f2 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1254269338 2375 baa924870cfb487815765f9094cf3728 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1202520719 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc" 1202520719 2405 5dcf2c1b967ee25cc46c58cd52244aed ""
@@ -248,10 +248,10 @@
   "/usr/share/texlive/texmf-dist/web2c/texmf.cnf" 1777593600 43785 66587115382950aca692b5f6e3c2fb74 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1784728301 4753617 4b8ca06b2ffedff4010a3c2ff6684aaa ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1784726650 3527797 1e12e5efaf7de54f33d06ad42082a3b9 ""
-  "prime_power_congruences_level_one_dickson_twisted.aux" 1788874093.43415 27410 b233aab85d713b39ba91768c57d1d4b7 "pdflatex"
-  "prime_power_congruences_level_one_dickson_twisted.out" 1788874093.44515 9816 b0ef2b9fed2a27531b9259d3bbde6dbf "pdflatex"
-  "prime_power_congruences_level_one_dickson_twisted.tex" 1788874085.30509 145049 c4770472b06aaf474bb936acdd90bae9 ""
-  "prime_power_congruences_level_one_dickson_twisted.toc" 1788874093.44752 4880 34a97cdccf6262bb46b6d7800a01c58f "pdflatex"
+  "prime_power_congruences_level_one_dickson_twisted.aux" 1788878375.83075 27410 03686852bde30c92e54c9f254d5fa052 "pdflatex"
+  "prime_power_congruences_level_one_dickson_twisted.out" 1788878375.83775 9816 b0ef2b9fed2a27531b9259d3bbde6dbf "pdflatex"
+  "prime_power_congruences_level_one_dickson_twisted.tex" 1788878368.4307 145779 278b7640401d14c87450e0e09b0d05f2 ""
+  "prime_power_congruences_level_one_dickson_twisted.toc" 1788878375.83975 4880 34a97cdccf6262bb46b6d7800a01c58f "pdflatex"
   (generated)
   "prime_power_congruences_level_one_dickson_twisted.aux"
   "prime_power_congruences_level_one_dickson_twisted.log"

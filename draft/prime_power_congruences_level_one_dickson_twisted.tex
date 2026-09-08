@@ -641,14 +641,14 @@ For \(F(X)=\sum_{j=0}^n c_jX^j\), any common chain \[ x_0\mathcal A x_1\mathcal 
 
 We will now define the \emph{divided operator} linear relation. Let $T,S \in R$. Define a presentation of a linear relation over $R$ by \[\mathfrak D_{T,S} := \left(\frac{R \oplus R}{R(Te_0 -Se_1)}, \bar e_0, \bar e_1\right), \qquad e_0 := (1,0), \qquad e_1 := (0,1).\] Then on an $R$-module $M$, \[\mathfrak D_{T,S}(M) = \{(x,y): Tx = Sy\}.\] If $\operatorname{dom} \mathfrak D_{T,S}(M) = M$, we will say that \emph{$M$ admits a division relation of $T$ by $S$} and symbolically write \[''\frac{T}{S}'' := \mathfrak D_{T,S}(M).\] 
 
-We now specialize a bit more towards our intended applications. Let \(A\) be a commutative \(\mathbf Z_p\)-algebra, and let \(L\) be an \(A\)-module that is finite free over \(\mathbf Z_p\). Fix \(m\geq1\), and let \(M\) be an \(A/p^mA\)-module equipped with an \(A/p^mA\)-linear surjection \[ q:M\twoheadrightarrow L/p^mL. \] We apply the preceding definitions with \(R=A/p^mA\).
+We now specialize a bit more towards our intended applications. Let \(A\) be a commutative \(\mathbf Z_p\)-algebra, and let \(L\) be an \(A\)-module that is finite free over \(\mathbf Z_p\). Fix \(m\geq1\), and let \(M\) be an \(A/p^mA\)-module equipped with an \(A/p^mA\)-linear surjection \[ q:M\twoheadrightarrow L/p^mL. \] We apply the preceding definitions over the ring \(A/p^mA\).
 Elements of \(A\) acting on \(M\) are understood through their images in \(A/p^mA\).
 
 Let \(\mathcal B\) be a linear relation on \(M\), and let \(0\leq b\leq m\). We write \[ \mathcal B\equiv0\pmod{p^b}\quad\text{on }M \] if \[ \mathcal B(x)\cap p^bM\neq\varnothing \qquad\text{for every }x\in M. \] Equivalently, for every \(x\in M\), there exists \(y\in p^bM\) such that \((x,y)\in\mathcal B\). 
 
 For an endomorphism \(T\) of \(M\), this definition gives \[ \Gamma_T\equiv0\pmod{p^b} \quad\Longleftrightarrow\quad TM\subseteq p^bM. \] More generally, for \(T\in A\), \[ \mathcal B\Gamma_T\equiv0\pmod{p^b} \] means that \[ \mathcal B(Tu)\cap p^bM\neq\varnothing \qquad\text{for every }u\in M. \]
 
-For a presentation \(\mathfrak P\) over \(R=A/p^mA\), put \[ \mathfrak I:=\mathfrak D_{1,p^b}\mathfrak P. \] Then \[ \mathfrak I(M) = \{(x,\rho):\exists y\in\mathfrak P(M)(x),\ y=p^b\rho\}. \] Consequently, \[ \mathfrak P(M)\equiv0\pmod{p^b} \quad\Longleftrightarrow\quad \operatorname{dom}\mathfrak I(M)=M. \] Thus congruence conditions for presented relations pass through surjective module homomorphisms and hold on a finite direct sum whenever they hold on each summand.
+For a presentation \(\mathfrak P\) over \(A/p^mA\), put \[ \mathfrak I:=\mathfrak D_{1,p^b}\mathfrak P. \] Then \[ \mathfrak I(M) = \{(x,\rho):\exists y\in\mathfrak P(M)(x),\ y=p^b\rho\}. \] Consequently, \[ \mathfrak P(M)\equiv0\pmod{p^b} \quad\Longleftrightarrow\quad \operatorname{dom}\mathfrak I(M)=M. \] Thus congruence conditions for presented relations pass through surjective module homomorphisms and hold on a finite direct sum whenever they hold on each summand.
 
 \begin{proposition}[Division and retained precision] \label{prop:division-retained-precision} In the preceding setup, let \(T_1,\ldots,T_s\in A\), and let \(1\leq\alpha_i<m\). Put \[ \mathcal Z_i:=\mathfrak D_{T_i,p^{\alpha_i}}(M). \] For each \(i\), if \(\operatorname{dom}\mathcal Z_i=M\), then \[ T_iL\subseteq p^{\alpha_i}L. \] Consequently, \[ Z_i:=\frac{T_i}{p^{\alpha_i}} \] defines an endomorphism of \(L\).  
      
@@ -666,104 +666,29 @@ Fix \(m\geq1\), and assume \(m\geq2\) if \(p=2\). Recall that \(R_m=\mathbf Z/p^
 
 For \(p=2\), let \(t_n\) act as \(T_n\) on \(\mathbb M_d(R_m)\). The transfer map \[ \Psi_d: \mathbb M_{d-a_m}(R_m)\oplus\mathbb M_{d-b_m}(R_m) \longrightarrow\mathbb M_d(R_m) \] is \(\mathbb A_m\)-linear and surjective in the same range. 
 
-\begin{proposition}[Propagation of presented relations]\label{prop:presented-relation-propagation} Put \(\delta_m:=\min(a_m,b_m)\), and let \(\mathfrak P\) be a presentation of a linear relation over \(\mathbb A_m\). For odd \(p\), suppose that \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_d^{\epsilon_q}(R_m)\bigr) = \mathbb M_d^{\epsilon_q}(R_m) \] for every even degree \[ \delta_m\leq d<a_m+b_m \] and every \(q\geq0\), with the actions specified above. Then the same assertion holds for every even \(d\geq\delta_m\) and every \(q\geq0\). 
+\begin{proposition}[Propagation of presented relations] \label{prop:presented-relation-propagation} Let \(\mathfrak P\) be a presentation of a linear relation over \(\mathbb A_m\).
+     
+Suppose first that \(p\) is odd, and let \(r\) be an even integer with \(0\leq r<2p^{m-1}\). Assume that \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m)\bigr) = \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) \] for every \(q\geq0\) and every integer \(j\) satisfying \[ \frac{p+1}{2}\leq j<\frac{p^2+1}{2}, \] with the \(\mathbb A_m\)-actions specified above. Then the same equality holds for every \(j\geq(p+1)/2\) and every \(q\geq0\).
 
-For \(p=2\), if \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_d(R_m)\bigr) = \mathbb M_d(R_m) \] for every even \(\delta_m\leq d<a_m+b_m\), then it holds for every even \(d\geq\delta_m\). 
+For \(p=2\), let \(r\) be an even integer with \(0\leq r<2^{m-1}\). If \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_{r+j2^{m-1}}(R_m)\bigr) = \mathbb M_{r+j2^{m-1}}(R_m) \qquad(2\leq j\leq4), \] then the same equality holds for every \(j\geq2\). 
 
-The same conclusions hold with the full-domain condition
-replaced by
-\[
-\mathfrak P
-\bigl(\mathbb M_d^{\epsilon_q}(R_m)\bigr)
-\equiv0\pmod{p^b},
-\]
-or its unsplit analogue for \(p=2\), where \(0\leq b\leq m\).
+In both cases, the same conclusion holds with the full-domain condition replaced by the congruence \[ \mathfrak P \bigl(\mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m)\bigr) \equiv0\pmod{p^b}, \] or its unsplit analogue for \(p=2\), where \(0\leq b\leq m\).
 \end{proposition}
 
-\begin{proof}
-We argue by strong induction on \(d\), simultaneously in
-all orientations when \(p\) is odd. The assertion holds
-in the stated initial range. If \(d\geq a_m+b_m\), both
-\(d-a_m\) and \(d-b_m\) lie between \(\delta_m\) and \(d-1\).
-By the induction hypothesis, the presented relation has
-full domain on both source modules, hence on their direct
-sum. Full domain passes through the surjective transfer
-map, proving the assertion in degree \(d\).
+\begin{proof} Use the same strong induction on \(j\) as in Theorems~\ref{thm:weight-propagation} and~\ref{thm:weight-propagation-p2}. At each step, the induction hypothesis gives full domain on both source modules, hence on their direct sum. Full domain then passes through the surjective transfer map. 
 
-For congruences, apply the same argument to the presentation
-\[
-\mathfrak D_{1,p^b}\mathfrak P.
-\]
-\end{proof}
+For congruences, apply the same argument to the presentation \[ \mathfrak D_{1,p^b}\mathfrak P. \] 
+\end{proof}  
 
-The initial range is
-\[
-b_m\leq d<a_m+b_m
-\qquad(p\text{ odd}),
-\]
-and
-\[
-2^m\leq d<5\cdot2^{m-1}
-\qquad(p=2).
-\]
-For odd \(p\), the specified module structures are periodic
-in \(q\) with period \(p-1\), so only finitely many
-orientations need to be checked.
+As \(r\) varies, the initial degrees are exactly the even degrees in the ranges \[ b_m\leq d<a_m+b_m \qquad(p\text{ odd}), \] and \[ 2^m\leq d<5\cdot2^{m-1} \qquad(p=2). \] For odd \(p\), the specified module structures are periodic in \(q\) with period \(p-1\), so only finitely many orientations need to be checked.
 
-As in Remark~\ref{rem:periodic-weight-propagation}, the
-presentation may depend on degree residues and orientation.
-The same induction applies provided that, at each transfer
-step, the source conditions are those of the target
-presentation evaluated on the two source modules with
-their respective \(\mathbb A_m\)-actions.
-Thus any family closed under the two degree transitions
-propagates in the same way. One may likewise restrict
-to degree residues closed under these transitions.
+As in Remark~\ref{rem:periodic-weight-propagation}, the presentation may depend on degree residues and orientation. The same induction applies provided that, at each transfer step, the source conditions are those of the target presentation evaluated on the two source modules with their respective \(\mathbb A_m\)-actions. Thus any family closed under the two degree transitions propagates in the same way. One may likewise restrict to degree residues closed under these transitions. 
 
-To obtain operator congruences, take orientation \(q=0\)
-and use
-\[
-\mathbb M_d^+(R_m)
-\twoheadrightarrow P_d^+/p^mP_d^+
-\qquad(p\text{ odd}),
-\]
-or
-\[
-\mathbb M_d(R_m)
-\twoheadrightarrow
-\mathbb M_d^{\mathrm{tf}}/2^m\mathbb M_d^{\mathrm{tf}}
-\qquad(p=2).
-\]
-Give the free lattices their \(\mathbb A\)-module structures
-by letting \(t_n\) act as \(T_n\).
-Proposition~\ref{prop:division-retained-precision}, applied
-with \(A=\mathbb A\), then establishes integrality of the
-divided operators and the resulting polynomial congruences
-on the free lattice, under its stated hypotheses.
+To obtain operator congruences, take orientation \(q=0\) and use \[ \mathbb M_d^+(R_m) \twoheadrightarrow P_d^+/p^mP_d^+ \qquad(p\text{ odd}), \] or \[\mathbb M_d(R_m) \twoheadrightarrow \mathbb M_d^{\mathrm{tf}}/2^m\mathbb M_d^{\mathrm{tf}} \qquad(p=2). \] Give the free lattices their \(\mathbb A\)-module structures by letting \(t_n\) act as \(T_n\). Proposition~\ref{prop:division-retained-precision}, applied with \(A=\mathbb A\), then establishes integrality of the divided operators and the resulting polynomial congruences on the free lattice, under its stated hypotheses.
 
-These conclusions restrict to \(L_d^+\). Indeed, the
-numerator Hecke operators preserve \(L_d^+\), and saturation
-implies that their integral divided operators preserve it
-as well. For \(p=2\), these operators also commute with
-\(\iota\), by cancellation on the torsion-free module,
-and hence preserve \(P_d^+\). Finally, saturation gives
-\[
-L_d^+\cap p^bP_d^+=p^bL_d^+
-\]
-for odd \(p\), and
-\[
-L_d^+\cap 2^b\mathbb M_d^{\mathrm{tf}}=2^bL_d^+
-\]
-for \(p=2\).
+These conclusions restrict to \(L_d^+\). Indeed, the numerator Hecke operators preserve \(L_d^+\), and saturation implies that their integral divided operators preserve it as well. For \(p=2\), these operators also commute with \(\iota\), by cancellation on the torsion-free module, and hence preserve \(P_d^+\). Finally, saturation gives \[ L_d^+\cap p^bP_d^+=p^bL_d^+ \] for odd \(p\), and \[ L_d^+\cap 2^b\mathbb M_d^{\mathrm{tf}}=2^bL_d^+ \] for \(p=2\).
 
-Relations with prescribed inputs are included in the same
-argument. For example,
-\[
-F(\mathcal Z_1,\ldots,\mathcal Z_s)\Gamma_S
-\equiv0\pmod{p^b}
-\]
-is a presented relation, with the action of \(S\) twisted
-along with the numerator operators.
+Relations with prescribed inputs are included in the same argument. For example, \[ F(\mathcal Z_1,\ldots,\mathcal Z_s)\Gamma_S \equiv0\pmod{p^b} \] is a presented relation, with the action of \(S\) twisted along with the numerator operators.
 
 \iffalse
 \subsection{Staged \texorpdfstring{\(p\)}{p}-division}
@@ -862,11 +787,11 @@ For every even residue \(r\bmod128\), put \[ c_{3,r}:=1+3^{r+1}\pmod{256}, \qqua
 
 \subsection{Certified Hecke operator identities}
 
-Put \[ F_r(Z):=Z^2-\varepsilon_rZ. \] The computation is performed at precision \(256\).  For \(m=8\), the Dickson multipliers have degrees \[ a_8=256, \qquad b_8=384, \qquad \mbox{ with } a_8 + b_8 = 640. \] Hence the exact induction base in Corollary~\ref{cor:staged-witness-propagation-p2} consists, for every even \(0\leq r<128\), of the three degrees \[ d=r+j\,128, \qquad 2\leq j\leq4. \] Equivalently, these are the \(192\) even degrees \[ 256\leq d\leq638. \] 
+Put \[ F_r(Z):=Z^2-\varepsilon_rZ. \] The computation is performed at precision \(256\).  For \(m=8\), the Dickson multipliers have degrees \[ a_8=256, \qquad b_8=384, \qquad \mbox{ with } a_8 + b_8 = 640. \] Hence the exact induction base in Proposition~\ref{prop:presented-relation-propagation} consists, for every even \(0\leq r<128\), of the three degrees \[ d=r+j\,128, \qquad 2\leq j\leq4. \] Equivalently, these are the \(192\) even degrees \[ 256\leq d\leq638. \] 
 
-For every such degree \(d\), the computation \cite[\nolinkurl{classification_mod_256.ipynb}]{RustomHeckeCongruences} verifies on \[ \mathbb M_d(\mathbf Z/256\mathbf Z) \] staged \(2^7\)-division witnesses of depth \(1\) for the pair \[ \bigl(X_r,F_r\bigr), \] and also verifies the ordinary relation \[ \bigl(T_5-c_{5,r}\bigr) \mathbb M_d(\mathbf Z/256\mathbf Z)=0. \] Since both \(a_8\) and \(b_8\) are divisible by \(128\), the quantities \(c_{3,r}\), \(c_{5,r}\), and \(\varepsilon_r\) are unchanged under the two transitions of Remark~\ref{rem:periodic-weight-propagation}.  Thus these families satisfy the compatibility required for propagation.
+For every such degree \(d\), put \[ \mathcal Z_r:= ''\frac{t_3 - c_{3,r}}{2^7}'' = \mathfrak D_{t_3-c_{3,r},\,2^7} \bigl(\mathbb M_d(\mathbf Z/256\mathbf Z)\bigr), \] where \(r\equiv d\pmod{128}\) and \(t_3\) acts as \(T_3\). The computation \cite[\nolinkurl{classification_mod_256.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Z_r =\mathbb M_d(\mathbf Z/256\mathbf Z), \qquad F_r(\mathcal Z_r)\equiv0\pmod2, \] and also verifies the ordinary relation \[ \bigl(T_5-c_{5,r}\bigr) \mathbb M_d(\mathbf Z/256\mathbf Z)=0. \] Since both \(a_8\) and \(b_8\) are divisible by \(128\), the quantities \(c_{3,r}\), \(c_{5,r}\), and \(\varepsilon_r\) are unchanged under the two transitions of Remark~\ref{rem:periodic-weight-propagation}.  Thus these families satisfy the compatibility required for propagation.
 
-Corollary~\ref{cor:staged-witness-propagation-p2} and Theorem~\ref{thm:staged-division-propagation-p2} propagate the relations to every even degree \[ d\geq256. \] The remaining even degrees \[ 0\leq d<256 \] are verified directly. Therefore, for \[ r\equiv d\pmod{128}, \] the operator \[ Z_r:=\frac{T_3-c_{3,r}}{2^7} \] belongs to \[ \End_{\mathbf Z_2}\bigl(\mathbb M_d^{\mathrm{tf}}\bigr), \] preserves \(P_d^+\) and \(L_d^+\), and satisfies \begin{equation} \bigl(Z_r^2-\varepsilon_rZ_r\bigr) \mathbb M_d^{\mathrm{tf}} \subseteq2\mathbb M_d^{\mathrm{tf}}, \qquad \bigl(Z_r^2-\varepsilon_rZ_r\bigr)L_d^+ \subseteq2L_d^+. \label{eq:p2-divided-relation}\end{equation}
+Proposition~\ref{prop:presented-relation-propagation} propagates these conditions to every even degree \[ d\geq256. \] The remaining even degrees \[ 0\leq d<256 \] are verified directly. By Proposition~\ref{prop:division-retained-precision}, with \(m=8\), \(\alpha_1=7\), \(b=1\), and \(S=1\), for \[ r\equiv d\pmod{128}, \] the operator \[ Z_r:=\frac{T_3-c_{3,r}}{2^7} \] belongs to \[ \End_{\mathbf Z_2}\bigl(\mathbb M_d^{\mathrm{tf}}\bigr), \] preserves \(P_d^+\) and \(L_d^+\), and satisfies \begin{equation} \bigl(Z_r^2-\varepsilon_rZ_r\bigr) \mathbb M_d^{\mathrm{tf}} \subseteq2\mathbb M_d^{\mathrm{tf}}, \qquad \bigl(Z_r^2-\varepsilon_rZ_r\bigr)L_d^+ \subseteq2L_d^+. \label{eq:p2-divided-relation}\end{equation}
 
 Likewise, Theorem~\ref{thm:weight-propagation-p2}, together with the direct verification in the lower degrees, gives \begin{equation} \bigl(T_5-c_{5,r}\bigr)L_d^+ \subseteq256L_d^+. \label{eq:p2-T5-relation} \end{equation} Thus both relations hold in every even coefficient degree \(d\).
 
@@ -915,16 +840,16 @@ For every degree residue \(r\), put \[t_r:=1+7^{r+1}\pmod{27}.\] Thus \begin{equ
 
 Let \[ r\in\{0,4,6,10,12,16\}. \] We work at precision \(27\). The Dickson multipliers have degrees \[ a_3=54, \qquad b_3=36, \qquad \mbox{ with }  a_3+b_3=90. \] Moreover, \[ \chi_3(T_2)=2^9T_2\equiv-T_2\pmod{27}, \qquad \chi_3(T_7)=7^9T_7\equiv T_7\pmod{27}. \] 
 
-For every degree \[ 0\leq d\leq88, \qquad d\equiv r \pmod {18}, \] and both orientations \(q\in\{0,1\}\), the computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} certifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z) \] staged \(3\)-division witnesses of depth \(2\) for the pair \[ \bigl(T_2,F_r\bigr) \] in orientation \(q\), in the sense of Definition~\ref{def:staged-p-division-witness}. It also certifies \begin{equation} (T_7-t_{d\bmod18}) \mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)=0. \label{eq:p3-nonzero-source-relations} \end{equation}
+For every degree \[ 0\leq d\leq88,\qquad d\equiv r\pmod{18}, \] and both orientations \(q\in\{0,1\}\), put \[ \mathcal Z_{2,q}:= ''\frac{t_2}{3}'' = \mathfrak D_{t_2,\,3} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)\bigr), \] where \(t_2\) acts as \(\chi_3(2)^qT_2=(-1)^qT_2\). The computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} certifies \[ \operatorname{dom}\mathcal Z_{2,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z), \qquad F_r(\mathcal Z_{2,q})\equiv0\pmod9. \] It also certifies \begin{equation} (T_7-t_{d\bmod18}) \mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)=0. \label{eq:p3-nonzero-source-relations} \end{equation}
 
-By Theorem~\ref{thm:staged-division-propagation} and Theorem~\ref{thm:weight-propagation}, these relations propagate to every even coefficient degree \[ d \geq36, \qquad d \equiv r \pmod{18}. \] The remaining degrees \[ 0\leq d<36, \qquad d\equiv r \pmod{18}, \] are verified directly. Consequently, the relations hold in every even coefficient degree \[ d\equiv r \pmod{ 18}. \] For such a degree, we find that \[ Z_2:=\frac{T_2}{3}\in\End_{\Z_3}(P_d^+), \qquad Z_2L_d^+\subseteq L_d^+, \] and \[ \bigl(Z_2^2-c_r\bigr)P_d^+\subseteq9P_d^+. \] Similarly, \[ (T_7-t_r)P_d^+\subseteq27P_d^+. \] Consequently, \begin{equation} \bigl(Z_2^2-c_r\bigr)L_d^+ \subseteq9L_d^+, \qquad (T_7-t_r)L_d^+ \subseteq27L_d^+.  \label{eq:p3-nonzero-relations} \end{equation}
+By Proposition~\ref{prop:presented-relation-propagation} and Theorem~\ref{thm:weight-propagation}, these relations propagate to every even coefficient degree \[ d \geq36, \qquad d \equiv r \pmod{18}. \] The remaining degrees \[ 0\leq d<36, \qquad d\equiv r \pmod{18}, \] are verified directly. Consequently, the relations hold in every even coefficient degree \[ d\equiv r \pmod{ 18}. \] For such a degree, Proposition~\ref{prop:division-retained-precision}, with \(m=3\), \(\alpha_1=1\), \(b=2\), and \(S=1\), gives \[ Z_2:=\frac{T_2}{3}\in\End_{\Z_3}(P_d^+), \qquad Z_2L_d^+\subseteq L_d^+, \] and \[ \bigl(Z_2^2-c_r\bigr)P_d^+\subseteq9P_d^+. \] Similarly, \[ (T_7-t_r)P_d^+\subseteq27P_d^+. \] Consequently, \begin{equation} \bigl(Z_2^2-c_r\bigr)L_d^+ \subseteq9L_d^+, \qquad (T_7-t_r)L_d^+ \subseteq27L_d^+.  \label{eq:p3-nonzero-relations} \end{equation}
 
 \subsubsection{The zero branch}
 Let \[ r\in\{2,8,14\}. \] Put \[G_2:=T_2(T_2-63),\qquad Q(X):=\bigl(X(X+1)\bigr)^2. \] We work at precision \(243\). The Dickson multipliers have degrees \[ a_5=486, \qquad b_5=324, \qquad a_5+b_5=810,\] and \[ \chi_5(T_2)=2^{81}T_2\equiv-T_2\pmod{243}. \] 
 
-For every degree \[ 326\leq d\leq806, \qquad d\equiv2\pmod6, \] and both orientations \(q\in\{0,1\}\), the computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} verifies on \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z) \] staged \(3^4\)-division witnesses of depth \(1\) for the pair \[ (G_2,Q) \] in orientation \(q\), in the sense of Definition~\ref{def:staged-p-division-witness}. Here \[ \chi_5^0(G_2)=T_2(T_2-63), \qquad \chi_5^1(G_2)=T_2(T_2+63) \pmod{243}. \] 
+For every degree \[ 326\leq d\leq806,\qquad d\equiv2\pmod6, \] and both orientations \(q\in\{0,1\}\), put \[ \mathcal H_{2,q}:= ''\frac{t_2(t_2-63)}{81}'' = \mathfrak D_{t_2(t_2-63),\,81} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z)\bigr), \] where \(t_2\) acts as \(\chi_5(2)^qT_2=(-1)^qT_2\). The computation \cite[\nolinkurl{classification_mod_27.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal H_{2,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z), \qquad Q(\mathcal H_{2,q})\equiv0\pmod3. \] Here \[ \chi_5^0(G_2)=T_2(T_2-63), \qquad \chi_5^1(G_2)=T_2(T_2+63) \pmod{243}. \] 
 
-Corollary~\ref{cor:staged-witness-propagation} and Theorem~\ref{thm:staged-division-propagation} therefore give, for every even degree \[ d\geq324, \qquad d\equiv2\pmod6, \] an integral operator \begin{equation} H_2:=\frac{G_2}{81} =\frac{T_2(T_2-63)}{81} \in\End_{\mathbf Z_3}(P_d^+), \qquad H_2L_d^+\subseteq L_d^+. \label{eq:p3-zero-H2-integrality} \end{equation} It satisfies \begin{equation} Q(H_2)P_d^+\subseteq3P_d^+, \qquad Q(H_2)L_d^+\subseteq3L_d^+. \label{eq:p3-zero-H2-relation} \end{equation} The computation verifies \eqref{eq:p3-zero-H2-integrality} and \eqref{eq:p3-zero-H2-relation} directly in the remaining \(54\) degrees \[ 0\leq d<324, \qquad d\equiv2\pmod6. \] Consequently, both relations hold in every zero-branch degree.
+Proposition~\ref{prop:presented-relation-propagation}, followed by Proposition~\ref{prop:division-retained-precision} with \(m=5\), \(\alpha_1=4\), \(b=1\), and \(S=1\), therefore gives, for every even degree \[ d\geq324, \qquad d\equiv2\pmod6, \] an integral operator \begin{equation} H_2:=\frac{G_2}{81} =\frac{T_2(T_2-63)}{81} \in\End_{\mathbf Z_3}(P_d^+), \qquad H_2L_d^+\subseteq L_d^+. \label{eq:p3-zero-H2-integrality} \end{equation} It satisfies \begin{equation} Q(H_2)P_d^+\subseteq3P_d^+, \qquad Q(H_2)L_d^+\subseteq3L_d^+. \label{eq:p3-zero-H2-relation} \end{equation} The computation verifies \eqref{eq:p3-zero-H2-integrality} and \eqref{eq:p3-zero-H2-relation} directly in the remaining \(54\) degrees \[ 0\leq d<324, \qquad d\equiv2\pmod6. \] Consequently, both relations hold in every zero-branch degree.
 
 Separately, for every degree \[ 0\leq d\leq88,\qquad d\equiv r\pmod{18}, \] and both orientations \(q\in\{0,1\}\), the precision-\(27\) computation verifies \begin{equation} (T_7-t_r)\mathbb M_d^{\epsilon_q}(\mathbf Z/27\mathbf Z)=0. \label{eq:p3-zero-source-T7} \end{equation} Theorem~\ref{thm:weight-propagation} gives \[ (T_7-t_r)P_d^+\subseteq27P_d^+, \qquad (T_7-t_r)L_d^+\subseteq27L_d^+ \] for every zero-branch degree \[ d\geq36, \qquad d\equiv r\pmod{18}. \] The remaining zero-branch degrees \[ 0\leq d<36, \qquad d\equiv r\pmod{18}, \] are verified directly. Consequently, these two relations hold in every zero-branch degree \[ d\equiv r\pmod{18}. \]  Combining this with \eqref{eq:p3-zero-H2-relation}, we obtain \begin{equation} \bigl(H_2(H_2+1)\bigr)^2L_d^+ \subseteq3L_d^+, \qquad (T_7-t_r)L_d^+ \subseteq27L_d^+. \label{eq:p3-zero-relations} \end{equation}
 
