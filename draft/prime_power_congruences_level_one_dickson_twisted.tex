@@ -615,6 +615,157 @@ Consequently, for every even \(d\geq 2^{m}\) satisfying \(d\equiv r\pmod{2^{m-1}
 \begin{proof} By strong induction on \(j\), using the degree shifts \[ a_m=2^m, \qquad b_m=3\cdot2^{m-1}. \]
 \end{proof}
 
+\subsection{Calculus of linear relations}
+
+To obtain higher congruences, we need polynomial relations in divided Hecke operators such as \(T/p^\alpha\). Division need not define an endomorphism on the finite modular-symbol modules used in the transfer argument. We therefore encode it by the linear relation \(Tx=p^\alpha y\). Such relations pass through the transfer maps and yield ordinary operator congruences after passage to the free lattice.
+
+In this section, we will make this precise. Let $R$ be a commutative ring. If $M$ is an $R$-module, we define an \emph{$R$-linear relation on $M$} to be an $R$-submodule of $M \oplus M$. We denote by $\operatorname{LinRel}_R(M)$ the set of all $R$-linear relations on $M$. Any $R$-linear map $T \in \operatorname{End}_R(M)$ gives rise to such a relation via its graph \[\Gamma_T := \{(x,Tx): x \in M\}.\]
+
+If $\mathcal A \in \operatorname{LinRel}_R(M)$ and $x,y \in M$, write $x \mathcal A y$ to mean that $(x,y) \in \mathcal A$. For a sequence $x_0, x_1, \ldots x_n \in M$, write \[x_0 \mathcal A x_1 \mathcal A \ldots \mathcal A x_n\] to mean that \[x_0 \mathcal A x_1, \qquad x_1 \mathcal A x_2, \qquad \ldots \qquad x_{n-1} \mathcal A x_n.\] Let \[\mathcal A(x) := \{y \in M: (x, y) \in \mathcal{A}\}.\] Define the domain of $\mathcal A$ as \[\operatorname{dom}\mathcal A := \{x \in M: \mathcal A(x) \not = \emptyset\}.\]
+
+If $\mathcal A, \mathcal B \in \operatorname{LinRel}_R(M)$ and $r \in R$, define \[\mathcal A + \mathcal B := \{(x,y+z): (x,y) \in \mathcal A, (x,z) \in \mathcal B\},\] \[r \mathcal A = \{(x,ry): (x,y) \in \mathcal A\},\] \[\mathcal A \mathcal B = \{(x,z): \exists y \in M, (x,y) \in \mathcal B, (y,z) \in \mathcal A\}.\] 
+
+If $f: M \rightarrow N$ is $R$-linear, we get a map $f_\ast: \operatorname{LinRel}_R(M) \rightarrow \operatorname{LinRel}_R(N)$ defined as follows: we have an $R$-linear map \[f \oplus f: M \oplus M \rightarrow N \oplus N,\] and for every $\mathcal A \in \operatorname{LinRel}_R(M)$, we can define \[f_\ast(\mathcal A) := (f \oplus f )(\mathcal A).\]
+
+Now we make a more universal definition. Define a \emph{presentation of a linear relation over $R$} to be a triple $\mathfrak P := (P, p_0, p_1)$ of an $R$-module $P$ with two distinguished elements $p_0, p_1 \in P$. If $\mathfrak P$ is a presentation of a linear relation over $R$ and $M$ is an $R$-module, let \[\mathfrak P(M) := \{(\phi(p_0), \phi(p_1)): \phi \in \Hom_R(P, M)\}.\] Thus $\mathfrak P(M) \in \operatorname{LinRel}_R(M)$. Moreover, if $f: M \rightarrow N$ is $R$-linear, then \[f_\ast \mathfrak P(M) \subset \mathfrak P(N).\] Consequently, \[ f\bigl(\operatorname{dom}\mathfrak P(M)\bigr) \subseteq \operatorname{dom}\mathfrak P(N). \] In particular, if \(f\) is surjective and \(\operatorname{dom}\mathfrak P(M)=M\), then \(\operatorname{dom}\mathfrak P(N)=N\). Presentations also commute with finite direct sums: \[ \mathfrak P(M_1\oplus M_2) = \mathfrak P(M_1)\oplus\mathfrak P(M_2), \] under the natural identification \[ (M_1\oplus M_2)\oplus(M_1\oplus M_2) \simeq (M_1\oplus M_1)\oplus(M_2\oplus M_2). \] This follows from \[ \Hom_R(P,M_1\oplus M_2) \simeq \Hom_R(P,M_1)\oplus\Hom_R(P,M_2). \] In particular, full domain on both summands implies full domain on their direct sum.
+
+We now define the sum, product, and scalar action on presentations of linear relations over $R$. Let $\mathfrak P = (P, p_0, p_1)$ and $\mathfrak Q = (Q, q_0, q_1)$ be two such relations. Define \[\mathfrak P + \mathfrak Q := \left(\frac{P \oplus Q}{R(p_0, - q_0)}, \bar p_0 = \bar q_0, \overline{p_1 + q_1} \right)\] where bars denote images in the quotient. Also define \[\mathfrak P \mathfrak Q := \left(\frac{Q\oplus P}{R(q_1, - p_0)}, \bar q_0, \bar p_1 \right).\] For $r \in R$, define $r\mathfrak P := (P, p_0, rp_1)$.  Then, for every $M$, \[(\mathfrak P + \mathfrak Q)(M) = \mathfrak P(M) + \mathfrak Q(M),\] \[(\mathfrak P \mathfrak Q)(M) = \mathfrak P(M) \mathfrak Q(M), \] \[(r\mathfrak P)(M) = r \mathfrak P(M). \] Finally, let \[\mathfrak 1_R := (R, 1, 1).\] Then there are canonical isomorphisms \[\mathfrak P \mathfrak 1_R \cong \mathfrak 1_R \mathfrak P \cong \mathfrak P.\] Let us remark that we can make these definitions functorially. Consider the functor \[\mathscr U: \operatorname{R-Mod} \rightarrow \operatorname{R-Mod}, \qquad \mathscr U(M) := M \oplus M.\] Then a \emph{linear relation $\mathscr{P}$ over $R$} is a subfunctor $\mathscr P \subset \mathscr U$. If $\mathfrak P = (P, p_0, p_1)$ is a presentation of a linear relation over $R$, then the image subfunctor \[\mathscr P_{\mathfrak P} := \im \left(\Hom_R(P, -{}) \rightarrow \mathscr U\right)\] is a linear relation over $R$. Note however that not every linear relation will have a presentation. 
+
+We now specify how to evaluate a polynomial at linear relations. For a linear relation \(\mathcal A\) on \(M\), put \[ \mathcal A^0:=\Gamma_{\mathrm{id}_M}, \qquad \mathcal A^{n+1}:=\mathcal A\mathcal A^n. \] Thus, for \(n\geq1\), \[ \mathcal A^n(x_0) = \{x_n\in M: \exists x_1,\ldots,x_{n-1}\in M,\  x_0\mathcal A x_1\mathcal A\cdots\mathcal A x_n\}. \] 
+
+For a nonzero polynomial \[ F(X)=\sum_{j=0}^{n}c_jX^j\in R[X], \] define \[ F(\mathcal A):=\sum_{j:c_j\neq0}c_j\mathcal A^j. \] For the zero polynomial, put \(F(\mathcal A):=\Gamma_0\). More generally, if \[ F(X_1,\ldots,X_s) =\sum_{\boldsymbol j}c_{\boldsymbol j} X_1^{j_1}\cdots X_s^{j_s}, \] we define \[ F(\mathcal A_1,\ldots,\mathcal A_s) := \sum_{\boldsymbol j:c_{\boldsymbol j}\neq0} c_{\boldsymbol j} \mathcal A_1^{j_1}\cdots\mathcal A_s^{j_s}. \] The order of composition is the displayed order, with the rightmost relation applied first. Different monomials may use different intermediate elements. 
+
+These definitions use the expanded polynomial. Evaluation at multivalued relations need not respect polynomial addition or multiplication; in particular, algebraic simplifications of expressions in relations are not automatically valid. For commuting endomorphisms \(T_1,\ldots,T_s\), however, \[ F(\Gamma_{T_1},\ldots,\Gamma_{T_s}) = \Gamma_{F(T_1,\ldots,T_s)}. \] 
+
+For \(F(X)=\sum_{j=0}^n c_jX^j\), any common chain \[ x_0\mathcal A x_1\mathcal A\cdots\mathcal A x_n \] gives \[ \left(x_0,\sum_{j=0}^n c_jx_j\right)\in F(\mathcal A). \] Thus a computation using a common chain supplies an element of the polynomial relation defined above.
+
+We will now define the \emph{divided operator} linear relation. Let $T,S \in R$. Define a presentation of a linear relation over $R$ by \[\mathfrak D_{T,S} := \left(\frac{R \oplus R}{R(Te_0 -Se_1)}, \bar e_0, \bar e_1\right), \qquad e_0 := (1,0), \qquad e_1 := (0,1).\] Then on an $R$-module $M$, \[\mathfrak D_{T,S}(M) = \{(x,y): Tx = Sy\}.\] If $\operatorname{dom} \mathfrak D_{T,S}(M) = M$, we will say that \emph{$M$ admits a division relation of $T$ by $S$} and symbolically write \[''\frac{T}{S}'' := \mathfrak D_{T,S}(M).\] 
+
+We now specialize a bit more towards our intended applications. Let \(A\) be a commutative \(\mathbf Z_p\)-algebra, and let \(L\) be an \(A\)-module that is finite free over \(\mathbf Z_p\). Fix \(m\geq1\), and let \(M\) be an \(A/p^mA\)-module equipped with an \(A/p^mA\)-linear surjection \[ q:M\twoheadrightarrow L/p^mL. \] We apply the preceding definitions with \(R=A/p^mA\).
+Elements of \(A\) acting on \(M\) are understood through their images in \(A/p^mA\).
+
+Let \(\mathcal B\) be a linear relation on \(M\), and let \(0\leq b\leq m\). We write \[ \mathcal B\equiv0\pmod{p^b}\quad\text{on }M \] if \[ \mathcal B(x)\cap p^bM\neq\varnothing \qquad\text{for every }x\in M. \] Equivalently, for every \(x\in M\), there exists \(y\in p^bM\) such that \((x,y)\in\mathcal B\). 
+
+For an endomorphism \(T\) of \(M\), this definition gives \[ \Gamma_T\equiv0\pmod{p^b} \quad\Longleftrightarrow\quad TM\subseteq p^bM. \] More generally, for \(T\in A\), \[ \mathcal B\Gamma_T\equiv0\pmod{p^b} \] means that \[ \mathcal B(Tu)\cap p^bM\neq\varnothing \qquad\text{for every }u\in M. \]
+
+For a presentation \(\mathfrak P\) over \(R=A/p^mA\), put \[ \mathfrak I:=\mathfrak D_{1,p^b}\mathfrak P. \] Then \[ \mathfrak I(M) = \{(x,\rho):\exists y\in\mathfrak P(M)(x),\ y=p^b\rho\}. \] Consequently, \[ \mathfrak P(M)\equiv0\pmod{p^b} \quad\Longleftrightarrow\quad \operatorname{dom}\mathfrak I(M)=M. \] Thus congruence conditions for presented relations pass through surjective module homomorphisms and hold on a finite direct sum whenever they hold on each summand.
+
+\begin{proposition}[Division and retained precision] \label{prop:division-retained-precision} In the preceding setup, let \(T_1,\ldots,T_s\in A\), and let \(1\leq\alpha_i<m\). Put \[ \mathcal Z_i:=\mathfrak D_{T_i,p^{\alpha_i}}(M). \] For each \(i\), if \(\operatorname{dom}\mathcal Z_i=M\), then \[ T_iL\subseteq p^{\alpha_i}L. \] Consequently, \[ Z_i:=\frac{T_i}{p^{\alpha_i}} \] defines an endomorphism of \(L\).  
+     
+Suppose now that all the \(Z_i\) preserve \(L\), whether established this way or separately, and put \[ h:=m-\max_i\alpha_i. \] Let \(F\in\mathbf Z_p[X_1,\ldots,X_s]\), let \(S\in A\), and let \(0\leq b\leq h\). If \[ F(\mathcal Z_1,\ldots,\mathcal Z_s)\Gamma_S \equiv0\pmod{p^b}\quad\text{on }M, \] then \[ S F(Z_1,\ldots,Z_s)L\subseteq p^bL. \] Here the coefficients of \(F\) on the source are understood through their images in \(A/p^mA\).\end{proposition}
+
+\begin{proof} Suppose first that \(\operatorname{dom}\mathcal Z_i=M\). For \(u\in L\), choose \(x\in M\) with \(q(x)=u\bmod p^mL\), and choose \(y\in M\) satisfying \[ T_i x=p^{\alpha_i}y. \] Applying \(q\) gives \[ T_i u\in p^{\alpha_i}L+p^mL=p^{\alpha_i}L. \] This proves the first assertion.
+
+Now assume that all the \(Z_i\) preserve \(L\). Let \[ q_h:M\twoheadrightarrow L/p^hL \] be the composite of \(q\) with reduction modulo \(p^h\). If \((x,y)\in\mathcal Z_i\), applying \(q\) and cancelling \(p^{\alpha_i}\) on the free lattice gives \[ q_h(y)=Z_iq_h(x), \] since \(h\leq m-\alpha_i\). Thus every choice of output of \(\mathcal Z_i\) has, after applying \(q_h\), the same value as the integral operator \(Z_i\). Following the intermediate elements in each monomial, we therefore obtain \[ q_h(y)=F(Z_1,\ldots,Z_s)q_h(x) \] whenever \[ (x,y)\in F(\mathcal Z_1,\ldots,\mathcal Z_s). \] For any \(u\in L\), choose \(x\in M\) lifting its class modulo \(p^mL\). By hypothesis, there is \(y\in p^bM\) such that \[ (Sx,y)\in F(\mathcal Z_1,\ldots,\mathcal Z_s). \] Consequently, \[ F(Z_1,\ldots,Z_s)Su\in p^bL+p^hL=p^bL. \] Since \(A\) is commutative, \(S,Z_1,\ldots,Z_s\) commute on \(L\otimes_{\mathbf Z_p}\mathbf Q_p\), and hence on \(L\). This gives the stated inclusion.
+\end{proof}
+
+\subsection{Propagation of divided Hecke relations}
+\label{sec:divided-relation-propagation}
+
+Fix \(m\geq1\), and assume \(m\geq2\) if \(p=2\). Recall that \(R_m=\mathbf Z/p^m\mathbf Z\), and put \[ \mathbb A:=\mathbf Z_p[t_n:(n,p)=1], \qquad \mathbb A_m:=\mathbb A/p^m\mathbb A =R_m[t_n:(n,p)=1]. \] For odd \(p\), put \(\epsilon_q=(-1)^q\). We regard \[ \mathbb M_d^{\epsilon_q}(R_m) \] as an \(\mathbb A_m\)-module by letting \(t_n\) act as \(\chi_m(n)^qT_n\). With these actions, the transfer map \[ \Psi_d^{\epsilon_q}: \mathbb M_{d-a_m}^{\epsilon_q}(R_m) \oplus \mathbb M_{d-b_m}^{\epsilon_{q+1}}(R_m) \longrightarrow \mathbb M_d^{\epsilon_q}(R_m) \] is \(\mathbb A_m\)-linear and is surjective when \(d\geq a_m+b_m\). Here the two source modules carry the actions associated with orientations \(q\) and \(q+1\), respectively. 
+
+For \(p=2\), let \(t_n\) act as \(T_n\) on \(\mathbb M_d(R_m)\). The transfer map \[ \Psi_d: \mathbb M_{d-a_m}(R_m)\oplus\mathbb M_{d-b_m}(R_m) \longrightarrow\mathbb M_d(R_m) \] is \(\mathbb A_m\)-linear and surjective in the same range. 
+
+\begin{proposition}[Propagation of presented relations]\label{prop:presented-relation-propagation} Put \(\delta_m:=\min(a_m,b_m)\), and let \(\mathfrak P\) be a presentation of a linear relation over \(\mathbb A_m\). For odd \(p\), suppose that \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_d^{\epsilon_q}(R_m)\bigr) = \mathbb M_d^{\epsilon_q}(R_m) \] for every even degree \[ \delta_m\leq d<a_m+b_m \] and every \(q\geq0\), with the actions specified above. Then the same assertion holds for every even \(d\geq\delta_m\) and every \(q\geq0\). 
+
+For \(p=2\), if \[ \operatorname{dom}\mathfrak P \bigl(\mathbb M_d(R_m)\bigr) = \mathbb M_d(R_m) \] for every even \(\delta_m\leq d<a_m+b_m\), then it holds for every even \(d\geq\delta_m\). 
+
+The same conclusions hold with the full-domain condition
+replaced by
+\[
+\mathfrak P
+\bigl(\mathbb M_d^{\epsilon_q}(R_m)\bigr)
+\equiv0\pmod{p^b},
+\]
+or its unsplit analogue for \(p=2\), where \(0\leq b\leq m\).
+\end{proposition}
+
+\begin{proof}
+We argue by strong induction on \(d\), simultaneously in
+all orientations when \(p\) is odd. The assertion holds
+in the stated initial range. If \(d\geq a_m+b_m\), both
+\(d-a_m\) and \(d-b_m\) lie between \(\delta_m\) and \(d-1\).
+By the induction hypothesis, the presented relation has
+full domain on both source modules, hence on their direct
+sum. Full domain passes through the surjective transfer
+map, proving the assertion in degree \(d\).
+
+For congruences, apply the same argument to the presentation
+\[
+\mathfrak D_{1,p^b}\mathfrak P.
+\]
+\end{proof}
+
+The initial range is
+\[
+b_m\leq d<a_m+b_m
+\qquad(p\text{ odd}),
+\]
+and
+\[
+2^m\leq d<5\cdot2^{m-1}
+\qquad(p=2).
+\]
+For odd \(p\), the specified module structures are periodic
+in \(q\) with period \(p-1\), so only finitely many
+orientations need to be checked.
+
+As in Remark~\ref{rem:periodic-weight-propagation}, the
+presentation may depend on degree residues and orientation.
+The same induction applies provided that, at each transfer
+step, the source conditions are those of the target
+presentation evaluated on the two source modules with
+their respective \(\mathbb A_m\)-actions.
+Thus any family closed under the two degree transitions
+propagates in the same way. One may likewise restrict
+to degree residues closed under these transitions.
+
+To obtain operator congruences, take orientation \(q=0\)
+and use
+\[
+\mathbb M_d^+(R_m)
+\twoheadrightarrow P_d^+/p^mP_d^+
+\qquad(p\text{ odd}),
+\]
+or
+\[
+\mathbb M_d(R_m)
+\twoheadrightarrow
+\mathbb M_d^{\mathrm{tf}}/2^m\mathbb M_d^{\mathrm{tf}}
+\qquad(p=2).
+\]
+Give the free lattices their \(\mathbb A\)-module structures
+by letting \(t_n\) act as \(T_n\).
+Proposition~\ref{prop:division-retained-precision}, applied
+with \(A=\mathbb A\), then establishes integrality of the
+divided operators and the resulting polynomial congruences
+on the free lattice, under its stated hypotheses.
+
+These conclusions restrict to \(L_d^+\). Indeed, the
+numerator Hecke operators preserve \(L_d^+\), and saturation
+implies that their integral divided operators preserve it
+as well. For \(p=2\), these operators also commute with
+\(\iota\), by cancellation on the torsion-free module,
+and hence preserve \(P_d^+\). Finally, saturation gives
+\[
+L_d^+\cap p^bP_d^+=p^bL_d^+
+\]
+for odd \(p\), and
+\[
+L_d^+\cap 2^b\mathbb M_d^{\mathrm{tf}}=2^bL_d^+
+\]
+for \(p=2\).
+
+Relations with prescribed inputs are included in the same
+argument. For example,
+\[
+F(\mathcal Z_1,\ldots,\mathcal Z_s)\Gamma_S
+\equiv0\pmod{p^b}
+\]
+is a presented relation, with the action of \(S\) twisted
+along with the numerator operators.
+
+\iffalse
 \subsection{Staged \texorpdfstring{\(p\)}{p}-division}
 \label{sec:staged-division}
 
@@ -697,7 +848,7 @@ Apply Corollary~\ref{cor:staged-witness-propagation-p2} and then Proposition~\re
 
 Instead of requiring witnesses at every \(x_0\) in the source module, one may require them at every \(x_0=Su\), where \(u\) ranges over that module and \(S\) is an integral Hecke polynomial. In orientation \(q\), the starting vectors are \(x_0=\chi_m^q(S)u\). The same transfer argument applies, since \[ \chi_m^q(S)\Psi_d^\epsilon(u,v) = \Psi_d^\epsilon\bigl( \chi_m^q(S)u,\chi_m^{q+1}(S)v \bigr). \] If the divided operators \(Z_i\) preserve \(\mathcal P_d\), then, in orientation \(q=0\), we obtain \[ S F(Z_1,\ldots,Z_s)\mathcal P_d \subseteq p^b\mathcal P_d, \qquad b\leq m-\max_i\alpha_i. \] For \(p=2\), the same statement holds without twists.
 \end{remark}
-
+\fi
 
 \part{Computations and classifications}
 

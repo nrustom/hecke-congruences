@@ -1,8 +1,9 @@
 ## Direct Manin presentations over Z/nZ.
 ##
 ## This follows ``manin_quotient.py``: construct the two blocks of Manin
-## relations and then compute their canonical Howell row basis. Both the raw
-## matrix and its Howell basis are FLINT-backed ``ModMatrix`` objects.
+## relations and then compute their canonical Howell row basis. The optional
+## unit-pivot compression reduces the presentation before Howell and Smith
+## reduction, retaining maps back to the original monomial coordinates.
 
 import std/options
 
@@ -22,6 +23,14 @@ type
     relation_matrix*: ModMatrix
     howell_relation_matrix*: ModMatrix
     relation_rank*: int
+    compression_projection*: ModMatrix
+    compression_section*: ModMatrix
+    compression_basis*: ModMatrix
+    compressed_relations*: ModMatrix
+    compressed_howell*: ModMatrix
+    ## With compression enabled, the original raw relations remain available,
+    ## but the Howell basis is stored in ``compressed_howell`` instead of
+    ## ``howell_relation_matrix``; ``relation_rank`` is unused on that path.
 
   ManinQuotientCoordinates* = object
     ## Cyclic coordinates for a Manin quotient over Z/(p^m).
@@ -281,8 +290,56 @@ proc symmetric_power_action*(
     swap(polynomial, next)
 
 
+proc compress_s_relations(presentation: var ManinPresentation) =
+  ## Eliminate e_i + (-1)^i e_(d-i) using unit pivots only.
+  ## The section and projection are inverse modulo these eliminated
+  ## relations. Fixed-point 2-torsion survives when 2 is not invertible.
+  let n = presentation.ambient_dimension
+  let modulus = presentation.modulus
+  var positions = newSeq[int](presentation.degree + 1)
+  for i in 0 .. presentation.degree:
+    positions[i] = -1
+  for j, i in presentation.ambient_indices:
+    positions[i] = j
+  var eliminated, retained: seq[int]
+  for j, i in presentation.ambient_indices:
+    if i > presentation.degree - i:
+      eliminated.add(j)
+    elif i == presentation.degree - i and i mod 2 == 0 and
+        gcd_unsigned(2, modulus) == 1:
+      eliminated.add(j)
+    else:
+      retained.add(j)
+  let projection = init_mod_matrix(n, retained.len, modulus)
+  let section = init_mod_matrix(retained.len, n, modulus)
+  for k, j in retained:
+    let i = presentation.ambient_indices[j]
+    projection[j, k] = 1
+    section[k, j] = 1
+    if i < presentation.degree - i:
+      let partner = positions[presentation.degree - i]
+      if partner < 0:
+        raise newException(ArithmeticDefect, "S does not preserve the selected parity")
+      projection[partner, k] = if i mod 2 == 0: modulus - 1 else: 1
+  let basis = init_mod_matrix(n, n, modulus)
+  for k, j in eliminated:
+    basis[j, k] = 1
+  for j in 0 ..< n:
+    for k in 0 ..< retained.len:
+      basis[j, eliminated.len + k] = projection[j, k]
+  presentation.compression_projection = projection
+  presentation.compression_section = section
+  presentation.compression_basis = basis
+  # Project EVERY relation, including every U relation and any nonunit S
+  # relation. Keeping the original rows also permits independent replay.
+  presentation.compressed_relations = presentation.relation_matrix * projection
+  presentation.compressed_howell = howell_form(
+    presentation.compressed_relations
+  ).matrix
+
+
 proc direct_manin_presentation*(
-    degree: int; modulus: uint64
+    degree: int; modulus: uint64; compress_presentation = false
 ): ManinPresentation =
   ## Construct the Manin presentation
   ##
@@ -300,6 +357,8 @@ proc direct_manin_presentation*(
   ## ``relation_matrix`` is the raw stacked matrix ``B_mod`` from the Python
   ## implementation. ``howell_relation_matrix`` contains the canonical
   ## nonzero Howell rows spanning the same relation module.
+  ## With ``compress_presentation=true``, only the compressed Howell basis
+  ## is computed. Raw relations and ambient indexing are unchanged.
   if degree < 0:
     raise newException(ValueError, "degree must be nonnegative")
   if degree mod 2 != 0:
@@ -317,7 +376,6 @@ proc direct_manin_presentation*(
     identity + s_action,
     identity + u_action + u_action * u_action,
   )
-  let howell = howell_form(relation_matrix)
 
   result.degree = degree
   result.sign = none(int)
@@ -327,12 +385,16 @@ proc direct_manin_presentation*(
   for index in 0 .. degree:
     result.ambient_indices[index] = index
   result.relation_matrix = relation_matrix
-  result.howell_relation_matrix = howell.matrix
-  result.relation_rank = howell.rank
+  if compress_presentation:
+    compress_s_relations(result)
+  else:
+    let howell = howell_form(relation_matrix)
+    result.howell_relation_matrix = howell.matrix
+    result.relation_rank = howell.rank
 
 
 proc direct_signed_manin_presentation*(
-    degree: int; modulus: uint64; sign: int
+    degree: int; modulus: uint64; sign: int; compress_presentation = false
 ): ManinPresentation =
   ## Construct the plus or minus Manin presentation directly.
   ##
@@ -343,6 +405,8 @@ proc direct_signed_manin_presentation*(
   ##
   ## The construction requires 2 to be invertible modulo ``modulus``, so that
   ## the Manin relation module decomposes into its signed summands.
+  ## ``compress_presentation=true`` additionally eliminates unit S pivots
+  ## before Howell reduction; the signed ambient indexing is retained.
   if degree < 0:
     raise newException(ValueError, "degree must be nonnegative")
   if degree mod 2 != 0:
@@ -401,9 +465,10 @@ proc direct_signed_manin_presentation*(
       identity_columns + s_action_signed,
       identity_columns + u_action_signed + u_squared_action_signed,
     )
-    let howell = howell_form(relation_matrix)
-    howell_relation_matrix = howell.matrix
-    relation_rank = howell.rank
+    if not compress_presentation:
+      let howell = howell_form(relation_matrix)
+      howell_relation_matrix = howell.matrix
+      relation_rank = howell.rank
 
   result.degree = degree
   result.sign = some(sign)
@@ -413,6 +478,8 @@ proc direct_signed_manin_presentation*(
   result.relation_matrix = relation_matrix
   result.howell_relation_matrix = howell_relation_matrix
   result.relation_rank = relation_rank
+  if compress_presentation:
+    compress_s_relations(result)
 
 
 proc manin_quotient_coordinates*(
@@ -436,6 +503,35 @@ proc manin_quotient_coordinates*(
   let p = factorization.p
   let m = factorization.m
   let ambient_dimension = presentation.ambient_dimension
+
+  if presentation.compression_projection != nil:
+    let small_n = presentation.compression_projection.columns
+    let eliminated = ambient_dimension - small_n
+    let compact = ManinPresentation(
+      modulus: presentation.modulus,
+      ambient_dimension: small_n,
+      howell_relation_matrix: presentation.compressed_howell,
+    )
+    let small = manin_quotient_coordinates(compact)
+    let block_basis = identity_mod_matrix(ambient_dimension, presentation.modulus)
+    for i in 0 ..< small_n:
+      for j in 0 ..< small_n:
+        block_basis[eliminated + i, eliminated + j] = small.v_r[i, j]
+    result = small
+    result.v_r = presentation.compression_basis * block_basis
+    result.d_r = init_mod_matrix(
+      eliminated + small.d_r.rows, ambient_dimension, presentation.modulus
+    )
+    for i in 0 ..< eliminated:
+      result.d_r[i, i] = 1
+    for i in 0 ..< small.d_r.rows:
+      for j in 0 ..< small_n:
+        result.d_r[eliminated + i, eliminated + j] = small.d_r[i, j]
+    result.cyclic_exponents = newSeq[int](eliminated) & small.cyclic_exponents
+    result.surviving_indices = @[]
+    for i in small.surviving_indices:
+      result.surviving_indices.add(eliminated + i)
+    return
 
   if presentation.howell_relation_matrix.columns != ambient_dimension:
     raise newException(

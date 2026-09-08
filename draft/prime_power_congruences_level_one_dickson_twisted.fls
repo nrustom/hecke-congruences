@@ -426,6 +426,12 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/rm-lmss12.tfm
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/euler/eufm10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmmib10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmmib10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmmib7.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy10.tfm
+INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/lm/lmbsy7.tfm
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT /usr/share/texlive/texmf-dist/tex/latex/lm/t1lmtt.fd
@@ -445,6 +451,8 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmib10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmib7.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb
@@ -458,3 +466,4 @@ INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb
+INPUT /usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb

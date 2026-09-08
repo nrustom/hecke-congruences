@@ -1,11 +1,13 @@
 ## Compute the source data consumed by the Sage identity verifiers.
 ##
-## The output is a NumPy ``.npz`` replay bundle containing exactly the arrays
-## read by ``load_source_data.py``:
+## The output is a NumPy ``.npz`` replay bundle containing the arrays
+## read by ``load_source_data.py`` and maps for independent monomial replay:
 ##
 ## * ``order_exponents``;
 ## * ``T<n>_rows`` for every requested prime-to-p Hecke operator;
 ## * ``plus_projection`` and ``minus_projection`` when p is odd.
+## * ``<component>_monomials_to_mixed`` and
+##   ``<component>_mixed_to_monomials`` (unscaled row-coordinate maps).
 ##
 ## The Hecke matrices and projections use the scaled mixed-coordinate encoding
 ## of the existing runner archives. If target coordinate j has order p^e_j,
@@ -214,6 +216,7 @@ proc compute_signed_component(
     degree,
     modulus,
     sign,
+    compress_presentation = true,
   )
   result.coordinates = manin_quotient_coordinates(presentation)
   for hecke_index in hecke_indices:
@@ -231,7 +234,9 @@ proc compute_unsigned_component(
     hecke_indices: seq[int];
 ): SourceComponent =
   ## Compute the unsplit p=2 source and all requested Hecke actions.
-  let presentation = direct_manin_presentation(degree, modulus)
+  let presentation = direct_manin_presentation(
+    degree, modulus, compress_presentation = true
+  )
   result.coordinates = manin_quotient_coordinates(presentation)
   for hecke_index in hecke_indices:
     result.actions.add(hecke_matrix_on_manin_quotient(
@@ -617,6 +622,24 @@ proc build_archive_arrays(options: CommandLineOptions): seq[NumpyUnsignedArray] 
   ))
 
   let matrix_width = choose_element_size(modulus - 1)
+  # Retain maps to the ORIGINAL (signed) monomial presentation. These are
+  # ordinary row-coordinate maps, not the scaled action encoding below.
+  # Their composite on mixed coordinates is the identity modulo the
+  # individual cyclic orders; the other composite is identity modulo Manin
+  # relations. Witnesses can therefore be lifted and replayed independently.
+  for index, component in components:
+    let prefix = if options.prime == 2: "unsigned" elif index == 0: "plus" else: "minus"
+    let coordinates = component.coordinates
+    let to_mixed = matrix_from_columns(coordinates.v_r, coordinates.surviving_indices)
+    let to_monomials = matrix_from_rows(coordinates.v_r.inverse(), coordinates.surviving_indices)
+    result.add(numpy_array(
+      prefix & "_monomials_to_mixed",
+      @[to_mixed.rows, to_mixed.columns], to_mixed.entries, matrix_width,
+    ))
+    result.add(numpy_array(
+      prefix & "_mixed_to_monomials",
+      @[to_monomials.rows, to_monomials.columns], to_monomials.entries, matrix_width,
+    ))
   for action_index, hecke_index in options.hecke_indices:
     var actions: seq[HeckeMatrixData]
     for component in components:

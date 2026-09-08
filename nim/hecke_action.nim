@@ -202,6 +202,13 @@ proc ambient_operator_descends*(
     return false
 
   let relation_images = presentation.relation_matrix * ambient_operator
+  if presentation.compression_projection != nil:
+    # Test ALL original relations, not only the compact U rows: an
+    # arbitrary ambient operator need not preserve the eliminated S rows.
+    let projected_images = relation_images * presentation.compression_projection
+    return howell_form(vertical_stack(
+      presentation.compressed_relations, projected_images
+    )).matrix == presentation.compressed_howell
   let enlarged_relations = vertical_stack(
     presentation.relation_matrix,
     relation_images,
