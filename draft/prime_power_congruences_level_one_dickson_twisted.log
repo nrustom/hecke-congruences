@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.22)  8 SEP 2026 16:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026) (preloaded format=pdflatex 2026.7.22)  8 SEP 2026 17:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -868,29 +868,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
- [33] [34] [35] [36] [37] [38] [39] [40] [41] [42]
+ [33] [34] [35] [36] [37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50]
 
-LaTeX Warning: Reference `cor:staged-witness-propagation' on page 43 undefined on input line 949.
-
-
-LaTeX Warning: Reference `prop:staged-p-division' on page 43 undefined on input line 949.
-
-[43] [44] [45] [46]
-
-LaTeX Warning: Reference `cor:staged-witness-propagation' on page 47 undefined on input line 1009.
-
-
-LaTeX Warning: Reference `prop:staged-p-division' on page 47 undefined on input line 1009.
-
-
-LaTeX Warning: Reference `cor:staged-witness-propagation' on page 47 undefined on input line 1011.
-
-
-LaTeX Warning: Reference `prop:staged-p-division' on page 47 undefined on input line 1011.
-
-[47] [48] [49] [50]
-
-LaTeX Warning: Reference `rem:joint-staged-division' on page 51 undefined on input line 1096.
+LaTeX Warning: Reference `rem:joint-staged-division' on page 51 undefined on input line 1116.
 
 [51] [52] [53] [54] [55] [56] [57
 
@@ -911,18 +891,18 @@ Package rerunfilecheck Info: File `prime_power_congruences_level_one_dickson_twi
 (rerunfilecheck)             Checksum: B0EF2B9FED2A27531B9259D3BBDE6DBF;9816.
  ) 
 Here is how much of TeX's memory you used:
- 29978 strings out of 467356
- 567449 string characters out of 5418691
+ 29976 strings out of 467356
+ 567389 string characters out of 5418691
  1019948 words of memory out of 6000000
- 57954 multiletter control sequences out of 15000+600000
- 781167 words of font info for 326 fonts, out of 8000000 for 9000
+ 57952 multiletter control sequences out of 15000+600000
+ 781158 words of font info for 326 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  98i,14n,108p,2161b,800s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmmib7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmri10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmss10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/lm/lmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb>
-Output written on prime_power_congruences_level_one_dickson_twisted.pdf (60 pages, 584056 bytes).
+Output written on prime_power_congruences_level_one_dickson_twisted.pdf (60 pages, 593668 bytes).
 PDF statistics:
- 1065 PDF objects out of 1200 (max. 8388607)
- 940 compressed objects within 10 object streams
+ 1073 PDF objects out of 1200 (max. 8388607)
+ 948 compressed objects within 10 object streams
  224 named destinations out of 1000 (max. 500000)
  82853 words of extra memory for PDF output out of 89155 (max. 10000000)
 

@@ -49,5 +49,5 @@
 \contentsline {subsection}{\numberline {7.4}Final classification}{53}{subsection.7.4}%
 \contentsline {part}{III\hspace {1em}Applications}{54}{part.3}%
 \contentsline {section}{\numberline {8}Strong prime-to-\(p\) weight bounds}{54}{section.8}%
-\contentsline {paragraph}{Question.}{56}{section*.4}%
+\contentsline {paragraph}{Question.}{55}{section*.4}%
 \contentsline {section}{\numberline {A}Signatures modulo \(49\)}{57}{section.A}%
