@@ -106,9 +106,15 @@ suite "symmetric power action":
       Matrix2(a: 1, b: -1, c: 1, d: 0),
       Matrix2(a: 2, b: 3, c: 1, d: 4),
       Matrix2(a: 1, b: 2, c: 3, d: 1),
+      Matrix2(a: 0, b: -1, c: 1, d: -1),
+      Matrix2(a: 2, b: 1, c: 0, d: 1),
+      Matrix2(a: 1, b: 0, c: 1, d: 2),
+      Matrix2(a: -2, b: 0, c: 0, d: 1),
+      Matrix2(a: 0, b: 0, c: 1, d: 1),
+      Matrix2(a: 1, b: -2, c: 1, d: 0),
     ]
 
-    for modulus in [8'u64, 9'u64, 25'u64, 49'u64]:
+    for modulus in [8'u64, 9'u64, 12'u64, 25'u64, 49'u64, 2187'u64, 65536'u64]:
       for degree in 0 .. 8:
         for gamma in matrices:
           let recurrence = symmetric_power_action(

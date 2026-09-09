@@ -1,0 +1,25 @@
+[
+  {
+    "compute_p3_ideal_source_data.nim": "5f31859c0f6ce36f9784f4f23ede6b92fe4e809b221a5950721f393de063e94d",
+    "compute_source_data.nim": "2c541a79522ed6d2e511f3f4065ca92d4f70eb263c5baf386ed4758ff8b26fe2",
+    "ideal_image_coordinates.nim": "5b48d964312cca8d1d5ce4fd2848837f3006eb2b07247302d1542e487448613a",
+    "manin_quotient.nim": "4336d3d38524c86a96ea4d9c5b131fc561a892b716c8f428d63a1729f713b0b5",
+    "hecke_action.nim": "5e77939ee0e0bc97f325f0ac638a52d176694a89cfc70c3490c5f437c66d0e85",
+    "mixed_endomorphisms.nim": "53989f0d529cc817726f693578c2ad75b17b45aced1e0e640f09b19e6017f054",
+    "modular_matrix.nim": "6f311d747ccc18c345e49251dbd81cebae172d2f509c2ee540ad7410563df5fb",
+    "executable": "166493f8311c56242381de9cc4608c9124a1ca8fe31640581a59825d3454eae9"
+  },
+  {
+    "compute_p3_ideal_source_data.nim": "85d99117c9ecab211ec8b3ff6a30dd060ef2dcfb5d379cbc7af48b4144b07d9b",
+    "compute_source_data.nim": "3a79ace19c59f89fdffde146fee730761ecdd992b48b890fed205ec9dd17fe32",
+    "ideal_image_coordinates.nim": "56995f50a3cc1d9277108b10fc41964819543b6c573797b173d18d9b8d2bd175",
+    "manin_quotient.nim": "45b0178d8313d7cfdc5230dcafff5345e2eb3884811ed18ce5139825979d1dc6",
+    "hecke_action.nim": "cef420db7e78accbbda50e5790709b19dda40035d3d7cc4ce7ece7f330599711",
+    "mixed_endomorphisms.nim": "53989f0d529cc817726f693578c2ad75b17b45aced1e0e640f09b19e6017f054",
+    "modular_matrix.nim": "8f2ce5074377454fc7ccb7894064b2f8af06cf2dd20341f48b490630234a5802",
+    "ideal_checkpoint.nim": "b250eda2a6c4e7ae51201cad6f24f9b8e1b6d92960e33458a0fa71fafa160c51",
+    "recursive_manin.nim": "5604afd7ddaac07deee031f7f8bb6ddc1a9d5162543edffe42560124a5d32126",
+    "modular_polynomial.nim": "df7121bc9232411bca519419b8a79d6781acb17d84e4bbe01c3851ec7d4a0722",
+    "executable": "7883e0adbb5a036f8330af161bd63a434fc22636248d99b9ecb2b889814da82f"
+  }
+]

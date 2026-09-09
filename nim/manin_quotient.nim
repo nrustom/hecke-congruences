@@ -38,6 +38,7 @@ type
     p*: uint64
     m*: int
     v_r*: ModMatrix
+    v_inverse*: ModMatrix
     d_r*: ModMatrix
     cyclic_exponents*: seq[int]
     surviving_indices*: seq[int]
@@ -114,22 +115,14 @@ proc swap_columns(matrix: ModMatrix; first, second: int) =
 
 proc rescale_row(matrix: ModMatrix; row: int; scalar: uint64) =
   ## Multiply a row by a scalar in place.
-  for column in 0 ..< matrix.columns:
-    matrix[row, column] = multiply_mod(
-      matrix[row, column], scalar, matrix.modulus
-    )
+  matrix.scale_row_in_place(row, scalar)
 
 
 proc add_multiple_of_row(
     matrix: ModMatrix; target, source: int; scalar: uint64
 ) =
   ## Add ``scalar`` times one row to another in place.
-  for column in 0 ..< matrix.columns:
-    matrix[target, column] = add_mod(
-      matrix[target, column],
-      multiply_mod(scalar, matrix[source, column], matrix.modulus),
-      matrix.modulus,
-    )
+  matrix.add_scaled_row_in_place(target, source, scalar)
 
 
 proc add_multiple_of_column(
@@ -208,6 +201,51 @@ proc symmetric_power_action*(
   let inverse_coefficient = inverse_mod(
     (if divide_from_low: d else: c), modulus
   )
+
+  # Any monomial/triangular linear substitution admits a binomial formula.
+  # Pascal addition works over every modulus, including composite moduli;
+  # no factorial or nonunit is inverted. Selection order is preserved.
+  if a == 0 or b == 0 or c == 0 or d == 0:
+    var powers: array[4, seq[uint64]]
+    for j, value in [a,b,c,d]:
+      powers[j] = newSeq[uint64](degree+1)
+      powers[j][0] = 1
+      for k in 1..degree: powers[j][k] = multiply_mod(powers[j][k-1],value,modulus)
+    if (b == 0 and c == 0) or (a == 0 and d == 0):
+      for row,i in selected_inputs:
+        let target = if b == 0 and c == 0: i else: degree-i
+        for column,j in selected_outputs:
+          if j == target:
+            result[row,column] = if b == 0 and c == 0:
+              multiply_mod(powers[0][i],powers[3][degree-i],modulus)
+            else: multiply_mod(powers[1][i],powers[2][degree-i],modulus)
+      return
+    var binomial = newSeq[uint64](degree+1)
+    binomial[0] = 1
+    for k in 0..degree:
+      let i = if c == 0 or d == 0: k else: degree-k
+      let row = input_position[i]
+      if row >= 0:
+        for column,j in selected_outputs:
+          let exponent = if c == 0: j
+                         elif d == 0: j-(degree-i)
+                         elif a == 0: j
+                         else: j-i
+          if exponent < 0 or exponent > k: continue
+          var value = binomial[exponent]
+          if c == 0 or d == 0:
+            value = multiply_mod(value,powers[0][exponent],modulus)
+            value = multiply_mod(value,powers[1][k-exponent],modulus)
+            value = multiply_mod(value,powers[if c == 0: 3 else: 2][degree-i],modulus)
+          else:
+            value = multiply_mod(value,powers[2][exponent],modulus)
+            value = multiply_mod(value,powers[3][k-exponent],modulus)
+            value = multiply_mod(value,powers[if a == 0: 1 else: 0][i],modulus)
+          result[row,column] = value
+      if k < degree:
+        for j in countdown(k+1,1):
+          binomial[j] = add_mod(binomial[j],binomial[j-1],modulus)
+    return
 
   # ``polynomial[k]`` is the coefficient of X^k Y^(degree-k).
   # Begin with (cX+dY)^degree, corresponding to input basis index 0.
@@ -519,6 +557,7 @@ proc manin_quotient_coordinates*(
         block_basis[eliminated + i, eliminated + j] = small.v_r[i, j]
     result = small
     result.v_r = presentation.compression_basis * block_basis
+    result.v_inverse = result.v_r.inverse()
     result.d_r = init_mod_matrix(
       eliminated + small.d_r.rows, ambient_dimension, presentation.modulus
     )
@@ -540,12 +579,22 @@ proc manin_quotient_coordinates*(
     )
 
   let diagonal_relations = presentation.howell_relation_matrix.copy()
-  let right_transformation = identity_mod_matrix(
+  # Store V transposed: elementary column operations become contiguous rows.
+  let right_transpose = identity_mod_matrix(
     ambient_dimension,
     presentation.modulus,
   )
+  let inverse_transformation = identity_mod_matrix(ambient_dimension, presentation.modulus)
   var diagonal_valuations: seq[int]
+  var valuation_table: seq[int8]
+  if presentation.modulus <= 65536:
+    valuation_table = newSeq[int8](int(presentation.modulus))
+    valuation_table[0] = int8(m)
+    for value in 1..<valuation_table.len:
+      if uint64(value) mod p == 0:
+        valuation_table[value] = 1 + valuation_table[int(uint64(value) div p)]
   var pivot = 0
+  var valuation_floor = 0
   let maximum_pivots = min(
     diagonal_relations.rows,
     diagonal_relations.columns,
@@ -562,15 +611,16 @@ proc manin_quotient_coordinates*(
         let value = diagonal_relations[row, column]
         if value == 0:
           continue
-        let valuation = p_valuation_bounded(value, p, m)
+        let valuation = if valuation_table.len>0: int(valuation_table[int(value)])
+                        else: p_valuation_bounded(value, p, m)
         if not found or valuation < best_valuation:
           found = true
           pivot_row = row
           pivot_column = column
           best_valuation = valuation
-          if valuation == 0:
+          if valuation == valuation_floor:
             break
-      if found and best_valuation == 0:
+      if found and best_valuation == valuation_floor:
         break
 
     if not found:
@@ -578,7 +628,9 @@ proc manin_quotient_coordinates*(
 
     swap_rows(diagonal_relations, pivot_row, pivot)
     swap_columns(diagonal_relations, pivot_column, pivot)
-    swap_columns(right_transformation, pivot_column, pivot)
+    swap_rows(right_transpose, pivot_column, pivot)
+    swap_rows(inverse_transformation, pivot_column, pivot)
+    valuation_floor = best_valuation
 
     var pivot_power = 1'u64
     for exponent_index in 0 ..< best_valuation:
@@ -628,18 +680,12 @@ proc manin_quotient_coordinates*(
         quotient,
         presentation.modulus,
       )
-      add_multiple_of_column(
-        diagonal_relations,
-        column,
-        pivot,
-        negative_quotient,
-      )
-      add_multiple_of_column(
-        right_transformation,
-        column,
-        pivot,
-        negative_quotient,
-      )
+      # The pivot column was cleared above. This column operation changes
+      # only the pivot-row entry of the relation matrix.
+      diagonal_relations[pivot, column] = 0
+      right_transpose.add_scaled_row_in_place(column, pivot, negative_quotient)
+      # V <- V E implies V^-1 <- E^-1 V^-1. No separate inverse is needed.
+      inverse_transformation.add_scaled_row_in_place(pivot, column, quotient)
 
     for row in 0 ..< diagonal_relations.rows:
       if row != pivot and diagonal_relations[row, pivot] != 0:
@@ -657,7 +703,7 @@ proc manin_quotient_coordinates*(
     diagonal_valuations.add(best_valuation)
     pivot += 1
 
-  discard right_transformation.inverse()
+  result.v_inverse = inverse_transformation
 
   var cyclic_exponents = newSeq[int](ambient_dimension)
   for column in 0 ..< ambient_dimension:
@@ -680,7 +726,7 @@ proc manin_quotient_coordinates*(
   result.backend = "finite_chain_ring"
   result.p = p
   result.m = m
-  result.v_r = right_transformation
+  result.v_r = right_transpose.transpose()
   result.d_r = diagonal_relations
   result.cyclic_exponents = cyclic_exponents
   result.surviving_indices = surviving_indices

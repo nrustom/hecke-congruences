@@ -3,6 +3,11 @@ lean/.lake/
 lean/.lean/
 nim/.strong-signatures-build/
 __pycache__/
+nim/.p3-ideal-build/
+source_data/p3_ideal_9_T2_mod2187/.staging/
+source_data/p3_ideal_9_T2_mod2187/.checkpoints/
+source_data/p3_ideal_9_T2_mod2187/.module_cache/
+source_data/p3_ideal_9_T2_mod2187/logs/
 *.pyc
 strong_signatures/**/*.lock
 strong_signatures/*/logs/

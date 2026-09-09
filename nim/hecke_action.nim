@@ -145,7 +145,8 @@ proc ambient_hecke_matrix*(
 
   result = init_mod_matrix(degree + 1, degree + 1, modulus)
   for gamma in heilbronn_merel_matrices(n):
-    result = result + symmetric_power_action(gamma, degree, modulus)
+    let action = symmetric_power_action(gamma, degree, modulus)
+    result.add_in_place(action)
 
 
 proc signed_ambient_hecke_matrix*(
@@ -179,13 +180,14 @@ proc signed_ambient_hecke_matrix*(
     return
 
   for gamma in heilbronn_merel_matrices(n):
-    result = result + symmetric_power_action(
+    let action = symmetric_power_action(
       gamma,
       presentation.degree,
       presentation.modulus,
       input_indices = signed_indices,
       output_indices = signed_indices,
     )
+    result.add_in_place(action)
 
 
 proc ambient_operator_descends*(
@@ -255,7 +257,9 @@ proc hecke_matrix_from_ambient_on_manin_quotient*(
       "quotient coordinates are incompatible with the presentation",
     )
 
-  let t_cyclic = v_r.inverse() * ambient_t * v_r
+  let v_inverse = if quotient_coordinates.v_inverse.isNil: v_r.inverse()
+                  else: quotient_coordinates.v_inverse
+  let t_cyclic = v_inverse * ambient_t * v_r
   let indices = quotient_coordinates.surviving_indices
   let quotient_matrix = matrix_from_rows_and_columns(
     t_cyclic,
@@ -294,7 +298,8 @@ proc hecke_matrix_on_manin_quotient*(
       "quotient coordinates are incompatible with the presentation",
     )
 
-  let v_inverse = v_r.inverse()
+  let v_inverse = if quotient_coordinates.v_inverse.isNil: v_r.inverse()
+                  else: quotient_coordinates.v_inverse
   let indices = quotient_coordinates.surviving_indices
   let representatives = matrix_from_rows(v_inverse, indices)
   if representatives.rows != indices.len or
@@ -309,13 +314,19 @@ proc hecke_matrix_on_manin_quotient*(
     presentation.ambient_dimension,
     presentation.modulus,
   )
+  let product = init_mod_matrix(
+    indices.len,
+    presentation.ambient_dimension,
+    presentation.modulus,
+  )
   for gamma in heilbronn_merel_matrices(n):
     let action = symmetric_power_action(
       gamma,
       presentation.degree,
       presentation.modulus,
     )
-    images = images + representatives * action
+    product.multiply_into(representatives, action)
+    images.add_in_place(product)
 
   let images_in_cyclic_coordinates = images * v_r
   let quotient_matrix = matrix_from_columns(
@@ -372,7 +383,8 @@ proc hecke_matrix_on_signed_manin_quotient*(
       check_descent,
     )
 
-  let v_inverse = v_r.inverse()
+  let v_inverse = if quotient_coordinates.v_inverse.isNil: v_r.inverse()
+                  else: quotient_coordinates.v_inverse
   let surviving_indices = quotient_coordinates.surviving_indices
   let representatives = matrix_from_rows(v_inverse, surviving_indices)
   if representatives.rows != surviving_indices.len or
@@ -393,6 +405,11 @@ proc hecke_matrix_on_signed_manin_quotient*(
     signed_dimension,
     signed_presentation.modulus,
   )
+  let product = init_mod_matrix(
+    surviving_indices.len,
+    signed_dimension,
+    signed_presentation.modulus,
+  )
 
   for gamma in heilbronn_merel_matrices(n):
     let signed_block = symmetric_power_action(
@@ -402,9 +419,10 @@ proc hecke_matrix_on_signed_manin_quotient*(
       input_indices = signed_indices,
       output_indices = signed_indices,
     )
-    images = images + representatives * signed_block
+    product.multiply_into(representatives, signed_block)
+    images.add_in_place(product)
     if check_descent:
-      signed_ambient_sum = signed_ambient_sum + signed_block
+      signed_ambient_sum.add_in_place(signed_block)
 
   if check_descent and not ambient_operator_descends(
       signed_ambient_sum,

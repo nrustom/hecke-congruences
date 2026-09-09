@@ -1,0 +1,36 @@
+{
+  "schema": "hecke.generic-source-optimization-benchmarks.v1",
+  "date": "2026-09-09",
+  "scope": "Complete ideal-source NPZ, both signs, cold recursive construction",
+  "baseline": "Previous recursive producer, including native-CPU and AVX2 optimizations",
+  "benchmark_parameters": {"prime": 3, "exponent": 7, "scalar_generator": 9, "hecke_indices": [2]},
+  "optimizations_are_parameter_generic": true,
+  "measurements": [
+    {"degree": 3524, "baseline_seconds": 131.60, "optimized_seconds": 46.65,
+     "baseline_peak_rss_kib": 357672, "optimized_peak_rss_kib": 332716,
+     "all_stored_arrays_identical": true},
+    {"degree": 5000, "baseline_seconds": 173.00, "optimized_seconds": 87.75,
+     "baseline_peak_rss_kib": 489176, "optimized_peak_rss_kib": 459656,
+     "all_stored_arrays_identical": true},
+    {"degree": 7286, "baseline_seconds": 359.23, "optimized_seconds": 188.99,
+     "baseline_peak_rss_kib": 914356, "optimized_peak_rss_kib": 858700,
+     "all_stored_arrays_identical": true}
+  ],
+  "timing_caveat": "Bounded tests and benchmarks shared the machine; these are indicative whole-case measurements, not isolated microbenchmarks.",
+  "general_tests": {
+    "smith_prime_exponents": [[2,1],[2,4],[2,16],[3,2],[3,7],[5,3],[7,3],[13,2]],
+    "scalar_preimage_moduli": [4,8,9,12,25,27,49,60,125,343,2187,65536],
+    "recursive_prime_exponents": [[3,1],[3,2],[3,3],[5,1],[5,2],[7,1],[13,1]],
+    "independent_smith_inverse_and_relation_replay_passed": true,
+    "full_ring_vs_reduced_scalar_preimage_passed": true,
+    "optional_lifts_and_cache_reload_passed": true,
+    "existing_manin_hecke_ideal_and_row_kernel_tests_passed": true
+  },
+  "completed_degrees_preserved": 587,
+  "remaining_degrees": 628,
+  "workers": 4,
+  "interpolated_ideal_parallel_hours": 4.8172215278,
+  "planning_eta_hours": [6,8],
+  "eta_method": "Piecewise-linear interpolation of the three cold whole-case timings, divided among four workers; allowance for contention and unmeasured degree variation. Cache reuse may reduce time.",
+  "classification_identities_tested": false
+}

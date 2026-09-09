@@ -33,7 +33,7 @@ type
     coordinates: ManinQuotientCoordinates
     actions: seq[HeckeMatrixData]
 
-  NumpyUnsignedArray = object
+  NumpyUnsignedArray* = object
     name: string
     shape: seq[int]
     values: seq[uint64]
@@ -43,7 +43,26 @@ type
     name: string
     crc_32: uint32
     size: uint32
+    compressed_size: uint32
+    compression_method: uint16
     offset: uint32
+
+proc zlib_compress_bound(size: culong): culong
+  {.cdecl, importc: "compressBound", dynlib: "libz.so.1".}
+proc zlib_compress(destination: ptr byte; size: ptr culong;
+                   source: ptr byte; source_size: culong; level: cint): cint
+  {.cdecl, importc: "compress2", dynlib: "libz.so.1".}
+
+proc deflate_payload(payload: seq[byte]): seq[byte] =
+  ## zlib wraps DEFLATE with a two-byte header and four-byte Adler checksum.
+  ## ZIP stores the raw stream; its own header records CRC32 and both sizes.
+  var length = zlib_compress_bound(culong(payload.len))
+  var wrapped = newSeq[byte](int(length))
+  if zlib_compress(addr wrapped[0], addr length, unsafeAddr payload[0],
+                   culong(payload.len), 6) != 0:
+    raise newException(IOError, "zlib compression failed")
+  wrapped.setLen(int(length))
+  result = wrapped[2 ..< wrapped.len-4]
 
 
 const usage = """
@@ -327,7 +346,7 @@ proc choose_element_size(maximum_value: uint64): int =
     8
 
 
-proc numpy_array(
+proc numpy_array*(
     name: string;
     shape: seq[int];
     values: seq[uint64];
@@ -480,11 +499,9 @@ proc checked_uint32(value: int64; label: string): uint32 =
   uint32(value)
 
 
-proc write_npz(path: string; arrays: seq[NumpyUnsignedArray]) =
-  ## Write an uncompressed, NumPy-compatible ZIP archive atomically.
-  ##
-  ## Storing rather than deflating the arrays keeps the writer dependency-free;
-  ## ``numpy.load`` treats both forms identically.
+proc write_npz*(path: string; arrays: seq[NumpyUnsignedArray]; compressed=false) =
+  ## Write a NumPy-compatible ZIP archive atomically, optionally using DEFLATE.
+  ## Compression is per array; no second uncompressed archive is written.
   if fileExists(path):
     raise newException(IOError, "refusing to overwrite existing file: " & path)
 
@@ -504,6 +521,9 @@ proc write_npz(path: string; arrays: seq[NumpyUnsignedArray]) =
     for array in arrays:
       let name = array.name & ".npy"
       let payload = numpy_payload(array)
+      let stored = if compressed: deflate_payload(payload) else: payload
+      let compressed_size = checked_uint32(int64(stored.len), "a compressed array")
+      let compression_method = if compressed: 8'u16 else: 0'u16
       let size = checked_uint32(int64(payload.len), "an array payload")
       let checksum = crc_32(payload)
       let offset = checked_uint32(output.getFilePos(), "a ZIP entry offset")
@@ -513,21 +533,23 @@ proc write_npz(path: string; arrays: seq[NumpyUnsignedArray]) =
       output.write_uint32_little(0x04034b50'u32)
       output.write_uint16_little(20)
       output.write_uint16_little(0)
-      output.write_uint16_little(0)
+      output.write_uint16_little(compression_method)
       output.write_uint16_little(0)
       output.write_uint16_little(0)
       output.write_uint32_little(checksum)
-      output.write_uint32_little(size)
+      output.write_uint32_little(compressed_size)
       output.write_uint32_little(size)
       output.write_uint16_little(uint16(name.len))
       output.write_uint16_little(0)
       output.write_text(name)
-      output.write_bytes(payload)
+      output.write_bytes(stored)
 
       directory.add(ZipDirectoryEntry(
         name: name,
         crc_32: checksum,
         size: size,
+        compressed_size: compressed_size,
+        compression_method: compression_method,
         offset: offset,
       ))
 
@@ -540,11 +562,11 @@ proc write_npz(path: string; arrays: seq[NumpyUnsignedArray]) =
       output.write_uint16_little(20)
       output.write_uint16_little(20)
       output.write_uint16_little(0)
-      output.write_uint16_little(0)
+      output.write_uint16_little(entry.compression_method)
       output.write_uint16_little(0)
       output.write_uint16_little(0)
       output.write_uint32_little(entry.crc_32)
-      output.write_uint32_little(entry.size)
+      output.write_uint32_little(entry.compressed_size)
       output.write_uint32_little(entry.size)
       output.write_uint16_little(uint16(entry.name.len))
       output.write_uint16_little(0)
@@ -631,7 +653,9 @@ proc build_archive_arrays(options: CommandLineOptions): seq[NumpyUnsignedArray] 
     let prefix = if options.prime == 2: "unsigned" elif index == 0: "plus" else: "minus"
     let coordinates = component.coordinates
     let to_mixed = matrix_from_columns(coordinates.v_r, coordinates.surviving_indices)
-    let to_monomials = matrix_from_rows(coordinates.v_r.inverse(), coordinates.surviving_indices)
+    let inverse_basis = if coordinates.v_inverse.isNil: coordinates.v_r.inverse()
+                        else: coordinates.v_inverse
+    let to_monomials = matrix_from_rows(inverse_basis, coordinates.surviving_indices)
     result.add(numpy_array(
       prefix & "_monomials_to_mixed",
       @[to_mixed.rows, to_mixed.columns], to_mixed.entries, matrix_width,
