@@ -1,6 +1,60 @@
 ## Small FLINT nmod_poly wrapper for exact Dickson coefficient arithmetic.
 ## Division is used only with monic divisors, also over composite moduli.
 import modular_matrix
+import std/[json, tables]
+
+proc coefficient_mod*(value:JsonNode; modulus:uint64):uint64 =
+  ## Reduce a signed decimal integer without limiting coefficient length.
+  let text=if value.kind==JString: value.getStr else: $value
+  if text.len==0: raise newException(ValueError,"empty polynomial coefficient")
+  var start=0
+  let negative=text[0]=='-'
+  if negative or text[0]=='+': start=1
+  if start==text.len: raise newException(ValueError,"invalid integer coefficient")
+  for i in start..<text.len:
+    if text[i] notin {'0'..'9'}: raise newException(ValueError,"require integer coefficients")
+    result=add_mod(multiply_mod(result,10'u64 mod modulus,modulus),
+      uint64(ord(text[i])-ord('0')) mod modulus,modulus)
+  if negative: result=subtract_mod(0,result,modulus)
+
+proc matrix_power*(A:ModMatrix; exponent:int):ModMatrix =
+  ## Binary powering, including the identity on a zero module.
+  if exponent<0 or A.rows!=A.columns: raise newException(ValueError,"invalid matrix power")
+  result=identity_mod_matrix(A.rows,A.modulus)
+  var base=A
+  var e=exponent
+  while e>0:
+    if (e and 1)==1: result=result*base
+    e=e shr 1
+    if e>0: base=base*base
+
+proc evaluate_polynomial*(terms:JsonNode; operators:seq[ModMatrix]):ModMatrix =
+  ## Sparse joint polynomial: [[integer_coefficient,[e_1,...,e_s]],...].
+  ## Variables follow the ordered Hecke indices; powers are cached per call.
+  if operators.len==0 or terms.kind!=JArray:
+    raise newException(ValueError,"require operators and a polynomial term list")
+  let n=operators[0].rows
+  let modulus=operators[0].modulus
+  for T in operators:
+    if T.rows!=n or T.columns!=n or T.modulus!=modulus:
+      raise newException(ValueError,"polynomial operator ring/shape mismatch")
+  result=init_mod_matrix(n,n,modulus)
+  var powers=initTable[(int,int),ModMatrix]()
+  for term in terms:
+    if term.kind!=JArray or term.len!=2 or term[1].kind!=JArray or
+        term[1].len!=operators.len:
+      raise newException(ValueError,"invalid sparse polynomial term")
+    let c=coefficient_mod(term[0],modulus)
+    var product=identity_mod_matrix(n,modulus)
+    for i in 0..<term[1].len:
+      let e_node=term[1][i]
+      if e_node.kind!=JInt or e_node.getInt<0:
+        raise newException(ValueError,"polynomial exponents must be nonnegative integers")
+      let e=e_node.getInt
+      if e>0:
+        if not powers.hasKey((i,e)): powers[(i,e)]=matrix_power(operators[i],e)
+        product=product*powers[(i,e)]
+    for i in 0..<n: result.add_scaled_row_from(product,i,i,c)
 
 type
   FlintPolynomial = object

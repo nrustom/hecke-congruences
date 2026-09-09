@@ -3,9 +3,7 @@
 ##        [--audit] [--full-replay] [--checkpoint-dir=PATH] [--module-cache-dir=PATH]
 ## Default: compressed cyclic orders and T2 only, for both signs.
 import std/[os,strutils,sha1,tables]
-import modular_matrix, manin_quotient, hecke_action, ideal_image_coordinates
-import ideal_checkpoint
-import recursive_manin
+import modular_matrix, manin_quotient, hecke_action, mixed_endomorphisms
 from compute_source_data import NumpyUnsignedArray, numpy_array, write_npz
 
 proc add_matrix(arrays: var seq[NumpyUnsignedArray]; name:string; A:ModMatrix) =
@@ -20,7 +18,7 @@ proc component(d,sign:int; arrays:var seq[NumpyUnsignedArray]; full_replay,audit
   let presentation_checkpoint=checkpoint_dir / (prefix & "_presentation.gz")
   let checkpointing=checkpoint_dir.len>0 and not full_replay
   if checkpointing and fileExists(final_checkpoint):
-    let saved=read_checkpoint(final_checkpoint,tag,d,sign)
+    let saved=read_checkpoint(final_checkpoint,tag,d,sign,2187)
     if saved.len!=2 or saved[0].rows!=1 or saved[1].rows!=saved[0].columns or
         saved[1].columns!=saved[0].columns:
       raise newException(ValueError,"invalid action checkpoint")
@@ -32,7 +30,7 @@ proc component(d,sign:int; arrays:var seq[NumpyUnsignedArray]; full_replay,audit
   var B,T:ModMatrix
   var inputs:seq[int]
   if checkpointing and fileExists(presentation_checkpoint):
-    let saved=read_checkpoint(presentation_checkpoint,tag,d,sign)
+    let saved=read_checkpoint(presentation_checkpoint,tag,d,sign,2187)
     if saved.len!=2 or saved[0].columns!=saved[1].rows or saved[1].rows!=saved[1].columns:
       raise newException(ValueError,"invalid presentation checkpoint")
     B=saved[0]; T=saved[1]

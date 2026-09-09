@@ -211,7 +211,7 @@ in Lean and are not substitutes for the exact arithmetic checks.
 With the PARI prefix on this machine:
 
 ```bash
-nim c -r -d:release -d:pari_prefix=/home/nrustom/.conda/envs/sage --out:/tmp/test_strong_signatures nim/test_strong_signatures.nim
+nim c -r -d:release --path:nim -d:pari_prefix=/home/nrustom/.conda/envs/sage --out:/tmp/test_strong_signatures tests/nim/test_strong_signatures.nim
 ```
 
 The tests cover Delta, zero cusp dimension, characteristic-zero cache reuse,

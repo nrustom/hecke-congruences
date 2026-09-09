@@ -9,15 +9,15 @@ from hecke_action import (
     heilbronn_merel_matrices,
 )
 from identity_verification import (
-    prepare_source_data,
     verify_divided_identities,
     verify_divided_joint_identities,
     verify_ordinary_identities,
     verify_ordinary_joint_identities,
 )
-from load_source_data import load_source_data
-from load_ideal_source_data import load_ideal_source_data
-from ideal_image import PresentedSubmodule, ideal_image, image_submodule
+from load_source_data import load_source_data, load_ideal_source_data
+from compute_source_data import prepare_source_data
+from hecke_action import RecursiveContext
+from mixed_endomorphisms import PresentedSubmodule, ideal_image, image_submodule, image_coordinates
 from manin_quotient import (
     annihilates_manin_quotient,
     chain_ring_manin_quotient_coordinates,
@@ -40,7 +40,7 @@ from mixed_endomorphisms import (
     normalize_mixed_matrix,
     reduce_mixed_matrix,
 )
-from pari_howell import pari_howell_row_span
+from pari_kernel import pari_howell_row_span
 from p7_mod49 import (
     load_p7_mod49_relations,
     p7_mod49_relation_polynomials,
@@ -49,6 +49,8 @@ from p7_mod49 import (
 
 __all__ = [
     "PresentedSubmodule",
+    "RecursiveContext",
+    "image_coordinates",
     "ideal_image",
     "image_submodule",
     "ambient_hecke_matrix",

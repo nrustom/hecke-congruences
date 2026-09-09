@@ -4,25 +4,19 @@ from sage.all import (
     ZZ,
     block_matrix,
     diagonal_matrix,
-    factor,
     identity_matrix,
     matrix,
     vector,
     zero_matrix,
 )
 
-from pari_howell import pari_howell_row_span
+from pari_kernel import pari_howell_row_span
 
 from hecke_action import (
     ambient_hecke_matrix,
     hecke_matrix_from_ambient_on_manin_quotient,
     hecke_matrix_on_manin_quotient,
     hecke_matrix_on_signed_manin_quotient,
-)
-from manin_quotient import (
-    chain_ring_manin_quotient_coordinates,
-    direct_manin_presentation,
-    direct_signed_manin_presentation,
 )
 from mixed_endomorphisms import (
     mixed_matrix_is_zero,
@@ -33,90 +27,8 @@ from mixed_endomorphisms import (
 )
 
 
-def _prime_power_data(R):
-    """
-    Recover p, m, and phi(p^m) from R = Z/(p^m).
-    """
-    if not hasattr(R, "characteristic"):
-        raise TypeError(
-            "the coefficient ring has no characteristic"
-        )
+from compute_source_data import prepare_source_data
 
-    modulus = ZZ(R.characteristic())
-    factorization = list(factor(modulus))
-
-    if len(factorization) != 1:
-        raise ValueError(
-            "the coefficient ring must be Z/(p^m)"
-        )
-
-    p, m = factorization[0]
-    period = p**(m - 1) * (p - 1)
-
-    return {
-        "coefficient_ring": R,
-        "modulus": modulus,
-        "p": p,
-        "m": m,
-        "period": period,
-    }
-
-
-def _validate_common_inputs(d, q):
-    d = ZZ(d)
-    q = ZZ(q)
-
-    if d < 0 or d % 2 != 0:
-        raise ValueError("d must be a nonnegative even degree")
-
-    if q < 0:
-        raise ValueError("q must be nonnegative")
-
-    return d, q
-
-
-def prepare_source_data(R, d, q):
-    arithmetic = _prime_power_data(R)
-    p = arithmetic["p"]
-
-    d, q = _validate_common_inputs(
-        d,
-        q,
-    )
-
-    if p == 2:
-        if q != 0:
-            raise ValueError(
-                "for p=2 the unsplit source has only orientation q=0"
-            )
-
-        sign = None
-
-        presentation = direct_manin_presentation(
-            degree=d,
-            coefficient_ring=R,
-        )
-    else:
-        sign = (-1)**q
-
-        presentation = direct_signed_manin_presentation(
-            degree=d,
-            coefficient_ring=R,
-            sign=sign,
-        )
-
-    coordinates = chain_ring_manin_quotient_coordinates(
-        presentation
-    )
-
-    return {
-        **arithmetic,
-        "d": d,
-        "q": q,
-        "sign": sign,
-        "presentation": presentation,
-        "coordinates": coordinates,
-    }
 
 def _hecke_matrix_on_source(n, data, check_descent):
     archived = data.get("archived_hecke_matrices")
@@ -172,6 +84,7 @@ def _hecke_matrix_on_source(n, data, check_descent):
 def _vacuous_result(data, F, n, reason):
     return {
         "degree": data["d"],
+        "source_scope": data.get("source_scope", "manin"),
         "operator": f"T_{n}",
         "residue": data["d"] % data["period"],
         "relation": F,
@@ -437,7 +350,7 @@ def verify_ordinary_identities(
             data,
             F,
             n,
-            "the Manin quotient is zero",
+            "the selected source module is zero",
         )
 
     Tn_data = _hecke_matrix_on_source(
@@ -454,6 +367,7 @@ def verify_ordinary_identities(
 
     return {
         "degree": data["d"],
+        "source_scope": data.get("source_scope", "manin"),
         "operator": f"T_{n}",
         "residue": data["d"] % data["period"],
         "relation": F,
@@ -565,6 +479,7 @@ def verify_ordinary_joint_identities(
     if not coordinates["surviving_indices"]:
         return {
             "degree": data["d"],
+            "source_scope": data.get("source_scope", "manin"),
             "operators": operator_label,
             "hecke_indices": hecke_indices,
             "residue": data["d"] % data["period"],
@@ -576,7 +491,7 @@ def verify_ordinary_joint_identities(
             "coordinate_moduli": tuple(),
             "passed": True,
             "vacuous": True,
-            "reason": "the Manin quotient is zero",
+            "reason": "the selected source module is zero",
         }
 
     twist_scalars = []
@@ -625,6 +540,7 @@ def verify_ordinary_joint_identities(
 
     return {
         "degree": data["d"],
+        "source_scope": data.get("source_scope", "manin"),
         "operators": operator_label,
         "hecke_indices": hecke_indices,
         "residue": data["d"] % data["period"],
@@ -1009,7 +925,7 @@ def verify_divided_identities(
             data,
             F,
             n,
-            "the Manin quotient is zero",
+            "the selected source module is zero",
         )
 
         result.update({
@@ -1067,6 +983,7 @@ def verify_divided_identities(
     if not division_passed:
         return {
             "degree": data["d"],
+            "source_scope": data.get("source_scope", "manin"),
             "operator": f"T_{n}",
             "numerator_polynomial": Q,
             "division_power": a,
@@ -1169,6 +1086,7 @@ def verify_divided_identities(
 
     return {
         "degree": data["d"],
+        "source_scope": data.get("source_scope", "manin"),
         "operator": f"T_{n}",
         "numerator_polynomial": Q,
         "division_power": a,
@@ -1350,6 +1268,7 @@ def verify_divided_joint_identities(
     if not coordinates["surviving_indices"]:
         return {
             "degree": data["d"],
+            "source_scope": data.get("source_scope", "manin"),
             "operators": operator_label,
             "hecke_indices": hecke_indices,
             "numerator_polynomial": Q,
@@ -1370,7 +1289,7 @@ def verify_divided_joint_identities(
             "global_scaled_annihilation_passed": False,
             "verification_route": "vacuous",
             "vacuous": True,
-            "reason": "the Manin quotient is zero",
+            "reason": "the selected source module is zero",
         }
 
     twisted_hecke_matrices = []
@@ -1412,6 +1331,7 @@ def verify_divided_joint_identities(
 
     common = {
         "degree": data["d"],
+        "source_scope": data.get("source_scope", "manin"),
         "operators": operator_label,
         "hecke_indices": hecke_indices,
         "numerator_polynomial": Q,

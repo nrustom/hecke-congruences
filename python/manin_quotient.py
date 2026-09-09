@@ -10,7 +10,37 @@ from sage.all import (
     vector,
 )
 
-from pari_howell import pari_howell_row_span
+from pari_kernel import pari_howell_row_span
+
+
+def _compressed_manin_presentation(degree, R, sign):
+    """Eliminate only unit S/sign relations before Howell and Smith reduction.
+
+    The projection and section translate back to the original monomials.
+    All U-relations, from both parities, remain in the presentation.
+    """
+    from modular_matrix import unit_compression
+    indices = tuple(i for i in range(degree+1) if sign is None or (-1)**i == sign)
+    positions = {i: j for j, i in enumerate(indices)}
+    S_rows = matrix(R, degree+1, len(indices))
+    identity_columns = matrix(R, degree+1, len(indices))
+    for i in range(degree+1):
+        if i in positions:
+            S_rows[i, positions[i]] += 1
+            identity_columns[i, positions[i]] = 1
+        if degree-i in positions:
+            S_rows[i, positions[degree-i]] += (-1)**i
+    projection, section, _ = unit_compression(S_rows)
+    U = matrix(R, [[1,-1],[1,0]])
+    U_rows = identity_columns + symmetric_power_action(U,degree,R,output_indices=indices)
+    U_rows += symmetric_power_action(U**2,degree,R,output_indices=indices)
+    B = S_rows.stack(U_rows)
+    howell = pari_howell_row_span(B*projection)
+    return {"degree":degree,"sign":sign,"coefficient_ring":R,
+            "modulus":ZZ(R.characteristic()),"ambient_dimension":len(indices),
+            "ambient_indices":indices,"B_mod":B,
+            "compression_projection":projection,"compression_section":section,
+            "A_Z":howell["A_Z"],"H_pari":howell["H_pari"],"H_R":howell["H_R"]}
 
 
 def symmetric_power_action(
@@ -53,32 +83,16 @@ def symmetric_power_action(
     input_indices = validated_indices(input_indices, "input")
     output_indices = validated_indices(output_indices, "output")
 
-    polynomial_ring = PolynomialRing(
-        R,
-        names=("X", "Y")
-    )
-    X, Y = polynomial_ring.gens()
-
-    gamma = matrix(R, gamma)
-    a, b, c, e = gamma.list()
-
+    # FLINT-backed univariate powers avoid generic bivariate expansion.
+    x = PolynomialRing(R, "x").gen()
+    a, b, c, e = matrix(R, gamma).list()
     rows = []
-
     for i in input_indices:
-        image = (
-            (a*X + b*Y)**i
-            * (c*X + e*Y)**(degree-i)
-        )
-        rows.append([
-            image.monomial_coefficient(
-                X**j * Y**(degree-j)
-            )
-            for j in output_indices
-        ])
+        image = (a*x+b)**i * (c*x+e)**(degree-i)
+        rows.append([image[j] for j in output_indices])
+    return matrix(R, len(input_indices), len(output_indices), sum(rows, []))
 
-    return matrix(R, rows)
-
-def direct_manin_presentation(degree, coefficient_ring):
+def direct_manin_presentation(degree, coefficient_ring, compress_presentation=False):
     """
     Construct the Manin presentation
 
@@ -97,6 +111,9 @@ def direct_manin_presentation(degree, coefficient_ring):
 
     if degree % 2 != 0:
         raise ValueError("the manuscript uses even degrees")
+
+    if compress_presentation:
+        return _compressed_manin_presentation(degree, R, None)
 
     S = matrix(R, [
         [0, -1],
@@ -138,6 +155,7 @@ def direct_signed_manin_presentation(
     degree,
     coefficient_ring,
     sign,
+    compress_presentation=False,
 ):
     """
     Construct the plus or minus Manin presentation directly.
@@ -169,6 +187,9 @@ def direct_signed_manin_presentation(
         raise ValueError(
             "the projector decomposition requires 2 to be invertible"
         )
+
+    if compress_presentation:
+        return _compressed_manin_presentation(degree, R, sign)
 
     parity = 0 if sign == 1 else 1
     ambient_indices = tuple(
@@ -248,6 +269,10 @@ def is_zero_in_manin_quotient(v, presentation):
             f"expected a vector of length {ambient_dimension}"
         )
 
+    if "compression_projection" in presentation:
+        v = v * presentation["compression_projection"]
+        ambient_dimension = len(v)
+
     v_Z = matrix(
         ZZ,
         ambient_dimension,
@@ -311,6 +336,9 @@ def rows_zero_in_manin_quotient(rows, presentation):
         raise ValueError(
             f"expected {ambient_dimension} columns"
         )
+
+    if "compression_projection" in presentation:
+        rows = rows * presentation["compression_projection"]
 
     row_representatives = matrix(
         ZZ,
@@ -555,33 +583,18 @@ def manin_quotient_coordinates(presentation):
     }
 
 
-def _p_valuation_bounded(value, p, maximum):
-    """Return min(v_p(value), maximum) for a residue representative."""
-    value = ZZ(value)
-
-    if value == 0:
-        return ZZ(maximum)
-
-    valuation = ZZ(0)
-    while valuation < maximum and value % p == 0:
-        value //= p
-        valuation += 1
-
-    return valuation
-
-
 def chain_ring_manin_quotient_coordinates(presentation):
     """
     Put a Manin quotient into cyclic coordinates directly over Z/(p^m).
 
-    This is an alternative to :func:`manin_quotient_coordinates`.  It diagonalizes the relation
-    module over the finite ring R = Z/(p^m), while recording only
-    the right change-of-basis matrix ``V_R``.  It therefore avoids the
+    This is an alternative to :func:`manin_quotient_coordinates`. It diagonalizes
+    the relation module over R = Z/(p^m), recording the right coordinate
+    map ``V_R`` and its section ``V_R_inverse``. It therefore avoids the
     integral Smith transformation matrix ``U_Z`` and the accompanying
     integer coefficient growth.
 
     The returned dictionary has the same fields used by the Hecke
-    routines: ``V_R``, ``surviving_indices``,
+    routines: ``V_R``, ``V_R_inverse``, ``surviving_indices``,
     ``surviving_exponents``, and ``quotient_is_free``.  Thus it may be
     passed directly to ``hecke_matrix_on_signed_manin_quotient``.
 
@@ -591,164 +604,21 @@ def chain_ring_manin_quotient_coordinates(presentation):
 
         rowspan_R(B_mod * V_R) = rowspan_R(D_R).
 
-    Consequently a surviving cyclic generator in the new coordinates
-    is represented in the original monomial coordinates by the
-    corresponding row of ``V_R.inverse()``.
+    A surviving cyclic generator is represented in the original monomial
+    coordinates by the corresponding row of ``V_R_inverse``. With an
+    uncompressed presentation this is the matrix inverse of ``V_R``.
+    With unit compression, the maps include the compression projection
+    and section: they are generally rectangular, not matrix inverses.
+    Their induced maps on the Manin quotient are mutually inverse.
 
     The Howell basis already stored in the presentation is used as a
     compact generating matrix for the relation module.  All arithmetic
     during diagonalization remains in R.
     """
+    from modular_matrix import chain_ring_coordinates
     R = presentation["coefficient_ring"]
-    modulus = ZZ(presentation["modulus"])
-    factorization = list(factor(modulus))
-
-    if len(factorization) != 1:
-        raise ValueError("the modulus must be a prime power")
-
-    p, m = factorization[0]
-    ambient_dimension = presentation.get(
-        "ambient_dimension",
-        presentation["degree"] + 1,
-    )
-
-    # PARI's Howell matrix stores relation generators as columns.
-    # Transposition therefore gives a compact row-generating matrix.
-    relations = matrix(R, presentation["H_R"].transpose())
-
-    if relations.ncols() != ambient_dimension:
-        raise ArithmeticError(
-            "the Howell relation generators have the wrong ambient dimension"
-        )
-
-    A = matrix(R, relations)
-    V_R = identity_matrix(R, ambient_dimension)
-    diagonal_valuations = []
-    pivot = 0
-    maximum_pivots = min(A.nrows(), A.ncols())
-
-    while pivot < maximum_pivots:
-        best_position = None
-        best_valuation = m
-
-        for i in range(pivot, A.nrows()):
-            for j in range(pivot, A.ncols()):
-                value = ZZ(A[i, j])
-                if value == 0:
-                    continue
-
-                valuation = _p_valuation_bounded(value, p, m)
-                if valuation < best_valuation:
-                    best_position = (i, j)
-                    best_valuation = valuation
-
-                    # A unit is the smallest possible pivot.
-                    if valuation == 0:
-                        break
-
-            if best_valuation == 0:
-                break
-
-        if best_position is None:
-            break
-
-        pivot_row, pivot_column = best_position
-
-        if pivot_row != pivot:
-            A.swap_rows(pivot_row, pivot)
-
-        if pivot_column != pivot:
-            A.swap_columns(pivot_column, pivot)
-            V_R.swap_columns(pivot_column, pivot)
-
-        pivot_power = p**best_valuation
-        pivot_value = ZZ(A[pivot, pivot])
-        pivot_unit = R(pivot_value // pivot_power)
-
-        if not pivot_unit.is_unit():
-            raise ArithmeticError("the selected pivot has nonunit part")
-
-        # Normalize the pivot to p^best_valuation.  This is a row
-        # operation, so it does not alter V_R.
-        inverse_unit = pivot_unit.inverse_of_unit()
-        A.rescale_row(pivot, inverse_unit)
-
-        if A[pivot, pivot] != R(pivot_power):
-            raise ArithmeticError("failed to normalize a chain-ring pivot")
-
-        # Clear the pivot column by row operations.
-        for i in range(A.nrows()):
-            if i == pivot or A[i, pivot] == 0:
-                continue
-
-            value = ZZ(A[i, pivot])
-            if value % pivot_power != 0:
-                raise ArithmeticError(
-                    "a pivot does not divide an entry in its column"
-                )
-
-            quotient = R(value // pivot_power)
-            A.add_multiple_of_row(i, pivot, -quotient)
-
-        # Clear the pivot row by column operations, recording exactly
-        # the same operations on V_R.
-        for j in range(A.ncols()):
-            if j == pivot or A[pivot, j] == 0:
-                continue
-
-            value = ZZ(A[pivot, j])
-            if value % pivot_power != 0:
-                raise ArithmeticError(
-                    "a pivot does not divide an entry in its row"
-                )
-
-            quotient = R(value // pivot_power)
-            A.add_multiple_of_column(j, pivot, -quotient)
-            V_R.add_multiple_of_column(j, pivot, -quotient)
-
-        if any(A[i, pivot] != 0 for i in range(A.nrows()) if i != pivot):
-            raise ArithmeticError("failed to clear a pivot column")
-
-        if any(A[pivot, j] != 0 for j in range(A.ncols()) if j != pivot):
-            raise ArithmeticError("failed to clear a pivot row")
-
-        diagonal_valuations.append(best_valuation)
-        pivot += 1
-
-    if not V_R.det().is_unit():
-        raise ArithmeticError("the right transformation is singular")
-
-    # A zero diagonal coordinate is free over R.  A diagonal p^v
-    # relation leaves a cyclic factor of order p^v; v=0 kills it.
-    cyclic_exponents = []
-    for j in range(ambient_dimension):
-        if j < len(diagonal_valuations):
-            exponent = diagonal_valuations[j]
-        else:
-            exponent = m
-        cyclic_exponents.append(exponent)
-
-    surviving_indices = [
-        j
-        for j, exponent in enumerate(cyclic_exponents)
-        if exponent > 0
-    ]
-    surviving_exponents = [
-        cyclic_exponents[j]
-        for j in surviving_indices
-    ]
-
-    return {
-        "backend": "finite_chain_ring",
-        "p": p,
-        "m": m,
-        "V_R": V_R,
-        "D_R": A,
-        "cyclic_exponents": cyclic_exponents,
-        "surviving_indices": surviving_indices,
-        "surviving_exponents": surviving_exponents,
-        "quotient_is_free": all(
-            exponent == m
-            for exponent in surviving_exponents
-        ),
-    }
+    coordinates = chain_ring_coordinates(matrix(R, presentation["H_R"].transpose()))
+    if "compression_projection" in presentation:
+        coordinates["V_R"] = presentation["compression_projection"] * coordinates["V_R"]
+        coordinates["V_R_inverse"] *= presentation["compression_section"]
+    return coordinates

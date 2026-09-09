@@ -13,12 +13,17 @@
 ## of the existing runner archives. If target coordinate j has order p^e_j,
 ## its stored column is multiplied by p^(m-e_j). The Sage loader checks this
 ## divisibility and divides the scale back out before running the verifiers.
+## With --compact, --recursive or --ideal, write a version-3 archive instead:
+## orientation-labelled cyclic orders and UNscaled restricted Hecke matrices,
+## plus optional --replay-maps. Metadata distinguishes M from an ideal image IM.
 
-import std/[os, strutils]
+import std/[os, strutils, tables, json, sha1]
 
 import hecke_action
 import manin_quotient
 import modular_matrix
+import modular_polynomial
+import mixed_endomorphisms
 
 
 type
@@ -28,6 +33,9 @@ type
     degree: int
     hecke_indices: seq[int]
     output_path: string
+    recursive, compact, audit, replay_maps: bool
+    ideal_path, module_cache_dir: string
+    orientations: seq[int]
 
   SourceComponent = object
     coordinates: ManinQuotientCoordinates
@@ -71,6 +79,19 @@ Compute a mixed Manin-source replay bundle for the Sage verifiers.
 Usage:
   compute_source_data --prime P --exponent M --degree D \
     --hecke N1,N2,... --output PATH.npz
+
+Optional:
+  --recursive          Exact Section 3.10 construction below a_m+b_m.
+  --compact            Store only cyclic orders and untwisted actions (v3).
+  --ideal FILE.json    Compute the specified ideal image, in compact format.
+  --orientations 0,1   Orientations to store (default: all for an ideal).
+  --audit              Check ideal descent, cardinality and action replay.
+  --replay-maps        Also save inclusions into the original monomial module.
+  --module-cache-dir PATH  Reuse optional producer-bound recursive maps.
+
+Ideal JSON: {"scalar":9,"generators":[[[1,[1,0]]]]}
+Here exponents follow --hecke; scalar is optional, as are polynomial generators.
+No ideal option means the whole Manin quotient, not its torsion-free quotient.
 
 Example:
   compute_source_data --prime 3 --exponent 3 --degree 12 \
@@ -201,6 +222,26 @@ proc parse_command_line(): CommandLineOptions =
     elif argument.startsWith("--output="):
       result.output_path = argument.split('=', 1)[1]
       output_seen = true
+    elif argument == "--recursive":
+      result.recursive=true
+      result.compact=true
+    elif argument == "--compact": result.compact=true
+    elif argument == "--audit": result.audit=true
+    elif argument == "--replay-maps":
+      result.replay_maps=true
+      result.compact=true
+    elif argument == "--ideal":
+      result.ideal_path=following_value(argument)
+      result.compact=true
+    elif argument == "--module-cache-dir":
+      result.module_cache_dir=following_value(argument)
+    elif argument == "--orientations":
+      for value in following_value(argument).split(','):
+        let q=parse_integer(value,"orientation")
+        if q<0 or q in result.orientations:
+          raise newException(ValueError,"orientations must be distinct and nonnegative")
+        result.orientations.add(q)
+      result.compact=true
     else:
       raise newException(ValueError, "unknown option: " & argument)
     index += 1
@@ -710,18 +751,132 @@ proc build_archive_arrays(options: CommandLineOptions): seq[NumpyUnsignedArray] 
     ))
 
 
+proc compact_archive_arrays(options:CommandLineOptions):seq[NumpyUnsignedArray] =
+  ## Generic source/ideal archive; every ideal is formed in its actual orientation.
+  ## The untwisted restricted T_n is stored; verifiers apply chi_m(n)^q once.
+  let p=int(options.prime)
+  let m=options.exponent
+  let d=options.degree
+  let context=new_recursive_context(p,m,options.hecke_indices,retain_lifts=options.replay_maps)
+  let modulus=context.modulus
+  context.cache_directory=options.module_cache_dir
+  # The binary digest prevents reuse across changed mathematical implementations.
+  context.cache_tag = $secureHashFile(getAppFilename())
+  var ideal:JsonNode=nil
+  if options.ideal_path.len>0:
+    ideal=parseFile(options.ideal_path)
+    if ideal.kind!=JObject: raise newException(ValueError,"ideal specification must be an object")
+    for key,value in ideal:
+      if key notin ["scalar","generators"]: raise newException(ValueError,"unknown ideal field: " & key)
+    if ideal.hasKey("generators") and ideal["generators"].kind!=JArray:
+      raise newException(ValueError,"ideal generators must be a list of polynomials")
+  var orientations=options.orientations
+  if orientations.len==0:
+    let count=if p==2:1 elif ideal==nil:2 else:p-1
+    for q in 0..<count: orientations.add(q)
+  for q in orientations:
+    if q>=p-1: raise newException(ValueError,"require 0<=q<p-1")
+  let metadata = %*{"prime":p,"exponent":m,"degree":d,
+    "hecke_indices":options.hecke_indices,"orientations":orientations,
+    "source_scope":(if ideal==nil:"manin" else:"ideal_image"),
+    "construction":(if options.recursive:"recursive" else:"direct"),
+    "audit":options.audit,"replay_maps":options.replay_maps,
+    "ideal":(if ideal==nil:newJNull() else:ideal)}
+  var encoded:seq[uint64]
+  for c in $metadata: encoded.add(uint64(ord(c)))
+  result.add(numpy_array("source_data_version",@[1],@[3'u64],1))
+  result.add(numpy_array("metadata_json",@[encoded.len],encoded,1))
+  var sources:Table[int,tuple[B,lifts,reduction:ModMatrix,
+    actions:Table[int,ModMatrix],exponents:seq[int]]]
+  for orientation_index,q in orientations:
+    let sign=if p==2:0 elif q mod 2==0:1 else: -1
+    var B:ModMatrix
+    var lifts,reduction:ModMatrix
+    var actions:Table[int,ModMatrix]
+    var exponents:seq[int]
+    if sources.hasKey(sign):
+      let saved=sources[sign]
+      B=saved.B; lifts=saved.lifts; reduction=saved.reduction
+      actions=saved.actions; exponents=saved.exponents
+    elif ideal!=nil and not options.recursive:
+      # No Smith reduction of M: work directly in its unit-compressed presentation.
+      let P=if sign==0:direct_manin_presentation(d,modulus,true)
+            else:direct_signed_manin_presentation(d,modulus,sign,true)
+      B=P.compressed_howell
+      if options.replay_maps:lifts=P.compression_section
+      var inputs:seq[int]
+      for i in 0..<P.compression_section.rows:
+        for j in 0..<P.compression_section.columns:
+          if P.compression_section[i,j]==1:inputs.add(P.ambient_indices[j])
+      for n in options.hecke_indices:
+        let T=init_mod_matrix(inputs.len,inputs.len,modulus)
+        let buffer=init_mod_matrix(inputs.len,inputs.len,modulus)
+        for gamma in heilbronn_merel_matrices(n):
+          let A=symmetric_power_action(gamma,d,modulus,inputs,P.ambient_indices)
+          buffer.multiply_into(A,P.compression_projection)
+          T.add_in_place(buffer)
+        actions[n]=T
+    else:
+      let M=if options.recursive:context.build_modular_symbols_recursive(d,sign)
+            else:context.direct_module(d,sign)
+      B=M.diagonal_relations(p)
+      actions=M.actions
+      exponents=M.exponents
+      lifts=M.lifts
+      reduction=M.reduction
+    # Different orientations of the same sign share the untwisted source.
+    # Only evaluating the ideal itself depends on the full orientation q.
+    sources[sign]=(B,lifts,reduction,actions,exponents)
+    if ideal!=nil:
+      var twisted:seq[ModMatrix]
+      for n in options.hecke_indices:
+        var chi=1'u64
+        for i in 0..<context.t*q:chi=multiply_mod(chi,uint64(n) mod modulus,modulus)
+        let T=actions[n].copy
+        for i in 0..<T.rows:T.scale_row_in_place(i,chi)
+        twisted.add(T)
+      var generators=init_mod_matrix(0,B.columns,modulus)
+      if ideal.hasKey("generators"):
+        for polynomial in ideal["generators"]:
+          generators=vertical_stack(generators,evaluate_polynomial(polynomial,twisted))
+      let scalar=if ideal.hasKey("scalar"):coefficient_mod(ideal["scalar"],modulus) else:0'u64
+      let H=image_coordinates(B,generators,actions,scalar,options.audit)
+      exponents=H.coordinates.surviving_exponents
+      actions=H.actions
+      if options.replay_maps:lifts=H.inclusion*lifts
+    let prefix="q" & $q
+    var orders:seq[uint64]
+    for e in exponents:orders.add(uint64(e))
+    result.add(numpy_array(prefix & "_order_exponents",@[orders.len],orders,1))
+    if options.replay_maps:
+      result.add(numpy_array(prefix & "_mixed_to_monomials",@[lifts.rows,lifts.columns],
+        lifts.entries,choose_element_size(modulus-1)))
+      if ideal==nil:
+        result.add(numpy_array(prefix & "_monomials_to_mixed",@[reduction.rows,reduction.columns],
+          reduction.entries,choose_element_size(modulus-1)))
+    for n in options.hecke_indices:
+      let T=actions[n]
+      result.add(numpy_array(prefix & "_T" & $n,@[T.rows,T.columns],T.entries,
+        choose_element_size(modulus-1)))
+    stdout.writeLine("degree " & $d & ", q=" & $q & ", mixed rank=" & $orders.len)
+    var used_again=false
+    for j in orientation_index+1..<orientations.len:
+      if orientations[j] mod 2==q mod 2:used_again=true
+    if not used_again:sources.del(sign)
+    context.release_coefficient_splits()
+
 proc main() =
   ## Compute a source archive and report its mathematical dimensions.
   try:
     let options = parse_command_line()
-    let arrays = build_archive_arrays(options)
-    write_npz(options.output_path, arrays)
+    let arrays = if options.compact:compact_archive_arrays(options)
+                 else:build_archive_arrays(options)
+    write_npz(options.output_path, arrays,compressed=true)
 
     var rank = 0
     for array in arrays:
-      if array.name == "order_exponents":
-        rank = array.values.len
-        break
+      if array.name == "order_exponents" or array.name.endsWith("_order_exponents"):
+        rank += array.values.len
     stdout.writeLine("source archive: " & absolutePath(options.output_path))
     stdout.writeLine("prime: " & $options.prime)
     stdout.writeLine("exponent: " & $options.exponent)

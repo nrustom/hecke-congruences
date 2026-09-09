@@ -16,9 +16,8 @@ WORK = ROOT / "source_data/p3_ideal_9_T2_mod2187"
 BUILD = ROOT / "nim/.p3-ideal-build"
 DEGREES = tuple(range(2, 7290, 6))
 SOURCES = ["compute_p3_ideal_source_data.nim", "compute_source_data.nim",
-           "ideal_image_coordinates.nim", "manin_quotient.nim",
-           "hecke_action.nim", "mixed_endomorphisms.nim", "modular_matrix.nim"]
-SOURCES.extend(["ideal_checkpoint.nim", "recursive_manin.nim", "modular_polynomial.nim"])
+           "manin_quotient.nim", "hecke_action.nim", "mixed_endomorphisms.nim",
+           "modular_matrix.nim", "modular_polynomial.nim"]
 
 
 def prune_module_cache(directory, next_degree, maximum_bytes=1024**3):

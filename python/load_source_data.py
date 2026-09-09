@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from functools import lru_cache
 from pathlib import Path
 import re
@@ -321,6 +322,11 @@ def load_source_data(
 
     loaded = _load_arrays(path, d)
     arrays = loaded["arrays"]
+    if "source_data_version" in arrays:
+        data = _load_compact_source(R,d,q,path,arrays)
+        if data["source_scope"] != "manin":
+            raise ValueError("this is an ideal image; use load_ideal_source_data")
+        return data
 
     if (
         loaded["archive_prime"] is not None
@@ -486,3 +492,146 @@ def load_source_data(
         })
 
     return answer
+
+
+# Legacy compact (9,T2) sources. Decoding checks the finite module/action
+# encoding, not its identification with a Manin ideal image.
+
+
+def _load_legacy_ideal_source_data(R, d, q, path, archive):
+    """Load one sign of I_d=(9,T2)M_d over Z/2187 for polynomial testing.
+
+    ``q`` chooses sign (-1)^q. The ordinary/divided verifiers subsequently
+    apply the twist scalar, so it is not stored twice. Use this INSTEAD of
+    load_source_data: these are ideal-image coordinates, not coordinates of
+    the whole Manin quotient. Only T2 is available. check_descent=True in
+    the verifiers is intentionally unsupported for this compact archive.
+    """
+    d, q = ZZ(d), ZZ(q)
+    if d < 0 or d % 6 != 2 or q < 0 or R.characteristic() != 2187:
+        raise ValueError("require modulus 2187, d=2 mod 6, and q>=0")
+    prefix = "plus" if q % 2 == 0 else "minus"
+    if tuple(archive["ideal_source_version"].tolist()) != (2,):
+        raise ValueError("unsupported ideal-source archive version")
+    if tuple(archive["parameters"].tolist()) != (3, 7, 9, 2, d):
+        raise ValueError("ideal-source arithmetic or degree mismatch")
+    orders = archive[prefix + "_order_exponents"]
+    encoded = archive[prefix + "_T2"]
+    if orders.ndim != 1 or orders.dtype.kind != "u" or encoded.dtype.kind != "u":
+        raise ValueError("expected unsigned cyclic orders and action entries")
+    exponents = tuple(ZZ(e) for e in orders)
+    if any(e < 1 or e > 7 for e in exponents):
+        raise ValueError("invalid cyclic exponent")
+    rank = len(exponents)
+    if encoded.shape != (rank, rank):
+        raise ValueError("action matrix dimensions mismatch")
+    moduli = tuple(3**e for e in exponents)
+    for j, order in enumerate(moduli):
+        if np.any(encoded[:, j] >= int(order)):
+            raise ValueError("action entries are not reduced modulo coordinate orders")
+    T = matrix(R, rank, rank, [int(x) for x in encoded.flat])
+    if not mixed_endomorphism_is_well_defined(T, moduli):
+        raise ValueError("T2 is not well-defined on the mixed ideal image")
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024*1024), b""):
+            digest.update(chunk)
+    return {
+        "coefficient_ring": R, "modulus": ZZ(2187), "p": ZZ(3),
+        "m": ZZ(7), "period": ZZ(1458), "d": d, "q": q,
+        "sign": (-1)**q, "presentation": None,
+        "source_scope": "ideal_image_(9,T2)_signed_Manin",
+        "source_path": str(path), "source_sha256": digest.hexdigest(),
+        "coordinates": {
+            "surviving_indices": tuple(range(rank)),
+            "surviving_exponents": exponents,
+            "coordinate_moduli": moduli,
+            "quotient_is_free": all(e == 7 for e in exponents),
+        },
+        "archived_hecke_matrices": {ZZ(2): {
+            "matrix": T, "normalized_matrix": T,
+            "coordinate_exponents": exponents, "coordinate_moduli": moduli,
+            "base_ring": R,
+        }},
+    }
+
+
+def _load_compact_source(R, d, q, path, arrays):
+    """Validate v3 full/ideal sources. Structural decoding is not a Manin replay."""
+    arithmetic = _prime_power_data(R)
+    p, m = arithmetic["p"], arithmetic["m"]
+    if p == 2 and q != 0:
+        raise ValueError("p=2 requires the unsplit source and q=0")
+    if np.asarray(arrays["source_data_version"]).tolist() != [3]:
+        raise ValueError("unsupported compact source version")
+    encoded = arrays["metadata_json"]
+    if encoded.ndim != 1 or encoded.dtype != np.dtype('uint8'):
+        raise ValueError("metadata_json must be an unsigned byte vector")
+    meta = json.loads(encoded.tobytes().decode('utf-8'))
+    if (meta["prime"],meta["exponent"],meta["degree"]) != (p,m,d):
+        raise ValueError("source arithmetic or degree mismatch")
+    scope = meta["source_scope"]
+    if scope not in ("manin","ideal_image") or (scope == "ideal_image") != isinstance(meta["ideal"],dict):
+        raise ValueError("invalid source scope or ideal metadata")
+    indices = tuple(ZZ(n) for n in meta["hecke_indices"])
+    if not indices or len(set(indices)) != len(indices) or any(n<=0 or n%p==0 for n in indices):
+        raise ValueError("invalid Hecke indices")
+    orientations = meta["orientations"]
+    if len(set(orientations)) != len(orientations) or any(
+        not isinstance(t,int) or t<0 or t>=p-1 for t in orientations
+    ):
+        raise ValueError("invalid orientations")
+    orientation = int(q % (p-1))
+    # Full modules depend only on the sign. General ideal images need the
+    # actual twist, not merely its parity; never substitute the wrong image.
+    if orientation not in orientations and scope == "manin":
+        orientation = next((t for t in orientations if t%2==orientation%2), -1)
+    if orientation not in orientations:
+        raise ValueError("the requested ideal orientation is not stored")
+    prefix = f"q{orientation}"
+    orders = arrays[prefix+"_order_exponents"]
+    if orders.ndim != 1 or orders.dtype.kind != 'u':
+        raise ValueError("invalid cyclic exponent encoding")
+    exponents = tuple(ZZ(e) for e in orders)
+    if any(e<1 or e>m for e in exponents):
+        raise ValueError("invalid cyclic order")
+    rank = len(exponents)
+    moduli = tuple(p**e for e in exponents)
+    actions = {}
+    for n in indices:
+        values = arrays[prefix+f"_T{n}"]
+        if values.dtype.kind != 'u' or values.shape != (rank,rank):
+            raise ValueError("invalid action encoding/shape")
+        for j,order in enumerate(moduli):
+            if np.any(values[:,j] >= int(order)):
+                raise ValueError("action not reduced modulo target cyclic orders")
+        T = matrix(R,rank,rank,[int(v) for v in values.flat])
+        if not mixed_endomorphism_is_well_defined(T,moduli):
+            raise ValueError("action is not a mixed endomorphism")
+        actions[n] = {"matrix":T,"normalized_matrix":T,"coordinate_exponents":exponents,
+                      "coordinate_moduli":moduli,"base_ring":R}
+    return {**arithmetic,"d":ZZ(d),"q":ZZ(q),"sign":None if p==2 else (-1)**q,
+            "source_scope":scope,"ideal":meta["ideal"],"source_metadata":meta,
+            "source_path":str(path),"source_sha256":_sha256(str(path)),"presentation":None,
+            "coordinates":{"surviving_indices":tuple(range(rank)),"surviving_exponents":exponents,
+                           "coordinate_moduli":moduli,"quotient_is_free":all(e==m for e in exponents)},
+            "archived_hecke_matrices":actions}
+
+
+def load_ideal_source_data(R,d,q,path):
+    """Load a generic v3 ideal source or an unchanged legacy (9,T2)/2187 archive.
+
+    Ideal generators are evaluated in orientation q. Their stored Hecke
+    matrices are untwisted; the notebook verifier supplies the twist once.
+    Terminal divisibility and all witnesses are interpreted inside IM.
+    """
+    d,q = _validate_degree_and_orientation(d,q)
+    arrays = _load_arrays(Path(path),d)["arrays"]
+    if "ideal_source_version" in arrays:
+        return _load_legacy_ideal_source_data(R,d,q,path,arrays)
+    if "source_data_version" not in arrays:
+        raise ValueError("expected an ideal-image archive, not a full-source bundle")
+    data = _load_compact_source(R,d,q,Path(path),arrays)
+    if data["source_scope"] != "ideal_image":
+        raise ValueError("the archive describes the full module, not an ideal image")
+    return data

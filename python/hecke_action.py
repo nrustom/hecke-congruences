@@ -6,6 +6,7 @@ from sage.all import (
 )
 
 from sage.modular.modsym.heilbronn import HeilbronnMerel
+from types import SimpleNamespace
 
 from manin_quotient import (
     rows_zero_in_manin_quotient,
@@ -125,7 +126,7 @@ def hecke_matrix_from_ambient_on_manin_quotient(
     V_R = quotient_coordinates["V_R"]
 
     T_smith = (
-        V_R.inverse()
+        (quotient_coordinates["V_R_inverse"] if "V_R_inverse" in quotient_coordinates else V_R.inverse())
         * ambient_T
         * V_R
     )
@@ -196,7 +197,7 @@ def hecke_matrix_on_manin_quotient(
         raise ValueError("this routine currently requires gcd(n,p)=1")
 
     V = quotient_coordinates["V_R"]
-    V_inverse = V.inverse()
+    V_inverse = quotient_coordinates["V_R_inverse"] if "V_R_inverse" in quotient_coordinates else V.inverse()
 
     indices = quotient_coordinates["surviving_indices"]
     exponents = quotient_coordinates["surviving_exponents"]
@@ -305,7 +306,7 @@ def hecke_matrix_on_signed_manin_quotient(
         raise ValueError("the signed presentation has inconsistent data")
 
     V = quotient_coordinates["V_R"]
-    V_inverse = V.inverse()
+    V_inverse = quotient_coordinates["V_R_inverse"] if "V_R_inverse" in quotient_coordinates else V.inverse()
     surviving_indices = quotient_coordinates["surviving_indices"]
     exponents = quotient_coordinates["surviving_exponents"]
     p = quotient_coordinates["p"]
@@ -395,3 +396,196 @@ def hecke_matrix_on_signed_manin_quotient(
         "sign": sign,
         "descent_checked": bool(check_descent),
     }
+
+
+class RecursiveContext:
+    """Section 3.10 exact complementary Manin presentations below a_m+b_m.
+
+    This is the Sage counterpart of Nim's RecursiveContext. Lower modules
+    and coefficient splittings are reused; only new complement Hecke images
+    are computed. Both signs supply U-relations. No torsion is discarded.
+    """
+
+    def __init__(self, R, hecke_indices, retain_lifts=True):
+        factors = list(ZZ(R.characteristic()).factor())
+        if len(factors) != 1:
+            raise ValueError("require R=Z/p^m")
+        self.p, self.m = factors[0]
+        self.R = R
+        self.t = self.p**(self.m-1)
+        self.a = self.p*(self.p-1)*self.t
+        self.b = (self.p+1)*self.t
+        self.hecke_indices = tuple(ZZ(n) for n in hecke_indices)
+        if len(set(self.hecke_indices)) != len(self.hecke_indices) or any(
+            n <= 0 or n % self.p == 0 for n in self.hecke_indices
+        ):
+            raise ValueError("require distinct positive prime-to-p Hecke indices")
+        self.A, self.B = None, None
+        self.retain_lifts = retain_lifts
+        self.modules, self.splits = {}, {}
+        self.presented_sources = {}
+
+    @staticmethod
+    def indices(d, sign):
+        return tuple(i for i in range(d+1) if sign == 0 or (-1)**i == sign)
+
+    def coefficient_split(self, d, sign):
+        """B-first monic division, followed by a full-precision unit-minor solve."""
+        from sage.all import GF
+        if d < self.b or d >= self.a+self.b:
+            raise ValueError("coefficient split outside its injection range")
+        if (d,sign) in self.splits:
+            return self.splits[d,sign]
+        if self.A is None:
+            from modular_polynomial import dickson_polynomials
+            self.A,self.B = dickson_polynomials(self.p,self.m,self.R)
+        indices = self.indices(d,sign)
+        ia, ib = self.indices(d-self.a,sign), self.indices(d-self.b,-sign)
+        bc = tuple(i for i in indices if i < self.p*self.t or i > d-self.t)
+        bq, br = matrix(self.R,len(indices),len(ib)), matrix(self.R,len(indices),len(bc))
+        aq, ar = matrix(self.R,len(ia),len(ib)), matrix(self.R,len(ia),len(bc))
+        x = self.B.parent().gen()
+        for row,i in enumerate(indices):
+            if i in bc:
+                br[row,bc.index(i)] = 1
+            else:
+                q,r = (x**i).quo_rem(self.B)
+                bq.set_row(row,[q[k] for k in ib])
+                br.set_row(row,[r[k] for k in bc])
+        for row,i in enumerate(ia):
+            full = self.A*x**i
+            truncated = full.truncate(d-self.t+1)
+            q,r = truncated.quo_rem(self.B)
+            aq.set_row(row,[q[k] for k in ib])
+            ar.set_row(row,[full[k] if k > d-self.t else r[k] for k in bc])
+        E = ar.change_ring(GF(self.p))
+        pivots = []
+        for i in range(E.nrows()):
+            pivot = next((j for j in range(E.ncols()) if E[i,j]), None)
+            if pivot is None:
+                raise ArithmeticError("Dickson split is not injective modulo p")
+            pivots.append(pivot)
+            E.rescale_row(i,1/E[i,pivot])
+            for k in range(i+1,E.nrows()):
+                E.add_multiple_of_row(k,i,-E[k,pivot])
+        remaining = [j for j in range(len(bc)) if j not in pivots]
+        minor = ar.matrix_from_columns(pivots)
+        from modular_matrix import inverse_unit_prime_power
+        inverse = inverse_unit_prime_power(minor,self.p,self.m)
+        split = SimpleNamespace(indices=indices,a_indices=ia,b_indices=ib,
+            complement=tuple(bc[j] for j in remaining),pivots=pivots,remaining=remaining,
+            b_quotients=bq,b_remainders=br,a_quotients=aq,a_remainders=ar,pivot_inverse=inverse)
+        self.splits[d,sign] = split
+        return split
+
+    def direct_module(self, d, sign):
+        """Unit-compressed direct source with selected Hecke images and cached inverse."""
+        from manin_quotient import direct_manin_presentation, direct_signed_manin_presentation
+        from modular_matrix import chain_ring_coordinates
+        P = (direct_manin_presentation(d,self.R,True) if sign == 0 else
+             direct_signed_manin_presentation(d,self.R,sign,True))
+        C = chain_ring_coordinates(P["H_R"].transpose())
+        projection = C["V_R"].matrix_from_columns(C["surviving_indices"])
+        representatives = C["V_R_inverse"].matrix_from_rows(C["surviving_indices"])
+        reduction = P["compression_projection"]*projection
+        section = P["compression_section"]
+        indices = P["ambient_indices"]
+        inputs = [indices[next(j for j,v in enumerate(row) if v)] for row in section.rows()]
+        exponents = tuple(C["surviving_exponents"])
+        moduli = tuple(self.p**e for e in exponents)
+        actions = {}
+        for n in self.hecke_indices:
+            images = matrix(self.R,len(inputs),len(exponents))
+            for gamma in heilbronn_merel_matrices(n):
+                images += symmetric_power_action(gamma,d,self.R,inputs,indices)*reduction
+            actions[n] = matrix(self.R,normalize_mixed_matrix(representatives*images,moduli))
+        return SimpleNamespace(degree=d,sign=sign,indices=indices,exponents=exponents,
+            reduction=reduction,lifts=representatives*section if self.retain_lifts else None,
+            actions=actions,recursive=False)
+
+    def build_modular_symbols_recursive(self, d, sign=0):
+        """Construct the exact full-torsion quotient; never assume Manin injectivity."""
+        from modular_matrix import unit_compression, chain_ring_coordinates
+        if d < 0 or d % 2 or d >= self.a+self.b or sign not in (-1,0,1):
+            raise ValueError("unsupported recursive degree/sign")
+        if self.p == 2 and sign != 0:
+            raise ValueError("p=2 requires the unsplit module")
+        if self.p == 2 and self.m == 1:
+            return self.direct_module(d,sign)
+        if (d,sign) in self.modules:
+            return self.modules[d,sign]
+        if d < self.b:
+            M = self.direct_module(d,sign)
+            self.modules[d,sign] = M
+            return M
+        C = self.coefficient_split(d,sign)
+        lower_b = self.build_modular_symbols_recursive(d-self.b,-sign)
+        lower_a = self.build_modular_symbols_recursive(d-self.a,sign) if d >= self.a else None
+        ga = len(lower_a.exponents) if lower_a is not None else 0
+        gb, nw = len(lower_b.exponents), len(C.complement)
+        f = C.b_remainders.matrix_from_columns(C.pivots)*C.pivot_inverse
+        g = C.b_quotients-f*C.a_quotients
+        w = C.b_remainders.matrix_from_columns(C.remaining)-f*C.a_remainders.matrix_from_columns(C.remaining)
+        pre = matrix(self.R,len(C.indices),0)
+        if lower_a is not None:
+            pre = pre.augment(f*lower_a.reduction)
+        pre = pre.augment(g*lower_b.reduction).augment(w)
+        all_w = sorted(C.complement + (self.coefficient_split(d,-sign).complement if sign else ()))
+        positions = {i:j for j,i in enumerate(C.indices)}
+        S_rows = matrix(self.R,len(all_w),ga+gb+nw)
+        for j,i in enumerate(all_w):
+            if i in positions:
+                S_rows.set_row(j,S_rows.row(j)+pre.row(positions[i]))
+            if d-i in positions:
+                S_rows.set_row(j,S_rows.row(j)+(-1)**i*pre.row(positions[d-i]))
+        unit_projection, unit_section, _ = unit_compression(S_rows,ga+gb)
+        small_pre = pre*unit_projection
+        raw = matrix(self.R,ga+gb,unit_projection.ncols())
+        orders = (() if lower_a is None else lower_a.exponents) + lower_b.exponents
+        for i,e in enumerate(orders):
+            raw.set_row(i,self.p**e*unit_projection.row(i))
+        raw = raw.stack(S_rows*unit_projection)
+        U_rows = matrix(self.R,len(all_w),unit_projection.ncols())
+        for gamma in (matrix(self.R,[[1,-1],[1,0]]),matrix(self.R,[[0,-1],[1,-1]])):
+            U_rows += symmetric_power_action(gamma,d,self.R,all_w,C.indices)*small_pre
+        for j,i in enumerate(all_w):
+            if i in positions:
+                U_rows.set_row(j,U_rows.row(j)+small_pre.row(positions[i]))
+        coordinates = chain_ring_coordinates(raw.stack(U_rows))
+        projection = coordinates["V_R"].matrix_from_columns(coordinates["surviving_indices"])
+        representatives = coordinates["V_R_inverse"].matrix_from_rows(coordinates["surviving_indices"])*unit_section
+        reduction = small_pre*projection
+        pre_projection = unit_projection*projection
+        exponents = tuple(coordinates["surviving_exponents"])
+        moduli = tuple(self.p**e for e in exponents)
+        actions = {}
+        for n in self.hecke_indices:
+            images = matrix(self.R,0,len(exponents))
+            if lower_a is not None:
+                images = images.stack(lower_a.actions[n]*pre_projection.matrix_from_rows(range(ga)))
+            images = images.stack(self.R(n)**self.t*lower_b.actions[n]*pre_projection.matrix_from_rows(range(ga,ga+gb)))
+            fresh = matrix(self.R,nw,len(exponents))
+            for gamma in heilbronn_merel_matrices(n):
+                fresh += symmetric_power_action(gamma,d,self.R,C.complement,C.indices)*reduction
+            action = matrix(self.R,normalize_mixed_matrix(representatives*images.stack(fresh),moduli))
+            if not mixed_endomorphism_is_well_defined(action,moduli):
+                raise ArithmeticError("recursive action violates cyclic orders")
+            actions[n] = action
+        lifts = None
+        if self.retain_lifts:
+            h_lifts = matrix(self.R,ga+gb+nw,len(C.indices))
+            x = self.A.parent().gen()
+            for lower,multiplier,offset in ((lower_a,self.A,0),(lower_b,self.B,ga)):
+                if lower is None:
+                    continue
+                for i,row in enumerate(lower.lifts.rows()):
+                    v = sum(row[j]*x**k for j,k in enumerate(lower.indices))
+                    product = multiplier*v
+                    h_lifts.set_row(offset+i,[product[k] for k in C.indices])
+            for j,i in enumerate(C.complement):
+                h_lifts[ga+gb+j,positions[i]] = 1
+            lifts = representatives*h_lifts
+        M = SimpleNamespace(degree=d,sign=sign,indices=C.indices,exponents=exponents,
+            reduction=reduction,lifts=lifts,actions=actions,recursive=True)
+        self.modules[d,sign] = M
+        return M

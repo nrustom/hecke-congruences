@@ -119,12 +119,15 @@ path used by the notebooks:
 
 | File | Purpose |
 | --- | --- |
-| `manin_quotient.py` | Direct and signed Manin presentations and mixed cyclic quotient coordinates |
-| `hecke_action.py` | Heilbronn--Merel matrices and induced Hecke actions |
-| `mixed_endomorphisms.py` | Endomorphisms of direct sums of cyclic `p`-power modules |
+| `compute_source_data.py` | Uniform `prepare_source_data` interface for full modules and ideal images |
+| `manin_quotient.py` | Direct/signed presentations, unit compression, and quotient coordinates |
+| `hecke_action.py` | Heilbronn--Merel actions and exact recursive source construction |
+| `mixed_endomorphisms.py` | Mixed cyclic arithmetic, presented ideal images and their restricted actions |
+| `modular_matrix.py` | Finite-chain-ring Smith arithmetic and scalar-preimage optimization |
+| `modular_polynomial.py` | Full Dickson polynomials and sparse joint-polynomial interchange |
 | `identity_verification.py` | Ordinary, divided, joint, and staged-witness verification |
-| `pari_howell.py` | Howell/Smith coordinate support through PARI |
-| `load_source_data.py` | Validation and decoding of archived Nim source bundles |
+| `pari_kernel.py` | Small PARI Howell interface through Sage |
+| `load_source_data.py` | Validation/decoding of full-module and ideal-image archives |
 | `p7_mod49.py` | Explicit modulo-49 selector polynomials and their replay |
 | `build_source_data_archive.py` | Consolidation of per-degree replay bundles |
 
@@ -146,11 +149,15 @@ construction instead.
 The programs in [`nim/`](nim/) are the faster production backend:
 
 - `manin_quotient.nim` constructs the direct or signed Manin presentation;
-- `hecke_action.nim` constructs the Heilbronn--Merel action;
-- `mixed_endomorphisms.nim` implements the mixed cyclic arithmetic;
+- `hecke_action.nim` constructs the Heilbronn--Merel action and the exact
+  recursive presentations of Section 3.10;
+- `mixed_endomorphisms.nim` implements mixed cyclic arithmetic and general
+  ideal-image coordinates, including ideals without a scalar generator;
 - `modular_matrix.nim` is a thin wrapper around FLINT matrices and Howell
   reduction;
 - `compute_source_data.nim` writes the exact NPZ bundles consumed by Sage;
+- `modular_polynomial.nim` wraps FLINT polynomial arithmetic;
+- `pari_kernel.nim` supplies the PARI interface for strong signatures;
 - `strong_signatures.nim` computes characteristic-zero newforms and their
   exact local KRW reductions through PARI.
 
@@ -158,6 +165,74 @@ The Nim source-data backend and the Sage backend implement the same Manin
 presentation and Hecke action. The Nim route is used for the large
 modulo-49 ranges because it is substantially faster; the saved output is then
 replayed at the level of the mathematical identities by the notebooks.
+
+### Recursive sources and ideal images (Section 3.10)
+
+Both languages implement the exact complementary presentation, for even
+`0 <= d < a_m+b_m`, where `a_m=p^m(p-1)` and `b_m=p^(m-1)(p+1)`.
+The coefficient splitting is performed at the **full working precision**.
+The lower modules' cyclic annihilator relations and every complement
+`S`/`U` relation remain in the presentation. For odd primes, `U` relations
+starting in **both signs** are projected to the requested sign. The lower
+`B_m` branch carries the factor `chi_m(n)=n^(p^(m-1))` in its Hecke action.
+For `p=2`, recursive construction requires `m>=2` and uses the unsplit
+module, never the invalid projector `(1+iota)/2`. At `m=1`, the constructor
+falls back to direct computation.
+
+The implementation uses direct construction below `b_m`; above that point
+it reuses lower modules and computes only new complement Hecke images.
+It does not assume that transfer is injective on Manin quotients, nor that
+the complement is stable under the group. The split-injection constructor
+is not applied beyond `a_m+b_m`; propagation there is a theorem, not an
+unchecked recursive quotient construction.
+
+For `M=R^n/J`, the ideal-image calculation constructs
+`IM=(J+sum_j F_j(T)R^n+sR^n)/J`. It computes cyclic coordinates only for
+this image, retaining the kernel of its Howell generators. A scalar
+generator is optional; zero, full, nonfree and polynomial-only images are
+supported. Multiple commuting Hecke operators and joint polynomials are
+allowed. No additional Hecke-hull closure is needed for such ideal images.
+
+On the direct route, an ideal image is constructed from the compressed
+presentation **without first computing Smith coordinates of M**. On the
+recursive route, the lower full Manin modules and complement give a smaller
+full-module presentation, after which its ideal image is computed. Current
+code does not replace that step with recursion on ideal images alone, and
+does not claim to implement complement-only recursive *identity verification*.
+
+For a general ideal, orientation matters: its generators are evaluated at
+`chi_m(n)^q*T_n`. An archive for one orientation cannot be substituted for
+another merely because the signs agree. The stored restricted Hecke
+matrices themselves are **untwisted**; the verifiers apply the twist once.
+For the existing ideal `(9,T2)`, twisting `T2` by a unit does not change
+the ideal, so its older two-sign archives remain sufficient.
+
+An identity verified using ideal-image data is an identity on **IM**, not
+on all of M. All staged witnesses and terminal submodules `p^b IM` are
+interpreted in the image's own cyclic coordinates. Applying Section 3.10
+still requires transition-compatible ideals/relations and complete base
+coverage. Any passage from an ideal image to the full cuspidal target
+requires its own argument. Source construction alone proves none of these
+classification or target-coverage claims.
+
+The optimized paths preserve all genuine torsion: unit-pivot compression;
+finite-ring Smith elimination with a tracked inverse; selected polynomial
+images; full-precision Dickson splitting; and reduction modulo a scalar
+divisor for the preliminary ideal-preimage Howell calculation. Nim also
+uses reusable FLINT buffers and small-modulus AVX2/scalar row kernels
+(through modulus 65536). Sage uses compiled Sage/PARI/FLINT operations;
+it shares the mathematical algorithms, not Nim's hand-written SIMD code.
+Dickson multipliers are built only when recursion needs them. Orientations
+of the same sign reuse the untwisted source; only the ideal's evaluation
+depends on the full orientation.
+
+Older benchmark records are retained in [`tests/benchmarks/`](tests/benchmarks/).
+For degree 7286, the optimized direct producer took 1293.65 seconds and the
+recursive producer with the later general optimizations took 188.99 seconds
+from a cold cache: approximately 6.8 times faster. These are historical,
+complete two-sign ideal-source timings from separate sessions, not a uniform
+speedup or a current-run ETA. The earlier degree-3206 comparison showed
+essentially no gain from recursion alone.
 
 ### Archived source data
 
@@ -188,6 +263,84 @@ nim c -d:release nim/compute_source_data.nim
   --prime 3 --exponent 3 --degree 12 \
   --hecke 2,7 --output /tmp/p3_degree_12.npz
 ```
+
+That invocation retains the older full replay format used by the existing
+archive builder. For new computations, use the same producer's compact
+interface. For example, a full recursive source is:
+
+```bash
+./nim/compute_source_data --prime 3 --exponent 3 --degree 88 \
+  --hecke 2,7 --recursive --output source_data/degree_88_compact.npz
+```
+
+For an ideal, save a specification such as the following in `ideal.json`:
+
+```json
+{"scalar": 9, "generators": [[[1, [1, 0]]]]}
+```
+
+With `--hecke 2,7` this means `(9,T2)`. Each polynomial is a list of
+`[coefficient,[exponents...]]` terms, in the specified Hecke-variable order.
+Omit `scalar` for an ideal generated solely by polynomials. Integer
+coefficients may also be decimal strings. Then run:
+
+```bash
+./nim/compute_source_data --prime 3 --exponent 3 --degree 88 \
+  --hecke 2,7 --ideal ideal.json --recursive \
+  --output source_data/degree_88_ideal.npz
+```
+
+Without `--recursive`, the ideal uses the direct presentation route.
+`--orientations 0,1` restricts the requested orientations; otherwise ideal
+archives contain all `0 <= q < p-1`. `--audit` checks descent and ideal
+inclusion/action replay. `--replay-maps` additionally records inclusions
+into the original monomial presentation for independent comparison.
+These checks are distinct from recomputing the full recursive construction
+independently. Existing output files are never overwritten.
+
+Compact version-3 archives are DEFLATE-compressed per-degree NPZ files. They
+contain arithmetic/ideal/orientation metadata, cyclic exponents and the
+requested restricted actions, with no redundant dense projectors. Entries
+are unscaled and reduced modulo their target cyclic orders. The Nim backend
+supports prime powers fitting its machine-word arithmetic; dimensions and
+memory impose practical limits. The optional compressed recursive-map cache
+currently supports moduli at most 65536; larger moduli compute without that
+disk cache. The legacy archive builder combines legacy full-source bundles,
+not these version-3 compact files.
+
+In Sage, existing notebook calls continue to work. The uniform fresh and
+archived alternatives are:
+
+```python
+from hecke_congruences import prepare_source_data, load_ideal_source_data, RecursiveContext
+
+R = Integers(27)
+context = RecursiveContext(R, (2, 7), retain_lifts=False)
+data = prepare_source_data(R, 88, 0, hecke_indices=(2, 7),
+    ideal={"scalar": 9, "generators": [[[1, [1, 0]]]]},
+    recursive=True, context=context)
+# Or reuse the Nim computation:
+data = load_ideal_source_data(R, 88, 0, "source_data/degree_88_ideal.npz")
+```
+
+Pass `data` to the existing ordinary, joint or staged-division verifiers.
+`load_source_data` also reads version-3 full sources. Both loaders validate
+the encoding and mixed actions, not their identification with a Manin
+module. The separate monomial-replay tests establish that identification
+on their tested examples. Older notebook archives and the existing
+`(9,T2)` modulo-2187 archives remain supported without modification.
+
+The compatibility runner `run_p3_ideal_source_data.sh` and its small
+`compute_p3_ideal_source_data.nim` entry point remain for the already-started
+1,215-degree computation. They continue to publish the original compact
+format. Completed archives and their recorded hashes are never migrated
+or rewritten. Their producer-fingerprint allowlist records verified older
+implementations so resume can preserve completed work. New generic
+experiments should use `compute_source_data.nim` above.
+
+An already-running process continues using its existing executable. On a
+later rebuild, optional intermediate caches may be recomputed because they
+are executable-bound; completed compatible archives are still reused.
 
 The complete modulo-49 source computation has a resumable wrapper:
 
@@ -293,8 +446,9 @@ local packets retain their exact number-field and prime-ideal data.
 From the repository root, with the SageMath environment active:
 
 ```bash
-sage -python python/test_identity_verification.py
-sage -python python/test_chain_ring_backend.sage.py
+PYTHONPATH=python sage -python tests/python/test_identity_verification.py
+PYTHONPATH=python sage -python tests/python/test_chain_ring_backend.sage.py
+PYTHONPATH=python sage -python tests/python/test_source_architecture.py
 ```
 
 The first suite checks staged-witness and selector edge cases, including cases
@@ -306,7 +460,7 @@ changes.
 The strong-signature regression suite can be run with:
 
 ```bash
-nim c -r -d:release --out:/tmp/test_strong_signatures nim/test_strong_signatures.nim
+nim c -r -d:release --path:nim --out:/tmp/test_strong_signatures tests/nim/test_strong_signatures.nim
 ```
 
 If PARI is installed outside the system search path, add
@@ -314,6 +468,15 @@ If PARI is installed outside the system search path, add
 Delta, zero cusp dimension, cache reuse, strict KRW valuation thresholds,
 ramification indices 2 and 3, residue field `F_9`, pairing at split primes,
 and recovery after a PARI exception.
+
+Other regression tests live in `tests/nim/` and `tests/python/`; historical
+benchmark scripts and measurements live in `tests/benchmarks/`. To include
+Nim/Sage archive comparisons in the architecture suite, set
+`HECKE_SOURCE_EXECUTABLE` to the absolute path of a newly built
+`compute_source_data` executable. The tests create their own temporary files;
+they do not modify production archives or checkpoints. They replay inverse
+maps, all original Manin relations, cyclic orders, restricted ideal images,
+and Hecke intertwining—not merely matching ranks or characteristic polynomials.
 
 ## Citation
 
