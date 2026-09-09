@@ -15,6 +15,8 @@ from identity_verification import (
     verify_ordinary_joint_identities,
 )
 from load_source_data import load_source_data, load_ideal_source_data
+from staged_circuit import verify_staged_polynomial
+from verify_hecke_relations import relation_spec, verify_hecke_relations_nim
 from compute_source_data import prepare_source_data
 from hecke_action import RecursiveContext
 from mixed_endomorphisms import PresentedSubmodule, ideal_image, image_submodule, image_coordinates
@@ -48,6 +50,9 @@ from p7_mod49 import (
 )
 
 __all__ = [
+    "relation_spec",
+    "verify_hecke_relations_nim",
+    "verify_staged_polynomial",
     "PresentedSubmodule",
     "RecursiveContext",
     "image_coordinates",

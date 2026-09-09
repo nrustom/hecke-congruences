@@ -97,6 +97,116 @@ checks the scan parameters and completion status, then performs the same
 comparison with the permitted signature table. It does not rerun the
 characteristic-zero or local number-field calculations.
 
+### Optional Nim relation verifier
+
+[`nim/verify_hecke_relations.nim`](nim/verify_hecke_relations.nim) verifies
+ordinary and divided polynomials, including joint and genuinely nested
+divisions. It accepts signed or unsigned Manin quotients and ideal images
+in their own mixed cyclic coordinates. Build it once:
+
+```bash
+./build_verify_hecke_relations.sh
+nim/.verify-hecke-relations-build/verify_hecke_relations relations/p3_mod27_example.json
+```
+
+The build uses release mode, `-O3`, native CPU settings, and the existing
+FLINT matrix/Howell and vectorized row kernels. Set `NATIVE_CPU=0` when
+building for another CPU. If FLINT is not installed system-wide, set
+`LD_LIBRARY_PATH` to the directory containing `libflint.so` when running,
+or build with `FLINT_LIBRARY=/absolute/path/libflint.so`. The Sage bridge
+automatically uses the current Sage environment's library directory.
+
+The [example JSON](relations/p3_mod27_example.json) computes one source
+and tests both `T_7-26` modulo 27 and `(T_2/3)^2-7` at terminal depth 2.
+The source and its Hecke matrices are shared by all tests in the request.
+For a fresh ideal image, add an `ideal` object to `compute`, using the same
+`scalar`/`generators` format as `compute_source_data`. Ideal variables follow
+the distinct Hecke indices in ordinary-variable order. `recursive: true`
+uses the existing recursive source construction; the direct ideal route
+does not first Smith-reduce the whole Manin quotient. Default signs are
+`(-1)^q` for odd primes and unsplit for 2; `sign: 0` explicitly requests
+an unsigned source. No sources are regenerated when prepared data are supplied.
+
+The relation specification uses:
+
+- `variables`: ordered names. In a monomial, the rightmost variable acts first.
+- `hecke_operators`: ordinary names and their prime-to-`p` indices.
+- `divisions`: subsequent names with `numerator` and `power`, meaning
+  the numerator divided by `p^power`. Numerators use only earlier variables.
+- `polynomial`: expanded sparse terms `[coefficient, [exponents...]]`.
+  Coefficients may be signed integers or decimal strings of arbitrary length.
+- `terminal_power: b`: the terminal vector must equal `p^b rho` **inside
+  the selected module**. Set `b=m` for zero modulo the entire working modulus;
+  `b=0` tests the full-domain condition for a divided relation.
+- Optional `input_polynomial`: an ordinary polynomial prescribing starting
+  vectors `Sx`, as in the manuscript's `F(Z) Gamma_S`. This does not replace
+  the module by an ideal image: witnesses still lie in the supplied module.
+
+The default `witness_semantics: "independent_monomials"` follows the active
+*Calculus of linear relations* section: expanded monomials may have different
+intermediate witnesses. A replayed common-chain witness is a fast sufficient
+test. If that fails, a simultaneous Howell system permits independent
+monomial witnesses. Select `"common_chain"` to test only the stronger shared
+presentation used by the earlier staged verifier. No divided source
+endomorphism is assumed. Ordinary unit equations are eliminated before
+Howell reduction; reusable buffers and last-use release limit memory use.
+
+With an ideal image, all division and terminal witnesses belong to `IM`;
+the test is not membership in `IM` intersected with `p^b M`. This follows the
+manuscript's *Recursive computation of Manin quotients and ideal images*
+convention. The verifier checks all cyclic generators in one finite source.
+It does not certify degree coverage, transition compatibility, target
+integrality/retained precision, or all-weight propagation. Existing source
+construction is reused, not independently recertified by this verifier.
+
+Reports distinguish `passed`, `failed`, `inconclusive`, and `error` (CLI exit
+codes 0, 1, 3, and 2 respectively). `max_howell_dimension` defaults to 4096;
+exceeding this allocation guard is **inconclusive**, not a counterexample.
+The batch stops on the first failure or inconclusive result. An explicit
+replay success checks witness equations; a Howell success proves existence
+without exporting the witnesses.
+
+From a Sage notebook, use the existing prepared or loaded `data`:
+
+```python
+from hecke_congruences import relation_spec, verify_hecke_relations_nim
+
+S.<T,U,A> = PolynomialRing(R)
+spec = relation_spec(
+    [("T7", U-(1+7^(d+1)), m), ("A_squared", A^2-7, 2)],
+    hecke_operators={"T": 2, "U": 7},
+    divisions={"A": (T, 1)},
+)
+report = verify_hecke_relations_nim(spec, data)
+print(report)
+assert report["passed"] is True
+```
+
+Here the second polynomial is the degree-12 mod-27 example; choose the
+polynomial appropriate to your degree. The bridge accepts `prepare_source_data`,
+`load_source_data`, and `load_ideal_source_data` results and applies the
+orientation twist exactly once. It sends only unscaled cyclic coordinates
+and ordinary matrices to Nim. NPZ decoding remains in the established Python
+loader; the native process does not reread NPZ or recompute Smith coordinates.
+Alternatively, pass `compute={...}` instead of `data` for entirely native
+source construction. Existing notebooks keep their current backend unless
+you explicitly call this new function.
+
+For the `A,D_r` notebook, its existing polynomials can be passed directly:
+
+```python
+spec = relation_spec(
+    [("Frobenius", F_D, 1)] +
+    [(f"branch_{s}", F_branch[r,s], 1) for s in range(3)],
+    {"T": 2}, {"A": (T, 2), "D": (Q_D[r], 2)},
+)
+report = verify_hecke_relations_nim(spec, get_source_data(R, d, q))
+```
+
+The native implementation is cross-checked against Sage and exhaustive
+small mixed-module witness searches in
+[`tests/python/test_native_relations.py`](tests/python/test_native_relations.py).
+
 ### If an archive is still an LFS pointer
 
 An error saying that an NPZ file contains pickled data usually means that the

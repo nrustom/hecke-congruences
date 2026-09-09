@@ -4,6 +4,7 @@ lean/.lean/
 nim/.strong-signatures-build/
 __pycache__/
 nim/.p3-ideal-build/
+nim/.verify-hecke-relations-build/
 source_data/p3_ideal_9_T2_mod2187/.staging/
 source_data/p3_ideal_9_T2_mod2187/.checkpoints/
 source_data/p3_ideal_9_T2_mod2187/.module_cache/

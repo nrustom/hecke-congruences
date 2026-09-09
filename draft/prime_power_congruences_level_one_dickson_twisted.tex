@@ -145,7 +145,7 @@ For \(p=7\), Hatada had recorded a conjecture of Serre predicting \begin{equatio
 
 In \cite{Rustom2019}, the author obtained a stronger result at level \(1\). For \(p=2\), all systems of Hecke eigenvalues modulo \(2^7\) were determined; in particular, for every normalized level-one eigenform \(f\) of weight \(k\) and every odd prime \(\ell\), \[ a_\ell(f)\equiv 1+\ell^{k-1} \pmod{2^7\overline{\mathbf Z}_2}. \] This gave further evidence for Conjecture~\ref{conj:krw-finiteness}. 
 
-There is also a methodological continuity between these works. Calegari and Emerton point out that modular symbols are particularly well adapted to proving congruences that are independent of the weight, and interpret Hatada's calculations in this framework \cite{CalegariEmerton2004}. Their approach gives a cohomological formulation of the same general idea. The method of \cite{Rustom2019} was also in this spirit, using Merel's explicit theory of modular symbols to obtain finite computations from which congruences could be deduced. 
+There is also a methodological continuity between these works. Calegari and Emerton point out that modular symbols are particularly well adapted to proving congruences that are independent of the weight, and interpret Hatada's calculations in this framework \cite{CalegariEmerton2004}. Their approach gives a cohomological formulation of the same general idea. The method of \cite{Rustom2019} was also in this spirit, using Merel's explicit theory of modular symbols to obtain finite computations from which congruences could be deduced. Related use of Dickson invariants in the study of torsion in the cohomology of \(\operatorname{SL}_2(\mathbf Z)\) appears in work of Deng \cite{Deng2019}, who also derives congruences between individual level-one cuspforms and Eisenstein series. His general congruence result is modulo a prime, with some higher prime-power congruences treated in specific examples.
 
 The present work continues this approach and develops it further. In particular, we are able to prove the level \(1\) cases of Serre's conjecture (\ref{conj:serre-conjecture}) and Coleman-Stein's conjecture \cite[Conjecture~3.4]{ColemanStein2004}. The main new ingredient is a family of Hecke-equivariant transfer maps entirely within level \(1\), obtained by multiplication by suitable lifts of Dickson invariants. These maps propagate relations between level-one modular-symbol modules of different degrees and thereby reduce all-weight congruence questions to finite computation. In this way, we first obtain congruences for selected Hecke eigenvalues. Then we show that the Hecke operators to which these eigenvalues correspond generate the completed $p$-adic Hecke algebra, so that these congruences are enough to control every other Hecke eigenvalue. We do this by lifting Medvedovsky's \cite{Medvedovsky2015} explicitly determined generators of the corresponding mod $p$ Hecke algebras.
 
@@ -157,7 +157,7 @@ In the next few introductory subsections, we fix notation and state the main res
 
 \paragraph{Acknowledgements and AI use disclosure.} The core of this work was developed by the author while employed as Assistant Professor at Ko\c{c} University, Istanbul, during 2018--2020. In particular, the level $1$ Coleman-Stein conjecture, and the level $1$ Serre conjecture modulo $7^{3/4}\bar \Z_7$, were obtained at that time.
 
-AI tools, in particular Codex/GPT-5.6 Sol, were used to extend these initial results. AI contributions consisted mainly in orchestrating the identification of the conjectural classifications and weight bounds in each case. AI also contributed significantly to the search for the modular-symbol Hecke operator identities used in Part~II to obtain congruences for selected Hecke eigenvalues. As the working modulus increases, these identities become increasingly complicated, and AI was useful for rapidly testing, rejecting, and identifying plausible identities. 
+AI tools, in particular Codex/GPT-5.6 Sol, were used to extend these initial results. AI contributions consisted mainly in the identification of the conjectural classifications and weight bounds in each case. AI also contributed significantly to the search for the modular-symbol Hecke operator identities used in Part~II to obtain congruences for selected Hecke eigenvalues. As the working modulus increases, these identities become increasingly complicated, and AI was useful for rapidly testing, rejecting, and identifying plausible identities. 
 
 All computational results obtained using AI-generated code were subsequently verified independently with code written by the author. AI was also used for proofreading the manuscript, correcting typographical errors, and identifying notational inconsistencies. All mathematical statements, proofs, computations, and references in the final manuscript were independently checked by the author, who takes full responsibility for the contents of the paper.
 
@@ -504,7 +504,7 @@ We now pass to local coefficients. For \(m \geq 0\), let \[R_m := \begin{cases} 
 
 \begin{remark} \label{rem:dickson-motivation} The choice of \(\alpha_p\) and \(\beta_p\) is motivated by Dickson's theorem on invariants. In dimension \(2\), this theorem states that \[ \F_p[X,Y]^{\operatorname{GL}_2(\F_p)} = \F_p[\bar \alpha_p,\bar \beta_p^{\,p-1}], \] where bars denote reduction modulo \(p\). See \cite[Theorem~A, p.~699]{Steinberg1987}. \end{remark} 
 
-Define \[ A_m:=\alpha_p^{p^{m-1}} \qquad\text{and}\qquad B_m:=\beta_p^{p^{m-1}}. \] Their degrees are \[ a_m:=\deg A_m=p^m(p-1), \qquad b_m:=\deg B_m=p^{m-1}(p+1). \] 
+Define \[ A_m:=\alpha_p^{p^{m-1}} \qquad\text{and}\qquad B_m:=\beta_p^{p^{m-1}}. \] Their degrees are \[ a_m:=\deg A_m=p^m(p-1), \qquad b_m:=\deg B_m=p^{m-1}(p+1). \] The same prime-power lifts of the Dickson invariants occur in Deng's \cite{Deng2019} study of torsion in the cohomology of \(\operatorname{SL}_2(\mathbf Z)\); his \(f_{2,m}\) and \(f_{1,m}\) correspond to our \(A_m\) and \(B_m\), respectively.
 
 \begin{lemma} \label{lem:coprime-invariants} The reductions \[ \bar A_m,\bar B_m\in\F_p[X,Y] \] are coprime. \end{lemma} 
 
@@ -514,6 +514,8 @@ Define the coefficient multiplication map \[ \Psi_d: V_{d-a_m}(\Z_p)\oplus V_{d-
 
 \begin{proposition}[Surjective coefficient transfer]\label{prop:surjective-coefficient-transfer} If \[d\geq a_m+b_m=p^{m-1}(p^2 + 1),\] then $\Psi_d$ is surjective. 
 \end{proposition}
+
+The same numerical cutoff appears in \cite[Lemma~5.33]{Deng2019}: in Deng's notation, the corresponding quotient of polynomial coinvariants vanishes for \(d>p^{m+1}+p^{m-1}-2=a_m+b_m-2\).
 
 \begin{proof} By Lemma~\ref{lem:coprime-invariants}, the reductions \(\bar A_m\) and \(\bar B_m\) are coprime in \(\F_p[X,Y]\). Reducing \(\Psi_d\) modulo \(p\), we obtain
 \[\bar\Psi_d:V_{d-a_m}(\F_p)\oplus V_{d-b_m}(\F_p)\longrightarrow V_d(\F_p),\qquad (F,G)\longmapsto \bar A_mF+\bar B_mG.\]
@@ -619,7 +621,7 @@ Consequently, for every even \(d\geq 2^{m}\) satisfying \(d\equiv r\pmod{2^{m-1}
 
 To obtain higher congruences, we need polynomial relations in divided Hecke operators such as \(T/p^\alpha\). Division need not define an endomorphism on the finite modular-symbol modules used in the transfer argument. We therefore encode it by the linear relation \(Tx=p^\alpha y\). Such relations pass through the transfer maps and yield ordinary operator congruences after passage to the free lattice.
 
-In this section, we will make this precise. Let $R$ be a commutative ring. If $M$ is an $R$-module, we define an \emph{$R$-linear relation on $M$} to be an $R$-submodule of $M \oplus M$. We denote by $\operatorname{LinRel}_R(M)$ the set of all $R$-linear relations on $M$. Any $R$-linear map $T \in \operatorname{End}_R(M)$ gives rise to such a relation via its graph \[\Gamma_T := \{(x,Tx): x \in M\}.\]
+We use the basic calculus of linear relations developed by Arens \cite[\S~2]{Arens1961}, who also observes that its elementary constructions extend to modules over a ring. We introduce presentations of relations to make their compatibility with module homomorphisms explicit. Let $R$ be a commutative ring. If $M$ is an $R$-module, we define an \emph{$R$-linear relation on $M$} to be an $R$-submodule of $M \oplus M$. We denote by $\operatorname{LinRel}_R(M)$ the set of all $R$-linear relations on $M$. Any $R$-linear map $T \in \operatorname{End}_R(M)$ gives rise to such a relation via its graph \[\Gamma_T := \{(x,Tx): x \in M\}.\]
 
 If $\mathcal A \in \operatorname{LinRel}_R(M)$ and $x,y \in M$, write $x \mathcal A y$ to mean that $(x,y) \in \mathcal A$. For a sequence $x_0, x_1, \ldots x_n \in M$, write \[x_0 \mathcal A x_1 \mathcal A \ldots \mathcal A x_n\] to mean that \[x_0 \mathcal A x_1, \qquad x_1 \mathcal A x_2, \qquad \ldots \qquad x_{n-1} \mathcal A x_n.\] Let \[\mathcal A(x) := \{y \in M: (x, y) \in \mathcal{A}\}.\] Define the domain of $\mathcal A$ as \[\operatorname{dom}\mathcal A := \{x \in M: \mathcal A(x) \not = \emptyset\}.\]
 
@@ -627,7 +629,7 @@ If $\mathcal A, \mathcal B \in \operatorname{LinRel}_R(M)$ and $r \in R$, define
 
 If $f: M \rightarrow N$ is $R$-linear, we get a map $f_\ast: \operatorname{LinRel}_R(M) \rightarrow \operatorname{LinRel}_R(N)$ defined as follows: we have an $R$-linear map \[f \oplus f: M \oplus M \rightarrow N \oplus N,\] and for every $\mathcal A \in \operatorname{LinRel}_R(M)$, we can define \[f_\ast(\mathcal A) := (f \oplus f )(\mathcal A).\]
 
-Now we make a more universal definition. Define a \emph{presentation of a linear relation over $R$} to be a triple $\mathfrak P := (P, p_0, p_1)$ of an $R$-module $P$ with two distinguished elements $p_0, p_1 \in P$. If $\mathfrak P$ is a presentation of a linear relation over $R$ and $M$ is an $R$-module, let \[\mathfrak P(M) := \{(\phi(p_0), \phi(p_1)): \phi \in \Hom_R(P, M)\}.\] Thus $\mathfrak P(M) \in \operatorname{LinRel}_R(M)$. Moreover, if $f: M \rightarrow N$ is $R$-linear, then \[f_\ast \mathfrak P(M) \subset \mathfrak P(N).\] Consequently, \[ f\bigl(\operatorname{dom}\mathfrak P(M)\bigr) \subseteq \operatorname{dom}\mathfrak P(N). \] In particular, if \(f\) is surjective and \(\operatorname{dom}\mathfrak P(M)=M\), then \(\operatorname{dom}\mathfrak P(N)=N\). Presentations also commute with finite direct sums: \[ \mathfrak P(M_1\oplus M_2) = \mathfrak P(M_1)\oplus\mathfrak P(M_2), \] under the natural identification \[ (M_1\oplus M_2)\oplus(M_1\oplus M_2) \simeq (M_1\oplus M_1)\oplus(M_2\oplus M_2). \] This follows from \[ \Hom_R(P,M_1\oplus M_2) \simeq \Hom_R(P,M_1)\oplus\Hom_R(P,M_2). \] In particular, full domain on both summands implies full domain on their direct sum.
+Now we make a more universal definition. Define a \emph{presentation of a linear relation over $R$} to be a triple $\mathfrak P := (P, p_0, p_1)$ of an $R$-module $P$ with two distinguished elements $p_0, p_1 \in P$. For the connection with pp-definable relations when \(P\) is finitely presented, see \cite{Prest2009}. If $\mathfrak P$ is a presentation of a linear relation over $R$ and $M$ is an $R$-module, let \[\mathfrak P(M) := \{(\phi(p_0), \phi(p_1)): \phi \in \Hom_R(P, M)\}.\] Thus $\mathfrak P(M) \in \operatorname{LinRel}_R(M)$. Moreover, if $f: M \rightarrow N$ is $R$-linear, then \[f_\ast \mathfrak P(M) \subset \mathfrak P(N).\] Consequently, \[ f\bigl(\operatorname{dom}\mathfrak P(M)\bigr) \subseteq \operatorname{dom}\mathfrak P(N). \] In particular, if \(f\) is surjective and \(\operatorname{dom}\mathfrak P(M)=M\), then \(\operatorname{dom}\mathfrak P(N)=N\). Presentations also commute with finite direct sums: \[ \mathfrak P(M_1\oplus M_2) = \mathfrak P(M_1)\oplus\mathfrak P(M_2), \] \[\operatorname{dom}\mathfrak P(M_1 \oplus M_2) = \operatorname{dom}\mathfrak{P}(M_1) \oplus \operatorname{dom} \mathfrak P(M_2).\] 
 
 We now define the sum, product, and scalar action on presentations of linear relations over $R$. Let $\mathfrak P = (P, p_0, p_1)$ and $\mathfrak Q = (Q, q_0, q_1)$ be two such relations. Define \[\mathfrak P + \mathfrak Q := \left(\frac{P \oplus Q}{R(p_0, - q_0)}, \bar p_0 = \bar q_0, \overline{p_1 + q_1} \right)\] where bars denote images in the quotient. Also define \[\mathfrak P \mathfrak Q := \left(\frac{Q\oplus P}{R(q_1, - p_0)}, \bar q_0, \bar p_1 \right).\] For $r \in R$, define $r\mathfrak P := (P, p_0, rp_1)$.  Then, for every $M$, \[(\mathfrak P + \mathfrak Q)(M) = \mathfrak P(M) + \mathfrak Q(M),\] \[(\mathfrak P \mathfrak Q)(M) = \mathfrak P(M) \mathfrak Q(M), \] \[(r\mathfrak P)(M) = r \mathfrak P(M). \] Finally, let \[\mathfrak 1_R := (R, 1, 1).\] Then there are canonical isomorphisms \[\mathfrak P \mathfrak 1_R \cong \mathfrak 1_R \mathfrak P \cong \mathfrak P.\] Let us remark that we can make these definitions functorially. Consider the functor \[\mathscr U: \operatorname{R-Mod} \rightarrow \operatorname{R-Mod}, \qquad \mathscr U(M) := M \oplus M.\] Then a \emph{linear relation $\mathscr{P}$ over $R$} is a subfunctor $\mathscr P \subset \mathscr U$. If $\mathfrak P = (P, p_0, p_1)$ is a presentation of a linear relation over $R$, then the image subfunctor \[\mathscr P_{\mathfrak P} := \im \left(\Hom_R(P, -{}) \rightarrow \mathscr U\right)\] is a linear relation over $R$. Note however that not every linear relation will have a presentation. 
 
@@ -689,91 +691,6 @@ To obtain operator congruences, take orientation \(q=0\) and use \[ \mathbb M_d^
 These conclusions restrict to \(L_d^+\). Indeed, the numerator Hecke operators preserve \(L_d^+\), and saturation implies that their integral divided operators preserve it as well. For \(p=2\), these operators also commute with \(\iota\), by cancellation on the torsion-free module, and hence preserve \(P_d^+\). Finally, saturation gives \[ L_d^+\cap p^bP_d^+=p^bL_d^+ \] for odd \(p\), and \[ L_d^+\cap 2^b\mathbb M_d^{\mathrm{tf}}=2^bL_d^+ \] for \(p=2\).
 
 Relations with prescribed inputs are included in the same argument. For example, \[ F(\mathcal Z_1,\ldots,\mathcal Z_s)\Gamma_S \equiv0\pmod{p^b} \] is a presented relation, with the action of \(S\) twisted along with the numerator operators.
-
-\iffalse
-\subsection{Staged \texorpdfstring{\(p\)}{p}-division}
-\label{sec:staged-division}
-
-We now record a variant of the preceding propagation argument for divided Hecke operators. To motivate this discussion, suppose, as an example, that for some Hecke operator $T$, we show that \[TP_d^+ \subset p^\alpha P_d^+.\] Then the divided operator \[Z := \frac{T}{p^\alpha}\] is an endomorphism of $P_d^+$. To obtain higher congruences, we would like to find and propagate relations in $Z$. The difficulty is that \(Z\) need not be defined integrally on the source modules \(\mathbb M_{d'}^{\epsilon}(R_m)\) of the transfer maps \(\Psi_d\), so their \(Z\)-equivariance cannot be used directly. We can, however, simulate the division using \emph{witnesses}, and then perform the division after passing to the free target $P_d^+$. We now make this idea precise.
-
-Fix \[m>\alpha\geq1,\qquad R_m:=\Z/p^m\Z. \] Let \(T\) be a prime-to-\(p\) Hecke operator, \[ F(X)=c_0+c_1X+\cdots+c_\nu X^\nu\in\Z_p[X], \qquad \nu\geq1, \] and \(b\geq0\).
-
-Suppose first that \(p\) is odd. 
-
-\begin{definition} \label{def:staged-p-division-witness} Let \( x_0\in\mathbb M_d^\epsilon(R_m). \) A \emph{staged \(p^\alpha\)-division witness of depth \(b\) for the pair \((T,F)\) at \(x_0\), in orientation \(q\)}, consists of elements \[x_1,\ldots,x_\nu,\rho \in \mathbb M_d^\epsilon(R_m) \] such that \begin{equation} \begin{cases}\chi_m^q(T)x_{j-1}=p^\alpha x_j \qquad (1\leq j\leq\nu)  \\  c_0x_0+c_1x_1+\cdots+c_\nu x_\nu = p^b\rho.  \end{cases} \end{equation}
-We say that \(\mathbb M_d^\epsilon(R_m)\) admits a \emph{staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\)} if every \[ x_0\in\mathbb M_d^\epsilon(R_m) \] admits such a witness.
-
-When \(p=2\), the same terminology, with no orientation, is used with \[ x_0,x_1,\ldots,x_\nu,\rho\in\mathbb M_d(R_m) \] and with \(T\) in place of \(\chi_m^q(T)\). 
-\end{definition}
-
-For odd \(p\), let \[W_d^{\epsilon}(T,F, \alpha, b, q) \subseteq \mathbb M_d^\epsilon(R_m) \] be the set of elements \(x_0\) at which \(T,F\) admits such a witness. For \(p=2\), let \[W_d(T,F,\alpha, b)\subseteq\mathbb M_d(R_m)\] denote the corresponding set. Clearly, these sets are $R_m$-modules. 
-
-\begin{lemma}[Transfer of staged division] \label{lem:staged-witness-transfer} Suppose that \[ d\geq a_m+b_m. \] Suppose first that \(p\) is odd. If \[ \mathbb M_{d-a_m}^{\epsilon}(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q\), and \[ \mathbb M_{d-b_m}^{-\epsilon}(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q+1\), then \[ \mathbb M_d^\epsilon(R_m) \] admits a staged \(p^\alpha\)-division relation of depth \(b\) for \((T,F)\) in orientation \(q\).  For \(p=2\), if both \[ \mathbb M_{d-a_m}(R_m) \qquad\text{and}\qquad \mathbb M_{d-b_m}(R_m) \] admit a staged \(2^\alpha\)-division relation of depth \(b\) for \((T,F)\), then so does \[ \mathbb M_d(R_m). \]
-\end{lemma}
-
-\begin{proof} Suppose first that \(p\) is odd. Let \[ z_0\in\mathbb M_d^\epsilon(R_m). \] Since \(d\geq a_m+b_m\), Proposition~\ref{prop:plus-transfer} gives elements \[ x_0\in\mathbb M_{d-a_m}^{\epsilon}(R_m), \qquad y_0\in\mathbb M_{d-b_m}^{-\epsilon}(R_m) \] such that \[ z_0=\Psi_d^\epsilon(x_0,y_0). \] Choose corresponding witnesses \[ x_1,\ldots,x_\nu,\rho_x \in\mathbb M_{d-a_m}^{\epsilon}(R_m)\] at \(x_0\) in orientation \(q\), and \[y_1,\ldots,y_\nu,\rho_y \in\mathbb M_{d-b_m}^{-\epsilon}(R_m)\] at \(y_0\) in orientation \(q+1\). Put \[ z_j:=\Psi_d^\epsilon(x_j,y_j), \qquad \rho:=\Psi_d^\epsilon(\rho_x,\rho_y). \] By twisted Hecke equivariance, \[\begin{aligned}\chi_m^q(T)z_{j-1}&=\chi_m^q(T)\Psi_d^\epsilon(x_{j-1},y_{j-1})\\ &=\Psi_d^\epsilon \bigl(\chi_m^q(T)x_{j-1},\chi_m^{q+1}(T) y_{j-1}\bigr)\\ &= p^\alpha z_j.\end{aligned}\] Also, by linearity, \[\begin{aligned}\sum_{i=0}^{\nu}c_i z_i &= \sum_{i=0}^\nu c_i \Psi_d^\epsilon(x_i, y_i) \\ &= \Psi_d^\epsilon\left(\sum_{i=0}^\nu c_i x_i, \sum_{i=0}^\nu c_i y_i \right) \\ &= \Psi_d^\epsilon(p^b \rho_x, p^b \rho_y) \\ &= p^b \Psi_d^\epsilon(\rho_x, \rho_y) = p^b \rho. \end{aligned}\] Thus \(z_0\) admits a staged $p^\alpha$-division witness of depth $b$ for $(T,F)$.
-
-The proof for \(p=2\) is the same, with \(\Psi_d\) in place of \(\Psi_d^\epsilon\) and without signs, orientations, or twists.
-\end{proof}
-
-\begin{corollary}[Propagation of staged witnesses] \label{cor:staged-witness-propagation} Suppose that \(p\) is odd. Let \(r\) be  an even integer with \[ 0\leq r<2p^{m-1}. \] For \(q\geq0\), put \[ \epsilon_q:=(-1)^q. \]  Suppose that, for every \(q\geq0\) and every integer \(j\) satisfying \[ \frac{p+1}{2} \leq j < \frac{p^2+1}{2}, \] the module \[ \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) \] admits staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\). Then, for every \[ j\geq\frac{p+1}{2} \] and every \(q\geq0\), the module \[ \mathbb M_{r+2jp^{m-1}}^{\epsilon_q}(R_m) \] admits staged \(p^\alpha\)-division of depth \(b\) for the pair \((T,F)\) in orientation \(q\).
-\end{corollary}
-
-\begin{proof} The proof is the same strong-induction argument as in
-Theorem~\ref{thm:weight-propagation}. At each inductive step, Lemma~\ref{lem:staged-witness-transfer}, together with the surjectivity of the transfer map, replaces Corollary~\ref{cor:one-step-propagation}.
-\end{proof}
-
-\begin{corollary}[Propagation of staged witnesses for \(p=2\)] \label{cor:staged-witness-propagation-p2} Suppose that \(p=2\) and \(m\geq2\). Let \(r\) be an even integer with \[ 0\leq r<2^{m-1}. \] Suppose that, for every integer \(j\) satisfying \[ 2\leq j\leq4, \] the module \[ \mathbb M_{r+j2^{m-1}}(R_m) \] admits staged \(2^\alpha\)-division of depth \(b\) for the pair \((T,F)\). Then, for every \(j\geq2\), the module \[ \mathbb M_{r+j2^{m-1}}(R_m) \] admits staged \(2^\alpha\)-division of depth \(b\) for the pair \((T,F)\). 
-\end{corollary}
-
-\begin{proof} By strong induction on \(j\), using \[ a_m=2\cdot2^{m-1}, \qquad b_m=3\cdot2^{m-1}. \]
-\end{proof}
-
-Put \[ \mathcal M_d := \begin{cases}\mathbb M_d^+(R_m),&p\text{ odd},\\ \mathbb M_d(R_m),&p=2,\end{cases}\] and \[ \mathcal P_d :=\begin{cases}P_d^+,&p\text{ odd},\\ \mathbb M_d^{\mathrm{tf}},&p=2.\end{cases} \] Let \[ q_{d,m}: \mathcal M_d \twoheadrightarrow \mathcal P_d/p^m\mathcal P_d \] be the natural quotient map. 
-
-\begin{proposition}[Staged \(p\)-division] \label{prop:staged-p-division} Assume \[ b\leq m-\alpha. \] Suppose that every element of \(\mathcal M_d\) admits an untwisted staged
-\(p^\alpha\)-division witness of depth \(b\) for \((T,F)\); for odd \(p\), this means orientation \(q=0\).
-
-Then \[ T\mathcal P_d\subseteq p^\alpha\mathcal P_d. \] Hence \[ Z:=\frac{T}{p^\alpha} \in \End_{\Z_p}(\mathcal P_d) \] is well defined, and \[ F(Z)\mathcal P_d\subseteq p^b\mathcal P_d. \]
-
-Moreover, \[ ZL_d^+\subseteq L_d^+ \] and \[ F(Z)L_d^+\subseteq p^bL_d^+. \]
-\end{proposition}
-
-\begin{proof} Let \(y\in\mathcal P_d\). Choose \[ x_0\in\mathcal M_d \] whose image under \(q_{d,m}\) is the class of \(y\) modulo \(p^m\), and choose a staged witness \[ x_0,x_1,\ldots,x_\nu,\rho. \]
-
-The first equation in Definition~\ref{def:staged-p-division-witness} gives \[ Ty\in p^\alpha\mathcal P_d+p^m\mathcal P_d = p^\alpha\mathcal P_d. \] Thus \(Z=T/p^\alpha\) is integral on \(\mathcal P_d\).
-
-Furthermore, applying \(q_{d,m}\) to the first equation in Definition \ref{def:staged-p-division-witness} and cancelling \(p^\alpha\) on the free lattice \(\mathcal P_d\) gives \begin{equation} Z^j y \equiv q_{d,m}(x_j) \pmod{p^{m-\alpha}\mathcal P_d} \qquad (0\leq j\leq\nu).  \label{eq:staged-retained-precision} \end{equation}  
-
-Using the second equation in Definition~\ref{def:staged-p-division-witness}, we obtain \[ F(Z)y \equiv p^bq_{d,m}(\rho) \pmod{p^{m-\alpha}\mathcal P_d}. \] Since \(b\leq m-\alpha\), it follows that \[ F(Z)\mathcal P_d\subseteq p^b\mathcal P_d. \]
-
-If \(p\) is odd, then \(\mathcal P_d=P_d^+\). For \(y\in L_d^+\), \[ p^\alpha Zy=Ty\in L_d^+. \] Since \(L_d^+\) is saturated in \(P_d^+\), we obtain \[ Zy\in L_d^+. \]
-
-Suppose that \(p=2\). Since \(T\) commutes with \(\iota\), we have \[ p^\alpha(Z\iota-\iota Z)=0 \] on the torsion-free module \(\mathbb M_d^{\mathrm{tf}}\). Hence \(Z\) commutes with \(\iota\) and preserves \(P_d^+\). For \(y\in L_d^+\), \[ p^\alpha Zy=Ty\in L_d^+, \] and saturation again gives \[ Zy\in L_d^+. \]
-
-Thus \(F(Z)\) preserves \(L_d^+\). In either case, \(L_d^+\) is saturated in \(\mathcal P_d\), and therefore \[F(Z)L_d^+ \subseteq L_d^+\cap p^b\mathcal P_d = p^bL_d^+.\]
-\end{proof}
-
-\begin{theorem} \label{thm:staged-division-propagation} Assume \[ b\leq m-\alpha. \] Under the hypotheses of Corollary~\ref{cor:staged-witness-propagation}, for every even $d \geq p^{m-1}(p+1)$ satisfying \[
-d\equiv r\pmod{2p^{m-1}}, \] the operator \[ Z=\frac{T}{p^\alpha} \] belongs to \(\End_{\Z_p}(P_d^+)\), preserves \(L_d^+\),  and satisfies \[ F(Z)P_d^+\subseteq p^bP_d^+, \qquad F(Z)L_d^+\subseteq p^bL_d^+. \]
-\end{theorem}
-
-\begin{proof} Apply Corollary~\ref{cor:staged-witness-propagation} in orientation \(q=0\), for which \[ \epsilon_0=+1, \] and then apply Proposition~\ref{prop:staged-p-division}.
-\end{proof}
-
-\begin{theorem} \label{thm:staged-division-propagation-p2} Assume \[ b\leq m-\alpha. \] Under the hypotheses of Corollary~\ref{cor:staged-witness-propagation-p2}, the operator \[Z=\frac{T}{2^\alpha}\]
-belongs to \[ \End_{\Z_2}(\mathbb M_d^{\mathrm{tf}}),\] preserves \(L_d^+\), and satisfies \[ F(Z)\mathbb M_d^{\mathrm{tf}}\subseteq2^b\mathbb M_d^{\mathrm{tf}}, \qquad F(Z)L_d^+\subseteq2^bL_d^+ \] for every even $d \geq 2^{m}$ satisfying \[ d\equiv r\pmod{2^{m-1}}. \]
-\end{theorem}
-
-\begin{proof}
-Apply Corollary~\ref{cor:staged-witness-propagation-p2} and then Proposition~\ref{prop:staged-p-division}.
-\end{proof}
-
-\begin{remark}\label{rem:joint-staged-division} The same formalism applies to joint polynomial relations in finitely many divided Hecke operators \[Z_i:=\frac{T_i}{p^{\alpha_i}}. \] One introduces compatible staged witnesses for the monomials in \[F(Z_1,\ldots,Z_s),\] using the staged division relation for \(T_i\) whenever the exponent of \(Z_i\) is increased by one. The transfer argument then proceeds exactly as above. The retained precision is \[p^{m-\max_i\alpha_i},\] and forming mixed products of the integral operators \(Z_i\) causes no further loss of precision.
-
-Instead of requiring witnesses at every \(x_0\) in the source module, one may require them at every \(x_0=Su\), where \(u\) ranges over that module and \(S\) is an integral Hecke polynomial. In orientation \(q\), the starting vectors are \(x_0=\chi_m^q(S)u\). The same transfer argument applies, since \[ \chi_m^q(S)\Psi_d^\epsilon(u,v) = \Psi_d^\epsilon\bigl( \chi_m^q(S)u,\chi_m^{q+1}(S)v \bigr). \] If the divided operators \(Z_i\) preserve \(\mathcal P_d\), then, in orientation \(q=0\), we obtain \[ S F(Z_1,\ldots,Z_s)\mathcal P_d \subseteq p^b\mathcal P_d, \qquad b\leq m-\max_i\alpha_i. \] For \(p=2\), the same statement holds without twists.
-\end{remark}
-\fi
 
 \subsection{Recursive computation of Manin quotients and ideal images}
 The transfer map allows a recursive and fast computation of the Manin quotients. We describe the procedure here. Fix \(m\geq1\), assuming \(m\geq2\) if \(p=2\). Let $d \geq 0$ be even and $R_m = \Z/p^m Z$. We use the convention that \(V_d(R_m) = 0\) if \(d < 0\). 
@@ -1106,13 +1023,7 @@ Let
 \[
 S_{c,q}:=E_{r\bmod6,c}\bigl(\chi_3(3)^qT_3\bigr)^6.
 \]
-For \(\nu\in\{1,2\}\), the computation verifies
-\[
-\bigl[(R_{r,c}^{(\nu)})^3\bigr]
-(\mathcal Q_q,\mathcal G_q)\Gamma_{S_{c,q}}
-\equiv0\pmod7.
-\]
-Here the polynomial is cubed and expanded before evaluating it at the linear relations.
+For \(\nu\in\{1,2\}\), the computation verifies \[ \bigl[(R_{r,c}^{(\nu)})^3\bigr] (\mathcal Q_q,\mathcal G_q)\Gamma_{S_{c,q}} \equiv0\pmod7.\] Here the polynomial is cubed and expanded before evaluating it at the linear relations.
 
 These conditions form a periodic family closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}. Indeed, the \(A_3\)-transition preserves \(r\), while the \(B_3\)-transition sends \[ (d,q)\longmapsto(d-392,q+1) \] and preserves \(r\) modulo \(42\), since \[ -392+14=-378\equiv0\pmod{42}. \] Consequently, Proposition~\ref{prop:presented-relation-propagation}, followed in orientation \(q=0\) by Proposition~\ref{prop:division-retained-precision} with \(m=3\), division exponents \(2,1\), \(b=1\), and \(S=E_{r\bmod6,c}(T_3)^6\), gives, for every even degree \(d\geq392\) with \(d\equiv r\pmod{42}\), \[ E_{r\bmod6,c}(T_3)^6 \left[ R_{r,c}^{(\nu)}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3L_d^+ \subseteq7L_d^+. \] The remaining even degrees \(0\leq d<392\) are verified directly.
 
@@ -1123,28 +1034,11 @@ The computation verifies the analogous calculation for every even residue \(r\bm
 
 For the nonzero branches (i.e. \(a_3 \equiv_{\mathrm{lit}}c \pmod{7}\), \(c \neq 0\)), the relations \[ E_{r\bmod6,c}(T_3)^6 \left[ R_{r,c}^{(\nu)}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3L_d^+ \subseteq7L_d^+ \] still determine the possible pairs \((\bar q_f,\bar g_f)\), but they do not by themselves determine the correct \((\bar x_f,\bar y_f)\) corresponding to strong eigenforms. They define a set \[\mathcal T_{r,c}:= \left\{ (q,g)\in\mathbf F_7^2: R_{r,c}^{(1)}(q,g)=R_{r,c}^{(2)}(q,g)=0 \right\}. \]
 
-For every nonzero \(c\in\mathcal C_{r\bmod6}\), put formally \[ U_c:=\frac{T_3-c}{7}, \qquad V:=\frac{T_{29}-2}{7}. \] Here these expressions are used inside the staged division relations stated below; we do not require \(U_c\) or \(V\) separately to preserve \(L_d^+\). 
+For every nonzero \(c\in\mathcal C_{r\bmod6}\), put formally \[ U_c:=\frac{T_3-c}{7}, \qquad V:=\frac{T_{29}-2}{7}. \] Here division is interpreted through the presented linear relations \(\mathfrak D_{T,S}\); we do not require \(U_c\) or \(V\) separately to preserve \(L_d^+\). 
 
-On the same exact induction base and in the same six orientations as above, the computation verifies compatible staged division relations which propagate to every even degree \[ d\geq392, \qquad d\equiv r\pmod{42}, \] and give \[ E_{r\bmod6,c}(T_3)^6 \left[E_{r\bmod6,c}(T_3)^6 U_c -\phi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+ \] and \[E_{r\bmod6,c}(T_3)^6 \left[ E_{r\bmod6,c}(T_3)^6 V -\psi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+,\] for some affine polynomials \[ \phi_{r,c},\psi_{r,c}\in\mathbf Z_7[X,Y]. \] We use the same notation for their reductions in \(\mathbf F_7[X,Y]\). The remaining even degrees \(0\leq d<392\) are verified directly.
+On the same exact induction base and in the same six orientations as above, the computation verifies compatible congruences of presented linear relations, which propagate by Proposition~\ref{prop:presented-relation-propagation} to every even degree \[ d\geq392, \qquad d\equiv r\pmod{42}, \] and give \[ E_{r\bmod6,c}(T_3)^6 \left[E_{r\bmod6,c}(T_3)^6 U_c -\phi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+ \] and \[E_{r\bmod6,c}(T_3)^6 \left[ E_{r\bmod6,c}(T_3)^6 V -\psi_{r,c}\!\left( Q_{r\bmod6}(T_3), G_{r\bmod6}(T_3,T_{29}) \right) \right]^3 L_d^+ \subseteq 7L_d^+,\] for some affine polynomials \[ \phi_{r,c},\psi_{r,c}\in\mathbf Z_7[X,Y]. \] We use the same notation for their reductions in \(\mathbf F_7[X,Y]\). The remaining even degrees \(0\leq d<392\) are verified directly.
 
-To justify these lattice inclusions, put
-\(S_c:=E_{r\bmod6,c}(T_3)^6\).
-For \(N=T_3-c\) or \(T_{29}-2\), the first witness equation
-for the monomial \((S_cN/7)^3\), starting at \(S_cu\), gives
-\[
-S_c^2N P_d^+\subseteq7P_d^+.
-\]
-By the integrality of \(Q_{r\bmod6}(T_3)\) and
-\eqref{eq:p7-tangent-factorizations}, \(S_c\) acts on
-\(P_d^+/7P_d^+\) invertibly on the generalized
-\(c\)-eigenspace and as zero on the other generalized
-eigenspaces. Hence \(\ker S_c^2=\ker S_c\), so
-\(S_cN P_d^+\subseteq7P_d^+\).
-Thus \(S_cU_c\) and \(S_cV\) preserve \(P_d^+\), and also
-\(L_d^+\) by saturation.
-Remark~\ref{rem:joint-staged-division}, applied with starting
-vectors \(S_cu\) and division exponents \(2,1,1\), now gives
-the stated inclusions with retained precision \(7^{3-2}=7\).
+To justify these lattice inclusions, put \(S_c:=E_{r\bmod6,c}(T_3)^6\). For \(N=T_3-c\) or \(T_{29}-2\), the first division equation for the monomial \((S_cN/7)^3\), starting at \(S_cu\), gives \[ S_c^2N P_d^+\subseteq7P_d^+. \] By the integrality of \(Q_{r\bmod6}(T_3)\) and \eqref{eq:p7-tangent-factorizations}, \(S_c\) acts on \(P_d^+/7P_d^+\) invertibly on the generalized \(c\)-eigenspace and as zero on the other generalized eigenspaces. Hence \(\ker S_c^2=\ker S_c\), so \(S_cN P_d^+\subseteq7P_d^+\). Thus \(S_cU_c\) and \(S_cV\) preserve \(P_d^+\), and also \(L_d^+\) by saturation. Proposition~\ref{prop:division-retained-precision}, applied with \(m=3\), division exponents \(2,1,1\), \(b=1\), and \(S=S_c\), now gives the stated inclusions.
 
 After evaluation on \(v_f\), put \(e_f:=E_{r\bmod6,c}(a_3(f))\). Since \(e_f\equiv1\pmod{\mathfrak m_{\mathcal O_f}}\), we may cancel the outer unit factor \(e_f^6\). Reducing modulo \(\mathfrak m_{\mathcal O_f}\), the inner factors \(e_f^6\) also reduce to \(1\), giving \[ \bar x_f=\phi_{r,c}(\bar q_f,\bar g_f), \qquad \bar y_f=\psi_{r,c}(\bar q_f,\bar g_f). \] Thus every point of \(\mathcal T_{r,c}\) determines exactly one permitted pair \((\bar x_f,\bar y_f)\). 
 
@@ -1204,8 +1098,6 @@ The classifications proved above concern only the prime-to-\(p\) Hecke eigensyst
 
 It is also natural to allow cyclotomic twists. A number \(B\) is called a \emph{strong weight bound up to \(\theta\)-twist} for \((N,p,m)\) if, for every normalized characteristic-zero cuspidal eigenform \(f\) of level \(N\), there exist an integer \(i\geq0\) and a normalized characteristic-zero cuspidal eigenform \(g\) of level \(N\) and weight at most \(B\) such that \[ a_n(f)\equiv n^i a_n(g)\pmod{p^m} \qquad ((n,p)=1). \] We denote the least such bound, when it exists, by \[ B_\theta(N,p,m). \] Equivalently, the prime-to-\(p\) eigensystem of \(f\) is congruent modulo \(p^m\) to the \(\theta^i\)-twist of that of \(g\).
 
-The proved classifications above and the fixed-weight computations give the following bounds. The unmarked entries are proved and optimal; the entries marked \(\dagger\) are conjectural.
-
 %\clearpage
 \begin{table}[ht]
 \centering
@@ -1245,7 +1137,7 @@ bound up to \(\theta\)-twist \(B_\theta\)
 \caption{Strong level-one weight bounds for prime-power away-from-\(p\) congruences. The bound \(B_\theta\) means that every strong eigensystem is congruent away from \(p\) to \(\theta^i g\) for some \(i\geq0\) and some strong level-one eigenform \(g\) of weight at most \(B_\theta\). The entries marked \(\dagger\) are conjectural.}\label{tab:strong-weight-bounds}
 \end{table}
 
-The proved and conjectural values in Table~\ref{tab:strong-weight-bounds} display some suggestive patterns. For \(p=5\) and \(p=7\), the proved values at \(m=1,2\) satisfy \[ B^{(p)}(1,p,m)=(p+2)\varphi(p^m)+2. \] At the higher displayed precisions, a different uniform pattern appears: the values for \[ (p,m)=(3,3),(3,4),(3,5),(5,3) \] satisfy \[ B^{(p)}(1,p,m)=(p+1)\varphi(p^m)-2. \] Among these four values, the case \((p,m)=(3,3)\) is proved, while the other three are conjectural. The data for \(p=2\) appear less regular, although the bounds remain of the same order of magnitude as \(\varphi(2^m)\). The bounds up to \(\theta\)-twist likewise do not yet suggest a uniform formula valid for all primes and exponents. It seems premature to conjecture an exact general formula from these data, though it seems more reasonble to ask the following.
+The proved and conjectural values in Table~\ref{tab:strong-weight-bounds} display some suggestive patterns. For \(p=3,5,7\), the proved values at \(m=1,2\) satisfy \[ B^{(p)}(1,p,m)=(p+2)\varphi(p^m)+2. \] At the higher exponents, a different uniform pattern appears: the values for \[ (p,m)=(3,3),(3,4),(3,5),(5,3) \] satisfy \[ B^{(p)}(1,p,m)=(p+1)\varphi(p^m)-2. \] The data for \(p=2\) appear less regular, although the bounds remain of the same order of magnitude as \(\varphi(2^m)\). The bounds up to \(\theta\)-twist likewise do not yet suggest a uniform formula valid for all primes and exponents. It seems premature to conjecture an exact general formula from these data, though it seems more reasonble to ask the following.
 
 \paragraph{Question.} Does there exist, for every prime \(p\), a constant \(C_p>0\) such that \[B^{(p)}(1,p,m)\leq C_p\varphi(p^m) \] for every \(m\geq1\)?
 
@@ -1365,6 +1257,12 @@ For each even weight residue \(k\bmod42\), the permitted signatures are listed b
 \clearpage
 \begin{thebibliography}{99}
 
+\bibitem[Are61]{Arens1961}
+R.~Arens,
+\emph{Operational calculus of linear relations},
+Pacific J. Math. \textbf{11} (1961), no.~1, 9--23,
+\url{https://doi.org/10.2140/pjm.1961.11.9}.
+
 \bibitem[BK15]{BellaicheKhare2015}
 J.~Bella\"iche and C.~Khare,
 \emph{Level \(1\) Hecke algebras of modular forms modulo \(p\)},
@@ -1478,6 +1376,19 @@ R.~Steinberg,
 \emph{On Dickson's theorem on invariants},
 J. Fac. Sci. Univ. Tokyo Sect. IA Math. \textbf{34} (1987), no.~3,
 699--707.
+
+\bibitem[Pre09]{Prest2009}
+M.~Prest,
+\emph{Purity, Spectra and Localisation},
+Cambridge University Press, Cambridge, 2009,
+\url{https://doi.org/10.1017/CBO9781139644242}.
+
+\bibitem[Den23]{Deng2019}
+T.~Deng,
+\emph{Torsions in cohomology of \(\mathrm{SL}_2(\mathbf Z)\)
+and congruence of modular forms},
+J. Number Theory \textbf{246} (2023), 87--156,
+\url{https://doi.org/10.1016/j.jnt.2022.11.013}.
 
 \end{thebibliography}
 
