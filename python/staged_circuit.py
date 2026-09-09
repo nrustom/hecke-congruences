@@ -1,9 +1,11 @@
-"""Nested divided polynomial circuits on a presented mixed module.
+"""Common-chain presentations of nested linear relations on a mixed module.
 
-All unknowns, including terminal witnesses, belong to the supplied module.
+All auxiliary elements, including terminal rho, belong to the supplied module.
 In particular, supplying ideal-image coordinates imposes membership in the
 ideal, not merely in the ambient Manin module. No global divided operator
-or all-weight transfer theorem is assumed.
+or all-weight transfer theorem is assumed. The module and function names
+retain 'staged' for compatibility; they test a fixed common-chain
+presentation, not the full independent-monomial polynomial relation.
 """
 
 from sage.all import ZZ, matrix, identity_matrix, zero_matrix
@@ -16,7 +18,7 @@ from pari_kernel import pari_howell_row_span
 def verify_staged_polynomial(F, operators, divisions, coordinate_moduli,
                              p, b=1, howell_fallback=True,
                              max_howell_dimension=4096):
-    """Test a fixed nested witness circuit for each cyclic generator.
+    """Test full domain of a fixed nested common-chain presentation.
 
     ``F`` is a multivariate polynomial over Z/p^m. ``operators`` maps
     variable names to ordinary, already oriented matrices. ``divisions``
@@ -26,14 +28,14 @@ def verify_staged_polynomial(F, operators, divisions, coordinate_moduli,
 
     Monomials are evaluated rightmost-variable first: A^i D^j x is formed
     by j successive D circuits followed by i A circuits. Repeated calls
-    to the same variable on the same input share witnesses. This fixes
+    to the same variable on the same input share intermediate elements. This fixes
     the precise finite circuit being tested; failure is not a claim that
-    every other witness circuit or propagation approach is impossible.
+    the manuscript's larger independent-monomial relation has failed.
 
     First try explicit coordinatewise preimages and replay every equation.
     On failure, Howell image membership solves the entire simultaneous
     linear system, without fixing those preimages. The latter proves
-    existence, but does not extract witnesses. Resource errors propagate;
+    full domain, but does not extract the auxiliary elements. Resource errors propagate;
     they are not mathematical failures. No scalar cancellation in a
     torsion module is used. ``b`` specifies output = p^b rho inside M.
     ``max_howell_dimension`` limits the dense fallback to avoid exhausting
@@ -143,9 +145,9 @@ def verify_staged_polynomial(F, operators, divisions, coordinate_moduli,
     size = rank*count
     if max_howell_dimension is not None and size > max_howell_dimension:
         raise MemoryError(
-            f"staged Howell system has dimension {size}, exceeding "
+            f"common-chain Howell system has dimension {size}, exceeding "
             f"max_howell_dimension={max_howell_dimension}; the greedy "
-            "choices failed, but staged solvability is still untested"
+            "choices failed, but full domain of the presentation is still untested"
         )
     system = zero_matrix(R, size, size)
     rhs = zero_matrix(R, rank, size)

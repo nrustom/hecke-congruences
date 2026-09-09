@@ -2,7 +2,8 @@
 
 Only the prepared cyclic orders and ordinary Hecke matrices cross the process
 boundary. No Smith computation, global p-division or pickle loading is done
-here. The native executable handles every polynomial and witness equation.
+here. The native executable handles the polynomial's presentation by linear
+equations, including division relations and the terminal equation y=p^b*rho.
 """
 import json
 import os
@@ -26,7 +27,10 @@ def relation_spec(relations, hecke_operators, divisions=None,
     displayed composition order. Division numerators use only earlier names.
 
     The default matches the paper's independent-monomial relation. Selecting
-    common_chain instead tests the stronger shared-witness presentation.
+    common_chain instead tests the stronger common-chain presentation.
+    The legacy option name ``witness_semantics`` is retained for compatibility.
+    A congruence means every input has an output in p^b*M, equivalently full
+    domain after composing with D_{1,p^b}; it need not define an endomorphism.
     """
     relations = list(relations)
     if not relations:
@@ -84,7 +88,9 @@ def verify_hecke_relations_nim(spec, data=None, *, compute=None,
     with ./build_verify_hecke_relations.sh. Reports distinguish passed,
     failed and inconclusive. Malformed inputs/process errors raise exceptions;
     none is reported as a mathematical counterexample. A failed common-chain
-    test says nothing about arbitrary independent-monomial witnesses.
+    test does not rule out independent intermediate elements in the expanded
+    polynomial relation. Report names such as explicit_witness_replay are
+    retained: they mean replay of the presentation's auxiliary elements.
     """
     if (data is None) == (compute is None):
         raise ValueError("supply exactly one of data and compute")

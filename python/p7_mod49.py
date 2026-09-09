@@ -656,7 +656,7 @@ def _terminal_ambiguity_suffices(source, value, terms, divisions):
     )
 
     # Monomials are applied in order J, W29, W3. Only the kernel of
-    # the last division can be added freely to the terminal witness.
+    # the last division can be added freely to the terminal auxiliary element.
     for term in terms:
         if not int(term["coefficient"]) % P:
             continue
@@ -731,8 +731,9 @@ def verify_p7_mod49_selector_identities(
         r = d + 14*q modulo 42.
 
     For each of the three residual T_3 centres, this replays the fixed
-    selector-sixth-power and relation-cube staged monomial tree from
-    the modulo-49 classification certificate.
+    selector-sixth-power and relation-cube presentation by linear equations
+    from the modulo-49 classification certificate. It retains the archived
+    monomial tree and its choices of shared intermediate elements.
 
     The archived graph variable is the projected raw digit
     E(T_3)**6 * (T_3-c)/7 or E(T_3)**6 * (T_29-2)/7.  The starting

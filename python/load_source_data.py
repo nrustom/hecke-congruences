@@ -623,7 +623,8 @@ def load_ideal_source_data(R,d,q,path):
 
     Ideal generators are evaluated in orientation q. Their stored Hecke
     matrices are untwisted; the notebook verifier supplies the twist once.
-    Terminal divisibility and all witnesses are interpreted inside IM.
+    All auxiliary elements of a relation presentation lie inside IM;
+    its terminal equation is y=p^b*rho with rho in IM.
     """
     d,q = _validate_degree_and_orientation(d,q)
     arrays = _load_arrays(Path(path),d)["arrays"]

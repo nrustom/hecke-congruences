@@ -1,4 +1,18 @@
-"""High-level verification of ordinary and divided Hecke identities."""
+"""Ordinary identities and common-chain presentations of division relations.
+
+In the manuscript's calculus of linear relations, division means
+D_{A,p^a}(M) = {(x,y): A*x = p^a*y}. The divided verifiers in this
+module test a common-chain presentation, a sufficient condition for the
+expanded polynomial relation with independent intermediate elements in
+different monomials. Failure of the common-chain test need not imply
+failure of that larger relation. The native verifier also implements the
+independent-monomial presentation.
+
+Legacy helper names and report fields containing 'staged' or 'witness'
+are retained for compatibility with notebooks and stored results. They
+refer to auxiliary elements satisfying the presentation's linear equations.
+Finite verification alone does not establish all-weight propagation.
+"""
 
 from sage.all import (
     ZZ,
@@ -178,7 +192,7 @@ def _canonical_staged_witnesses_exist(
     source_generators=None,
     source_projection=None,
 ):
-    """Try the canonical elementwise staged-division chain."""
+    """Try canonical intermediate elements in the common-chain presentation."""
     R = F.base_ring()
     coordinate_moduli = tuple(
         ZZ(value) for value in coordinate_moduli
@@ -219,7 +233,7 @@ def _canonical_staged_witnesses_exist(
         coordinate_moduli,
     ):
         raise ArithmeticError(
-            "the staged numerator does not commute with the "
+            "the division-relation numerator does not commute with the "
             "source projection"
         )
 
@@ -566,8 +580,8 @@ def _staged_witnesses_exist(
     source_projection=None,
 ):
     """
-    Test whether every element of a mixed cyclic module admits staged
-    p^a-division witnesses of terminal depth b for the pair (A,F).
+    Test full domain of the common-chain presentation with terminal
+    equation output = p^b*rho for the pair (A,F).
 
     The module is
 
@@ -592,7 +606,9 @@ def _staged_witnesses_exist(
     By default, the standard cyclic generators of ``M`` are tested. If
     ``source_projection`` is supplied, the calculation is instead made
     on its image: ``source_generators`` must generate that image, and
-    every unknown witness is constrained to lie in the image.
+    every auxiliary element, including rho, is constrained to lie in the
+    image. The Howell test is complete for this common-chain presentation,
+    not for every presentation of the expanded polynomial relation.
     """
     p = ZZ(p)
     a = ZZ(a)
@@ -674,7 +690,7 @@ def _staged_witnesses_exist(
             coordinate_moduli,
         ):
             raise ArithmeticError(
-                "the staged numerator does not commute with the "
+                "the division-relation numerator does not commute with the "
                 "source projection"
             )
 
@@ -699,7 +715,7 @@ def _staged_witnesses_exist(
             "the source generators have the wrong number of columns"
         )
 
-    # This is the first staged equation for every selected x_0.
+    # This is A*x_0 = p^a*x_1 for every selected input x_0.
     if not _rows_lie_in_p_power(
         generators*A,
         coordinate_moduli,
@@ -748,7 +764,7 @@ def _staged_witnesses_exist(
         repeated_moduli,
     ):
         raise ArithmeticError(
-            "the staged witness matrix is not a well-defined "
+            "the common-chain presentation matrix is not a well-defined "
             "endomorphism of the repeated mixed module"
         )
 
@@ -818,7 +834,7 @@ def verify_divided_identities(
     check_descent=False,
 ):
     """
-    Test staged p^a-division witnesses on a prepared source.
+    Test a common-chain division relation on a prepared source.
 
     Put
 
@@ -828,7 +844,7 @@ def verify_divided_identities(
 
         A*M contained in p^a*M.
 
-    It then solves the complete simultaneous witness system for the
+    It then tests the simultaneous common-chain linear system for the
     standard cyclic generators of M. Thus it tests whether every x_0
     admits elements x_1, ..., x_nu, rho satisfying
 
@@ -840,7 +856,7 @@ def verify_divided_identities(
 
     where F(X) = c_0 + ... + c_nu*X^nu.
 
-    Because the elements admitting witnesses form a submodule, checking
+    Because the domain of the presented relation is a submodule, checking
     the standard cyclic generators is sufficient.
 
     When F is monic, the function first attempts the faster sufficient
@@ -852,10 +868,16 @@ def verify_divided_identities(
 
         p^a*F(Z) = 0.
 
-    If this succeeds, monicity supplies staged witnesses directly. If
+    If this succeeds, monicity supplies a common chain directly. If
     the global division cannot be constructed, or if the scaled
-    polynomial identity fails, the function falls back to the complete
-    Howell staged-witness solver.
+    polynomial identity fails, it tries canonical intermediate elements
+    before the complete Howell solver for this presentation.
+    A successful common-chain test
+    implies F(D_{A,p^a})(M) congruent to zero modulo p^b in the manuscript's
+    sense: every input has some output in p^b*M. Failure need not rule out
+    independent intermediate elements for different monomials. Propagation
+    and passage to integral target operators require the paper's separate
+    transfer and retained-precision hypotheses.
     """
     if not hasattr(F, "base_ring"):
         raise TypeError(
@@ -1119,8 +1141,8 @@ def verify_divided_identities(
             None
             if terminal_passed
             else (
-                "the first staged division holds, but the complete "
-                "terminal witness system is not solvable for every "
+                "the division relation has full domain, but the common-chain "
+                "presentation with its terminal equation is not solvable for every "
                 "source generator"
             )
         ),
@@ -1137,7 +1159,7 @@ def verify_divided_joint_identities(
     check_descent=False,
 ):
     """
-    Test a staged division relation with a joint Hecke numerator.
+    Test a common-chain division relation with a joint Hecke numerator.
 
     If
 
@@ -1152,12 +1174,12 @@ def verify_divided_joint_identities(
         ).
 
     The function tests whether every element of the prepared signed
-    source admits staged ``p^a``-division witnesses of terminal depth
-    ``b`` for the pair ``(A,F)``.  Equivalently, it first tests
+    source lies in the domain of the common-chain presentation for
+    ``(A,F)``, with terminal equation output = p^b*rho. It first tests
 
         A*M contained in p^a*M
 
-    and then solves the complete simultaneous staged-witness system
+    and then tests the simultaneous common-chain linear system
     for the standard cyclic generators of ``M``.  Sage's direct
     multivariable substitution is used, so the order of
     ``hecke_indices`` must agree with the order of the generators of
@@ -1165,7 +1187,11 @@ def verify_divided_joint_identities(
 
     When ``F`` is monic, the same global-division fast path as in
     ``verify_divided_identities`` is attempted before the complete
-    Howell solver.
+    Howell solver for this presentation. As in verify_divided_identities,
+    this is sufficient for the manuscript's polynomial relation, but can
+    be stronger than allowing independent intermediate elements in its
+    monomials. The joint numerator Q is evaluated at ordinary commuting
+    operators; F is a polynomial in the resulting single division relation.
 
     INPUT:
 
@@ -1416,8 +1442,8 @@ def verify_divided_joint_identities(
             None
             if terminal_passed
             else (
-                "the first staged division holds, but the complete "
-                "terminal witness system is not solvable for every "
+                "the division relation has full domain, but the common-chain "
+                "presentation with its terminal equation is not solvable for every "
                 "source generator"
             )
         ),

@@ -689,7 +689,7 @@ proc build_archive_arrays(options: CommandLineOptions): seq[NumpyUnsignedArray] 
   # ordinary row-coordinate maps, not the scaled action encoding below.
   # Their composite on mixed coordinates is the identity modulo the
   # individual cyclic orders; the other composite is identity modulo Manin
-  # relations. Witnesses can therefore be lifted and replayed independently.
+  # relations. Auxiliary elements can therefore be lifted and replayed independently.
   for index, component in components:
     let prefix = if options.prime == 2: "unsigned" elif index == 0: "plus" else: "minus"
     let coordinates = component.coordinates

@@ -1,7 +1,7 @@
 """Uniform Sage source construction, matching compute_source_data.nim.
 
 Public source dictionaries can be passed unchanged to the ordinary/joint
-and staged-division verifiers. An ideal-image source is always labelled.
+and presented-linear-relation verifiers. An ideal-image source is always labelled.
 """
 from sage.all import ZZ, matrix, diagonal_matrix
 from manin_quotient import (direct_manin_presentation, direct_signed_manin_presentation,

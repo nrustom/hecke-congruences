@@ -1,5 +1,11 @@
-## Ordinary and staged (including nested/joint) relations on mixed sources.
-## All witnesses belong to the supplied cyclic module, which may be IM.
+## Calculus of presented linear relations, including nested/joint division.
+## All auxiliary elements belong to the supplied cyclic module, which may be IM.
+## Congruence means every input admits an output y=p^b*rho in that module,
+## equivalently full domain after composition with D_{1,p^b}.
+## Expanded monomials have independent intermediate elements by default;
+## common chains provide a stronger sufficient test and a fast first attempt.
+## Legacy JSON names containing 'staged' or 'witness' remain unchanged for
+## compatibility; they describe auxiliary elements in these presentations.
 ## No cancellation in torsion and no all-weight propagation are assumed.
 import std/[json, tables, sets, os, times]
 import modular_matrix, modular_polynomial, mixed_endomorphisms
@@ -95,7 +101,7 @@ proc compile_polynomial(c:var Circuit; terms:seq[Term]; input:int;
                         modulus:uint64):seq[tuple[node:int,coefficient:uint64]]
 
 proc apply(c:var Circuit; variable,input:int; modulus:uint64):int =
-  ## A repeated operator on the same input shares its witnesses.
+  ## Reuse ordinary outputs; share divided outputs only in common-chain mode.
   let key=(variable,input)
   let definition=c.definitions[variable]
   let share=definition.ordinary or not c.independent_monomials
@@ -120,7 +126,7 @@ proc compile_polynomial(c:var Circuit; terms:seq[Term]; input:int;
     if coefficient!=0:result.add((node,coefficient))
 
 proc preimage_into(target,rhs:ModMatrix; divisor:uint64; mods:seq[uint64]):bool =
-  ## Coordinatewise witness choice, not division as an endomorphism.
+  ## Choose outputs of the division relation, not a divided endomorphism.
   ## Replay p^a*y=rhs in each cyclic factor. No well-defined global y is needed.
   for i in 0..<rhs.rows:
     for j,q in mods:
@@ -310,7 +316,8 @@ proc verify_relations*(source:VerificationSource; spec:JsonNode):JsonNode =
           "verification_route":"explicit_witness_replay","witnesses_replayed":true}
       else:
         if semantics=="independent_monomials":
-          # The current paper allows independent witnesses for each monomial.
+          # The polynomial relation allows independent intermediate elements
+          # for each monomial, with the rightmost relation applied first.
           # Common-chain failure is not failure of that larger relation.
           circuit=Circuit(definitions:definitions,independent_monomials:true)
           let independent_terminal=circuit.compile_polynomial(terms,0,source.modulus)
