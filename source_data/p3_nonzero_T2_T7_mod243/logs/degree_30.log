@@ -1,0 +1,8 @@
+degree 30, q=0, mixed rank=4
+degree 30, q=1, mixed rank=4
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_nonzero_T2_T7_mod243/degree_30.partial.npz
+prime: 3
+exponent: 5
+degree: 30
+mixed rank: 8
+Hecke indices: 2,7

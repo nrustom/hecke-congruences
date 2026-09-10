@@ -1,0 +1,8 @@
+degree 720, q=0, mixed rank=90
+degree 720, q=1, mixed rank=90
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_nonzero_T2_T7_mod243/degree_720.partial.npz
+prime: 3
+exponent: 5
+degree: 720
+mixed rank: 180
+Hecke indices: 2,7

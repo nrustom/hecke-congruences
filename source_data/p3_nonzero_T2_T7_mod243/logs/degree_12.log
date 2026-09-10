@@ -1,0 +1,8 @@
+degree 12, q=0, mixed rank=2
+degree 12, q=1, mixed rank=1
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_nonzero_T2_T7_mod243/degree_12.partial.npz
+prime: 3
+exponent: 5
+degree: 12
+mixed rank: 3
+Hecke indices: 2,7
