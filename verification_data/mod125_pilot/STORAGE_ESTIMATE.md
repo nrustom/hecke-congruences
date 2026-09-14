@@ -1,5 +1,10 @@
 # Compact modulo-125 witness storage pilot
 
+Historical report: the estimates and prototype timings below describe the
+11 September pilot, not the completed production dataset. The maintained
+replay inputs are in `../mod125_compact/` and `../mod125_lower_minus/`;
+see [the current verification-data guide](../README.md).
+
 Measured on 11 September 2026, using the notebook's eight relation
 specifications and archived sources at working modulus 625. This bounded
 Python/NumPy prototype tests a storage format; it does not run the full
@@ -106,4 +111,4 @@ was launched.
 - `replay_summary.json`: saved-packet replay results, including partial coverage.
 - `census.json`: source-rank/circuit storage census, with counts by residue.
 - `m4_degree_*_q*.json.gz`: compact pilot witness packets.
-- `../../tests/benchmarks/witness_storage_pilot.py`: bounded producer/replayer.
+- [Historical bounded producer/replayer](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/witness_storage_pilot.py), retained in Git history.

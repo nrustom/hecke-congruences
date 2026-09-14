@@ -20,44 +20,44 @@ This is the convention of Kiming–Rustom–Wiese. It is distinct from literal
 congruence, which means `x-y ∈ p^m O`, when the coefficient field is
 ramified.
 
-## Classification notebooks
+## Verification notebooks
 
 The principal computations are presented in four SageMath notebooks.
 
 | Notebook | Valuative classification | Selected Hecke operators | Working moduli | Strong weight bound |
 | --- | --- | --- | --- | ---: |
-| [classification_mod_256.ipynb](classification_mod_256.ipynb) | modulo `256` | `T_3,T_5` | `256` | 90 |
-| [classification_mod_81.ipynb](classification_mod_81.ipynb) | modulo `81` | `T_2,T_7` | `81,243,2187` | 214 |
-| [classification_mod_25.ipynb](classification_mod_25.ipynb) | modulo `25` | `T_2,T_19` | `25` | 142 |
-| [classification_mod_49.ipynb](classification_mod_49.ipynb) | modulo `49` | `T_3,T_29` | `49,343` | 380 |
+| [playground_mod_256.ipynb](playground_mod_256.ipynb) | modulo `256` | `T_3,T_5` | `256` | 90 |
+| [playground_mod_81.ipynb](playground_mod_81.ipynb) | modulo `81` | `T_2,T_7` | `81,243,2187` | 214 |
+| [playground_mod_125.ipynb](playground_mod_125.ipynb) | modulo `125` | `T_2,T_19` | `625` | 598 |
+| [playground_mod_49.ipynb](playground_mod_49.ipynb) | modulo `49` | `T_3,T_29` | `49,343` | 380 |
 
 The working modulus is the precision of the finite source computation; it
-need not be the modulus of the resulting eigenform congruence. The
-[modulo-27 notebook](classification_mod_27.ipynb) is also retained, but the
-current prime-`3` classification in the manuscript is modulo `81`.
+need not be the modulus of the resulting eigenform congruence. The literal
+modulo-27 and modulo-25 classifications follow by reduction from the
+modulo-81 and modulo-125 results, respectively, as explained in the manuscript.
 
-The [modulo-125 notebook](classification_mod_125.ipynb) tests the proposed
-`T_2,T_19` presentations at working precision `625`, in ascending degree
-order, using archived sources and a persistent recursive Nim verifier.
-It also matches the 22 allowed pairs in each weight residue to saved strong
-representatives of weight at most `598`. The complete source verification
-has not yet been run; the notebook is not a claim of an established
-all-weight modulo-125 classification.
+The playground notebooks replay the recorded intermediate elements in the
+presentations by linear relations, on the precomputed sources. The
+modulo-125 production run completed all 5,375 required cases; its playground
+provides replay and strong realization checks. Completion of a finite run
+is distinct from the all-weight propagation argument in the manuscript.
 
-Each classification notebook specifies the finite degree ranges,
+Each playground notebook specifies the finite degree ranges,
 orientations, and polynomial relations. Its final realization check compares
 the permitted signatures with signatures obtained from characteristic-zero
 eigenforms. A signature records the weight residue and the selected Hecke
 eigenvalues at the same prime above `p`.
 
-The modulo-`25` classification consists of 60 cyclotomic packets. The
+The modulo-`256` classification consists of 48 signatures. The
 modulo-`81` classification consists of 159 signatures, including 12
-nonrational signatures. The modulo-`49` classification consists of 315
+nonrational signatures. The modulo-`125` classification consists of 1,100
+signatures; reduction modulo 25 gives 60 cyclotomic packets.
+The modulo-`49` classification consists of 315
 signatures; its permitted table is reconstructed from the explicit relations
 in [p7_mod49_relation_data.json](p7_mod49_relation_data.json).
 
 These are the classifications established in the manuscript. The notebooks
-verify their finite computational inputs. 
+verify their finite computational inputs.
 
 ## Running the notebooks
 
@@ -76,8 +76,9 @@ Select a SageMath kernel and run the cells in order. Keep the working
 directory at the repository root: the paths to `python/`, `source_data/`,
 and `strong_signatures/` are relative to it.
 
-The modulo-`81` and modulo-`49` notebooks use the Nim relation verifier.
-Build it before running their native verification cells:
+The modulo-`81`, modulo-`49` and modulo-`125` playgrounds also contain
+optional native replay cells. Build the Nim verifier before running these
+cells; the Sage replay cells do not require this build:
 
 ```bash
 ./build_verify_hecke_relations.sh
@@ -90,17 +91,13 @@ system search paths, use `FLINT_LIBRARY` for the verifier build and
 current Sage environment's library directory for the native verifier.
 Set `NATIVE_CPU=0` when building that verifier for another processor.
 
-Where provided, `USE_ARCHIVED_SOURCE_DATA = True` selects the recorded
-sources; `False` selects fresh construction. The modulo-`81` notebook has
-separate choices for its three source families. The modulo-`49` notebook
-defaults to `USE_RECURSIVE_NIM_VERIFICATION = True`: native recursive
-verification using the completed per-degree archives, including the prescribed
-selector inputs. It reuses the Hecke matrices and any stored transfer maps;
-for older archives it reconstructs the missing presentation and transfer
-maps. Set this flag to `False` to run the Python
-full-source checks on the same archives instead. Its
-`USE_ARCHIVED_STRONG_SIGNATURES` flag selects the recorded realization
-scan rather than a new Sage computation.
+The playgrounds load the precomputed sources and recorded intermediate
+elements. Their Sage replay cells check the defining equations directly;
+the optional native cells provide Nim replay where included. Source
+construction and the search for intermediate elements are separate producer
+workflows, not prerequisites to repeating a replay on the supplied data.
+The strong realization sections explain whether they use saved eigenform
+records or perform a fresh Sage computation.
 
 A successful verification ends with the notebook's assertions passing.
 An exception, an interrupted computation, or an inconclusive solver result
@@ -216,13 +213,22 @@ The current notebook source paths are:
 
 | Computation | Path under `source_data/` |
 | --- | --- |
-| Modulo 256 | `p2_mod256_T3_T5_all_degrees.npz` |
+| Modulo 256 | `p2_mod256_native/` |
 | Modulo 81, common `T_7` | `p3_T7_mod81/` |
 | Modulo 81, nonzero branch | `p3_nonzero_T2_T7_mod243/` |
 | Modulo 81, zero-branch ideal image | `p3_ideal_9_T2_mod2187/` |
-| Modulo 25 | `p5_mod25_T2_T19_all_degrees.npz` |
-| Modulo 49, `G_j` | `p7_mod49_recursive/G_mod49/` |
-| Modulo 49, `Q_j` and selectors | `p7_mod49_recursive/Q_selectors_mod343/` |
+| Modulo 125 | `p5_mod625_recursive/` |
+| Modulo 125, supplementary lower minus sources | `p5_mod625_lower_minus/` |
+| Modulo 49, `G_j` | `p7_mod49_transfer_maps/G_mod49/` |
+| Modulo 49, `Q_j` and selectors | `p7_mod49_transfer_maps/Q_selectors_mod343/` |
+
+The matching recorded intermediate elements are in
+`verification_data/mod256_compact/`, `mod81_compact/`, `mod125_compact/`
+and `mod49_compact/`, together with `verification_data/mod125_lower_minus/`
+for the supplementary modulo-125 inputs. See
+[the verification-data guide](verification_data/README.md) for the stage paths.
+Earlier archives and pilot records, where retained, are historical data, not
+the default playground inputs.
 
 Directory archives contain one file per degree. The loaders check the
 arithmetic metadata and coordinate conventions. Loading an archive does
@@ -246,14 +252,13 @@ or both. An ideal image is computed in its own cyclic coordinates.
 The recursive modulo-49 source scan has a separate resumable runner:
 
 ```bash
-./run_p7_mod49_recursive_source_data.sh start 4
-./run_p7_mod49_recursive_source_data.sh status
+./run_p7_mod49_transfer_source_data.sh start 4
+./run_p7_mod49_transfer_source_data.sh status
 ```
 
-It writes per-degree data under `source_data/p7_mod49_recursive/`.
-The modulo-49 notebook loads these per-degree outputs in both verification
-modes. Recursive verification uses stored transfer maps when available and
-reconstructs missing maps otherwise, without recomputing the Hecke matrices.
+It writes per-degree data, including recursive transfer maps, under
+`source_data/p7_mod49_transfer_maps/`. The modulo-49 playground uses these
+archives. This runner retains a success gate on the modulo-625 source scan.
 Existing archives and frozen runner binaries are not automatically upgraded.
 Completion of this source scan is not a report
 that the classification identities have been verified.
@@ -326,18 +331,14 @@ It accepts prepared or loaded source data, including ideal images.
 Passing a `compute` specification instead requests fresh native source
 construction. The orientation twist is applied once.
 
-The modulo-49 notebook uses `source_data/p7_mod49_transfer_maps/` and four
-persistent `NimRelationVerifier` workers by default (`VERIFICATION_WORKERS`).
-Each residue chain modulo 14 stays with one worker in ascending degree order;
-both Dickson shifts preserve these chains. Completed results can therefore
-appear out of order without losing recursive dependencies. Per-relation
-progress identifies long simultaneous solves. Interrupting the loop closes
-the workers and their native children. Each session caches converted archive
-records (64 MiB by default), decoded
-native source matrices (128 MiB matrix-entry budget), and successful lower
-verification results. Preparation caches do not replace relation checks;
-file changes invalidate Python entries, and native entries are bound to
-the archived contents. All session caches are released when it closes.
+The modulo-49 and modulo-125 playgrounds replay recursive dependencies in
+their Sage cells. Their optional Nim cells use an adjustable `NIM_WORKERS`
+setting, initially 4, with a fresh native verifier process for each requested
+case and its dependencies. The modulo-81 optional Nim cell instead replays
+each whole finite source. These are replay-only requests: they do not search
+for new intermediate elements or accept production checkpoints as proof.
+The persistent `NimRelationVerifier` API remains available for other Sage
+workflows, but is not the process model of these optional playground cells.
 
 To produce compact auxiliary-element files for the same modulo-49 identities,
 queued after successful completion of the modulo-125 witness run:
@@ -352,8 +353,10 @@ The two native stages write to `verification_data/mod49_compact/G_mod49/`
 (precision 343, 6,370 cases). They use ascending residue chains, the existing
 source archives with both signs and transfer maps, compact packets, and local
 restart checkpoints. The plans in `relations/p7_mod49_*_native.json` are exact
-exports of the notebook's `p7_mod49_nim_relation_spec`; Sage is required only
-to regenerate these plans, not to run the arithmetic. The queue uses standard
+exports of `p7_mod49.p7_mod49_nim_relation_spec`; they can be regenerated by
+`python/export_mod49_witness_plans.py` in a Sage environment. The playground
+also reconstructs and compares the specifications. Sage is not required to
+run the native arithmetic. The queue uses standard
 Python for scheduling and status. It will not start arithmetic after a stopped,
 failed, or incomplete predecessor. If a mod49 stage fails or is inconclusive,
 the following stage is not started. `bash run_mod49_witnesses.sh stop` stops
@@ -404,11 +407,34 @@ higher-modulus bounds must not be read as all-weight proofs.
 
 ## Checks and citation
 
+### Production launchers and build paths
+
+The shell service wrappers are conveniences for the original Linux/systemd
+installation. They contain local library paths and, in some cases, frozen
+executable paths. They are not required for playground replay.
+
+`build_verify_hecke_relations.sh` builds `verify_hecke_relations` and
+`produce_verification_data` under `nim/.verify-hecke-relations-build/`.
+The modulo-49, modulo-81 and modulo-256 queues currently expect separately
+named `produce_mod49_verification_data`, `produce_mod81_verification_data`
+and `produce_mod256_verification_data` executables in that directory. The
+supplementary modulo-125 producer also names `verify_hecke_relations_watchdog`;
+despite that historical name, it is a verifier, not the retired watchdog service.
+Do not remove these executables from an existing setup until the corresponding
+launchers have been configured and tested with replacement builds. Rebuilding
+the generic pair alone does not populate those additional paths.
+
+Relation plans in `relations/` are maintained inputs, not files that must be
+extracted from a notebook before a run. The playgrounds compare their explicit
+specifications against these plans. Retired classification notebooks and
+one-time exporters are not needed for replay or for running the saved plans.
+Historical `exported_from` fields and archive hashes have not been rewritten.
+
 ### Queued modulo-81 witness production
 
 `bash run_mod81_witnesses.sh queue 4` waits for successful completion of both
 modulo-49 witness stages and for their service to exit. It then verifies the
-specifications extracted from `classification_mod_81.ipynb`, in ascending
+saved specifications in `relations/p3_mod81_*_native.json`, in ascending
 degree order within four workers:
 
 | Stage | Working modulus | Source | Degree/orientation cases |
@@ -431,18 +457,25 @@ and its children without stopping the predecessor job.
 watch -n 5 'jq "{state,current_stage,completed_count,stage_total_cases,active_degrees,active,failed}" verification_data/mod81_compact/status.json'
 ```
 
-The plans are exported by `python/export_mod81_witness_plans.py` using Sage;
-only notebook setup and definition cells are evaluated during that export.
+The maintained plans are the committed `relations/p3_mod81_*_native.json`
+files. The modulo-81 playground reconstructs the polynomial specifications
+explicitly and asserts agreement with these plans before replay. The former
+exporter, which executed cells from a retired classification notebook, is no
+longer needed. Historical `exported_from` fields are retained as provenance.
 
 Similarly, `bash run_mod256_witnesses.sh queue 4` waits for all three modulo-81
 stages to finish successfully, then checks the ordinary `T5` identity and the
 division-by-128 `T3` presentation on every even degree below 640 (320 unsigned
 sources, orientation zero). It stores packets in
-`verification_data/mod256_compact/T3_T5`. The original notebook bundle remains
-unchanged; `python/export_mod256_witness_plan.py` uses its existing loader to
-decode the matrices into `source_data/p2_mod256_native`, checking the repacked
-arrays and retaining the original bundle hash. This is repackaging, not source
-recomputation. As for mod81, finite whole-source checks are used; no recursive
+`verification_data/mod256_compact/T3_T5`. It reads the maintained plan
+`relations/p2_mod256_T3_T5_native.json` and the per-degree sources in
+`source_data/p2_mod256_native/`. These archives were losslessly repackaged
+from the earlier combined archive, retaining its hash; the one-time converter
+has been retired. Current replay does not require that conversion or the old
+notebook. Fresh source construction is a separate workflow, and a change of
+cyclic coordinates requires regenerating or transporting the recorded
+intermediate elements, not reusing incompatible packets. As for mod81,
+finite whole-source checks are used; no recursive
 transfer shortcut or all-weight theorem is asserted by the runner.
 
 ```bash
@@ -464,6 +497,4 @@ the notebook or data directory used, together with the repository revision.
 The companion manuscript gives the statements and proofs to which these
 computations apply.
 
-The software is distributed under the
-[PolyForm Noncommercial License 1.0.0](LICENSE).
-Required notice: Copyright 2026 Nadim Rustom.
+Copyright 2026 Nadim Rustom.

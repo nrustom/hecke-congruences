@@ -261,36 +261,6 @@ Two normalized cuspidal level-one eigenforms have congruent prime-to-\(5\) Hecke
 Every permitted signature \((r,a,5t)\) is realized by a normalized cuspidal level-one eigenform of weight at most \(598\) in the corresponding residue class modulo \(100\). Thus there are exactly \(1100\) such eigensystems modulo \(125\). Their reductions realize all \(60\) pairs listed above, giving exactly \(60\) strong prime-to-\(5\) Hecke eigensystems modulo \(25\), in the literal sense.
 \end{theorem}
 
-\iffalse
-\begin{theorem}[Prime-to-\(5\) classification modulo \(5^2\)] \label{thm:intro-p5} There exists a unique unordered pair \[ \{a,b\}\subset\mathbf Z/20\mathbf Z, \qquad a+b\equiv k-1\pmod{20}, \] such that \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(n)\pmod{5^2} \qquad ((n,5)=1). \] The pair belongs to the following list:
-\[
-\begin{array}{c|l}
-k\bmod20 & \{a,b\}\\ \hline
-0  & \{0,19\},\ \{3,16\},\ \{4,15\},\
-     \{5,14\},\ \{6,13\},\ \{9,10\}\\
-2  & \{0,1\},\ \{4,17\},\ \{5,16\},\
-     \{6,15\},\ \{7,14\},\ \{10,11\}\\
-4  & \{0,3\},\ \{4,19\},\ \{5,18\},\
-     \{8,15\},\ \{9,14\},\ \{10,13\}\\
-6  & \{0,5\},\ \{2,3\},\ \{6,19\},\
-     \{9,16\},\ \{10,15\},\ \{12,13\}\\
-8  & \{0,7\},\ \{1,6\},\ \{2,5\},\
-     \{10,17\},\ \{11,16\},\ \{12,15\}\\
-10 & \{0,9\},\ \{1,8\},\ \{4,5\},\
-     \{10,19\},\ \{11,18\},\ \{14,15\}\\
-12 & \{0,11\},\ \{1,10\},\ \{2,9\},\
-     \{5,6\},\ \{12,19\},\ \{15,16\}\\
-14 & \{0,13\},\ \{3,10\},\ \{4,9\},\
-     \{5,8\},\ \{14,19\},\ \{15,18\}\\
-16 & \{0,15\},\ \{1,14\},\ \{4,11\},\
-     \{5,10\},\ \{7,8\},\ \{17,18\}\\
-18 & \{0,17\},\ \{1,16\},\ \{2,15\},\
-     \{5,12\},\ \{6,11\},\ \{7,10\}.
-\end{array}
-\]
-Equivalently, writing the selected pair as \[\{a,b\}=\{i,i+\kappa-1\} \qquad\text{in }\mathbf Z/20\mathbf Z \] with \(i\geq2\) and an even integer \(\kappa\geq4\), one has \[ \theta^{20}f\equiv_{\mathrm{val}}\theta^iG_\kappa \pmod{5^2}. \] Conversely, every packet in the table is realized as a strong
-prime-to-\(5\) Hecke eigensystem modulo \(5^2\) in level \(1\).
-\end{theorem}\fi
 
 \begin{theorem}[Prime-to-\(7\) classification modulo \(49\)] \label{thm:intro-p7} There exist integers \(i\geq2\) and even \(\kappa\geq4\), with \(\kappa+2i\equiv k\pmod{42}\), and a modular form \(\delta_f\) over \(\mathbf F_7\), such that \[ \theta^{42}f \equiv_{\mathrm{val}} \theta^iG_\kappa+7\delta_f\pmod{49}. \] In particular, \[ \theta^{42}f\equiv_{\mathrm{lit}}\theta^iG_\kappa\pmod7. \] The unordered pair \[ \{a,b\}:=\{i,i+\kappa-1\}\subset\mathbf Z/6\mathbf Z \] is uniquely determined by \(f\) and belongs to the following list: 
 \[
@@ -764,7 +734,7 @@ For every even residue \(r\bmod128\), put \[ c_{3,r}:=1+3^{r+1}\pmod{256}, \qqua
 
 Put \[ F_r(Z):=Z^2-\varepsilon_rZ. \] The computation is performed at precision \(256\).  For \(m=8\), the Dickson multipliers have degrees \[ a_8=256, \qquad b_8=384, \qquad \mbox{ with } a_8 + b_8 = 640. \] Hence the exact induction base in Proposition~\ref{prop:presented-relation-propagation} consists, for every even \(0\leq r<128\), of the three degrees \[ d=r+j\,128, \qquad 2\leq j\leq4. \] Equivalently, these are the \(192\) even degrees \[ 256\leq d\leq638. \] 
 
-For every such degree \(d\), put \[ \mathcal Z_r:= ''\frac{t_3 - c_{3,r}}{2^7}'' = \mathfrak D_{t_3-c_{3,r},\,2^7} \bigl(\mathbb M_d(\mathbf Z/256\mathbf Z)\bigr), \] where \(r\equiv d\pmod{128}\) and \(t_3\) acts as \(T_3\). The computation \cite[\nolinkurl{classification_mod_256.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Z_r =\mathbb M_d(\mathbf Z/256\mathbf Z), \qquad F_r(\mathcal Z_r)\equiv0\pmod2, \] and also verifies the ordinary relation \[ \bigl(T_5-c_{5,r}\bigr) \mathbb M_d(\mathbf Z/256\mathbf Z)=0. \] Since both \(a_8\) and \(b_8\) are divisible by \(128\), the quantities \(c_{3,r}\), \(c_{5,r}\), and \(\varepsilon_r\) are unchanged under the two transitions of Remark~\ref{rem:periodic-weight-propagation}.  Thus these families satisfy the compatibility required for propagation.
+For every such degree \(d\), put \[ \mathcal Z_r:= ''\frac{t_3 - c_{3,r}}{2^7}'' = \mathfrak D_{t_3-c_{3,r},\,2^7} \bigl(\mathbb M_d(\mathbf Z/256\mathbf Z)\bigr), \] where \(r\equiv d\pmod{128}\) and \(t_3\) acts as \(T_3\). The computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_256.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Z_r =\mathbb M_d(\mathbf Z/256\mathbf Z), \qquad F_r(\mathcal Z_r)\equiv0\pmod2, \] and also verifies the ordinary relation \[ \bigl(T_5-c_{5,r}\bigr) \mathbb M_d(\mathbf Z/256\mathbf Z)=0. \] Since both \(a_8\) and \(b_8\) are divisible by \(128\), the quantities \(c_{3,r}\), \(c_{5,r}\), and \(\varepsilon_r\) are unchanged under the two transitions of Remark~\ref{rem:periodic-weight-propagation}.  Thus these families satisfy the compatibility required for propagation.
 
 Proposition~\ref{prop:presented-relation-propagation} propagates these conditions to every even degree \[ d\geq256. \] The remaining even degrees \[ 0\leq d<256 \] are verified directly. By Proposition~\ref{prop:division-retained-precision}, with \(m=8\), \(\alpha_1=7\), \(b=1\), and \(S=1\), for \[ r\equiv d\pmod{128}, \] the operator \[ Z_r:=\frac{T_3-c_{3,r}}{2^7} \] belongs to \[ \End_{\mathbf Z_2}\bigl(\mathbb M_d^{\mathrm{tf}}\bigr), \] preserves \(P_d^+\) and \(L_d^+\), and satisfies \begin{equation} \bigl(Z_r^2-\varepsilon_rZ_r\bigr) \mathbb M_d^{\mathrm{tf}} \subseteq2\mathbb M_d^{\mathrm{tf}}, \qquad \bigl(Z_r^2-\varepsilon_rZ_r\bigr)L_d^+ \subseteq2L_d^+. \label{eq:p2-divided-relation}\end{equation}
 
@@ -813,7 +783,7 @@ Throughout this section, put \[ r\equiv d=k-2\pmod{54},\qquad 0\leq r<54. \] We 
 
 \subsubsection{The common \(T_7\) relation}
 
-Let \(t_r\in\{0,\ldots,80\}\) represent \(1+7^{r+1}\pmod{81}\). We work at precision \(81\), where \[ a_4=162,\qquad b_4=108,\qquad a_4+b_4=270. \] For every even degree \(0\leq d<270\) and both orientations \(q\in\{0,1\}\), put \[ \mathcal N_{r,q}:= ''\frac{t_7-t_r}{27}'' = \mathfrak D_{t_7-t_r,\,27} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/81\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q. \] Here \(t_7\) acts as \(T_7\), since \(\chi_4(7)=7^{27}\equiv1\pmod{81}\). The computation \cite[\nolinkurl{classification_mod_81.ipynb}] {RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal N_{r,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/81\mathbf Z), \qquad \mathcal N_{r,q}^{\,2}\equiv0\pmod3. \]
+Let \(t_r\in\{0,\ldots,80\}\) represent \(1+7^{r+1}\pmod{81}\). We work at precision \(81\), where \[ a_4=162,\qquad b_4=108,\qquad a_4+b_4=270. \] For every even degree \(0\leq d<270\) and both orientations \(q\in\{0,1\}\), put \[ \mathcal N_{r,q}:= ''\frac{t_7-t_r}{27}'' = \mathfrak D_{t_7-t_r,\,27} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/81\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q. \] Here \(t_7\) acts as \(T_7\), since \(\chi_4(7)=7^{27}\equiv1\pmod{81}\). The computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_81.ipynb}] {RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal N_{r,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/81\mathbf Z), \qquad \mathcal N_{r,q}^{\,2}\equiv0\pmod3. \]
 
 Both degree shifts preserve \(r\pmod{54}\). Proposition~\ref{prop:presented-relation-propagation}, together with the direct verification in degrees \(d<108\), therefore propagates these conditions to every even degree. Proposition~\ref{prop:division-retained-precision}, with \(m=4\), \(\alpha_1=3\), \(b=1\), and \(S=1\), gives \[ N_r:=\frac{T_7-t_r}{27}\in\End_{\mathbf Z_3}(P_d^+), \qquad N_r^2P_d^+\subseteq3P_d^+. \] These conclusions restrict to \(L_d^+\) by saturation.
 
@@ -829,7 +799,7 @@ c_r
 \end{array}
 \label{eq:p3-nonzero-constants}
 \end{equation}
-Put \(F(X):=X^4-2X^3+X^2\). We work at precision \(243\), where \[ a_5=486,\qquad b_5=324,\qquad a_5+b_5=810. \] For every even degree \[ 0\leq d<810,\qquad d\equiv r\pmod{54}, \] and both orientations \(q\in\{0,1\}\), put \[ \mathcal Q_{r,q}:= ''\frac{t_2^2-9c_r}{81}'' = \mathfrak D_{t_2^2-9c_r,\,81} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q, \] where \(t_2\) acts as \(\chi_5(2)^qT_2=(-1)^qT_2\). The computation \cite[\nolinkurl{classification_mod_81.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Q_{r,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z), \qquad F(\mathcal Q_{r,q})\equiv0\pmod3. \]
+Put \(F(X):=X^4-2X^3+X^2\). We work at precision \(243\), where \[ a_5=486,\qquad b_5=324,\qquad a_5+b_5=810. \] For every even degree \[ 0\leq d<810,\qquad d\equiv r\pmod{54}, \] and both orientations \(q\in\{0,1\}\), put \[ \mathcal Q_{r,q}:= ''\frac{t_2^2-9c_r}{81}'' = \mathfrak D_{t_2^2-9c_r,\,81} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q, \] where \(t_2\) acts as \(\chi_5(2)^qT_2=(-1)^qT_2\). The computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_81.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Q_{r,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/243\mathbf Z), \qquad F(\mathcal Q_{r,q})\equiv0\pmod3. \]
 
 Both degree shifts preserve \(r\pmod{54}\), and the twist leaves \(t_2^2\) unchanged. Hence Proposition~\ref{prop:presented-relation-propagation}, together with the direct verification in degrees \(d<324\), propagates these conditions to every even degree \(d\equiv r\pmod{54}\). Proposition~\ref{prop:division-retained-precision}, with \(m=5\), \(\alpha_1=4\), \(b=1\), and \(S=1\), gives \[ Q_r:=\frac{T_2^2-9c_r}{81} \in\End_{\mathbf Z_3}(P_d^+), \qquad F(Q_r)P_d^+\subseteq3P_d^+. \] By saturation, these conclusions restrict to \(L_d^+\): \begin{equation} Q_rL_d^+\subseteq L_d^+, \qquad \bigl(Q_r(Q_r-1)\bigr)^2L_d^+\subseteq3L_d^+. \label{eq:p3-nonzero-relations} \end{equation}
 
@@ -849,7 +819,7 @@ r & E_{r,0} & E_{r,1} & E_{r,2}\\ \hline
 32,50   & \{0,2\} & \{0,1\} & \{0,1\}
 \end{array}
 \]
-and put \[ F_0(Y):=(Y^3-Y)^2, \qquad F_{r,s}(X,Y):= \bigl(1-(X-s)^2\bigr)^6 \prod_{\delta\in E_{r,s}}(Y-\delta)^2 \quad(s=0,1,2). \] These polynomials are expanded before evaluation at the linear relations. In each monomial \(X^iY^j\), the relation \(\mathcal B_{r,q}\) is applied first, followed by \(\mathcal A_q\).  For every degree and orientation in the above range, the computation \cite[\nolinkurl{classification_mod_81.ipynb}] {RustomHeckeCongruences} verifies \begin{equation} F_0(\mathcal B_{r,q})\equiv0\pmod3, \qquad F_{r,s}(\mathcal A_q,\mathcal B_{r,q}) \equiv0\pmod3 \quad(s=0,1,2) \label{eq:p3-mod81-zero-source-relations} \end{equation} on \(I\mathbb M_d^{\epsilon_q}(\mathbf Z/2187\mathbf Z)\).
+and put \[ F_0(Y):=(Y^3-Y)^2, \qquad F_{r,s}(X,Y):= \bigl(1-(X-s)^2\bigr)^6 \prod_{\delta\in E_{r,s}}(Y-\delta)^2 \quad(s=0,1,2). \] These polynomials are expanded before evaluation at the linear relations. In each monomial \(X^iY^j\), the relation \(\mathcal B_{r,q}\) is applied first, followed by \(\mathcal A_q\).  For every degree and orientation in the above range, the computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_81.ipynb}] {RustomHeckeCongruences} verifies \begin{equation} F_0(\mathcal B_{r,q})\equiv0\pmod3, \qquad F_{r,s}(\mathcal A_q,\mathcal B_{r,q}) \equiv0\pmod3 \quad(s=0,1,2) \label{eq:p3-mod81-zero-source-relations} \end{equation} on \(I\mathbb M_d^{\epsilon_q}(\mathbf Z/2187\mathbf Z)\).
 
 Both degree shifts preserve \(r\pmod{54}\), and the ideal \(I=(9,t_2)\) is unchanged by the twist \(t_2\mapsto-t_2\). The presentations are therefore compatible with both transfer transitions. By the ideal-image version of Proposition~\ref{prop:presented-relation-propagation} discussed in Section~3.10, the verification in \[ 2916\leq d<7290,\qquad d\equiv r\pmod{54}, \] propagates \eqref{eq:p3-mod81-zero-source-relations} to every degree \(d\geq2916\) in this residue class. Together with the direct verification in degrees \(d<2916\), this establishes these relations in every zero-branch degree, for both orientations.
 
@@ -892,7 +862,7 @@ Indeed, in the first row the permitted values of \(\bar u_2\) are precisely \(\m
 
 \begin{proof}[Proof of Theorem~\ref{thm:intro-p3}] By the preceding subsections, every normalized cuspidal level-one eigenform \(f\) determines a unique signature \[ \sigma=(r,\alpha), \qquad r\equiv k-2\pmod{54},\qquad 0\leq r<54, \] such that \[ a_2(f)\equiv_{\mathrm{val}}\alpha\pmod{81}, \qquad a_7(f)\equiv_{\mathrm{val}}t_r\pmod{81}. \] The permitted values are listed by weight residue \(k\equiv r+2\pmod{54}\) in Table~\ref{tab:p3-signatures}. There are \[ 18\cdot4+6\cdot9+3\cdot11=159 \] such signatures altogether.
 
-The finite computation \cite[\nolinkurl{strong_signatures/p3_m4/}] {RustomHeckeCongruences} verifies that every signature is realized by a normalized cuspidal level-one eigenform \(g_\sigma\) of weight \(k_\sigma\leq214\), with \[ k_\sigma-2\equiv r\pmod{54}. \] This includes the \(147\) rational signatures and the \(12\) nonrational signatures, the latter occurring in six conjugate pairs.
+The finite computation \cite[\url{https://github.com/nrustom/hecke-congruences/tree/main/strong_signatures/p3_m4}] {RustomHeckeCongruences} verifies that every signature is realized by a normalized cuspidal level-one eigenform \(g_\sigma\) of weight \(k_\sigma\leq214\), with \[ k_\sigma-2\equiv r\pmod{54}. \] This includes the \(147\) rational signatures and the \(12\) nonrational signatures, the latter occurring in six conjugate pairs.
 
 If \(f\) has signature \(\sigma\), then \[ a_2(f)\equiv_{\mathrm{val}}a_2(g_\sigma)\pmod{81}, \qquad a_7(f)\equiv_{\mathrm{val}}a_7(g_\sigma)\pmod{81}, \] and \(k_\sigma\equiv k\pmod{54}\). Hence \[ 4^{k_\sigma}\equiv4^k\pmod{81}, \] so \(f\) and \(g_\sigma\) also have the same value of the weight operator \([4]\) modulo \(81\). By \eqref{eq:p3-big-generation}, \[ \mathbb T_{\mathrm{dc}}^{(3)} =\overline{\mathbf Z_3[T_2,T_7,[4]]}. \] Their prime-to-\(3\) Hecke eigensystems are therefore congruent modulo \(81\) in the valuative sense: \[ a_n(f)\equiv_{\mathrm{val}}a_n(g_\sigma)\pmod{81} \qquad ((n,3)=1). \]
 
@@ -995,7 +965,7 @@ Put \[ H_r(X):=\alpha_r+\beta_rX+\gamma_rX^2 \] and \begin{equation} N_r(X):=(X^
 
 We work at precision \(625\). The Dickson multipliers have degrees \[ a_4=2500,\qquad b_4=750,\qquad a_4+b_4=3250. \] The induction base consists of the even degrees \[ 750\leq d\leq3248, \] with all four orientations \(q\in\{0,1,2,3\}\). On \[ \mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z), \qquad \epsilon_q=(-1)^q, \] the formal operators \(t_2\) and \(t_{19}\) act as \[ t_2=\chi_4(2)^qT_2=2^{125q}T_2, \qquad t_{19}=\chi_4(19)^qT_{19}=19^{125q}T_{19}. \] In orientation \(q\), we use the constants with subscript \(d+50q\), where the subscript is understood modulo \(100\). The remaining even degrees \(0\leq d<750\) are verified directly in the untwisted plus orientation \(q=0\).
 
-For every degree and orientation in the above verification ranges, the computation \cite[\nolinkurl{classification_mod_125.ipynb}] {RustomHeckeCongruences} verifies \begin{equation} \begin{aligned} &\bigl(t_2^2-h_{d+50q,0} -h_{d+50q,1}t_{19}-h_{d+50q,2}t_{19}^2\bigr) \mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z)\\ &\qquad\subseteq 125\mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z). \end{aligned} \label{eq:p5-mod125-joint-source} \end{equation}
+For every degree and orientation in the above verification ranges, the computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_125.ipynb}] {RustomHeckeCongruences} verifies \begin{equation} \begin{aligned} &\bigl(t_2^2-h_{d+50q,0} -h_{d+50q,1}t_{19}-h_{d+50q,2}t_{19}^2\bigr) \mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z)\\ &\qquad\subseteq 125\mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z). \end{aligned} \label{eq:p5-mod125-joint-source} \end{equation}
 
 On the same module, put \[ \mathcal Z_{19,q}:= ''\frac{t_{19}}5'' = \mathfrak D_{t_{19},\,5} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z)\bigr) \] and \[ \mathcal B_{r,q}:= ''\frac{N_{d+50q}(\mathcal Z_{19,q})}{25}'' = \mathfrak D_{1,\,25}\circ N_{d+50q}(\mathcal Z_{19,q}). \] Here \(N_{d+50q}(\mathcal Z_{19,q})\) is evaluated using the expanded polynomial convention. All these relations are formed on \(\mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z)\); in particular, every intermediate element introduced in a composition or division belongs to this module. The computation verifies \begin{equation} \operatorname{dom}\mathcal Z_{19,q} = \operatorname{dom}\mathcal B_{r,q} = \mathbb M_d^{\epsilon_q}(\mathbf Z/625\mathbf Z). \label{eq:p5-mod125-full-domain}
 \end{equation}
@@ -1039,7 +1009,7 @@ Evaluating the ordinary joint identity in \eqref{eq:p5-mod125-target-relations} 
 
 \subsection{Final classification}  By the preceding subsection, every normalized cuspidal level-one eigenform \(f\) determines a unique signature \[ \sigma=(r,a,5t), \qquad r\equiv k-2\pmod{100},\qquad 0\leq r<100, \] where \((a,5t)\) is one of the permitted pairs, such that \[ a_2(f)\equiv_{\mathrm{val}}a\pmod{125}, \qquad a_{19}(f)\equiv_{\mathrm{val}}5t\pmod{125}. \] There are \(50\cdot22=1100\) such signatures altogether.
 
-The finite computation \cite[\nolinkurl{strong_signatures/p5_m3/}] {RustomHeckeCongruences} verifies that every signature is realized by a normalized cuspidal level-one eigenform \(g_\sigma\) of weight \(k_\sigma\leq598\), with \[ k_\sigma-2\equiv r\pmod{100}. \] If \(f\) has signature \(\sigma\), then \[ a_2(f)\equiv_{\mathrm{val}}a_2(g_\sigma)\pmod{125}, \qquad a_{19}(f)\equiv_{\mathrm{val}}a_{19}(g_\sigma)\pmod{125}. \] Moreover, \(k_\sigma\equiv k\pmod{100}\), so \[ 6^{k_\sigma}\equiv6^k\pmod{125}. \] Thus \(f\) and \(g_\sigma\) also have the same value of the weight operator \([6]\) modulo \(125\). By \eqref{eq:p5-big-generation}, \[ \mathbb T_{\mathrm{dc}}^{(5)} =\overline{\mathbf Z_5[T_2,T_{19},[6]]}. \] Their prime-to-\(5\) Hecke eigensystems are therefore congruent modulo \(125\) in the valuative sense: \[ a_n(f)\equiv_{\mathrm{val}}a_n(g_\sigma)\pmod{125} \qquad((n,5)=1). \] 
+The finite computation \cite[\url{https://github.com/nrustom/hecke-congruences/tree/main/strong_signatures/p5_m3}] {RustomHeckeCongruences} verifies that every signature is realized by a normalized cuspidal level-one eigenform \(g_\sigma\) of weight \(k_\sigma\leq598\), with \[ k_\sigma-2\equiv r\pmod{100}. \] If \(f\) has signature \(\sigma\), then \[ a_2(f)\equiv_{\mathrm{val}}a_2(g_\sigma)\pmod{125}, \qquad a_{19}(f)\equiv_{\mathrm{val}}a_{19}(g_\sigma)\pmod{125}. \] Moreover, \(k_\sigma\equiv k\pmod{100}\), so \[ 6^{k_\sigma}\equiv6^k\pmod{125}. \] Thus \(f\) and \(g_\sigma\) also have the same value of the weight operator \([6]\) modulo \(125\). By \eqref{eq:p5-big-generation}, \[ \mathbb T_{\mathrm{dc}}^{(5)} =\overline{\mathbf Z_5[T_2,T_{19},[6]]}. \] Their prime-to-\(5\) Hecke eigensystems are therefore congruent modulo \(125\) in the valuative sense: \[ a_n(f)\equiv_{\mathrm{val}}a_n(g_\sigma)\pmod{125} \qquad((n,5)=1). \]
 
 Conversely, suppose that eigenforms \(f\) and \(g\), of weights \(k\) and \(K\), have congruent prime-to-\(5\) Hecke eigensystems modulo \(125\). The identities \[ a_2(f)^2-a_4(f)=2^{k-1}, \qquad a_2(g)^2-a_4(g)=2^{K-1} \] give \[ 2^{k-1}\equiv_{\mathrm{val}}2^{K-1}\pmod{125}. \] Since these are rational integers, this congruence is literal. As \(2\) has order \(100\) modulo \(125\), we obtain \(k\equiv K\pmod{100}\). Agreement at \(T_2\) and \(T_{19}\) then implies that their permitted pairs \((a,5t)\) agree. Thus distinct signatures give distinct eigensystems.
 
@@ -1047,90 +1017,6 @@ Reducing the signatures modulo \(25\), direct calculation identifies their value
 
 Consequently, there are exactly \(1100\) prime-to-\(5\) Hecke eigensystems modulo \(125\), in the valuative sense, and every such eigensystem is realized in weight at most \(598\).
 
-\iffalse
-\section{The prime \texorpdfstring{\(5\)}{5}: classification modulo \texorpdfstring{\(25\)}{25}} \label{sec:p5}
-
-For every even residue \(r\pmod{20}\), define \(\beta_r\) by
-\begin{equation}
-\begin{array}{c|rrrrrrrrrr}
-r \pmod{20} &0&2&4&6&8&10&12&14&16&18\\ \hline
-\beta_r&4&0&2&0&4&1&0&3&0&1.
-\end{array}
-\label{eq:p5-beta-table}
-\end{equation}
-Put \begin{equation} Q_r(X):=(X-\beta_r)^3+(X-\beta_r). \label{eq:p5-shifted-cubic} \end{equation} For \(\eta\in\{0,1\}\), define \begin{equation} F_{r,\eta}(X,Y) := X-\delta_{r,\eta}(c_rY+3-\eta) - 5\gamma_{r,\eta}, \end{equation} and put \[ G_r(X,Y):=F_{r,0}(X,Y)F_{r,1}(X,Y), \] where \[c_r := \begin{cases}1, & r \equiv 0 \pmod{4},\\ 2, & r \equiv 2 \pmod{4}\end{cases} \] and the constants $\delta$ and $\gamma$ are given by 
-\[
-\begin{array}{c|cc}
-r&(\delta_{r,0},\gamma_{r,0})
- &(\delta_{r,1},\gamma_{r,1})\\ \hline
-0 &(1,4)&(4,0)\\
-2 &(4,4)&(1,3)\\
-4 &(1,1)&(4,2)\\
-6 &(4,2)&(1,1)\\
-8 &(1,3)&(4,4)\\
-10&(4,0)&(1,4)\\
-12&(1,0)&(4,1)\\
-14&(4,3)&(1,2)\\
-16&(1,2)&(4,3)\\
-18&(4,1)&(1,0).
-\end{array}
-\]
-
-\subsection{Certified Hecke operator identities}
-
-We work at precision \(25\). The Dickson multipliers have degrees \[a_2 = 100, \qquad b_2 = 30, \qquad \mbox{ with } a_2 + b_2 = 130.\] We also have \[\chi_2(T_2) = 2^{5}T_2 \equiv 7 T_2, \qquad \chi_2(T_{19}) = 19^5T_{19} \equiv -T_{19} \pmod{25}.\]
-
-Define the family \[\mathcal G_{r,+} := \{G_r, \chi_2^2(G_r)\}, \qquad \mathcal G_{r, -} := \{\chi_2(G_{r+10}), \chi_2^3(G_{r+10})\}\] where the indices are understood modulo \(20\). The two transitions of Remark~\ref{rem:periodic-weight-propagation} are \[(r,H,\epsilon)\longmapsto(r,H,\epsilon)\] and \[ (r,H,\epsilon)\longmapsto (r+10,\chi_2(H),-\epsilon). \] The first plainly preserves the family. For the second, \[\chi_2(\mathcal G_{r,+})=\mathcal G_{r+10,-}, \qquad \chi_2(\mathcal G_{r,-}) = \mathcal G_{r+10,+}, \] since \(\chi_2^4=\mathrm{id}\). Thus the family \(\mathcal G_{r,\epsilon}\) is closed under both transitions.
-
-The exact induction base for Theorem~\ref{thm:weight-propagation} consists of the even degrees \[30\leq d\leq128.\] For each such \(d\), put \(r\equiv d\pmod{20}\).  The computation \cite[\nolinkurl{classification_mod_25.ipynb}]{RustomHeckeCongruences} verifies \[H\mathbb M_d^+(\mathbf Z/25\mathbf Z)=0\qquad \bigl(H\in\mathcal G_{r,+}\bigr)\] and \[H\mathbb M_d^-(\mathbf Z/25\mathbf Z)=0\qquad \bigl(H\in\mathcal G_{r,-}\bigr).\] Theorem~\ref{thm:weight-propagation}, together with Remark~\ref{rem:periodic-weight-propagation}, therefore propagates the relations to every even degree \(d\geq30\). The remaining even degrees \(0\leq d<30\) are verified directly. In particular, for \(r\equiv d\pmod{20}\), \begin{equation} G_r(T_{19},T_2)L_d^+\subseteq25L_d^+. \label{eq:p5-target-affine-product}
-\end{equation}
-
-For each even degree \(30\leq d\leq128\) and each \(q\in\{0,1,2,3\}\), put \[ \mathcal Z_{19,q}:= ''\frac{t_{19}-5\beta_{d+10q}}{5}'' = \mathfrak D_{t_{19}-5\beta_{d+10q},\,5} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/25\mathbf Z)\bigr), \] where the subscript of \(\beta\) is understood modulo \(20\) and \(t_{19}\) acts as \(\chi_2(19)^qT_{19}=(-1)^qT_{19}\). Writing \(F(X):=(X^3+X)^2\), the computation verifies \[ \operatorname{dom}\mathcal Z_{19,q} =\mathbb M_d^{\epsilon_q}(\mathbf Z/25\mathbf Z), \qquad F(\mathcal Z_{19,q})\equiv0\pmod5. \] These four conditions are closed under the two transitions of Remark~\ref{rem:periodic-weight-propagation}. Indeed, the \(A_2\)-transition preserves the residue, the sign, and the orientation, while the \(B_2\)-transition sends \[ (d,q)\longmapsto(d-30,q+1) \] and reverses the sign. Since \[ (d-30)+10(q+1)\equiv d+10q\pmod{20}, \] the subscript of \(\beta\) is unchanged. Thus the defining presentation is preserved, while the change in orientation accounts for the twist of \(T_{19}\). Hence the same strong-induction argument as in Proposition~\ref{prop:presented-relation-propagation} propagates these conditions to every even degree \(d\geq30\). By Proposition~\ref{prop:division-retained-precision}, with \(m=2\), \(\alpha_1=1\), \(b=1\), and \(S=1\), we obtain, for \(r\equiv d\pmod{20}\), \[ \frac{T_{19}-5\beta_r}{5} \in\End_{\mathbf Z_5}(P_d^+). \] Consequently, \[ Z_{19}:=\frac{T_{19}}5\in\End_{\mathbf Z_5}(P_d^+), \qquad Z_{19}L_d^+\subseteq L_d^+, \] and \[ Q_r(Z_{19})^2P_d^+\subseteq5P_d^+. \] By saturation, \[ Q_r(Z_{19})^2L_d^+\subseteq5L_d^+. \] The remaining even degrees \(0\leq d<30\) are verified directly. Thus, in every even degree, \begin{equation} Q_r(Z_{19})^2P_d^+\subseteq5P_d^+, \qquad Q_r(Z_{19})^2L_d^+\subseteq5L_d^+. \label{eq:p5-divided-relation}
-\end{equation}
-
-\subsection{Congruences for \texorpdfstring{\(a_2\)}{a2} and \texorpdfstring{\(a_{19}\)}{a19}}
-
-By the Eichler--Shimura comparison recalled in Section~\ref{sec:target-lattice}, choose a primitive simultaneous eigenvector \[v_f\in L_d^+\otimes_{\mathbf Z_5}\mathcal O_f\] for the prime-to-\(5\) Hecke eigensystem of \(f\).
-
-Since \(Z_{19}=T_{19}/5\) preserves \(L_d^+\), its eigenvalue $z_{19}$ on \(v_f\) is integral. Thus \[z_{19}:=\frac{a_{19}(f)}5\in\mathcal O_f.\] Equation~\eqref{eq:p5-divided-relation} gives \[Q_r(z_{19})^2\in5\mathcal O_f.\] After reduction to the residue field, \[Q_r(\bar z_{19})=0.\] Since \[Q_r(X)\equiv(X-\beta_r)(X-\beta_r-2)(X-\beta_r-3)\pmod{5},\] there is a unique \[\lambda\in\{\beta_r,\beta_r+2,\beta_r+3\}\] such that \[\bar z_{19}= \bar \lambda.\] Equivalently,\begin{equation}a_{19}(f)\equiv_{\mathrm{val}}5\lambda\pmod{25}.\label{eq:p5-T19-selector}\end{equation}
-
-Put \[x_f:=c_r a_2(f)+3.\] Evaluating \eqref{eq:p5-target-affine-product} on the primitive eigenvector \(v_f\) gives \begin{equation} \bigl(a_{19}(f)-\delta_{r,0}x_f-5\gamma_{r,0}\bigr) \bigl(a_{19}(f)-\delta_{r,1}(x_f-1)-5\gamma_{r,1}\bigr) \in25\mathcal O_f. \label{eq:p5-eigenvalue-product} \end{equation} Reducing modulo the maximal ideal of \(\mathcal O_f\), and using \(a_{19}(f)\in5\mathcal O_f\), we obtain \[ (-\delta_{r,0}\bar x_f) \bigl(-\delta_{r,1}(\bar x_f-1)\bigr)=0. \] Since \[ \delta_{r,0},\delta_{r,1}\in\mathbf F_5^\times, \] there is a unique \(\epsilon\in\{0,1\}\) such that \begin{equation}\bar x_f=\epsilon. \label{eq:p5-epsilon-selector} \end{equation} For this \(\epsilon\), the factor corresponding to \(1-\epsilon\) in \eqref{eq:p5-eigenvalue-product} is a unit. Hence \begin{equation} a_{19}(f) -\delta_{r,\epsilon}(x_f-\epsilon) -5\gamma_{r,\epsilon} \in25\mathcal O_f. \label{eq:p5-selected-affine} \end{equation} Together with \eqref{eq:p5-T19-selector}, this gives \begin{equation} x_f \equiv_{\mathrm{val}} \epsilon+ 5\delta_{r,\epsilon}^{-1} (\lambda-\gamma_{r,\epsilon}) \pmod{25}. \label{eq:p5-x-selector} \end{equation} Since \(x_f=c_r a_2(f)+3\) and \(c_r\in\{1,2\}\), we therefore obtain \begin{equation} a_2(f) \equiv_{\mathrm{val}} c_r^{-1} \left( \epsilon-3+ 5\delta_{r,\epsilon}^{-1} (\lambda-\gamma_{r,\epsilon}) \right) \pmod{25}. \label{eq:p5-T2-selector} \end{equation}
-
-\subsection{Packet selection}
-\label{sec:p5-packet-selection}
-
-Recall that \[d\equiv r\equiv k-2\pmod{20}.\] For each of the six pairs \((\epsilon,\lambda)\) selected by \eqref{eq:p5-T19-selector} and \eqref{eq:p5-epsilon-selector}, a direct calculation of the cyclotomic packets gives a unique unordered pair \[ \{a,b\}\subset\mathbf Z/20\mathbf Z, \qquad a+b\equiv k-1\pmod{20}, \] such that \[ a_2(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(2)\pmod{25}, \qquad a_{19}(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(19)\pmod{25}. \]
-
-Moreover, the pair can be written \[\{a,b\}=\{i,i+\kappa-1\}\qquad\text{in }\mathbf Z/20\mathbf Z,\] where \[2i+\kappa\equiv k\pmod{20}\] and \begin{equation}\kappa\in\begin{cases}\{10,14,22\},&k\equiv0,2\pmod{10},\\  \{6,14,18\},&k\equiv4,8\pmod{10},\\ \{6,14,22\},&k\equiv6\pmod{10}. \end{cases} \label{eq:p5-kappa-classification} \end{equation}
-
-Thus there are exactly six possible cyclotomic packets for each residue class of \(k\) modulo \(20\), and hence \(60\) packets over all weights. 
-
-\subsection{Final classification}
-
-\begin{proof}[Proof of Theorem~\ref{thm:intro-p5}]
-
-Let \[\{a,b\}\subset\mathbf Z/20\mathbf Z\] be the unique pair selected in
-Section~\ref{sec:p5-packet-selection}. Thus, in every weight, we have a unique pair satisfying\[a+b\equiv k-1\pmod{20},\] which can be written \[\{a,b\}=\{i,i+\kappa-1\}\qquad\text{in }\mathbf Z/20\mathbf Z,\] with
-\[
-\kappa\in
-\begin{cases}
-\{10,14,22\},&k\equiv0,2\pmod{10},\\
-\{6,14,18\},&k\equiv4,8\pmod{10},\\
-\{6,14,22\},&k\equiv6\pmod{10},
-\end{cases}
-\]
-and \[2i+\kappa\equiv k\pmod{20}.\] Choosing the representative of \(i\) sufficiently large, we may assume \(i\geq2\). Moreover, \[a_2(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(2)\pmod{25}, \qquad a_{19}(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(19)\pmod{25}.\]
-
-By Lemma~\ref{lem:weak-cyclotomic}, this packet is realized by a continuous weak character \[\lambda_{\kappa,i}:\mathbb T_{\mathrm{dc}}^{(5)}\longrightarrow\mathbf Z/25\mathbf Z\] of some weight \(K\) satisfying \[K\equiv\kappa+2i\equiv k\pmod{20}.\] Hence \[6^K\equiv6^k\pmod{25},\] so \(\lambda_{\kappa,i}\) and the Hecke character of \(f\) have the same \(t_\Lambda=[6]\)-value in the valuative coefficient quotient.
-
-By the packet selection, the two characters also agree there on \(T_2\) and \(T_{19}\). By \eqref{eq:p5-big-generation}, they agree on the whole completed prime-to-\(5\) Hecke algebra.
-Therefore \[ a_n(f)\equiv_{\mathrm{val}}\Cyc_{a,b}(n)\pmod{25} \qquad((n,5)=1). \]
-
-Finally, since \(20=\varphi(25)\) and \(i\geq2\), the equivalence following Definition~\ref{def:theta-eis} gives \[\theta^{20}f\equiv_{\mathrm{val}}\theta^iG_\kappa\pmod{25}.\]
-
-Conversely, the finite computation verifies that each of the \(60\) cyclotomic packets appearing above is realized by a strong level-one eigenform. Hence the classification is exact.
-\end{proof}
-\fi
 
 \section{The prime \texorpdfstring{\(7\)}{7}: classification modulo
 \texorpdfstring{\(49\)}{49}}
@@ -1144,7 +1030,7 @@ Also put \[\{\alpha_j,\beta_j\}=\begin{cases}\{3,4\},&j=0,\\ \{2,5\},&j=2,\\ \{1
 
 Define \begin{equation} Q_j(X):=\frac{F_j(X)}{49}, \qquad G_j(X,Y):= \frac{Y-2-X(X-\alpha_j)(X-\beta_j)}{7}, \qquad j\in\{0,2,4\}.\label{eq:Q-G-definition} \end{equation} Finally, \[H(X) := (X^7 - X)^3.\]
 
-We first treat \(Q_{r\bmod6}(T_3)\). The computation is performed at precision \(343=7^3\). The Dickson multipliers have degrees \[ a_3=2058,\qquad b_3=392, \qquad\mbox{with}\qquad a_3+b_3=2450,\] so the exact induction base consists of the even degrees \[ 392\leq d<2450. \] For every such \(d\) and every \(0\leq q<6\), put \[ \mathcal Q_q:= ''\frac{F_{(d+2q)\bmod 6}(t_3)}{49}'' = \mathfrak D_{F_{(d+2q)\bmod6}(t_3),\,49} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q, \] where \(t_3\) acts as \(\chi_3(3)^qT_3\). The computation \cite[\nolinkurl{classification_mod_49.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Q_q =\mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z), \qquad H(\mathcal Q_q)\equiv0\pmod7. \] These six conditions are closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}: the \(A_3\)-transition preserves \(d+2q\pmod6\), while the \(B_3\)-transition sends \[ (d,q)\longmapsto(d-392,q+1) \] and again preserves \(d+2q\pmod6\).
+We first treat \(Q_{r\bmod6}(T_3)\). The computation is performed at precision \(343=7^3\). The Dickson multipliers have degrees \[ a_3=2058,\qquad b_3=392, \qquad\mbox{with}\qquad a_3+b_3=2450,\] so the exact induction base consists of the even degrees \[ 392\leq d<2450. \] For every such \(d\) and every \(0\leq q<6\), put \[ \mathcal Q_q:= ''\frac{F_{(d+2q)\bmod 6}(t_3)}{49}'' = \mathfrak D_{F_{(d+2q)\bmod6}(t_3),\,49} \bigl(\mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z)\bigr), \qquad \epsilon_q=(-1)^q, \] where \(t_3\) acts as \(\chi_3(3)^qT_3\). The computation \cite[\url{https://github.com/nrustom/hecke-congruences/blob/main/playground_mod_49.ipynb}]{RustomHeckeCongruences} verifies \[ \operatorname{dom}\mathcal Q_q =\mathbb M_d^{\epsilon_q}(\mathbf Z/343\mathbf Z), \qquad H(\mathcal Q_q)\equiv0\pmod7. \] These six conditions are closed under both transitions of Remark~\ref{rem:periodic-weight-propagation}: the \(A_3\)-transition preserves \(d+2q\pmod6\), while the \(B_3\)-transition sends \[ (d,q)\longmapsto(d-392,q+1) \] and again preserves \(d+2q\pmod6\).
 
 Now fix an even residue \(r\bmod42\). The preceding transition compatibility and the same strong-induction argument as in Proposition~\ref{prop:presented-relation-propagation} propagate these conditions to every degree \[ d\geq392, \qquad d\equiv r\pmod{42}. \] Applying Proposition~\ref{prop:division-retained-precision} in orientation \(q=0\), with \(m=3\), \(\alpha_1=2\), \(b=1\), and \(S=1\), gives \[ Q_{r\bmod6}(T_3)\in\End_{\mathbf Z_7}(P_d^+), \qquad Q_{r\bmod6}(T_3)L_d^+\subseteq L_d^+. \] Moreover, \begin{equation} H\bigl(Q_{r\bmod6}(T_3)\bigr)P_d^+ \subseteq7P_d^+, \qquad H\bigl(Q_{r\bmod6}(T_3)\bigr)L_d^+ \subseteq7L_d^+. \label{eq:p7-Q-relations} \end{equation} The remaining degrees \[ 0\leq d<392, \qquad d\equiv r\pmod{42}, \] are verified directly. Consequently, these conclusions hold in every even degree \[ d\equiv r\pmod{42}. \]
 

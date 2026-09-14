@@ -36,8 +36,6 @@ case "${1:-}" in
       "$output/status.json"
     ;;
   stop)
-    # A manual stop must not be undone by automated memory recovery.
-    systemctl --user stop hecke-mod125-memory-watchdog.service 2>/dev/null || true
     systemctl --user stop "$unit"
     ;;
   *) echo "usage: bash $0 {start [workers]|resume [workers]|status|stop}"; exit 2 ;;
