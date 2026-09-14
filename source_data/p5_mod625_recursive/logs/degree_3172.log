@@ -1,0 +1,10 @@
+degree 3172, q=0, mixed rank=265
+degree 3172, q=1, mixed rank=317
+degree 3172, q=2, mixed rank=265
+degree 3172, q=3, mixed rank=317
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3172.partial.npz
+prime: 5
+exponent: 4
+degree: 3172
+mixed rank: 1164
+Hecke indices: 2,19

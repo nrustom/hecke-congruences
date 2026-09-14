@@ -1,0 +1,10 @@
+degree 3234, q=0, mixed rank=324
+degree 3234, q=1, mixed rank=269
+degree 3234, q=2, mixed rank=324
+degree 3234, q=3, mixed rank=269
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3234.partial.npz
+prime: 5
+exponent: 4
+degree: 3234
+mixed rank: 1186
+Hecke indices: 2,19

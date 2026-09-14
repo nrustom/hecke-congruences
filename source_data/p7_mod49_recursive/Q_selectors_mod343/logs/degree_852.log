@@ -1,0 +1,33 @@
+error: checkpoint close failed: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_recursive/.module_cache/m3_T3_T29/degree_460_minus.gz
+Compute a mixed Manin-source replay bundle for the Sage verifiers.
+
+Usage:
+  compute_source_data --prime P --exponent M --degree D \
+    --hecke N1,N2,... --output PATH.npz
+
+Optional:
+  --recursive          Exact Section 3.10 construction below a_m+b_m (default).
+  --direct             Disable recursion; use legacy replay unless --compact.
+  --compact            Store only cyclic orders and untwisted actions (v3).
+  --ideal FILE.json    Compute the specified ideal image, in compact format.
+  --orientations 0,1   Orientations to store (default: all for an ideal).
+  --audit              Check ideal descent, cardinality and action replay.
+  --replay-maps        Also save inclusions into the original monomial module.
+  --module-cache-dir PATH  Reuse optional producer-bound recursive maps.
+
+Ideal JSON: {"scalar":9,"generators":[[[1,[1,0]]]]}
+Here exponents follow --hecke; scalar is optional, as are polynomial generators.
+No ideal option means the whole Manin quotient, not its torsion-free quotient.
+
+Example:
+  compute_source_data --prime 3 --exponent 3 --degree 12 \
+    --hecke 2,7 --output source_data/degree_12/replay_bundle.npz
+
+degree 852, q=0, mixed rank=73
+degree 852, q=1, mixed rank=73
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_recursive/Q_selectors_mod343/degree_852.partial.npz
+prime: 7
+exponent: 3
+degree: 852
+mixed rank: 146
+Hecke indices: 3,29

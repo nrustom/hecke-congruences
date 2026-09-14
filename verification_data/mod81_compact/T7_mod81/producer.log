@@ -1,0 +1,540 @@
+START worker=2 d=4 q=0
+START worker=0 d=0 q=0
+START worker=1 d=2 q=0
+START worker=3 d=6 q=0
+RESULT worker=0 d=0 q=0 passed
+RESULT worker=2 d=4 q=0 passed
+START worker=0 d=0 q=1
+START worker=2 d=4 q=1
+RESULT worker=1 d=2 q=0 passed
+START worker=1 d=2 q=1
+RESULT worker=2 d=4 q=1 passed
+RESULT worker=3 d=6 q=0 passed
+RESULT worker=0 d=0 q=1 passed
+START worker=2 d=12 q=0
+START worker=3 d=6 q=1
+START worker=0 d=8 q=0
+RESULT worker=1 d=2 q=1 passed
+RESULT worker=2 d=12 q=0 passed
+RESULT worker=0 d=8 q=0 passed
+START worker=1 d=10 q=0
+START worker=2 d=12 q=1
+START worker=0 d=8 q=1
+RESULT worker=3 d=6 q=1 passed
+START worker=3 d=14 q=0
+RESULT worker=1 d=10 q=0 passed
+START worker=1 d=10 q=1
+RESULT worker=2 d=12 q=1 passed
+RESULT worker=0 d=8 q=1 passed
+START worker=2 d=20 q=0
+START worker=0 d=16 q=0
+RESULT worker=3 d=14 q=0 passed
+START worker=3 d=14 q=1
+RESULT worker=0 d=16 q=0 passed
+START worker=0 d=16 q=1
+RESULT worker=2 d=20 q=0 passed
+START worker=2 d=20 q=1
+RESULT worker=1 d=10 q=1 passed
+START worker=1 d=18 q=0
+RESULT worker=3 d=14 q=1 passed
+START worker=3 d=22 q=0
+RESULT worker=0 d=16 q=1 passed
+START worker=0 d=24 q=0
+RESULT worker=2 d=20 q=1 passed
+START worker=2 d=28 q=0
+RESULT worker=1 d=18 q=0 passed
+START worker=1 d=18 q=1
+RESULT worker=3 d=22 q=0 passed
+RESULT worker=0 d=24 q=0 passed
+START worker=3 d=22 q=1
+START worker=0 d=24 q=1
+RESULT worker=2 d=28 q=0 passed
+START worker=2 d=28 q=1
+RESULT worker=1 d=18 q=1 passed
+START worker=1 d=26 q=0
+RESULT worker=0 d=24 q=1 passed
+START worker=0 d=32 q=0
+RESULT worker=3 d=22 q=1 passed
+START worker=3 d=30 q=0
+RESULT worker=2 d=28 q=1 passed
+START worker=2 d=36 q=0
+RESULT worker=1 d=26 q=0 passed
+START worker=1 d=26 q=1
+RESULT worker=0 d=32 q=0 passed
+START worker=0 d=32 q=1
+RESULT worker=3 d=30 q=0 passed
+START worker=3 d=30 q=1
+RESULT worker=2 d=36 q=0 passed
+START worker=2 d=36 q=1
+RESULT worker=1 d=26 q=1 passed
+RESULT worker=0 d=32 q=1 passed
+START worker=1 d=34 q=0
+START worker=0 d=40 q=0
+RESULT worker=3 d=30 q=1 passed
+RESULT worker=2 d=36 q=1 passed
+START worker=3 d=38 q=0
+START worker=2 d=44 q=0
+RESULT worker=0 d=40 q=0 passed
+START worker=0 d=40 q=1
+RESULT worker=1 d=34 q=0 passed
+START worker=1 d=34 q=1
+RESULT worker=2 d=44 q=0 passed
+RESULT worker=3 d=38 q=0 passed
+START worker=2 d=44 q=1
+START worker=3 d=38 q=1
+RESULT worker=0 d=40 q=1 passed
+START worker=0 d=48 q=0
+RESULT worker=1 d=34 q=1 passed
+START worker=1 d=42 q=0
+RESULT worker=2 d=44 q=1 passed
+START worker=2 d=52 q=0
+RESULT worker=3 d=38 q=1 passed
+START worker=3 d=46 q=0
+RESULT worker=0 d=48 q=0 passed
+START worker=0 d=48 q=1
+RESULT worker=2 d=52 q=0 passed
+START worker=2 d=52 q=1
+RESULT worker=1 d=42 q=0 passed
+RESULT worker=3 d=46 q=0 passed
+START worker=1 d=42 q=1
+START worker=3 d=46 q=1
+RESULT worker=0 d=48 q=1 passed
+START worker=0 d=56 q=0
+RESULT worker=2 d=52 q=1 passed
+START worker=2 d=60 q=0
+RESULT worker=1 d=42 q=1 passed
+START worker=1 d=50 q=0
+RESULT worker=3 d=46 q=1 passed
+RESULT worker=0 d=56 q=0 passed
+START worker=3 d=54 q=0
+START worker=0 d=56 q=1
+RESULT worker=2 d=60 q=0 passed
+START worker=2 d=60 q=1
+RESULT worker=1 d=50 q=0 passed
+RESULT worker=0 d=56 q=1 passed
+START worker=1 d=50 q=1
+START worker=0 d=64 q=0
+RESULT worker=3 d=54 q=0 passed
+START worker=3 d=54 q=1
+RESULT worker=2 d=60 q=1 passed
+START worker=2 d=68 q=0
+RESULT worker=0 d=64 q=0 passed
+START worker=0 d=64 q=1
+RESULT worker=1 d=50 q=1 passed
+START worker=1 d=58 q=0
+RESULT worker=3 d=54 q=1 passed
+START worker=3 d=62 q=0
+RESULT worker=2 d=68 q=0 passed
+START worker=2 d=68 q=1
+RESULT worker=0 d=64 q=1 passed
+START worker=0 d=72 q=0
+RESULT worker=1 d=58 q=0 passed
+RESULT worker=3 d=62 q=0 passed
+START worker=1 d=58 q=1
+START worker=3 d=62 q=1
+RESULT worker=2 d=68 q=1 passed
+RESULT worker=0 d=72 q=0 passed
+START worker=2 d=76 q=0
+START worker=0 d=72 q=1
+RESULT worker=1 d=58 q=1 passed
+START worker=1 d=66 q=0
+RESULT worker=3 d=62 q=1 passed
+START worker=3 d=70 q=0
+RESULT worker=2 d=76 q=0 passed
+RESULT worker=0 d=72 q=1 passed
+START worker=0 d=80 q=0
+START worker=2 d=76 q=1
+RESULT worker=1 d=66 q=0 passed
+START worker=1 d=66 q=1
+RESULT worker=3 d=70 q=0 passed
+START worker=3 d=70 q=1
+RESULT worker=0 d=80 q=0 passed
+START worker=0 d=80 q=1
+RESULT worker=2 d=76 q=1 passed
+START worker=2 d=84 q=0
+RESULT worker=1 d=66 q=1 passed
+START worker=1 d=74 q=0
+RESULT worker=3 d=70 q=1 passed
+START worker=3 d=78 q=0
+RESULT worker=0 d=80 q=1 passed
+START worker=0 d=88 q=0
+RESULT worker=2 d=84 q=0 passed
+RESULT worker=1 d=74 q=0 passed
+START worker=2 d=84 q=1
+START worker=1 d=74 q=1
+RESULT worker=3 d=78 q=0 passed
+START worker=3 d=78 q=1
+RESULT worker=0 d=88 q=0 passed
+START worker=0 d=88 q=1
+RESULT worker=2 d=84 q=1 passed
+START worker=2 d=92 q=0
+RESULT worker=1 d=74 q=1 passed
+START worker=1 d=82 q=0
+RESULT worker=3 d=78 q=1 passed
+RESULT worker=0 d=88 q=1 passed
+START worker=3 d=86 q=0
+START worker=0 d=96 q=0
+RESULT worker=2 d=92 q=0 passed
+START worker=2 d=92 q=1
+RESULT worker=1 d=82 q=0 passed
+START worker=1 d=82 q=1
+RESULT worker=3 d=86 q=0 passed
+RESULT worker=2 d=92 q=1 passed
+START worker=3 d=86 q=1
+RESULT worker=1 d=82 q=1 passed
+START worker=2 d=100 q=0
+RESULT worker=0 d=96 q=0 passed
+START worker=1 d=90 q=0
+START worker=0 d=96 q=1
+RESULT worker=2 d=100 q=0 passed
+START worker=2 d=100 q=1
+RESULT worker=0 d=96 q=1 passed
+RESULT worker=3 d=86 q=1 passed
+RESULT worker=1 d=90 q=0 passed
+START worker=0 d=104 q=0
+START worker=3 d=94 q=0
+START worker=1 d=90 q=1
+RESULT worker=2 d=100 q=1 passed
+START worker=2 d=108 q=0
+RESULT worker=0 d=104 q=0 passed
+START worker=0 d=104 q=1
+RESULT worker=1 d=90 q=1 passed
+RESULT worker=3 d=94 q=0 passed
+START worker=1 d=98 q=0
+START worker=3 d=94 q=1
+RESULT worker=2 d=108 q=0 passed
+START worker=2 d=108 q=1
+RESULT worker=0 d=104 q=1 passed
+START worker=0 d=112 q=0
+RESULT worker=1 d=98 q=0 passed
+START worker=1 d=98 q=1
+RESULT worker=3 d=94 q=1 passed
+START worker=3 d=102 q=0
+RESULT worker=2 d=108 q=1 passed
+START worker=2 d=116 q=0
+RESULT worker=0 d=112 q=0 passed
+START worker=0 d=112 q=1
+RESULT worker=1 d=98 q=1 passed
+START worker=1 d=106 q=0
+RESULT worker=3 d=102 q=0 passed
+START worker=3 d=102 q=1
+RESULT worker=2 d=116 q=0 passed
+START worker=2 d=116 q=1
+RESULT worker=0 d=112 q=1 passed
+START worker=0 d=120 q=0
+RESULT worker=1 d=106 q=0 passed
+START worker=1 d=106 q=1
+RESULT worker=3 d=102 q=1 passed
+START worker=3 d=110 q=0
+RESULT worker=0 d=120 q=0 passed
+RESULT worker=2 d=116 q=1 passed
+START worker=0 d=120 q=1
+START worker=2 d=124 q=0
+RESULT worker=1 d=106 q=1 passed
+START worker=1 d=114 q=0
+RESULT worker=3 d=110 q=0 passed
+START worker=3 d=110 q=1
+RESULT worker=2 d=124 q=0 passed
+RESULT worker=0 d=120 q=1 passed
+START worker=2 d=124 q=1
+START worker=0 d=128 q=0
+RESULT worker=1 d=114 q=0 passed
+RESULT worker=3 d=110 q=1 passed
+START worker=1 d=114 q=1
+START worker=3 d=118 q=0
+RESULT worker=2 d=124 q=1 passed
+START worker=2 d=132 q=0
+RESULT worker=0 d=128 q=0 passed
+START worker=0 d=128 q=1
+RESULT worker=1 d=114 q=1 passed
+RESULT worker=2 d=132 q=0 passed
+START worker=1 d=122 q=0
+RESULT worker=3 d=118 q=0 passed
+START worker=2 d=132 q=1
+START worker=3 d=118 q=1
+RESULT worker=0 d=128 q=1 passed
+START worker=0 d=136 q=0
+RESULT worker=1 d=122 q=0 passed
+RESULT worker=2 d=132 q=1 passed
+START worker=1 d=122 q=1
+START worker=2 d=140 q=0
+RESULT worker=3 d=118 q=1 passed
+START worker=3 d=126 q=0
+RESULT worker=0 d=136 q=0 passed
+START worker=0 d=136 q=1
+RESULT worker=1 d=122 q=1 passed
+RESULT worker=2 d=140 q=0 passed
+START worker=1 d=130 q=0
+START worker=2 d=140 q=1
+RESULT worker=3 d=126 q=0 passed
+START worker=3 d=126 q=1
+RESULT worker=0 d=136 q=1 passed
+START worker=0 d=144 q=0
+RESULT worker=2 d=140 q=1 passed
+RESULT worker=1 d=130 q=0 passed
+START worker=2 d=148 q=0
+START worker=1 d=130 q=1
+RESULT worker=3 d=126 q=1 passed
+RESULT worker=0 d=144 q=0 passed
+START worker=3 d=134 q=0
+START worker=0 d=144 q=1
+RESULT worker=2 d=148 q=0 passed
+RESULT worker=1 d=130 q=1 passed
+START worker=2 d=148 q=1
+START worker=1 d=138 q=0
+RESULT worker=0 d=144 q=1 passed
+START worker=0 d=152 q=0
+RESULT worker=3 d=134 q=0 passed
+START worker=3 d=134 q=1
+RESULT worker=2 d=148 q=1 passed
+START worker=2 d=156 q=0
+RESULT worker=1 d=138 q=0 passed
+RESULT worker=0 d=152 q=0 passed
+START worker=1 d=138 q=1
+START worker=0 d=152 q=1
+RESULT worker=3 d=134 q=1 passed
+START worker=3 d=142 q=0
+RESULT worker=2 d=156 q=0 passed
+START worker=2 d=156 q=1
+RESULT worker=0 d=152 q=1 passed
+START worker=0 d=160 q=0
+RESULT worker=1 d=138 q=1 passed
+START worker=1 d=146 q=0
+RESULT worker=3 d=142 q=0 passed
+START worker=3 d=142 q=1
+RESULT worker=2 d=156 q=1 passed
+RESULT worker=0 d=160 q=0 passed
+START worker=2 d=164 q=0
+START worker=0 d=160 q=1
+RESULT worker=1 d=146 q=0 passed
+START worker=1 d=146 q=1
+RESULT worker=3 d=142 q=1 passed
+START worker=3 d=150 q=0
+RESULT worker=2 d=164 q=0 passed
+RESULT worker=0 d=160 q=1 passed
+START worker=2 d=164 q=1
+START worker=0 d=168 q=0
+RESULT worker=1 d=146 q=1 passed
+START worker=1 d=154 q=0
+RESULT worker=2 d=164 q=1 passed
+RESULT worker=3 d=150 q=0 passed
+START worker=2 d=172 q=0
+START worker=3 d=150 q=1
+RESULT worker=0 d=168 q=0 passed
+START worker=0 d=168 q=1
+RESULT worker=1 d=154 q=0 passed
+START worker=1 d=154 q=1
+RESULT worker=2 d=172 q=0 passed
+START worker=2 d=172 q=1
+RESULT worker=0 d=168 q=1 passed
+RESULT worker=3 d=150 q=1 passed
+START worker=0 d=176 q=0
+START worker=3 d=158 q=0
+RESULT worker=1 d=154 q=1 passed
+START worker=1 d=162 q=0
+RESULT worker=3 d=158 q=0 passed
+RESULT worker=2 d=172 q=1 passed
+START worker=3 d=158 q=1
+RESULT worker=0 d=176 q=0 passed
+START worker=2 d=180 q=0
+START worker=0 d=176 q=1
+RESULT worker=3 d=158 q=1 passed
+RESULT worker=1 d=162 q=0 passed
+START worker=3 d=166 q=0
+START worker=1 d=162 q=1
+RESULT worker=0 d=176 q=1 passed
+START worker=0 d=184 q=0
+RESULT worker=2 d=180 q=0 passed
+START worker=2 d=180 q=1
+RESULT worker=3 d=166 q=0 passed
+RESULT worker=1 d=162 q=1 passed
+START worker=3 d=166 q=1
+START worker=1 d=170 q=0
+RESULT worker=0 d=184 q=0 passed
+START worker=0 d=184 q=1
+RESULT worker=2 d=180 q=1 passed
+START worker=2 d=188 q=0
+RESULT worker=3 d=166 q=1 passed
+START worker=3 d=174 q=0
+RESULT worker=1 d=170 q=0 passed
+START worker=1 d=170 q=1
+RESULT worker=0 d=184 q=1 passed
+RESULT worker=2 d=188 q=0 passed
+START worker=0 d=192 q=0
+START worker=2 d=188 q=1
+RESULT worker=3 d=174 q=0 passed
+START worker=3 d=174 q=1
+RESULT worker=1 d=170 q=1 passed
+START worker=1 d=178 q=0
+RESULT worker=3 d=174 q=1 passed
+START worker=3 d=182 q=0
+RESULT worker=2 d=188 q=1 passed
+RESULT worker=0 d=192 q=0 passed
+START worker=2 d=196 q=0
+START worker=0 d=192 q=1
+RESULT worker=1 d=178 q=0 passed
+START worker=1 d=178 q=1
+RESULT worker=3 d=182 q=0 passed
+START worker=3 d=182 q=1
+RESULT worker=2 d=196 q=0 passed
+RESULT worker=0 d=192 q=1 passed
+START worker=2 d=196 q=1
+START worker=0 d=200 q=0
+RESULT worker=1 d=178 q=1 passed
+START worker=1 d=186 q=0
+RESULT worker=3 d=182 q=1 passed
+START worker=3 d=190 q=0
+RESULT worker=2 d=196 q=1 passed
+RESULT worker=0 d=200 q=0 passed
+START worker=2 d=204 q=0
+START worker=0 d=200 q=1
+RESULT worker=1 d=186 q=0 passed
+START worker=1 d=186 q=1
+RESULT worker=3 d=190 q=0 passed
+START worker=3 d=190 q=1
+RESULT worker=2 d=204 q=0 passed
+RESULT worker=0 d=200 q=1 passed
+START worker=2 d=204 q=1
+START worker=0 d=208 q=0
+RESULT worker=1 d=186 q=1 passed
+START worker=1 d=194 q=0
+RESULT worker=3 d=190 q=1 passed
+START worker=3 d=198 q=0
+RESULT worker=0 d=208 q=0 passed
+START worker=0 d=208 q=1
+RESULT worker=2 d=204 q=1 passed
+START worker=2 d=212 q=0
+RESULT worker=1 d=194 q=0 passed
+RESULT worker=3 d=198 q=0 passed
+START worker=1 d=194 q=1
+START worker=3 d=198 q=1
+RESULT worker=0 d=208 q=1 passed
+START worker=0 d=216 q=0
+RESULT worker=3 d=198 q=1 passed
+RESULT worker=2 d=212 q=0 passed
+START worker=3 d=206 q=0
+START worker=2 d=212 q=1
+RESULT worker=1 d=194 q=1 passed
+START worker=1 d=202 q=0
+RESULT worker=0 d=216 q=0 passed
+START worker=0 d=216 q=1
+RESULT worker=3 d=206 q=0 passed
+START worker=3 d=206 q=1
+RESULT worker=2 d=212 q=1 passed
+START worker=2 d=220 q=0
+RESULT worker=1 d=202 q=0 passed
+RESULT worker=0 d=216 q=1 passed
+START worker=1 d=202 q=1
+START worker=0 d=224 q=0
+RESULT worker=3 d=206 q=1 passed
+START worker=3 d=214 q=0
+RESULT worker=2 d=220 q=0 passed
+START worker=2 d=220 q=1
+RESULT worker=0 d=224 q=0 passed
+RESULT worker=1 d=202 q=1 passed
+START worker=0 d=224 q=1
+START worker=1 d=210 q=0
+RESULT worker=3 d=214 q=0 passed
+START worker=3 d=214 q=1
+RESULT worker=2 d=220 q=1 passed
+START worker=2 d=228 q=0
+RESULT worker=0 d=224 q=1 passed
+RESULT worker=3 d=214 q=1 passed
+START worker=0 d=232 q=0
+START worker=3 d=222 q=0
+RESULT worker=1 d=210 q=0 passed
+START worker=1 d=210 q=1
+RESULT worker=2 d=228 q=0 passed
+START worker=2 d=228 q=1
+RESULT worker=3 d=222 q=0 passed
+START worker=3 d=222 q=1
+RESULT worker=0 d=232 q=0 passed
+RESULT worker=2 d=228 q=1 passed
+START worker=0 d=232 q=1
+RESULT worker=1 d=210 q=1 passed
+START worker=2 d=236 q=0
+START worker=1 d=218 q=0
+RESULT worker=3 d=222 q=1 passed
+START worker=3 d=230 q=0
+RESULT worker=2 d=236 q=0 passed
+START worker=2 d=236 q=1
+RESULT worker=0 d=232 q=1 passed
+START worker=0 d=240 q=0
+RESULT worker=1 d=218 q=0 passed
+START worker=1 d=218 q=1
+RESULT worker=3 d=230 q=0 passed
+START worker=3 d=230 q=1
+RESULT worker=2 d=236 q=1 passed
+START worker=2 d=244 q=0
+RESULT worker=0 d=240 q=0 passed
+START worker=0 d=240 q=1
+RESULT worker=1 d=218 q=1 passed
+START worker=1 d=226 q=0
+RESULT worker=3 d=230 q=1 passed
+START worker=3 d=238 q=0
+RESULT worker=2 d=244 q=0 passed
+START worker=2 d=244 q=1
+RESULT worker=0 d=240 q=1 passed
+START worker=0 d=248 q=0
+RESULT worker=1 d=226 q=0 passed
+RESULT worker=3 d=238 q=0 passed
+START worker=3 d=238 q=1
+START worker=1 d=226 q=1
+RESULT worker=2 d=244 q=1 passed
+START worker=2 d=252 q=0
+RESULT worker=1 d=226 q=1 passed
+RESULT worker=3 d=238 q=1 passed
+START worker=1 d=234 q=0
+RESULT worker=0 d=248 q=0 passed
+START worker=3 d=246 q=0
+RESULT worker=2 d=252 q=0 passed
+START worker=0 d=248 q=1
+START worker=2 d=252 q=1
+RESULT worker=1 d=234 q=0 passed
+START worker=1 d=234 q=1
+RESULT worker=3 d=246 q=0 passed
+START worker=3 d=246 q=1
+RESULT worker=2 d=252 q=1 passed
+START worker=2 d=260 q=0
+RESULT worker=0 d=248 q=1 passed
+START worker=0 d=256 q=0
+RESULT worker=1 d=234 q=1 passed
+START worker=1 d=242 q=0
+RESULT worker=3 d=246 q=1 passed
+START worker=3 d=254 q=0
+RESULT worker=2 d=260 q=0 passed
+START worker=2 d=260 q=1
+RESULT worker=0 d=256 q=0 passed
+START worker=0 d=256 q=1
+RESULT worker=1 d=242 q=0 passed
+START worker=1 d=242 q=1
+RESULT worker=3 d=254 q=0 passed
+START worker=3 d=254 q=1
+RESULT worker=2 d=260 q=1 passed
+START worker=2 d=268 q=0
+RESULT worker=0 d=256 q=1 passed
+START worker=0 d=264 q=0
+RESULT worker=1 d=242 q=1 passed
+START worker=1 d=250 q=0
+RESULT worker=3 d=254 q=1 passed
+START worker=3 d=262 q=0
+RESULT worker=2 d=268 q=0 passed
+START worker=2 d=268 q=1
+RESULT worker=1 d=250 q=0 passed
+RESULT worker=0 d=264 q=0 passed
+START worker=1 d=250 q=1
+START worker=0 d=264 q=1
+RESULT worker=3 d=262 q=0 passed
+START worker=3 d=262 q=1
+RESULT worker=2 d=268 q=1 passed
+RESULT worker=0 d=264 q=1 passed
+RESULT worker=1 d=250 q=1 passed
+START worker=1 d=258 q=0
+RESULT worker=3 d=262 q=1 passed
+RESULT worker=1 d=258 q=0 passed
+START worker=1 d=258 q=1
+RESULT worker=1 d=258 q=1 passed
+START worker=1 d=266 q=0
+RESULT worker=1 d=266 q=0 passed
+START worker=1 d=266 q=1
+RESULT worker=1 d=266 q=1 passed

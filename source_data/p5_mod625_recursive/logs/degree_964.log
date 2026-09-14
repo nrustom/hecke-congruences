@@ -1,0 +1,10 @@
+degree 964, q=0, mixed rank=81
+degree 964, q=1, mixed rank=96
+degree 964, q=2, mixed rank=81
+degree 964, q=3, mixed rank=96
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_964.partial.npz
+prime: 5
+exponent: 4
+degree: 964
+mixed rank: 354
+Hecke indices: 2,19

@@ -1,0 +1,8 @@
+degree 128, q=0, mixed rank=16
+degree 128, q=1, mixed rank=16
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_T7_mod81/degree_128.partial.npz
+prime: 3
+exponent: 4
+degree: 128
+mixed rank: 32
+Hecke indices: 7

@@ -1,0 +1,10 @@
+degree 2366, q=0, mixed rank=238
+degree 2366, q=1, mixed rank=197
+degree 2366, q=2, mixed rank=238
+degree 2366, q=3, mixed rank=197
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2366.partial.npz
+prime: 5
+exponent: 4
+degree: 2366
+mixed rank: 870
+Hecke indices: 2,19

@@ -1,0 +1,10 @@
+degree 756, q=0, mixed rank=63
+degree 756, q=1, mixed rank=75
+degree 756, q=2, mixed rank=63
+degree 756, q=3, mixed rank=75
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_756.partial.npz
+prime: 5
+exponent: 4
+degree: 756
+mixed rank: 276
+Hecke indices: 2,19

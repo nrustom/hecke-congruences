@@ -1,0 +1,45 @@
+{
+  "schema": "hecke.mod125-witness-production-status.v1",
+  "state": "completed",
+  "pid": 2,
+  "workers": 4,
+  "working_modulus": 625,
+  "classification_modulus": 125,
+  "total_cases": 24,
+  "completed_count": 24,
+  "failed": [],
+  "reused_relation_packets": 0,
+  "produced_relation_packets": 192,
+  "maximum_completed_degree": 46,
+  "eta_seconds": null,
+  "eta_note": "No reliable full-range ETA from low-degree timings.",
+  "packet_count": 192,
+  "packet_bytes": 50867,
+  "max_howell_dimension": 4096,
+  "all_requested_witnesses_produced": true,
+  "all_weight_classification_proved": false,
+  "started_at": "2026-09-11T08:30:33.387216+00:00",
+  "producer_binary_sha256": "57cfaab7650bc3e8a4e99dc6f675e77e2f8bceefc3cdaf1fc79ea1f17d84f45e",
+  "heartbeat_at": "2026-09-11T08:30:36.721476+00:00",
+  "elapsed_seconds": 3.334,
+  "active": [],
+  "active_degrees": [],
+  "last_event": {
+    "schema": "hecke.relation-progress.v1",
+    "source": {
+      "degree": 46,
+      "orientation": 0,
+      "sign": 1,
+      "source_scope": "manin",
+      "construction": "recursive",
+      "ideal": null,
+      "ideal_variable_hecke_indices": [
+        2,
+        19
+      ]
+    },
+    "relation": "selector_4",
+    "stage": "passed"
+  },
+  "finished_at": "2026-09-11T08:30:36.720430+00:00"
+}

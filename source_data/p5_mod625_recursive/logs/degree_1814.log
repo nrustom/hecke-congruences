@@ -1,0 +1,10 @@
+degree 1814, q=0, mixed rank=182
+degree 1814, q=1, mixed rank=151
+degree 1814, q=2, mixed rank=182
+degree 1814, q=3, mixed rank=151
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1814.partial.npz
+prime: 5
+exponent: 4
+degree: 1814
+mixed rank: 666
+Hecke indices: 2,19

@@ -1,0 +1,10 @@
+degree 2546, q=0, mixed rank=256
+degree 2546, q=1, mixed rank=212
+degree 2546, q=2, mixed rank=256
+degree 2546, q=3, mixed rank=212
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2546.partial.npz
+prime: 5
+exponent: 4
+degree: 2546
+mixed rank: 936
+Hecke indices: 2,19

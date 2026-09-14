@@ -1,0 +1,10 @@
+degree 1986, q=0, mixed rank=200
+degree 1986, q=1, mixed rank=165
+degree 1986, q=2, mixed rank=200
+degree 1986, q=3, mixed rank=165
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1986.partial.npz
+prime: 5
+exponent: 4
+degree: 1986
+mixed rank: 730
+Hecke indices: 2,19

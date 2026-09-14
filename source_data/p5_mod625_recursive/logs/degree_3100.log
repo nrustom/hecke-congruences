@@ -1,0 +1,10 @@
+degree 3100, q=0, mixed rank=259
+degree 3100, q=1, mixed rank=310
+degree 3100, q=2, mixed rank=259
+degree 3100, q=3, mixed rank=310
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3100.partial.npz
+prime: 5
+exponent: 4
+degree: 3100
+mixed rank: 1138
+Hecke indices: 2,19

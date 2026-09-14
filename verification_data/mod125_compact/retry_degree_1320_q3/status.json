@@ -1,0 +1,12 @@
+{
+  "state": "completed",
+  "degree": 1320,
+  "orientation": 3,
+  "workers": 1,
+  "solver_budget_mib": 640,
+  "stage": null,
+  "heartbeat_at": "2026-09-11T17:37:58Z",
+  "pid": 545409,
+  "report": "/home/nrustom/Documents/math/hecke-congruences/verification_data/mod125_compact/retry_degree_1320_q3/1789148208793231790/replay.json",
+  "regular_runner_resumed": true
+}

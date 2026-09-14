@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-09",
+  "prime": 3,
+  "working_exponent": 7,
+  "ideal": "(9,T2)M",
+  "signs": [1, -1],
+  "scope": "Complete compact ideal archives, both signs per timed invocation",
+  "measurements": [
+    {"degree": 3206, "method": "optimized_direct", "seconds": 117.51274029992055},
+    {"degree": 3206, "method": "recursive_cold", "seconds": 117.5843943329528},
+    {"degree": 5000, "method": "recursive_cold", "seconds": 234.26, "peak_rss_kib": 489496},
+    {"degree": 7286, "method": "optimized_direct", "seconds": 1293.6525214489084},
+    {"degree": 7286, "method": "recursive_cold", "seconds": 317.05, "peak_rss_kib": 914616},
+    {"degree": 7286, "method": "recursive_cached_dependencies", "seconds": 137.66, "peak_rss_kib": 826048}
+  ],
+  "environment_caveat": "Benchmarks shared the machine with bounded verification jobs; timings are indicative, not controlled microbenchmarks.",
+  "completed_archives_retained_at_restart": 534,
+  "remaining_degrees_at_restart": 681,
+  "workers": 4,
+  "interpolated_ideal_parallel_hours": [8.5818832743, 10.9612923021],
+  "planning_eta_hours": [10, 14],
+  "eta_method": "Piecewise-linear interpolation of timings at degrees 3206, 5000, 7286; warm and cold upper endpoints, then allowance for scheduling, contention and nonlinearity.",
+  "classification_identities_tested": false
+}

@@ -1,0 +1,8 @@
+degree 50, q=0, mixed rank=6
+degree 50, q=1, mixed rank=4
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_recursive/Q_selectors_mod343/degree_50.partial.npz
+prime: 7
+exponent: 3
+degree: 50
+mixed rank: 10
+Hecke indices: 3,29

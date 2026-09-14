@@ -1,0 +1,10 @@
+degree 972, q=0, mixed rank=81
+degree 972, q=1, mixed rank=97
+degree 972, q=2, mixed rank=81
+degree 972, q=3, mixed rank=97
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_972.partial.npz
+prime: 5
+exponent: 4
+degree: 972
+mixed rank: 356
+Hecke indices: 2,19

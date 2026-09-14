@@ -1,0 +1,8 @@
+degree 390, q=1, mixed rank=32
+degree 390, q=3, mixed rank=32
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_lower_minus/degree_390.partial.npz
+prime: 5
+exponent: 4
+degree: 390
+mixed rank: 64
+Hecke indices: 2,19

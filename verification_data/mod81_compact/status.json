@@ -1,0 +1,28 @@
+{
+  "schema": "hecke.mod81-witness-queue-status.v1",
+  "state": "completed",
+  "workers": 4,
+  "total_cases": 3240,
+  "completed_stages": [
+    "T7_mod81",
+    "nonzero_mod243",
+    "zero_ideal_mod2187"
+  ],
+  "current_stage": null,
+  "active": [],
+  "active_degrees": [],
+  "failed": [],
+  "pid": 3304088,
+  "verification_mode": "whole_compact_source",
+  "recursive_verification": false,
+  "heartbeat_at": "2026-09-13T10:09:39Z",
+  "binary_sha256": "ee5eafead5a11448973de85011f499c2f8a09bfaa4ae747c2bc731dee9d6e82c",
+  "plan_sha256": {
+    "T7_mod81": "6d0b8951d14de0c9d004a87dc54e9c1885899db9828cb82a389463ff8dcfed8a",
+    "nonzero_mod243": "271793f5689748846626a8f601a813263eda8a85c8a8512f176417895bad1876",
+    "zero_ideal_mod2187": "cbcc1affd3d0cd9eb265060c15e724b7abb9f74f4f92b532b7bbad710a3a4dd6"
+  },
+  "completed_count": 3240,
+  "stage_total_cases": 2430,
+  "child_pid": null
+}

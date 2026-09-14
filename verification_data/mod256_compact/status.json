@@ -1,0 +1,24 @@
+{
+  "schema": "hecke.mod256-witness-queue-status.v1",
+  "state": "completed",
+  "workers": 4,
+  "total_cases": 320,
+  "completed_stages": [
+    "T3_T5"
+  ],
+  "current_stage": null,
+  "active": [],
+  "active_degrees": [],
+  "failed": [],
+  "pid": 3463184,
+  "verification_mode": "whole_compact_source",
+  "recursive_verification": false,
+  "heartbeat_at": "2026-09-13T10:09:59Z",
+  "binary_sha256": "b70c6047583d1e6ff232e2f0dfcf9319df0d620da4d4e06e52e9f20d29a70ab0",
+  "plan_sha256": {
+    "T3_T5": "75fb85a4db2f073fc1215ccfe2120cfbd297b6c4d7d7a7dc22b1574e21f70491"
+  },
+  "completed_count": 320,
+  "stage_total_cases": 320,
+  "child_pid": null
+}

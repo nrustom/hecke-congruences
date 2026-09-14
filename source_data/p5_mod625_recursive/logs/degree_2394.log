@@ -1,0 +1,10 @@
+degree 2394, q=0, mixed rank=240
+degree 2394, q=1, mixed rank=199
+degree 2394, q=2, mixed rank=240
+degree 2394, q=3, mixed rank=199
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2394.partial.npz
+prime: 5
+exponent: 4
+degree: 2394
+mixed rank: 878
+Hecke indices: 2,19

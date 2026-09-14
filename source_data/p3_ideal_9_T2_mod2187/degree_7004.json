@@ -1,0 +1,32 @@
+{
+  "schema": "hecke.p3-ideal-source-degree.v1",
+  "degree": 7004,
+  "prime": 3,
+  "exponent": 7,
+  "ideal": "(9,T2)M",
+  "signs": [
+    1,
+    -1
+  ],
+  "producer_hashes": {
+    "compute_p3_ideal_source_data.nim": "29434e1658bb2dfeae7524327d28df0842814a91c7fceb220fed53af8f6722de",
+    "compute_source_data.nim": "3a79ace19c59f89fdffde146fee730761ecdd992b48b890fed205ec9dd17fe32",
+    "ideal_image_coordinates.nim": "923337c9e0c33f3bcb0916ed5d28829ef3db1870c5a608cd7d0562d8c75e71bf",
+    "manin_quotient.nim": "9bb08e929e73ffe160591c78b278466f17045d74819ca79b43bc9655625ab7e3",
+    "hecke_action.nim": "cef420db7e78accbbda50e5790709b19dda40035d3d7cc4ce7ece7f330599711",
+    "mixed_endomorphisms.nim": "53989f0d529cc817726f693578c2ad75b17b45aced1e0e640f09b19e6017f054",
+    "modular_matrix.nim": "2de52b43d94df5ff368f528f19837e07f86d6087490c0a384166c4a0fc9e3da0",
+    "ideal_checkpoint.nim": "b250eda2a6c4e7ae51201cad6f24f9b8e1b6d92960e33458a0fa71fafa160c51",
+    "recursive_manin.nim": "24b4a1e4f02ba2251c60a157542277b7e6d9fe352faaaf56e2e4faea65008517",
+    "modular_polynomial.nim": "df7121bc9232411bca519419b8a79d6781acb17d84e4bbe01c3851ec7d4a0722",
+    "executable": "1c52cf2f9ed2d6e6d7f944ede235b6d209afed5a914d753179acc8167420bd94"
+  },
+  "archive_sha256": "f65d6bb0453a9a1726b14732db49defb9415972143ac14fceeb55b9c0dc18cbf",
+  "archive_bytes": 410370,
+  "elapsed_seconds": 67.18,
+  "producer_structural_checks_passed": true,
+  "descent_verification_performed": false,
+  "inclusion_action_replay_performed": false,
+  "source_construction": "recursive_Dickson",
+  "classification_identities_tested": false
+}

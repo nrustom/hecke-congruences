@@ -1,0 +1,8 @@
+degree 256, q=0, mixed rank=32
+degree 256, q=1, mixed rank=32
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_nonzero_T2_T7_mod243/degree_256.partial.npz
+prime: 3
+exponent: 5
+degree: 256
+mixed rank: 64
+Hecke indices: 2,7

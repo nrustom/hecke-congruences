@@ -1,0 +1,10 @@
+degree 1036, q=0, mixed rank=87
+degree 1036, q=1, mixed rank=103
+degree 1036, q=2, mixed rank=87
+degree 1036, q=3, mixed rank=103
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1036.partial.npz
+prime: 5
+exponent: 4
+degree: 1036
+mixed rank: 380
+Hecke indices: 2,19

@@ -1,0 +1,8 @@
+{
+  "state": "completed",
+  "maximum_solver_mib": 4096,
+  "retry_workers": 1,
+  "resume_workers": 4,
+  "stage": null,
+  "heartbeat_at": "2026-09-13T01:27:02Z"
+}

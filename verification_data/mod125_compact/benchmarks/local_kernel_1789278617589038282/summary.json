@@ -1,0 +1,290 @@
+{
+  "binary_sha256": {
+    "old": "d39a452621030a2645df2c1844d94c7a80089843bec007952f57966c12096a2d",
+    "new": "66ed239cf0f30bae65f7cfbdac5c978a58227c7ed85fe5cb78046514297a6766"
+  },
+  "cases": [
+    {
+      "degree": 810,
+      "orientation": 0,
+      "variant": "old",
+      "exit_code": 0,
+      "state": "passed",
+      "relations": [
+        {
+          "name": "ordinary_joint",
+          "elapsed_seconds": 0.005823373794555664,
+          "verification_route": "ordinary_polynomial"
+        },
+        {
+          "name": "V_full_domain",
+          "elapsed_seconds": 0.003656148910522461,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "B_full_domain",
+          "elapsed_seconds": 0.17114758491516113,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_0",
+          "elapsed_seconds": 4.724827289581299,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_1",
+          "elapsed_seconds": 2.187756061553955,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_2",
+          "elapsed_seconds": 0.04473066329956055,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "selector_3",
+          "elapsed_seconds": 4.329521179199219,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_4",
+          "elapsed_seconds": 3.513826847076416,
+          "verification_route": "structured_witness_replay"
+        }
+      ],
+      "wall_seconds": 25.169840972987004,
+      "cpu_seconds": 24.099999999999998,
+      "peak_rss_kib": 39008
+    },
+    {
+      "degree": 810,
+      "orientation": 0,
+      "variant": "new",
+      "exit_code": 0,
+      "state": "passed",
+      "relations": [
+        {
+          "name": "ordinary_joint",
+          "elapsed_seconds": 0.018668413162231445,
+          "verification_route": "ordinary_polynomial"
+        },
+        {
+          "name": "V_full_domain",
+          "elapsed_seconds": 0.007198333740234375,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "B_full_domain",
+          "elapsed_seconds": 0.06421947479248047,
+          "verification_route": "local_kernel_witness_replay"
+        },
+        {
+          "name": "selector_0",
+          "elapsed_seconds": 5.406912803649902,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_1",
+          "elapsed_seconds": 52.253398180007935,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_2",
+          "elapsed_seconds": 0.026052236557006836,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "selector_3",
+          "elapsed_seconds": 4.936476230621338,
+          "verification_route": "local_kernel_witness_replay"
+        },
+        {
+          "name": "selector_4",
+          "elapsed_seconds": 4.057669162750244,
+          "verification_route": "local_kernel_witness_replay"
+        }
+      ],
+      "wall_seconds": 77.06810519692954,
+      "cpu_seconds": 74.62,
+      "peak_rss_kib": 219756
+    },
+    {
+      "degree": 810,
+      "orientation": 0,
+      "variant": "old_replay_new",
+      "exit_code": 0,
+      "state": "passed",
+      "relations": [
+        {
+          "name": "ordinary_joint",
+          "elapsed_seconds": 0.002760648727416992,
+          "verification_route": "ordinary_polynomial"
+        },
+        {
+          "name": "V_full_domain",
+          "elapsed_seconds": 0.0020394325256347656,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "B_full_domain",
+          "elapsed_seconds": 0.01336359977722168,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "selector_0",
+          "elapsed_seconds": 0.20267772674560547,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "selector_1",
+          "elapsed_seconds": 0.8692531585693359,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "selector_2",
+          "elapsed_seconds": 0.024419546127319336,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "selector_3",
+          "elapsed_seconds": 1.3026878833770752,
+          "verification_route": "compact_witness_replay"
+        },
+        {
+          "name": "selector_4",
+          "elapsed_seconds": 1.4429409503936768,
+          "verification_route": "compact_witness_replay"
+        }
+      ],
+      "wall_seconds": 12.366984655964188,
+      "cpu_seconds": 12.059999999999999,
+      "peak_rss_kib": 39016
+    },
+    {
+      "degree": 1270,
+      "orientation": 2,
+      "variant": "old",
+      "exit_code": 0,
+      "state": "passed",
+      "relations": [
+        {
+          "name": "ordinary_joint",
+          "elapsed_seconds": 0.009252309799194336,
+          "verification_route": "ordinary_polynomial"
+        },
+        {
+          "name": "V_full_domain",
+          "elapsed_seconds": 0.007513284683227539,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "B_full_domain",
+          "elapsed_seconds": 0.3375401496887207,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_0",
+          "elapsed_seconds": 21.909541845321655,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_1",
+          "elapsed_seconds": 11.44159984588623,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_2",
+          "elapsed_seconds": 0.13150811195373535,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "selector_3",
+          "elapsed_seconds": 12.975916147232056,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_4",
+          "elapsed_seconds": 5.797764778137207,
+          "verification_route": "explicit_witness_replay"
+        }
+      ],
+      "wall_seconds": 75.04144012299366,
+      "cpu_seconds": 73.32,
+      "peak_rss_kib": 51568
+    },
+    {
+      "degree": 1270,
+      "orientation": 2,
+      "variant": "new",
+      "state": "error",
+      "error": "Expecting value: line 1 column 1 (char 0)",
+      "wall_seconds": 102.57313352101482,
+      "cpu_seconds": 100.07000000000001,
+      "peak_rss_kib": 196800
+    },
+    {
+      "degree": 1270,
+      "orientation": 2,
+      "variant": "old_replay_new",
+      "exit_code": 2,
+      "state": "error",
+      "relations": [],
+      "wall_seconds": 25.085826406953856,
+      "cpu_seconds": 24.51,
+      "peak_rss_kib": 51496
+    },
+    {
+      "degree": 1320,
+      "orientation": 1,
+      "variant": "old",
+      "exit_code": 0,
+      "state": "passed",
+      "relations": [
+        {
+          "name": "ordinary_joint",
+          "elapsed_seconds": 0.018573284149169922,
+          "verification_route": "ordinary_polynomial"
+        },
+        {
+          "name": "V_full_domain",
+          "elapsed_seconds": 0.011498212814331055,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "B_full_domain",
+          "elapsed_seconds": 0.5606279373168945,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_0",
+          "elapsed_seconds": 25.19301676750183,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_1",
+          "elapsed_seconds": 12.712362051010132,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_2",
+          "elapsed_seconds": 0.10639643669128418,
+          "verification_route": "explicit_witness_replay"
+        },
+        {
+          "name": "selector_3",
+          "elapsed_seconds": 12.901133298873901,
+          "verification_route": "structured_witness_replay"
+        },
+        {
+          "name": "selector_4",
+          "elapsed_seconds": 14.028081178665161,
+          "verification_route": "structured_witness_replay"
+        }
+      ],
+      "wall_seconds": 95.64828995394055,
+      "cpu_seconds": 92.45,
+      "peak_rss_kib": 55312
+    }
+  ],
+  "scope": "whole archived source; fresh packets; no checkpoints"
+}

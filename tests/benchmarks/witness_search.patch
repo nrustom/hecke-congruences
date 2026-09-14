@@ -1,0 +1,125 @@
+--- a/nim/verify_hecke_relations.nim
++++ b/nim/verify_hecke_relations.nim
+@@ -322,9 +322,50 @@
+   var adjustments:Adjustment
+   var attempts=0
+   const search_limit=256
++  # Benchmark-only: caches own their bases, so pointer identity cannot be
++  # confused by allocation reuse. Cached matrices are never modified.
++  var previous_actions:seq[ModMatrix]
++  var previous_changes:seq[seq[uint64]]
++  var cached_powers=initTable[(int,int),tuple[base,value:ModMatrix]]()
++  proc chosen_power(actions:seq[ModMatrix]; j,e:int):ModMatrix =
++    let key=(j,e)
++    if not cached_powers.hasKey(key) or
++        cast[pointer](cached_powers[key].base)!=cast[pointer](actions[j]):
++      cached_powers[key]=(actions[j],matrix_power(actions[j],e))
++    cached_powers[key].value
++  proc chosen_polynomial(terms:seq[Term]; actions:seq[ModMatrix]):ModMatrix =
++    when defined(benchCachedChoices):
++      result=init_mod_matrix(n,n,source.modulus)
++      for term in terms:
++        var value=identity_mod_matrix(n,source.modulus)
++        for j in countdown(term.powers.high,0):
++          if term.powers[j]>0:
++            if actions[j]==nil:return nil
++            value=value*chosen_power(actions,j,term.powers[j])
++        result.add_scaled(value,term.coefficient)
++    else:
++      result=ordered_polynomial(terms,actions,n,source.modulus)
+   proc construct(changes:Adjustment):seq[ModMatrix] =
+     result=newSeq[ModMatrix](c.definitions.len)
++    var current_changes=newSeq[seq[uint64]](c.definitions.len)
+     for j,definition in c.definitions:
++      when defined(benchCachedChoices):
++        current_changes[j]=newSeq[uint64](n)
++        if definition.power>0:
++          for i in 0..<n:current_changes[j][i]=changes.getOrDefault((j,i))
++        var unchanged=previous_actions.len==c.definitions.len
++        if unchanged:
++          unchanged=current_changes[j]==previous_changes[j]
++          for dependency in definition.factors:
++            if cast[pointer](result[dependency])!=cast[pointer](previous_actions[dependency]):
++              unchanged=false
++          for term in definition.numerator:
++            for dependency,e in term.powers:
++              if e>0 and cast[pointer](result[dependency])!=cast[pointer](previous_actions[dependency]):
++                unchanged=false
++        if unchanged:
++          result[j]=previous_actions[j]
++          continue
+       if definition.ordinary:
+         result[j]=definition.action
+       elif definition.factors.len>0:
+@@ -332,7 +373,7 @@
+         for k in countdown(definition.factors.high,0):
+           result[j]=result[j]*result[definition.factors[k]]
+       else:
+-        let numerator=ordered_polynomial(definition.numerator,result,n,source.modulus)
++        let numerator=chosen_polynomial(definition.numerator,result)
+         if numerator==nil:return @[]
+         result[j]=init_mod_matrix(n,n,source.modulus)
+         let divisor=power(source.prime,definition.power)
+@@ -343,14 +384,46 @@
+             let kernel=min(divisor,q)
+             result[j][i,i]=add_mod(result[j][i,i],(q div kernel)*correction,q)
+         if not mixed_endomorphism_is_well_defined(result[j],mods):return @[]
+-  proc score(actions:seq[ModMatrix]):int =
++    when defined(benchCachedChoices):
++      previous_actions=result
++      previous_changes=current_changes
++  var priority_row=0
++  proc score(actions:seq[ModMatrix]; cutoff=high(int)):int =
+     if actions.len==0:return high(int)
+-    var value=initial
+-    if input_variable>=0:value=value*actions[input_variable]
+-    value=value*ordered_polynomial(terminal,actions,n,source.modulus)
+-    for i in 0..<value.rows:
+-      for j,q in mods:
+-        if value[i,j] mod min(power(source.prime,b),q)!=0:inc result
++    when defined(benchScreenChoices):
++      # Count failing entries exactly until cutoff is reached. At that point
++      # the candidate cannot improve the existing score, so this preserves
++      # the baseline's search decisions (unlike rejecting at its first error).
++      var order:seq[int]
++      if initial.rows>0:order.add(priority_row)
++      for i in 0..<initial.rows:
++        if i!=priority_row:order.add(i)
++      var first_bad = -1
++      for row in order:
++        let input=init_mod_matrix(1,n,source.modulus)
++        for j in 0..<n:input[0,j]=initial[row,j]
++        let oriented=if input_variable>=0:input*actions[input_variable] else:input
++        let value=init_mod_matrix(1,n,source.modulus)
++        for term in terminal:
++          var image=oriented
++          for j in countdown(term.powers.high,0):
++            if term.powers[j]>0:image=image*chosen_power(actions,j,term.powers[j])
++          value.add_scaled(image,term.coefficient)
++        for j,q in mods:
++          if value[0,j] mod min(power(source.prime,b),q)!=0:
++            inc result
++            if first_bad<0:first_bad=row
++        if result>=cutoff:
++          if first_bad>=0:priority_row=first_bad
++          return cutoff
++      if first_bad>=0:priority_row=first_bad
++    else:
++      var value=initial
++      if input_variable>=0:value=value*actions[input_variable]
++      value=value*chosen_polynomial(terminal,actions)
++      for i in 0..<value.rows:
++        for j,q in mods:
++          if value[i,j] mod min(power(source.prime,b),q)!=0:inc result
+   proc certify(actions:seq[ModMatrix]):JsonNode =
+     if actions.len==0:return nil
+     let choices=c.replay_choices(source,initial,reusable=actions)
+@@ -390,7 +463,7 @@
+           adjustments[(j,i)]=candidate
+           actions=construct(adjustments)
+           inc attempts
+-          let current=score(actions)
++          let current=score(actions,best)
+           if current<best:
+             best=current;selected=candidate;improved=true
+           if current==0:

@@ -1,0 +1,8 @@
+degree 160, q=0, mixed rank=20
+degree 160, q=1, mixed rank=20
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p3_nonzero_T2_T7_mod243/degree_160.partial.npz
+prime: 3
+exponent: 5
+degree: 160
+mixed rank: 40
+Hecke indices: 2,7

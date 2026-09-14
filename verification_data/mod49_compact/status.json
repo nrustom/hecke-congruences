@@ -1,0 +1,23 @@
+{
+  "schema": "hecke.mod49-witness-queue-status.v1",
+  "state": "completed",
+  "workers": 4,
+  "total_cases": 7280,
+  "completed_stages": [
+    "G_mod49",
+    "Q_selectors_mod343"
+  ],
+  "current_stage": null,
+  "predecessor": "/home/nrustom/Documents/math/hecke-congruences/verification_data/mod125_compact/status.json",
+  "failed": [],
+  "pid": 3227986,
+  "heartbeat_at": "2026-09-13T06:18:53Z",
+  "predecessor_state": "completed",
+  "plan_sha256": {
+    "G_mod49": "9578c71246bc937577a8ef2f7c0139207f9b460396a671c5fbc29d01c6a06aea",
+    "Q_selectors_mod343": "59342ddc01e8205033cce136e7e26db1f818208ee2a8222627c847f4da16e19b"
+  },
+  "binary_sha256": "faffcba89738a7102bbd3056182c820b54400401cbd8819c9f72e38c5a90957a",
+  "child_pid": null,
+  "completed_count": 7280
+}

@@ -1,0 +1,10 @@
+degree 832, q=0, mixed rank=70
+degree 832, q=1, mixed rank=83
+degree 832, q=2, mixed rank=70
+degree 832, q=3, mixed rank=83
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_832.partial.npz
+prime: 5
+exponent: 4
+degree: 832
+mixed rank: 306
+Hecke indices: 2,19

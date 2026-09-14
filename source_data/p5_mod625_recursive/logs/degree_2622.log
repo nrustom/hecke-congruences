@@ -1,0 +1,10 @@
+degree 2622, q=0, mixed rank=263
+degree 2622, q=1, mixed rank=218
+degree 2622, q=2, mixed rank=263
+degree 2622, q=3, mixed rank=218
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2622.partial.npz
+prime: 5
+exponent: 4
+degree: 2622
+mixed rank: 962
+Hecke indices: 2,19

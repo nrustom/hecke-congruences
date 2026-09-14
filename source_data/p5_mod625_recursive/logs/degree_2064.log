@@ -1,0 +1,10 @@
+degree 2064, q=0, mixed rank=172
+degree 2064, q=1, mixed rank=206
+degree 2064, q=2, mixed rank=172
+degree 2064, q=3, mixed rank=206
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2064.partial.npz
+prime: 5
+exponent: 4
+degree: 2064
+mixed rank: 756
+Hecke indices: 2,19

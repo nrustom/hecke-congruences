@@ -1,0 +1,10 @@
+degree 1774, q=0, mixed rank=178
+degree 1774, q=1, mixed rank=148
+degree 1774, q=2, mixed rank=178
+degree 1774, q=3, mixed rank=148
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1774.partial.npz
+prime: 5
+exponent: 4
+degree: 1774
+mixed rank: 652
+Hecke indices: 2,19

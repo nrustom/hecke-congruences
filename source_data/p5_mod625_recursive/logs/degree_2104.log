@@ -1,0 +1,10 @@
+degree 2104, q=0, mixed rank=176
+degree 2104, q=1, mixed rank=210
+degree 2104, q=2, mixed rank=176
+degree 2104, q=3, mixed rank=210
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2104.partial.npz
+prime: 5
+exponent: 4
+degree: 2104
+mixed rank: 772
+Hecke indices: 2,19

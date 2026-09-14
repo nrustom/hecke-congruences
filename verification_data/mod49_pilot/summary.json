@@ -1,0 +1,459 @@
+[
+  {
+    "degree": 100,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 9,
+    "inputs": 9,
+    "greedy": 11,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 46656,
+    "choice_slots": 23328,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.045284930849447846,
+    "archive_bytes": 840,
+    "elapsed_seconds": 0.22382662899326533,
+    "complete": true
+  },
+  {
+    "degree": 100,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 9,
+    "inputs": 9,
+    "greedy": 7,
+    "solved": 4,
+    "unresolved": [],
+    "raw_vector_bytes": 46656,
+    "choice_slots": 23328,
+    "nonzero_corrections": 238,
+    "replay_seconds": 0.05895884183701128,
+    "archive_bytes": 1602,
+    "elapsed_seconds": 0.44196212897077203,
+    "complete": true
+  },
+  {
+    "degree": 200,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 18,
+    "inputs": 18,
+    "greedy": 8,
+    "solved": 3,
+    "unresolved": [],
+    "raw_vector_bytes": 186624,
+    "choice_slots": 93312,
+    "nonzero_corrections": 739,
+    "replay_seconds": 0.09926066815387458,
+    "archive_bytes": 3107,
+    "elapsed_seconds": 1.938452925067395,
+    "complete": true
+  },
+  {
+    "degree": 392,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 35,
+    "inputs": 35,
+    "greedy": 5,
+    "solved": 6,
+    "unresolved": [],
+    "raw_vector_bytes": 705600,
+    "choice_slots": 352800,
+    "nonzero_corrections": 5180,
+    "replay_seconds": 0.31691278133075684,
+    "archive_bytes": 16067,
+    "elapsed_seconds": 20.8876210229937,
+    "complete": true
+  },
+  {
+    "degree": 800,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 69,
+    "inputs": 35,
+    "greedy": 6,
+    "solved": 3,
+    "unresolved": [
+      [
+        "k4_c5_L_roots",
+        "resource_limit"
+      ],
+      [
+        "k4_c5_recover_W3",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 854910,
+    "choice_slots": 427455,
+    "nonzero_corrections": 5972,
+    "replay_seconds": 0.5030001878039911,
+    "archive_bytes": 18740,
+    "elapsed_seconds": 9.117904155980796,
+    "complete": false
+  },
+  {
+    "degree": 800,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 69,
+    "inputs": 33,
+    "greedy": 3,
+    "solved": 5,
+    "unresolved": [
+      [
+        "k18_c1_L_roots",
+        "resource_limit"
+      ],
+      [
+        "k18_c1_recover_W3",
+        "resource_limit"
+      ],
+      [
+        "k18_c6_recover_W3",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 683100,
+    "choice_slots": 341550,
+    "nonzero_corrections": 8046,
+    "replay_seconds": 0.39813027810305357,
+    "archive_bytes": 24559,
+    "elapsed_seconds": 13.27347722207196,
+    "complete": false
+  },
+  {
+    "degree": 800,
+    "orientation": 2,
+    "exponent": 3,
+    "rank": 69,
+    "inputs": 35,
+    "greedy": 7,
+    "solved": 3,
+    "unresolved": [
+      [
+        "k32_c3_recover_W3",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 1260630,
+    "choice_slots": 630315,
+    "nonzero_corrections": 5930,
+    "replay_seconds": 0.7252428914653137,
+    "archive_bytes": 18837,
+    "elapsed_seconds": 10.620452361064963,
+    "complete": false
+  },
+  {
+    "degree": 1600,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 139,
+    "inputs": 35,
+    "greedy": 3,
+    "solved": 2,
+    "unresolved": [
+      [
+        "k6_c0_recover_W29",
+        "resource_limit"
+      ],
+      [
+        "k6_c1_L_roots",
+        "resource_limit"
+      ],
+      [
+        "k6_c1_recover_W3",
+        "resource_limit"
+      ],
+      [
+        "k6_c1_U_graph",
+        "resource_limit"
+      ],
+      [
+        "k6_c6_recover_W29",
+        "resource_limit"
+      ],
+      [
+        "k6_c6_U_graph",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 496230,
+    "choice_slots": 248115,
+    "nonzero_corrections": 7349,
+    "replay_seconds": 0.6159574730554596,
+    "archive_bytes": 22214,
+    "elapsed_seconds": 10.657509248005226,
+    "complete": false
+  },
+  {
+    "degree": 1600,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 138,
+    "inputs": 33,
+    "greedy": 4,
+    "solved": 2,
+    "unresolved": [
+      [
+        "k20_c0_recover_W29",
+        "resource_limit"
+      ],
+      [
+        "k20_c3_recover_W3",
+        "resource_limit"
+      ],
+      [
+        "k20_c3_U_graph",
+        "resource_limit"
+      ],
+      [
+        "k20_c4_recover_W3",
+        "resource_limit"
+      ],
+      [
+        "k20_c4_U_graph",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 1885356,
+    "choice_slots": 942678,
+    "nonzero_corrections": 6760,
+    "replay_seconds": 1.458102504024282,
+    "archive_bytes": 20665,
+    "elapsed_seconds": 11.039354435051791,
+    "complete": false
+  },
+  {
+    "degree": 2448,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 211,
+    "inputs": 0,
+    "greedy": 11,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 0,
+    "choice_slots": 0,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.038824450923129916,
+    "archive_bytes": 845,
+    "elapsed_seconds": 0.2877063771011308,
+    "complete": true
+  },
+  {
+    "degree": 2448,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 211,
+    "inputs": 0,
+    "greedy": 11,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 0,
+    "choice_slots": 0,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.02829724072944373,
+    "archive_bytes": 806,
+    "elapsed_seconds": 0.1730996979167685,
+    "complete": true
+  },
+  {
+    "degree": 100,
+    "orientation": 0,
+    "exponent": 2,
+    "rank": 9,
+    "inputs": 6,
+    "greedy": 1,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 1134,
+    "choice_slots": 1134,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.0029492219910025597,
+    "archive_bytes": 369,
+    "elapsed_seconds": 0.01308145106304437,
+    "complete": true
+  },
+  {
+    "degree": 348,
+    "orientation": 0,
+    "exponent": 2,
+    "rank": 30,
+    "inputs": 0,
+    "greedy": 1,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 0,
+    "choice_slots": 0,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.0020964810391888022,
+    "archive_bytes": 362,
+    "elapsed_seconds": 0.009860757039859891,
+    "complete": true
+  },
+  {
+    "degree": 50,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 6,
+    "inputs": 6,
+    "greedy": 3,
+    "solved": 8,
+    "unresolved": [],
+    "raw_vector_bytes": 20736,
+    "choice_slots": 10368,
+    "nonzero_corrections": 156,
+    "replay_seconds": 0.04903518222272396,
+    "archive_bytes": 1393,
+    "elapsed_seconds": 3.267104079015553,
+    "complete": true
+  },
+  {
+    "degree": 50,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 4,
+    "inputs": 4,
+    "greedy": 11,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 9216,
+    "choice_slots": 4608,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.05670872901100665,
+    "archive_bytes": 854,
+    "elapsed_seconds": 0.2017143099801615,
+    "complete": true
+  },
+  {
+    "degree": 42,
+    "orientation": 0,
+    "exponent": 2,
+    "rank": 4,
+    "inputs": 4,
+    "greedy": 1,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 336,
+    "choice_slots": 336,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.002410628949292004,
+    "archive_bytes": 365,
+    "elapsed_seconds": 0.009879758930765092,
+    "complete": true
+  },
+  {
+    "degree": 390,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 34,
+    "inputs": 34,
+    "greedy": 4,
+    "solved": 7,
+    "unresolved": [],
+    "raw_vector_bytes": 471648,
+    "choice_slots": 235824,
+    "nonzero_corrections": 6588,
+    "replay_seconds": 0.32933551096357405,
+    "archive_bytes": 20842,
+    "elapsed_seconds": 17.46627658896614,
+    "complete": true
+  },
+  {
+    "degree": 390,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 33,
+    "inputs": 33,
+    "greedy": 3,
+    "solved": 7,
+    "unresolved": [
+      [
+        "k28_c2_L_roots",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 261360,
+    "choice_slots": 130680,
+    "nonzero_corrections": 6748,
+    "replay_seconds": 0.20074753707740456,
+    "archive_bytes": 21221,
+    "elapsed_seconds": 17.607835576985963,
+    "complete": false
+  },
+  {
+    "degree": 400,
+    "orientation": 0,
+    "exponent": 3,
+    "rank": 35,
+    "inputs": 35,
+    "greedy": 5,
+    "solved": 6,
+    "unresolved": [],
+    "raw_vector_bytes": 705600,
+    "choice_slots": 352800,
+    "nonzero_corrections": 4926,
+    "replay_seconds": 0.5008819731883705,
+    "archive_bytes": 15134,
+    "elapsed_seconds": 17.2177162040025,
+    "complete": true
+  },
+  {
+    "degree": 400,
+    "orientation": 1,
+    "exponent": 3,
+    "rank": 35,
+    "inputs": 33,
+    "greedy": 3,
+    "solved": 7,
+    "unresolved": [
+      [
+        "k38_c3_L_roots",
+        "resource_limit"
+      ]
+    ],
+    "raw_vector_bytes": 277200,
+    "choice_slots": 138600,
+    "nonzero_corrections": 6118,
+    "replay_seconds": 0.2264230891596526,
+    "archive_bytes": 19336,
+    "elapsed_seconds": 19.905026710010134,
+    "complete": false
+  },
+  {
+    "degree": 200,
+    "orientation": 0,
+    "exponent": 2,
+    "rank": 18,
+    "inputs": 6,
+    "greedy": 1,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 2268,
+    "choice_slots": 2268,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.005414005019702017,
+    "archive_bytes": 378,
+    "elapsed_seconds": 0.017610999988391995,
+    "complete": true
+  },
+  {
+    "degree": 200,
+    "orientation": 3,
+    "exponent": 2,
+    "rank": 17,
+    "inputs": 5,
+    "greedy": 1,
+    "solved": 0,
+    "unresolved": [],
+    "raw_vector_bytes": 1785,
+    "choice_slots": 1785,
+    "nonzero_corrections": 0,
+    "replay_seconds": 0.0052375770173966885,
+    "archive_bytes": 377,
+    "elapsed_seconds": 0.01700197800528258,
+    "complete": true
+  }
+]

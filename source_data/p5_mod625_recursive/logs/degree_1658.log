@@ -1,0 +1,10 @@
+degree 1658, q=0, mixed rank=167
+degree 1658, q=1, mixed rank=138
+degree 1658, q=2, mixed rank=167
+degree 1658, q=3, mixed rank=138
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1658.partial.npz
+prime: 5
+exponent: 4
+degree: 1658
+mixed rank: 610
+Hecke indices: 2,19

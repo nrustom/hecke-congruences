@@ -1,0 +1,10 @@
+degree 938, q=0, mixed rank=95
+degree 938, q=1, mixed rank=78
+degree 938, q=2, mixed rank=95
+degree 938, q=3, mixed rank=78
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_938.partial.npz
+prime: 5
+exponent: 4
+degree: 938
+mixed rank: 346
+Hecke indices: 2,19

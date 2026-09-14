@@ -1,0 +1,10 @@
+degree 930, q=0, mixed rank=94
+degree 930, q=1, mixed rank=77
+degree 930, q=2, mixed rank=94
+degree 930, q=3, mixed rank=77
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_930.partial.npz
+prime: 5
+exponent: 4
+degree: 930
+mixed rank: 342
+Hecke indices: 2,19

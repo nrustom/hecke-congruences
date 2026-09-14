@@ -1,0 +1,10 @@
+degree 826, q=0, mixed rank=84
+degree 826, q=1, mixed rank=69
+degree 826, q=2, mixed rank=84
+degree 826, q=3, mixed rank=69
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_826.partial.npz
+prime: 5
+exponent: 4
+degree: 826
+mixed rank: 306
+Hecke indices: 2,19

@@ -1,0 +1,145 @@
+[
+  {
+    "degree": 100,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 9,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.20167490292806178
+  },
+  {
+    "degree": 12,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 1,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.18842667108401656
+  },
+  {
+    "degree": 1600,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 63,
+    "input_scope": "recursive_supplement",
+    "all_weight_propagation_proved": false,
+    "seconds": 3.19011657894589
+  },
+  {
+    "degree": 1600,
+    "orientation": 1,
+    "exponent": 4,
+    "relations": 3,
+    "complete": false,
+    "inputs": 160,
+    "input_scope": "whole_source_fallback",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.13565041800029576
+  },
+  {
+    "degree": 200,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 17,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.20780356193426996
+  },
+  {
+    "degree": 26,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 4,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.1600834260461852
+  },
+  {
+    "degree": 3248,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 0,
+    "input_scope": "recursive_supplement",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.20403699693270028
+  },
+  {
+    "degree": 400,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 34,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.4123548479983583
+  },
+  {
+    "degree": 50,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 6,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.1557274250080809
+  },
+  {
+    "degree": 748,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 63,
+    "input_scope": "whole_source",
+    "all_weight_propagation_proved": false,
+    "seconds": 1.198253785027191
+  },
+  {
+    "degree": 750,
+    "orientation": 0,
+    "exponent": 4,
+    "relations": 4,
+    "complete": false,
+    "inputs": 76,
+    "input_scope": "whole_source_fallback",
+    "all_weight_propagation_proved": false,
+    "seconds": 0.036881627049297094
+  },
+  {
+    "degree": 750,
+    "orientation": 1,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 62,
+    "input_scope": "recursive_supplement",
+    "all_weight_propagation_proved": false,
+    "seconds": 1.2368937539868057
+  },
+  {
+    "degree": 800,
+    "orientation": 2,
+    "exponent": 4,
+    "relations": 8,
+    "complete": true,
+    "inputs": 67,
+    "input_scope": "whole_source_fallback",
+    "all_weight_propagation_proved": false,
+    "seconds": 1.374790626927279
+  }
+]

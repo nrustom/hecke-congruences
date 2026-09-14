@@ -1,0 +1,10 @@
+degree 1908, q=0, mixed rank=159
+degree 1908, q=1, mixed rank=190
+degree 1908, q=2, mixed rank=159
+degree 1908, q=3, mixed rank=190
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1908.partial.npz
+prime: 5
+exponent: 4
+degree: 1908
+mixed rank: 698
+Hecke indices: 2,19

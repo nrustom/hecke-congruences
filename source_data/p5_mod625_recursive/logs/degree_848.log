@@ -1,0 +1,10 @@
+degree 848, q=0, mixed rank=71
+degree 848, q=1, mixed rank=84
+degree 848, q=2, mixed rank=71
+degree 848, q=3, mixed rank=84
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_848.partial.npz
+prime: 5
+exponent: 4
+degree: 848
+mixed rank: 310
+Hecke indices: 2,19

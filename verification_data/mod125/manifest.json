@@ -1,0 +1,1 @@
+{"schema":"hecke.native-witness-manifest.v1","specification_file":"/home/nrustom/Documents/math/hecke-congruences/relations/p5_mod125_native.json","specification_sha256":"d1f308db1af45a88c001ca5415fec4c9bd6eac0989670e01665a157d1ab9674c","binary_sha256":"6171c997dbdcd19b8e4be043009e47c3607cc0050ca7f1f9629aa8b8ba9d2dee","degree_bound":3250,"workers":4,"witness_solver_limit":8192}

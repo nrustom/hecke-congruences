@@ -1,0 +1,10 @@
+degree 2282, q=0, mixed rank=229
+degree 2282, q=1, mixed rank=190
+degree 2282, q=2, mixed rank=229
+degree 2282, q=3, mixed rank=190
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2282.partial.npz
+prime: 5
+exponent: 4
+degree: 2282
+mixed rank: 838
+Hecke indices: 2,19

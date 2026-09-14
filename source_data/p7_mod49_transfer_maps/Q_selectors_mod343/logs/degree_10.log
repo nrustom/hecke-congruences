@@ -1,0 +1,8 @@
+degree 10, q=0, mixed rank=2
+degree 10, q=1, mixed rank=1
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_transfer_maps/Q_selectors_mod343/degree_10.partial.npz
+prime: 7
+exponent: 3
+degree: 10
+mixed rank: 3
+Hecke indices: 3,29

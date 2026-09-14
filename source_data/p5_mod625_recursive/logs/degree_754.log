@@ -1,0 +1,10 @@
+degree 754, q=0, mixed rank=76
+degree 754, q=1, mixed rank=63
+degree 754, q=2, mixed rank=76
+degree 754, q=3, mixed rank=63
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_754.partial.npz
+prime: 5
+exponent: 4
+degree: 754
+mixed rank: 278
+Hecke indices: 2,19

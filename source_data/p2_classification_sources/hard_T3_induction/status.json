@@ -1,0 +1,25 @@
+{
+  "schema": "hecke.full-source-status.v1",
+  "state": "stopped",
+  "pid": 2237831,
+  "prime": 2,
+  "exponent": 12,
+  "hecke_indices": [
+    3
+  ],
+  "workers": 4,
+  "total_degrees": 1536,
+  "completed_count": 4,
+  "completed_degrees": [
+    4098,
+    4100,
+    4106,
+    4108
+  ],
+  "active_degrees": [],
+  "failed": [],
+  "heartbeat_at": "2026-09-10T06:15:45Z",
+  "elapsed_seconds": 304.24,
+  "archive_bytes": 423815,
+  "classification_identities_tested": false
+}

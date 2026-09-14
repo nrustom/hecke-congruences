@@ -1,0 +1,10 @@
+degree 3198, q=0, mixed rank=321
+degree 3198, q=1, mixed rank=266
+degree 3198, q=2, mixed rank=321
+degree 3198, q=3, mixed rank=266
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3198.partial.npz
+prime: 5
+exponent: 4
+degree: 3198
+mixed rank: 1174
+Hecke indices: 2,19

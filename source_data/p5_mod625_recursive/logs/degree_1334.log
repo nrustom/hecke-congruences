@@ -1,0 +1,10 @@
+degree 1334, q=0, mixed rank=134
+degree 1334, q=1, mixed rank=111
+degree 1334, q=2, mixed rank=134
+degree 1334, q=3, mixed rank=111
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1334.partial.npz
+prime: 5
+exponent: 4
+degree: 1334
+mixed rank: 490
+Hecke indices: 2,19

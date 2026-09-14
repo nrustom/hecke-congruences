@@ -1,0 +1,10 @@
+degree 1128, q=0, mixed rank=94
+degree 1128, q=1, mixed rank=112
+degree 1128, q=2, mixed rank=94
+degree 1128, q=3, mixed rank=112
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1128.partial.npz
+prime: 5
+exponent: 4
+degree: 1128
+mixed rank: 412
+Hecke indices: 2,19

@@ -1,0 +1,10 @@
+degree 3138, q=0, mixed rank=315
+degree 3138, q=1, mixed rank=261
+degree 3138, q=2, mixed rank=315
+degree 3138, q=3, mixed rank=261
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3138.partial.npz
+prime: 5
+exponent: 4
+degree: 3138
+mixed rank: 1152
+Hecke indices: 2,19

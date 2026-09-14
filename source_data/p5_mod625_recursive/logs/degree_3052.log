@@ -1,0 +1,10 @@
+degree 3052, q=0, mixed rank=255
+degree 3052, q=1, mixed rank=305
+degree 3052, q=2, mixed rank=255
+degree 3052, q=3, mixed rank=305
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3052.partial.npz
+prime: 5
+exponent: 4
+degree: 3052
+mixed rank: 1120
+Hecke indices: 2,19

@@ -1,0 +1,10 @@
+degree 1186, q=0, mixed rank=120
+degree 1186, q=1, mixed rank=99
+degree 1186, q=2, mixed rank=120
+degree 1186, q=3, mixed rank=99
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1186.partial.npz
+prime: 5
+exponent: 4
+degree: 1186
+mixed rank: 438
+Hecke indices: 2,19

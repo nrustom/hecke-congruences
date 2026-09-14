@@ -1,0 +1,25 @@
+{
+  "compute": {
+    "prime": 3,
+    "exponent": 3,
+    "degree": 12,
+    "orientation": 0,
+    "recursive": false
+  },
+  "relations": {
+    "schema": "hecke.relations.v1",
+    "variables": ["T", "U", "A"],
+    "hecke_operators": {"T": 2, "U": 7},
+    "witness_semantics": "independent_monomials",
+    "max_howell_dimension": 4096,
+    "divisions": [
+      {"variable": "A", "power": 1, "numerator": [[1, [1, 0, 0]]]}
+    ],
+    "relations": [
+      {"name": "T7_scalar", "terminal_power": 3,
+       "polynomial": [[1, [0, 1, 0]], [-26, [0, 0, 0]]]},
+      {"name": "A_squared_minus_7", "terminal_power": 2,
+       "polynomial": [[1, [0, 0, 2]], [-7, [0, 0, 0]]]}
+    ]
+  }
+}

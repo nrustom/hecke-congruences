@@ -1,0 +1,1724 @@
+{
+  "schema": "hecke.native-witness-plan.v1",
+  "prime": 3,
+  "exponent": 4,
+  "classification_modulus": 81,
+  "coefficient_period": 54,
+  "orientation_shift": 0,
+  "degree_bound": 270,
+  "low_orientation_bound": 0,
+  "dependency_period": 6,
+  "degree_residue_modulus": 6,
+  "degree_residues": [
+    0,
+    2,
+    4
+  ],
+  "verification_mode": "whole_compact_source",
+  "source_scope": "manin",
+  "source_directory": "source_data/p3_T7_mod81",
+  "relation_specifications": {
+    "0": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "73",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "2": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "61",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "4": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "40",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "6": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "64",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "8": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "25",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "10": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "58",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "12": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "55",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "14": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "70",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "16": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "76",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "18": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "20": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "34",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "22": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "13",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "24": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "26": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "79",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "28": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "31",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "30": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "28",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "32": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "34": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "49",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "36": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "19",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "38": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "40": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "67",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "42": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "10",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "44": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "52",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "46": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "4",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "48": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "50": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "16",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "52": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 81,
+      "variables": [
+        "T7",
+        "N"
+      ],
+      "hecke_operators": {
+        "T7": 7
+      },
+      "divisions": [
+        {
+          "variable": "N",
+          "numerator": [
+            [
+              "1",
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              "22",
+              [
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 3
+        }
+      ],
+      "relations": [
+        {
+          "name": "N_full_domain",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                1
+              ]
+            ]
+          ],
+          "terminal_power": 0
+        },
+        {
+          "name": "N_terminal",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                2
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    }
+  },
+  "exported_from": "classification_mod_81.ipynb: verify_common_T7_case"
+}

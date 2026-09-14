@@ -1,0 +1,10 @@
+degree 1444, q=0, mixed rank=121
+degree 1444, q=1, mixed rank=144
+degree 1444, q=2, mixed rank=121
+degree 1444, q=3, mixed rank=144
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1444.partial.npz
+prime: 5
+exponent: 4
+degree: 1444
+mixed rank: 530
+Hecke indices: 2,19

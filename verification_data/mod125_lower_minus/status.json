@@ -1,0 +1,12 @@
+{
+  "state": "completed",
+  "completed_count": 752,
+  "total_cases": 752,
+  "active": null,
+  "failed": [],
+  "workers": 1,
+  "stage": null,
+  "heartbeat_at": "2026-09-12T07:04:10Z",
+  "pid": 1571605,
+  "case_elapsed_seconds": 1.0005944690201432
+}

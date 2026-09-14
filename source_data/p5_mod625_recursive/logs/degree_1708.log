@@ -1,0 +1,10 @@
+degree 1708, q=0, mixed rank=143
+degree 1708, q=1, mixed rank=170
+degree 1708, q=2, mixed rank=143
+degree 1708, q=3, mixed rank=170
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1708.partial.npz
+prime: 5
+exponent: 4
+degree: 1708
+mixed rank: 626
+Hecke indices: 2,19

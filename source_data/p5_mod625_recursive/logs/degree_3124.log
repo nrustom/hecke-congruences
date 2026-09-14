@@ -1,0 +1,10 @@
+degree 3124, q=0, mixed rank=261
+degree 3124, q=1, mixed rank=312
+degree 3124, q=2, mixed rank=261
+degree 3124, q=3, mixed rank=312
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3124.partial.npz
+prime: 5
+exponent: 4
+degree: 3124
+mixed rank: 1146
+Hecke indices: 2,19

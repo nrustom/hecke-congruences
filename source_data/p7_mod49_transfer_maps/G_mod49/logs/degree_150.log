@@ -1,0 +1,8 @@
+degree 150, q=0, mixed rank=14
+degree 150, q=1, mixed rank=12
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_transfer_maps/G_mod49/degree_150.partial.npz
+prime: 7
+exponent: 2
+degree: 150
+mixed rank: 26
+Hecke indices: 3,29

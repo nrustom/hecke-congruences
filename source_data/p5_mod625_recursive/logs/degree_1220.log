@@ -1,0 +1,10 @@
+degree 1220, q=0, mixed rank=102
+degree 1220, q=1, mixed rank=122
+degree 1220, q=2, mixed rank=102
+degree 1220, q=3, mixed rank=122
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1220.partial.npz
+prime: 5
+exponent: 4
+degree: 1220
+mixed rank: 448
+Hecke indices: 2,19

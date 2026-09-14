@@ -1,0 +1,10 @@
+degree 1802, q=0, mixed rank=181
+degree 1802, q=1, mixed rank=150
+degree 1802, q=2, mixed rank=181
+degree 1802, q=3, mixed rank=150
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1802.partial.npz
+prime: 5
+exponent: 4
+degree: 1802
+mixed rank: 662
+Hecke indices: 2,19

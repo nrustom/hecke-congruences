@@ -1,0 +1,10 @@
+degree 3070, q=0, mixed rank=308
+degree 3070, q=1, mixed rank=256
+degree 3070, q=2, mixed rank=308
+degree 3070, q=3, mixed rank=256
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_3070.partial.npz
+prime: 5
+exponent: 4
+degree: 3070
+mixed rank: 1128
+Hecke indices: 2,19

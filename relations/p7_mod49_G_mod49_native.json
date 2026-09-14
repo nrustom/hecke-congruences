@@ -1,0 +1,2180 @@
+{
+  "schema": "hecke.native-witness-plan.v1",
+  "prime": 7,
+  "exponent": 2,
+  "classification_modulus": 49,
+  "coefficient_period": 42,
+  "orientation_shift": 14,
+  "degree_bound": 350,
+  "low_orientation_bound": 56,
+  "dependency_period": 14,
+  "source_directory": "source_data/p7_mod49_transfer_maps/G_mod49",
+  "allow_missing_lower_orientations": false,
+  "relation_specifications": {
+    "0": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "2": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "4": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "6": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "8": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "10": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "12": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "14": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "16": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "18": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "20": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "22": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "24": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "26": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "28": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "30": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "32": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "34": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "36": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "37",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "38": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "39",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    },
+    "40": {
+      "schema": "hecke.relations.v1",
+      "coefficient_modulus": 49,
+      "variables": [
+        "T3",
+        "T29",
+        "G"
+      ],
+      "hecke_operators": {
+        "T3": 3,
+        "T29": 29
+      },
+      "divisions": [
+        {
+          "variable": "G",
+          "numerator": [
+            [
+              "48",
+              [
+                3,
+                0,
+                0
+              ]
+            ],
+            [
+              "7",
+              [
+                2,
+                0,
+                0
+              ]
+            ],
+            [
+              "43",
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            [
+              "1",
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            [
+              "47",
+              [
+                0,
+                0,
+                0
+              ]
+            ]
+          ],
+          "power": 1
+        }
+      ],
+      "relations": [
+        {
+          "name": "G",
+          "polynomial": [
+            [
+              "1",
+              [
+                0,
+                0,
+                21
+              ]
+            ],
+            [
+              "46",
+              [
+                0,
+                0,
+                15
+              ]
+            ],
+            [
+              "3",
+              [
+                0,
+                0,
+                9
+              ]
+            ],
+            [
+              "48",
+              [
+                0,
+                0,
+                3
+              ]
+            ]
+          ],
+          "terminal_power": 1
+        }
+      ],
+      "witness_semantics": "independent_monomials",
+      "max_howell_dimension": 4096
+    }
+  },
+  "exported_from": "p7_mod49.p7_mod49_nim_relation_spec",
+  "relation_data_sha256": "2130044653cef6d585c5e626d44df4924b5749b89cd26b4eaaea99beb7ecf9d6"
+}

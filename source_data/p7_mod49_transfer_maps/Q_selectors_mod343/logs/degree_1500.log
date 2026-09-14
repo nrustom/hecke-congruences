@@ -1,0 +1,8 @@
+degree 1500, q=0, mixed rank=130
+degree 1500, q=1, mixed rank=128
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p7_mod49_transfer_maps/Q_selectors_mod343/degree_1500.partial.npz
+prime: 7
+exponent: 3
+degree: 1500
+mixed rank: 258
+Hecke indices: 3,29

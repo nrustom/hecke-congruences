@@ -1,0 +1,10 @@
+degree 1886, q=0, mixed rank=190
+degree 1886, q=1, mixed rank=157
+degree 1886, q=2, mixed rank=190
+degree 1886, q=3, mixed rank=157
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_1886.partial.npz
+prime: 5
+exponent: 4
+degree: 1886
+mixed rank: 694
+Hecke indices: 2,19

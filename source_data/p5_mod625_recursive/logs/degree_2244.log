@@ -1,0 +1,10 @@
+degree 2244, q=0, mixed rank=187
+degree 2244, q=1, mixed rank=224
+degree 2244, q=2, mixed rank=187
+degree 2244, q=3, mixed rank=224
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2244.partial.npz
+prime: 5
+exponent: 4
+degree: 2244
+mixed rank: 822
+Hecke indices: 2,19

@@ -1,0 +1,8 @@
+degree 28, q=1, mixed rank=2
+degree 28, q=3, mixed rank=2
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_lower_minus/degree_28.partial.npz
+prime: 5
+exponent: 4
+degree: 28
+mixed rank: 4
+Hecke indices: 2,19

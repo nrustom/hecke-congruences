@@ -1,0 +1,10 @@
+degree 2798, q=0, mixed rank=281
+degree 2798, q=1, mixed rank=233
+degree 2798, q=2, mixed rank=281
+degree 2798, q=3, mixed rank=233
+source archive: /home/nrustom/Documents/math/hecke-congruences/source_data/p5_mod625_recursive/degree_2798.partial.npz
+prime: 5
+exponent: 4
+degree: 2798
+mixed rank: 1028
+Hecke indices: 2,19
