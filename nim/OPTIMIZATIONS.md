@@ -1,6 +1,7 @@
 # Nim optimization inventory
 
-As of 11 September 2026.
+Documentation reviewed after the repository cleanup on 14 September 2026.
+Benchmark dates below refer to the original measurements.
 
 This document collects the optimizations introduced during the development of
 the repository's Nim implementation: source construction, Hecke actions, ideal
@@ -9,12 +10,18 @@ It is organized by development layer rather than by commit date. The inventory
 is based on the current implementation and retained benchmark records; it is
 not a reconstruction of every intermediate version.
 
-Review scope: all 13 current top-level Nim modules, their relevant Python
-interfaces and build/runner scripts, the retained tests and benchmarks, and the
+Review scope: all 14 current top-level Nim modules, their relevant Python
+interfaces and build/runner scripts, the retained tests and benchmark records, and the
 available Nim history since the repository snapshot of 6 September 2026.
 Earlier history was collapsed: historical intermediate implementations cannot
 all be independently reconstructed. The items below distinguish current code
 from earlier approaches and Python-only fast paths where that matters.
+
+The current verification entry points are the `playground_mod_256`,
+`playground_mod_81`, `playground_mod_125` and `playground_mod_49` notebooks.
+Retired notebook interfaces, launchers and one-off benchmark drivers are not
+part of the current workflow. The optimized Nim implementation and regression
+tests remain; historical performance measurements below have not been changed.
 
 **CRUCIAL** marks changes that substantially reduce the mathematical work,
 avoid a large intermediate representation, or prevent memory exhaustion.
@@ -477,7 +484,7 @@ The compact-witness repair was tested on four interrupted modulo-125 cases:
 
 All four passed production and fresh-process replay. The benchmark is recorded
 in [its summary](../verification_data/mod125_compact/benchmarks/1789125890489957798/summary.json),
-using [the benchmark driver](../tests/benchmarks/witness_memory.py).
+using [the historical benchmark driver](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/witness_memory.py).
 The earlier producer had been killed after a service-level peak of about 17.2 GiB;
 that service peak is not directly comparable to one process's peak RSS in this
 table. There is no controlled old/new end-to-end runtime ratio for that failed run.
@@ -530,7 +537,7 @@ path reached the 100-CPU-second diagnostic limit without completing. In the
 first case, an unsuccessful local search before `selector_1` dominated the
 extra cost. This is not a mathematical failure or a whole-scan benchmark.
 Do not extrapolate the modulo-49 speedup to nested modulo-125 presentations.
-Driver: `tests/benchmarks/local_kernel_mod125.py`; raw measurements and binary
+The [historical driver](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/local_kernel_mod125.py) is retained in Git history; raw measurements and binary
 hashes: `verification_data/mod125_compact/benchmarks/local_kernel_1789278617589038282/`.
 The completed production datasets were not changed by this benchmark.
 
@@ -589,7 +596,8 @@ again. Ten restarts repeatedly replayed earlier degrees. The worker now handles
 such bounded increases without losing its cache. This is not a persistent proof
 checkpoint: a manual process restart still performs normal packet replay.
 No mathematical check or recursive transfer hypothesis has been removed.
-The watchdog remains a fallback and also saves its successful memory setting.
+The external watchdog also saved its successful memory setting at that stage;
+it has since been retired. Bounded retries are implemented in the native producer.
 
 Tests: `tests/nim/test_memory_recovery.nim` checks sufficient budget selection,
 the ceiling, and refusal to retry non-memory failures. Runtime improvement for
@@ -640,15 +648,15 @@ the complete remaining scan is not yet measured.
     all 14 checkpoints on its second launch. Regenerable checkpoints are ignored
     by Git; source and witness certificates are not.
 
-An optional `hecke-mod125-memory-watchdog.service` monitors the producer every
-30 seconds. After a confirmed memory-limit result and producer shutdown, it
-retries affected cases serially with bounded budgets up to 4096 MiB, preserving
-packets and independently replaying successful results before resuming four
-workers. This explicit request ceiling in the verifier is distinct from the
-producer's default 1024 MiB. Recovery has a 45-minute per-process limit, checks
-available RAM and disk, and does not retry mathematical failures or unrelated
-errors. Attempts and reports are retained in `verification_data/mod125_compact/watchdog`.
-The watchdog service is capped at 6 GiB and manual wrapper `stop` also stops it.
+Historically, `hecke-mod125-memory-watchdog.service` monitored the producer
+every 30 seconds. After a confirmed memory-limit result and producer shutdown,
+it retried affected cases serially with bounded budgets up to 4096 MiB,
+preserving packets and independently replaying successful results before
+resuming four workers. Recovery had a 45-minute per-process limit, checked
+available RAM and disk, and did not retry mathematical failures or unrelated
+errors. Attempts and reports remain in `verification_data/mod125_compact/watchdog`.
+The external service and Python watchdog have been retired; the current native
+producer handles bounded memory retries in its workers, as described above.
 This is operational recovery, not a relaxation of certificate conditions.
 
 The native witness producer exposes `--solver-memory-mb` (1–4096,

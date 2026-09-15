@@ -45,9 +45,10 @@ justify enabling it. No optimization has yet been deployed to production.
 The observed 7–8x improvement applies to the tested search bottleneck, not
 necessarily the whole scan; no full-run ETA follows from these tests alone.
 
-The benchmark driver is `../../witness_search.py`; the experimental source
-changes are retained in `../../witness_search.patch` for application to a
-scratch copy only. `summary.json` records binary/source hashes and all
+The [historical benchmark driver](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/witness_search.py)
+and [experimental patch](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/witness_search.patch)
+are retained in Git history, not in the maintained production code.
+`summary.json` records binary/source hashes and all
 timings; the per-case reports and packets preserve the replay evidence.
 At the final production-status check, 1,485 cases were completed, no
 failures were recorded, and the heartbeat was 2026-09-11T13:48:39Z.

@@ -1,5 +1,10 @@
 # Compact modulo-49 witness storage pilot
 
+Historical report: the estimates and prototype timings below describe the
+11 September pilot, not the completed production dataset. The maintained
+replay inputs are in `../mod49_compact/`;
+see [the current verification-data guide](../README.md).
+
 Measured on 11 September 2026. This is a bounded format experiment, not the
 complete classification verification or a production certificate format.
 The existing source archives and production verifiers were not modified.
@@ -77,11 +82,8 @@ the tighter binary index/bit packing available to a production format.
 * `replay_summary.json`: independent saved-file replay results.
 * `m*_degree_*_q*.json.gz`: pilot witness packets, including explicitly partial
   packets. The authoritative coverage is their relation list, not the filename.
-* `../../tests/benchmarks/witness_storage_pilot.py`: bounded producer and replay.
+* [Historical bounded producer and replay](https://github.com/nrustom/hecke-congruences/blob/7f4494da14c14e3177e163b6e38625ef8a88280a/tests/benchmarks/witness_storage_pilot.py), retained in Git history.
 
-Example (Sage environment, from the repository root):
-
-```sh
-PYTHONPATH=python sage -python tests/benchmarks/witness_storage_pilot.py \
-  --replay verification_data/mod49_pilot/m3_degree_50_q0.json.gz
-```
+The retired prototype is not a current replay entry point. Use
+[playground_mod_49.ipynb](../../playground_mod_49.ipynb) with the production
+records for the manuscript's finite verification.

@@ -1,99 +1,143 @@
-# Auxiliary elements for equation replay
+# Recorded intermediate elements for equation replay
 
-`mod125/` contains the production packets for the eight modulo-125 source
-checks at working modulus 625. The existing Manin source archives are not
-duplicated or modified. `mod125_pilot/` and `mod49_pilot/` are earlier bounded
-format experiments, not inputs to the production replayer.
+This directory contains the intermediate elements used to verify the finite
+Hecke-operator relations in the manuscript. The sources themselves are stored
+in `source_data/`. The playground notebooks load both and check the defining
+linear equations, including every division and terminal condition.
 
-The production supervisor, its four workers, archive loading, solution
-extraction and equation replay are compiled Nim. It does not launch Python,
-Sage, Singular or a notebook. FLINT, GMP, zlib and OpenSSL are native library
-dependencies. The existing FLINT library directory may happen to reside in
-the Sage/Conda installation; no Sage code is executed.
+## Current inputs
 
-`relations/p5_mod125_native.json` freezes the exact fifty polynomial
-specifications already exported by the notebook front end. This is data, not
-a new derivation of the identities. The source archives are read directly as
-unsigned C-order NPZ arrays, with CRC, SHA-256, metadata and shape checks.
-The same native recursive transfer/spanning checks still apply.
+Paths in this table are relative to `verification_data/`. The case counts are
+the required finite degree/orientation ranges, not the number of packet files.
 
-Each compressed packet stores only the nonzero choices added to canonical
-outputs of division equations in the cyclic source module. Ordinary steps,
-polynomial aliases and the terminal auxiliary element are reconstructed.
-The oriented actions, cyclic orders, tested input rows, and literal relation
-specification determine the packet binding. No division in a torsion module
-is justified by cancellation, and no global divided endomorphism is assumed.
+| Classification / stage | Recorded elements | Working modulus | Required cases |
+| --- | --- | ---: | ---: |
+| Modulo 256, `T3_T5` | `mod256_compact/T3_T5/packets/` | 256 | 320 |
+| Modulo 81, common `T7` | `mod81_compact/T7_mod81/packets/` | 81 | 270 |
+| Modulo 81, nonzero branch | `mod81_compact/nonzero_mod243/packets/` | 243 | 540 |
+| Modulo 81, zero-branch ideal image | `mod81_compact/zero_ideal_mod2187/packets/` | 2187 | 2,430 |
+| Modulo 49, `G` | `mod49_compact/G_mod49/packets/` | 49 | 910 |
+| Modulo 49, `Q` and selectors | `mod49_compact/Q_selectors_mod343/packets/` | 343 | 6,370 |
+| Modulo 125 | `mod125_compact/packets/` | 625 | 5,375 |
 
-Production first tries canonical choices, then reusable divided endomorphisms
-with a bounded search through diagonal torsion-kernel corrections. These are
-sufficient choices, not an assumption that division is unique. Every nested
-numerator is reconstructed after a choice changes, and the literal polynomial
-and composition equations are replayed. This path is reported as
-`structured_witness_replay`. Unsuccessful structured choices are inconclusive;
-the common-chain simultaneous solve and, where permitted, independent
-monomial chains remain the fallback. Each accepted solution undergoes one
-complete equation replay, which also encodes its compact kernel corrections.
-Production does not repeat that replay or immediately decompress the newly
-written packet. Gzip write/close errors are checked and publication is atomic;
-every later load still checks the binding and replays all equations.
-Source validation is performed once per uncached source verification, and
-successful lower-degree results are reused only with matching specification,
-orientation and archive-dependency fingerprints. The required transfer and
-spanning checks are unchanged. Resource-limit outcomes are not counterexamples and
-are not recorded as passed. Per-relation successes survive an interrupted or
-inconclusive degree.
+The modulo-125 recursive replay also needs `mod125_lower_minus/packets/`
+and the supplementary sources in `source_data/p5_mod625_lower_minus/`.
+These are required lower-degree inputs, not obsolete pilot data. The
+supplementary producer checks orientations 1 and 3 in even degrees 0 through
+750, independently of the main case count.
 
-## Running and monitoring
+The earlier `mod125/`, pilot and launch-test directories, where retained,
+are historical records. They are not the default playground inputs. The
+storage-estimate reports describe their original bounded experiments and
+must not be read as current production coverage or full-run size estimates.
 
-From the repository root:
+## What is recorded and checked
+
+The maintained plans in [../relations/](../relations/) specify the Hecke
+indices, working precision, degree/orientation ranges and expanded polynomial
+presentations. The playgrounds define the polynomials visibly and check
+agreement with these plans. No retired classification notebook or one-time
+exporter is required.
+
+For a division relation `Tx=p^a y`, the recorded data specify permitted
+choices of `y` in the source module. They can be compact recipes for reusable
+choices or corrections to coordinatewise preimages. Replay reconstructs the
+intermediate elements and checks the equations exactly. Ordinary steps and
+terminal elements are reconstructed where the format permits; the full
+vectors need not all be stored.
+
+The source orders, oriented Hecke actions, tested inputs and exact relation
+specification determine the packet binding. This prevents applying data to
+the wrong source or relation. The binding is an integrity check, not a proof
+of the equations: those are checked separately. Cancellation in a torsion
+source is never used to justify a division.
+
+For an ideal-image source, every intermediate element, including the
+terminal element `rho` in `y=p^b rho`, belongs to that ideal image. For a
+recursive test on complementary input rows, success also requires the
+lower-degree relations and the transfer, equivariance and spanning checks.
+An empty complement alone does not prove the whole-source assertion.
+
+The source archives supply the cyclic coordinates and Hecke matrices.
+Equation replay does not independently reconstruct their Manin presentation.
+Fresh source production and the independent Sage/Nim regression checks are
+separate parts of reproducibility. Neither finite replay nor a stored success
+flag substitutes for the manuscript's all-weight propagation argument.
+
+## Production and replay are different workflows
+
+The native producer first searches for suitable intermediate elements,
+using structured choices and exact linear-system solvers as needed. Failure
+of a structured choice is not a mathematical obstruction; the more general
+solver is a fallback within the configured resource limits. A size or memory
+limit is inconclusive, not a passed check or a counterexample.
+
+Each accepted solution is checked against its defining equations before
+publication. Compact records are written atomically with checked compression
+and file errors. Native arithmetic uses FLINT, GMP, zlib and OpenSSL. The
+modulo-125 supervisor is Nim; the other stage queues use Python for scheduling,
+not Sage or Singular for the finite arithmetic.
+
+With `witness_mode="replay"`, the verifier performs no search for new
+intermediate elements. Missing, incompatible or invalid records fail the
+replay. The historical names `witness_directory`, `witness_mode` and report
+fields are retained in the file/API formats; mathematically they refer to
+intermediate elements in the manuscript's calculus of linear relations.
+
+### Checkpoints and resumption
+
+Production may save dependency-bound checkpoints to avoid repeating
+successful arithmetic after a restart. These are trusted local state, bound
+to the verifier executable, specification, orientation and input files.
+Changed dependencies invalidate them. Explicit replay mode does not accept
+such a checkpoint in place of equation checks.
+
+Consequently, a production restart may use compatible packets or validated
+checkpoints. Case counts, packet counts and checkpoint hits measure different
+things; recursive dependencies can produce additional packets. A heartbeat
+indicates liveness, not completion of a mathematical step.
+
+The native producer handles bounded retries after explicit memory-limit
+refusals. The former external memory-watchdog service and script have been
+retired. Failure or an inconclusive case stops new scheduling; already active
+cases may finish.
+
+## Running the maintained workflows
+
+For referee-facing replay, use:
+
+- [playground_mod_256.ipynb](../playground_mod_256.ipynb)
+- [playground_mod_81.ipynb](../playground_mod_81.ipynb)
+- [playground_mod_49.ipynb](../playground_mod_49.ipynb)
+- [playground_mod_125.ipynb](../playground_mod_125.ipynb)
+
+Each notebook starts with its explicit relations and source locations, then
+loads the corresponding recorded elements. The modulo-81, modulo-49 and
+modulo-125 playgrounds also have optional Nim replay cells with adjustable
+`NIM_WORKERS`, initially 4. The modulo-49 and modulo-125 native cases include
+their recursive dependencies; modulo-81 replay checks the whole supplied
+finite source.
+
+To regenerate the recorded elements, use the retained `run_mod*_witnesses.sh`
+workflows. Their prerequisites, success gates, build-path limitations and
+monitor commands are documented in [the repository README](../README.md).
+Do not start a producer merely to repeat an existing replay, and do not write
+new records into a directory while another process is replaying it.
+
+For example, on the configured production installation:
 
 ```bash
-bash run_mod125_witnesses.sh start 4
 bash run_mod125_witnesses.sh status
-bash run_mod125_witnesses.sh stop
-bash run_mod125_witnesses.sh resume 4
+watch -n 5 bash run_mod125_witnesses.sh status
 ```
 
-Four persistent native sessions own ascending degree chains modulo 250, so
-both Dickson degree shifts preserve worker ownership. Low degrees are
-processed first. A failed/inconclusive case stops new scheduling; other
-active cases may finish. The systemd service owns all descendant processes.
-Production stops if less than 10 GiB of disk space remains. Existing packets
-are replayed on resume; saved reports alone are never accepted as proofs.
-Consequently `completed_count` counts cases checked in the current launch,
-whereas `packet_count` includes previously saved packets and lower recursive
-dependencies. Heartbeats show liveness, not completion of a mathematical step.
+The modulo-125 wrapper reads the supplementary directories without changing
+them. Their producer remains [verify_mod125_lower_minus.py](../python/verify_mod125_lower_minus.py);
+its historically named verifier executable is unrelated to the removed
+watchdog service. Build and launcher paths must be configured before using
+these service wrappers on another machine.
 
-The production extraction cap is 8,192 simultaneous coordinates. This is a
-resource setting, not an identity coefficient or certificate hypothesis;
-the polynomial specification retains its original 4,096 verifier default.
-Changing the extraction cap does not invalidate already produced packets.
-The structured fast path does not increase this cap. Regression tests at
-degrees 26, 130, 250 and 270 pass all eight checks even with the simultaneous
-solver capped at one coordinate, and separately replay their saved choices.
-
-## Later notebook replay
-
-The existing `verify_hecke_relations_nim` call accepts two optional keywords:
-
-```python
-report = verify_hecke_relations_nim(
-    native_relations[relation_residue],
-    compute=compute,
-    session=session,
-    witness_directory="verification_data/mod125/packets",
-    witness_mode="replay",
-)
-```
-
-Use the same source data and relation specifications (including the solver
-limit recorded in the manifest). Replay mode never invokes witness discovery:
-missing or invalid packets raise errors. The recursive transfer, spanning
-and lower-degree checks are still performed. An empty supplementary source
-check does not by itself prove the whole-source assertion. Sources remain
-trusted archived Hecke actions, as in the original notebook.
-
-The notebooks have not been switched to these packets automatically. Until
-the run has complete coverage, full replay can encounter missing packets.
-Neither packet production nor a bounded source verification alone asserts
-an all-weight classification theorem.
+Polynomial plans, source coordinates and packet bindings must remain
+consistent. Recomputing an isomorphic module in another basis does not make
+old recorded coordinates valid in that basis. Preserve the original inputs,
+or regenerate/transport the intermediate elements with the necessary checks.
